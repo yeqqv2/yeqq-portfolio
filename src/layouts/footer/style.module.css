@@ -1,0 +1,20 @@
+.container {
+  width: 100vw;
+  background-color: var(--wb50);
+  padding: 10vh 20vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5vh;
+  position: relative;
+  z-index: 10;
+}
+
+.logo {
+  font-family: "Terminal";
+}
+
+.footer {
+  color: var(--wb400);
+  font-weight: 300;
+}

@@ -1,0 +1,192 @@
+/* INTRO */
+
+.container {
+  height: auto;
+  width: 100vw;
+  padding: 15vh 10vh 10vh 10vh;
+  display: flex;
+  align-items: flex-start;
+}
+
+/* SIDE CONTENT */
+
+.side_content {
+  height: calc(160vh + 5.5em + 1px);
+  width: 30vw;
+  position: relative;
+}
+
+.content {
+  position: relative;
+  width: 100%;
+  padding: 4em;
+  gap: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.content_main {
+  padding-block: 5vh;
+  height: 60vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2em;
+}
+
+.title {
+  font-size: 6em;
+  line-height: 1.1em;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  gap: 0.25em;
+}
+
+.meet {
+  color: var(--wb400);
+}
+
+.name {
+  color: var(--wb950);
+  position: relative;
+  z-index: 0;
+}
+
+.name::before {
+  content: "";
+  height: 120%;
+  width: 105%;
+  background-color: var(--main-color300);
+  position: absolute;
+  top: -10%;
+  left: -2.5%;
+  z-index: -1;
+}
+
+.desc {
+  font-size: 1.25em;
+  color: var(--main-color100);
+}
+
+/* WELCOME SEC */
+
+.welcome_sec {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15vh;
+  color: var(--wb50);
+}
+
+.welcome_title {
+  height: 15vh;
+  display: flex;
+  align-items: flex-start;
+  gap: 2em;
+}
+
+.welcome_title_text {
+  font-size: 3.5em;
+  line-height: 1.1em;
+  width: 75%;
+}
+
+.icon {
+  margin-top: -0.5em;
+  font-size: 5em;
+}
+
+.welcome_content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2.5vh;
+  height: 30vh;
+}
+
+.welcome_header {
+  color: var(--wb500);
+  font-family: "Terminal";
+  font-size: 1.5em;
+}
+
+.about_me {
+  font-size: 1.75em;
+  font-weight: 200;
+}
+
+@media screen and (max-width: 1024px) {
+  .container {
+    padding: 10vh 10vw;
+  }
+
+  .side_content {
+    display: none;
+  }
+
+  .content {
+    width: 80vw;
+    gap: 5vh;
+  }
+
+  .title {
+    justify-content: center;
+    text-align: center;
+    font-size: 5em;
+  }
+
+  .name {
+    text-align: center;
+  }
+
+  .desc {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 10vh 5vw;
+  }
+
+  .content {
+    width: 90vw;
+  }
+
+  .title {
+    font-size: 3em;
+    gap: 0.5em;
+    width: 90vw;
+  }
+
+  .name {
+    font-size: 1em;
+    width: 90vw;
+  }
+
+  .welcome_sec {
+    width: 90vw;
+  }
+
+  .welcome_title_text {
+    font-size: 2em;
+  }
+
+  .icon {
+    font-size: 3.5em;
+  }
+
+  .about_me {
+    font-size: 1.5em;
+  }
+}

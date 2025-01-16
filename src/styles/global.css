@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+body {
+  background-color: black;
+  color: var(--wb900);
+  font-size: clamp(12px, 0.85vw, 72px);
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-family: "Outfit", system-ui, sans-serif !important;
+}
+
+hr {
+  width: 100%;
+  opacity: 0.15;
+}
+
+.flexbox {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}

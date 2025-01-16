@@ -1,0 +1,265 @@
+.container {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5vh;
+  padding: 10vh 10vw;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1em;
+  height: 10vh;
+}
+
+.header_title {
+  color: var(--wb300);
+  font-family: "Terminal";
+  font-size: 1.5em;
+}
+
+.header_desc {
+  font-size: 0.95em;
+  font-weight: 300;
+  color: var(--wb400);
+}
+
+.main {
+  height: 100vh;
+  width: 80vw;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas:
+    "project_1 project_2 project_2"
+    "project_1 project_3 project_4";
+  gap: 0.25em;
+}
+
+.project_1,
+.project_2,
+.project_3,
+.project_4 {
+  height: 100%;
+  width: 100%;
+  background-color: var(--wb950);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--wb900);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.project_1 {
+  grid-area: project_1;
+}
+
+.project_2 {
+  grid-area: project_2;
+}
+
+.project_3 {
+  grid-area: project_3;
+}
+
+.project_4 {
+  grid-area: project_4;
+  justify-content: space-between;
+}
+
+.card_header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1em;
+  padding: 1em;
+  transition: 0.3s;
+}
+
+.card_header_title {
+  font-size: 1.5em;
+  font-weight: 300;
+  color: var(--wb50);
+}
+
+.card_header_desc {
+  font-size: 0.925em;
+  color: var(--wb500);
+  font-weight: 300;
+}
+
+.card_img {
+  height: 30vh;
+  object-fit: contain;
+  object-position: left;
+  position: absolute;
+  top: 67.5vh;
+  right: -2.5%;
+  border-radius: 0.5em;
+  transition: 0.3s;
+}
+
+.card_img:nth-child(2) {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.card_img:nth-child(3) {
+  transform: scale(1.025) rotate(10deg);
+}
+
+.card_img_2 {
+  position: absolute;
+  bottom: -30%;
+  right: -10%;
+  height: 100%;
+  border-radius: 0.5em;
+  transition: 0.3s;
+}
+
+.card_img_3 {
+  position: absolute;
+  bottom: -1em;
+  left: -1em;
+  width: 22.5%;
+  height: auto;
+  border-radius: 0.5em;
+  transition: 0.3s;
+}
+
+.card_img_3:nth-child(2) {
+  left: 25%;
+}
+
+.card_img_3:nth-child(3) {
+  left: 52.5%;
+}
+
+.card_img_3:nth-child(4) {
+  left: 80%;
+}
+
+.vid {
+  filter: invert(1) contrast(10);
+  mix-blend-mode: lighten;
+}
+
+.card:hover > .card_header {
+  display: none;
+}
+
+.card:hover > .card_img:nth-child(3) {
+  top: 35vh;
+  transform: scale(1) rotate(0deg);
+}
+
+.card:hover > .card_img:nth-child(2) {
+  top: 2.5vh;
+  transform: scale(1) rotate(0deg);
+}
+
+.card:hover > .card_img_2 {
+  bottom: -1em;
+  right: 0%;
+  transform: translateX(-12.5%);
+}
+
+.card:hover > .card_img_3 {
+  width: 45%;
+  bottom: 1em;
+  left: 1em;
+}
+
+.card:hover > .card_img_3:nth-child(2) {
+  top: 1em;
+}
+
+.card:hover > .card_img_3:nth-child(3) {
+  top: 1em;
+  left: 52.5%;
+}
+
+.card:hover > .card_img_3:nth-child(4) {
+  bottom: 1em;
+  left: 52.5%;
+}
+
+.card:hover > .card_img_3:nth-child(5) {
+  top: 36.25%;
+  left: 52.5%;
+}
+
+.card:hover > .card_img_3:nth-child(6) {
+  top: 36.25%;
+}
+
+@media screen and (max-width: 1024px) {
+  .container {
+    padding: 10vh 10vw;
+  }
+
+  .header {
+    height: auto;
+  }
+
+  .main {
+    grid-template-areas:
+      "project_1  project_2 "
+      "project_1  project_3 "
+      "project_1  project_4 ";
+
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  .project_2,
+  .project_3,
+  .project_4 {
+    aspect-ratio: 1;
+  }
+
+  .card_img_2 {
+    width: 100%;
+    height: auto;
+    bottom: -10%;
+  }
+
+  .card:hover > .card_img_2 {
+    bottom: -0%;
+    right: 1em;
+    transform: translate(0, -12.5%);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 10vh 5vw;
+  }
+
+  .main {
+    height: 250vh;
+    width: 90vw;
+    grid-template-areas:
+      "project_1"
+      "project_1"
+      "project_2"
+      "project_3"
+      "project_4";
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+  }
+
+  .card_img {
+    object-fit: cover;
+    border-radius: 2em;
+  }
+
+  .card:hover > .card_img {
+    left: 2em;
+  }
+}

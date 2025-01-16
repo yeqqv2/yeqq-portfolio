@@ -1,0 +1,29 @@
+.container {
+  width: calc(100vw - 20vh);
+  position: fixed;
+  padding: 2.5vh;
+  font-family: "Terminal";
+  top: 5vh;
+  left: 10vh;
+  color: var(--main-color300);
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  position: relative;
+  height: 100%;
+  font-size: 2em;
+}
+
+.logo::before {
+  content: "";
+  height: 0.5em;
+  width: 50%;
+  background-color: var(--main-color300);
+  position: absolute;
+  top: -1em;
+  left: 0;
+}

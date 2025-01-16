@@ -1,0 +1,15 @@
+.container {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5vh;
+  color: var(--main-color300);
+}
+
+.intro {
+  height: 100vh;
+  width: 100vw;
+  padding: 12.5vh 10vh 10vh 10vh;
+  background-color: var(--wb950);
+}

@@ -1,0 +1,92 @@
+.container {
+  width: 100vw;
+  padding: 10vh 10vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5vh;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1em;
+}
+
+.header_title {
+  color: var(--wb500);
+  font-family: "Terminal";
+  font-size: 1.5em;
+}
+
+.header_desc {
+  font-size: 0.95em;
+  font-weight: 300;
+  color: var(--wb400);
+}
+
+.main {
+  width: 80vw;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.card {
+  flex: 1;
+  aspect-ratio: 1;
+  background: var(--wb950);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  color: var(--wb800);
+  font-size: 2.5em;
+  transition: 0.3s;
+}
+
+.card:hover {
+  color: var(--wb50);
+}
+
+.github:hover {
+  background: linear-gradient(45deg, #24292e, #6cc644);
+}
+
+.linkedin:hover {
+  background: linear-gradient(45deg, #0a66c2, #0077b5);
+}
+
+.gmail:hover {
+  background: linear-gradient(45deg, #ea4335, #c5221f);
+}
+
+.instagram:hover {
+  background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
+}
+
+@media screen and (max-width: 1024px) {
+  .main {
+    flex-wrap: wrap;
+  }
+
+  .card {
+    flex: auto;
+    width: calc(40vw - 0.5em);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 10vh 5vw;
+  }
+
+  .main {
+    width: 90vw;
+  }
+
+  .card {
+    width: 90vw;
+  }
+}
