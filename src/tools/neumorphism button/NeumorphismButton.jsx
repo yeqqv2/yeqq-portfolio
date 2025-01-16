@@ -1,11 +1,15 @@
 import React from "react";
 import styles from "./style.module.css";
 
-const NeumorphismButton = () => {
+const NeumorphismButton = ({ handleStart }) => {
   return (
     <div className={styles.light}>
       <label className={styles.circle}>
-        <input type="checkbox" className={styles.input} />
+        <input
+          onChange={handleStart}
+          type="checkbox"
+          className={styles.input}
+        />
       </label>
     </div>
   );

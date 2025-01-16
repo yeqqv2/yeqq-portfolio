@@ -1,28 +1,64 @@
 .container {
   width: 100vw;
   height: 100vh;
-  padding: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 5vh;
   position: fixed;
-  z-index: 999;
+  top: 0;
+  left: 0;
+  z-index: 9999;
   background-color: #e8e8e8;
 }
 
-.title {
-  width: 50%;
+.light {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  opacity: 1; /* Başlangıçta görünür */
+  transition: opacity 1s;
+}
+
+.content {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: red;
+}
+
+.title {
+  width: 35%;
+  display: none;
+  flex-direction: column;
   align-items: flex-start;
-  gap: 0.1em;
+  gap: 1em;
   text-align: left;
-  font-size: 3em;
   padding-left: 1em;
   border-left: 4px solid var(--main-color500);
   position: relative;
+  font-size: 2em;
+}
+
+.title.visible {
+  display: flex;
+  transform: translateY(0);
+}
+
+.title.hidden {
+  display: none;
+  transform: translateY(50px);
+}
+
+.p {
+  font-size: 1.25em;
+  color: var(--wb300);
+}
+
+.author {
+  color: var(--wb200);
 }
 
 .quote_icon {
@@ -32,5 +68,5 @@
   font-size: 5em;
   line-height: 1em;
   z-index: -1;
-  opacity: 0.25;
+  opacity: 0.1;
 }

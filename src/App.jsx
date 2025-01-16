@@ -7,15 +7,13 @@ import "./styles/variables.css";
 import "./styles/reset.css";
 import "./styles/global.css";
 import "./styles/scrollbar.css";
-import Terminal from "./animations/opening/OpeningAnimation";
 import HomePage from "./pages/home/HomePage";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Terminal />} />
+      <Route path="/" element={<HomePage />} />
       {/* HOME PAGE */}
-      <Route path="/home" element={<HomePage />} />
     </Routes>
   );
 }
