@@ -2,14 +2,14 @@
   width: 100vw;
   height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999;
-  background-color: #e8e8e8;
+  z-index: 99;
+  background-color: var(--wb100);
+  padding: 20vh 10vw;
 }
 
 .light {
@@ -17,56 +17,78 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
-  opacity: 1; /* Başlangıçta görünür */
+  opacity: 1;
   transition: opacity 1s;
 }
 
 .content {
+  width: 90vw;
+  height: 60vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: red;
+  gap: 10vw;
+  display: none;
+}
+
+.img_div {
+  height: 60vh;
+}
+
+.img {
+  border: 0.5em solid var(--wb50);
+  object-fit: contain;
+  height: 100%;
 }
 
 .title {
   width: 35%;
-  display: none;
   flex-direction: column;
+  justify-content: center;
   align-items: flex-start;
   gap: 1em;
   text-align: left;
-  padding-left: 1em;
-  border-left: 4px solid var(--main-color500);
   position: relative;
   font-size: 2em;
+  font-weight: 500;
 }
 
-.title.visible {
+.content.visible {
   display: flex;
   transform: translateY(0);
 }
 
-.title.hidden {
+.content.hidden {
   display: none;
   transform: translateY(50px);
 }
 
 .p {
-  font-size: 1.25em;
-  color: var(--wb300);
+  font-size: 1.5em;
 }
 
 .author {
-  color: var(--wb200);
+  font-weight: 300;
+  font-size: 0.75em;
+  color: var(--wb300);
 }
 
 .quote_icon {
   position: absolute;
-  top: -0.1em;
-  left: 0.1em;
-  font-size: 5em;
+  top: -0.25em;
+  left: -0.25em;
+  font-size: 10em;
   line-height: 1em;
   z-index: -1;
   opacity: 0.1;
+}
+
+.progressBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 1em;
+  background-color: var(--orange400);
+  width: 0%;
+  z-index: 1000;
 }

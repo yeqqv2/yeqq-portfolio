@@ -78,6 +78,5 @@ label {
 button {
   background: none;
   border: none;
-  cursor: pointer;
   user-select: none;
 }

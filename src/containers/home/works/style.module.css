@@ -49,7 +49,6 @@
   position: relative;
   overflow: hidden;
   border: 1px solid var(--wb900);
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

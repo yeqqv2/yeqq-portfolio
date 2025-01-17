@@ -8,45 +8,51 @@ const Terminal = () => {
   const containerRef = useRef(null);
   const lightRef = useRef(null);
   const titleRef = useRef(null);
+  const progressBarRef = useRef(null);
+
+  const loadingDuration = 5;
 
   const handleStart = () => {
-    // Butonun yavaşça kaybolmasını sağla
     gsap.to(lightRef.current, {
       opacity: 0,
       duration: 2,
       onComplete: () => {
         if (lightRef.current) {
-          lightRef.current.style.display = "none"; // display: none uygula
+          lightRef.current.style.display = "none";
         }
-        setStart(true); // "start" durumunu güncelle
+        setStart(true);
       },
     });
   };
 
   useEffect(() => {
     if (start) {
-      // Başlık animasyonunu başlat
       gsap.fromTo(
         titleRef.current,
         { opacity: 0, y: 50 },
         { opacity: 1, y: 0, duration: 1 }
       );
-
-      // 5 saniye sonra containerRef animasyonunu başlat
-      const timer = setTimeout(() => {
-        gsap.to(containerRef.current, {
-          y: "-100%",
-          duration: 2,
-          ease: "expo.in",
+      gsap.fromTo(
+        progressBarRef.current,
+        { width: "0%" },
+        {
+          width: "100%",
+          duration: loadingDuration,
+          ease: "linear",
           onComplete: () => {
-            if (containerRef.current) {
-              containerRef.current.style.display = "none";
-            }
+            gsap.to(containerRef.current, {
+              y: "-100%",
+              duration: 2,
+              ease: "expo.in",
+              onComplete: () => {
+                if (containerRef.current) {
+                  containerRef.current.style.display = "none";
+                }
+              },
+            });
           },
-        });
-      }, 500);
-
-      return () => clearTimeout(timer);
+        }
+      );
     }
   }, [start]);
 
@@ -59,15 +65,33 @@ const Terminal = () => {
       )}
       <div
         ref={titleRef}
-        className={`${styles.title} ${start ? styles.visible : styles.hidden}`}
+        className={`${styles.content} ${
+          start ? styles.visible : styles.hidden
+        }`}
       >
-        <div className={styles.quote_icon}>❝</div>
-        <div className={styles.p}>
-          I have broken the blue boundary of color limits, come out into the
-          white; beside me, comrade‐pilots, swim in this infinity.
+        <div className={styles.img_div}>
+          <img
+            className={styles.img}
+            src="/assets/images/White_on_White_(Malevich,_1918).png"
+            alt="White on White"
+          />
         </div>
-        <i className={styles.author}>Kazimir Malevich, White on White (1918)</i>
+        <div className={styles.title}>
+          <div className={styles.quote_icon}>❝</div>
+          <div className={styles.p}>
+            Gökyüzünü renklerle
+            <br />
+            bezemenin üstesinden geldim.
+            <br />
+            Beyaz boşlukta yüzün,
+            <br />
+            sonsuzluk karşınızda.
+          </div>
+          <i className={styles.author}>(Kazimir Malevich, White on White)</i>
+        </div>
       </div>
+      {/* Start durumu true olduğunda altta sabit bulunan yükleme çubuğu */}
+      {start && <div ref={progressBarRef} className={styles.progressBar}></div>}
     </div>
   );
 };

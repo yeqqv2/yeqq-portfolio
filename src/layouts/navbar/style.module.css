@@ -1,29 +1,100 @@
 .container {
-  width: calc(100vw - 20vh);
+  width: 80vw;
   position: fixed;
-  padding: 2.5vh;
-  font-family: "Terminal";
-  top: 5vh;
-  left: 10vh;
-  color: var(--main-color300);
+  padding: 1vh 2.5vw;
+  top: 2.5vh;
+  left: 10vw;
   z-index: 9;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10vw;
 }
 
 .logo {
   position: relative;
   height: 100%;
   font-size: 2em;
+  user-select: none;
 }
 
-.logo::before {
-  content: "";
-  height: 0.5em;
-  width: 50%;
-  background-color: var(--main-color300);
-  position: absolute;
-  top: -1em;
+.main {
+  height: calc(2vh + 2em);
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.left {
+  justify-content: flex-start;
+}
+
+.right {
+  justify-content: flex-end;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
   left: 0;
+  height: 100vh;
+  width: 30vw;
+  background-color: var(--green300);
+  padding: 10vh 5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 5vh;
+  z-index: 999;
+}
+
+.close {
+  position: absolute;
+  top: 3.5vh;
+  right: 2.5vw;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2em;
+}
+
+.link {
+  font-size: 3em;
+  transition: 0.5s;
+}
+
+.link_icon {
+  width: 0;
+  transition: 0.5s;
+}
+
+.link:hover > .link_icon {
+  width: 100%;
+}
+
+.contact_link_sec {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1em;
+}
+
+.contact_link_colored {
+  padding: 0.375em 0.5em 0.375em 0.5em;
+  background-color: var(--blue400);
+  border-radius: 0.25em;
+  position: relative;
+  color: var(--blue950);
+  line-height: 1em;
+}
+
+.contact_links {
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
 }

@@ -4,7 +4,7 @@
   height: 100vh;
   align-items: center;
   justify-content: space-around;
-  background-color: #e8e8e8;
+  background-color: var(--wb100);
   position: absolute;
   top: 0;
   left: 0;
@@ -19,6 +19,7 @@
   border-radius: 150px;
   align-items: center;
   justify-content: center;
+  cursor: none;
 }
 
 .circle::before {
@@ -31,11 +32,11 @@
   width: 150px;
   height: 150px;
   content: " ";
-  cursor: pointer;
   transition: 0.3s ease-out;
   border-radius: 150px;
   filter: blur(7px);
   box-shadow: 8px 8px 20px #a9a8b7, -8px -8px 20px #fff;
+  cursor: none;
 }
 
 .circle:has(.input:checked):before {
@@ -46,7 +47,9 @@
 }
 
 .input {
+  cursor: none;
   height: 100%;
   width: 100%;
   appearance: none;
+  pointer-events: none;
 }
