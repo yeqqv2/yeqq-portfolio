@@ -43,7 +43,6 @@ const Terminal = () => {
             gsap.to(containerRef.current, {
               y: "-100%",
               duration: 2,
-              ease: "expo.in",
               onComplete: () => {
                 if (containerRef.current) {
                   containerRef.current.style.display = "none";

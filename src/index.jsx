@@ -11,16 +11,12 @@ root.render(
   <React.StrictMode>
     <AnimatedCursor
       innerSize={20}
-      outerSize={40}
       innerScale={1.5}
-      outerScale={1.5}
-      outerAlpha={0}
       outerStyle={{
-        border: "3px solid var(--orange500)",
-        zIndex: 999,
+        display: "none",
       }}
       innerStyle={{
-        backgroundColor: "var(--orange500)",
+        backgroundColor: "black",
         zIndex: 999,
       }}
       clickables={[
@@ -36,7 +32,7 @@ root.render(
         "button",
         ".link",
       ]}
-      trailingSpeed={10}
+      trailingSpeed={0}
       showSystemCursor={false}
     />
     <BrowserRouter>

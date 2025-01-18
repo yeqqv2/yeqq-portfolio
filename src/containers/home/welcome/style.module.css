@@ -1,22 +1,14 @@
 .container {
-  height: 60vh;
   width: 100vw;
+  padding: 40vh 15vw 10vh 15vw;
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  justify-content: flex-end;
-  background-color: var(--red600);
-  transition: .3s;
-  overflow: hidden;
+  align-items: flex-start;
+  border: 1px solid var(--wb950);
 }
 
-.textWrapper {
-  width: 100vw;
-  font-weight: 700;
-  line-height: .75;
-  color: var(--wb100);
-  transform-origin: bottom;
-  scroll-snap-align: top;
-  scroll-snap-type: mandatory;
+.content {
+  width: 30vw;
+  font-size: 2em;
 }

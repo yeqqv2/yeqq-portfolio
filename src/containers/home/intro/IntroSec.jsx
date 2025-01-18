@@ -5,7 +5,7 @@ import Marquee from "react-double-marquee";
 const IntroSec = () => {
   const marqueeProps = {
     children: "minimalism,dadaism,cubism,user(interface,experience),",
-    speed: 0.4,
+    speed: 0.3,
     direction: "left",
     childMargin: 15,
     scrollWhen: "always",
