@@ -1,20 +1,32 @@
 import React from "react";
 import styles from "./style.module.css";
+import Marquee from "react-double-marquee";
 
 const IntroSec = () => {
+  const marqueeProps = {
+    children: "minimalism,dadaism,cubism,user(interface,experience),",
+    speed: 0.4,
+    direction: "left",
+    childMargin: 15,
+    scrollWhen: "always",
+  };
+
   return (
     <div className={styles.container}>
-      <header className={styles.header}>
-        <video
-          className={styles.vid}
-          src="/assets/videos/code-horizontal.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-        ></video>
-      </header>
-      <main className={styles.main}></main>
+      <video
+        className={styles.vid}
+        src="/assets/videos/ui-design.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
+      <div className={styles.marquee_div}>
+        <Marquee {...marqueeProps} />
+      </div>
+      <div className={styles.marquee_div_2}>
+        <Marquee {...marqueeProps} />
+      </div>
     </div>
   );
 };

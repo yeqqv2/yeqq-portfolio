@@ -1,137 +1,22 @@
 .container {
+  height: 60vh;
   width: 100vw;
-  padding: 15vh 20vh 10vh 20vh;
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 5vh;
-  background-color: var(--wb50);
-  color: var(--wb950);
+  align-items: flex-end;
+  justify-content: flex-end;
+  background-color: var(--red600);
+  transition: .3s;
+  overflow: hidden;
 }
 
-.header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1em;
-}
-
-.header_title {
-  color: var(--wb500);
-  font-family: "Terminal";
-  font-size: 1.5em;
-}
-
-.header_desc {
-  font-size: 0.95em;
-  font-weight: 300;
-  color: var(--wb400);
-}
-
-.main {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2em;
-  width: 100%;
-}
-
-.list {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 5vh;
-}
-
-.list_title {
-  font-size: 1.5em;
-  color: var(--wb950);
-}
-
-.ul {
-  list-style-type: none;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 2em;
-}
-
-.li {
-  font-size: 3em;
-  color: var(--wb300);
-  position: relative;
-  z-index: 0;
-  transition: 0.3s;
-  line-height: 1em;
-}
-
-.li::before {
-  content: "";
-  height: 30%;
-  width: 0;
-  position: absolute;
-  background-color: var(--main-color300);
-  top: 50%;
-  left: 0;
-  z-index: -1;
-  transform: translateY(-50%);
-  transition: 0.5s;
-  transform-origin: center;
-}
-
-.li:hover {
-  color: var(--wb950);
-  transform: scale(1.1);
-}
-
-.li:hover:before {
-  width: 100%;
-}
-
-.skillImage {
-  position: absolute;
-  top: 50%;
-  left: -10%;
-  height: 1em;
-  transition: 0.3s;
-  opacity: 0;
-  z-index: -1;
-  transform: translate(0, -50%);
-}
-
-.li:hover > .skillImage {
-  opacity: 1;
-  transform: translate(-1em, -50%);
-}
-
-@media screen and (max-width: 1024px) {
-  .container {
-    padding: 10vh 10vw;
-  }
-
-  .main {
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 5vw;
-    row-gap: 10vh;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .container {
-    padding: 10vh 5vw;
-  }
-
-  .main {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  .skillImage {
-    left: 100%;
-    right: 0;
-  }
-
-  .li:hover > .skillImage {
-    opacity: 1;
-    transform: translate(0.5em, -50%);
-  }
+.textWrapper {
+  width: 100vw;
+  font-weight: 700;
+  line-height: .75;
+  color: var(--wb100);
+  transform-origin: bottom;
+  scroll-snap-align: top;
+  scroll-snap-type: mandatory;
 }

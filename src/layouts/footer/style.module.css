@@ -42,15 +42,6 @@
   color: var(--wb400);
 }
 
-.link:hover {
-  padding: 0.375em 0.5em 0.375em 0.5em;
-  background-color: var(--blue400);
-  border-radius: 0.25em;
-  position: relative;
-  color: var(--blue950);
-  line-height: 1em;
-}
-
 .contact_link_colored {
   padding: 0.375em 0.5em 0.375em 0.5em;
   background-color: var(--blue400);

@@ -5,13 +5,48 @@
   width: 100vw;
   padding: 20vh 10vw 10vh 10vw;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   position: relative;
 }
 
 .vid {
+  height: 70vh;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
+  position: relative;
+  z-index: 3;
+}
+
+.marquee_div {
+  width: 100%;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
+  color: var(--main-color300);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12.5em;
+  white-space: nowrap;
+  font-weight: 500;
+  color: black;
+  pointer-events: none;
+  overflow: hidden;
+  clip-path: circle(35vh at 50% 50%);
+  z-index: 3;
+}
+
+.marquee_div_2 {
+  width: 100%;
+  position: absolute;
+  color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12.5em;
+  white-space: nowrap;
+  font-weight: 500;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 2;
 }
