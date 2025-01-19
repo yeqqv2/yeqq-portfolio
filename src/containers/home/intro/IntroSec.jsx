@@ -5,7 +5,7 @@ import Marquee from "react-double-marquee";
 const IntroSec = () => {
   const marqueeProps = {
     children: "minimalism,dadaism,cubism,user(interface,experience),",
-    speed: 0.3,
+    speed: 0.4,
     direction: "left",
     childMargin: 15,
     scrollWhen: "always",
@@ -15,8 +15,9 @@ const IntroSec = () => {
     <div className={styles.container}>
       <video
         className={styles.vid}
-        src="/assets/videos/ui-design.mp4"
+        src="https://videos.pexels.com/video-files/18069786/18069786-uhd_1440_2560_30fps.mp4"
         autoPlay
+        preload="auto"
         loop
         muted
         playsInline

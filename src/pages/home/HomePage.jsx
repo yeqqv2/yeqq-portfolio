@@ -4,6 +4,7 @@ import Terminal from "../../animations/opening/OpeningAnimation";
 // CONTAINERS
 import IntroSec from "../../containers/home/intro/IntroSec";
 import WelcomeSec from "./../../containers/home/welcome/WelcomeSec";
+import { IntroduceHome } from "../../containers/home/introduce/IntroduceHome";
 
 const HomePage = () => {
   return (
@@ -11,6 +12,7 @@ const HomePage = () => {
       <Terminal />
       <IntroSec />
       <WelcomeSec />
+      <IntroduceHome />
     </div>
   );
 };

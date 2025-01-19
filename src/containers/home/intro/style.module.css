@@ -17,6 +17,7 @@
   border-radius: 50%;
   position: relative;
   z-index: 3;
+  filter: saturate(2);
 }
 
 .marquee_div {

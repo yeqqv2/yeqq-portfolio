@@ -43,6 +43,7 @@ const Terminal = () => {
             gsap.to(containerRef.current, {
               y: "-100%",
               duration: 2,
+              ease: "expo.inOut",
               onComplete: () => {
                 if (containerRef.current) {
                   containerRef.current.style.display = "none";
@@ -56,7 +57,9 @@ const Terminal = () => {
   }, [start]);
 
   return (
-    <div ref={containerRef} className={styles.container}>
+    <div
+      ref={containerRef}
+      className={styles.container}>
       {!start && (
         <div ref={lightRef}>
           <NeumorphismButton handleStart={handleStart} />
@@ -66,31 +69,22 @@ const Terminal = () => {
         ref={titleRef}
         className={`${styles.content} ${
           start ? styles.visible : styles.hidden
-        }`}
-      >
-        <div className={styles.img_div}>
-          <img
-            className={styles.img}
-            src="/assets/images/White_on_White_(Malevich,_1918).png"
-            alt="White on White"
-          />
-        </div>
+        }`}>
+        <div className={styles.img_div}></div>
         <div className={styles.title}>
-          <div className={styles.quote_icon}>❝</div>
           <div className={styles.p}>
-            Gökyüzünü renklerle
-            <br />
-            bezemenin üstesinden geldim.
-            <br />
-            Beyaz boşlukta yüzün,
-            <br />
-            sonsuzluk karşınızda.
+            “ Gökyüzünü renklerle bezemenin üstesinden geldim. Beyaz boşlukta
+            yüzün, sonsuzluk karşınızda. ”
           </div>
           <i className={styles.author}>(Kazimir Malevich, White on White)</i>
         </div>
       </div>
       {/* Start durumu true olduğunda altta sabit bulunan yükleme çubuğu */}
-      {start && <div ref={progressBarRef} className={styles.progressBar}></div>}
+      {start && (
+        <div
+          ref={progressBarRef}
+          className={styles.progressBar}></div>
+      )}
     </div>
   );
 };

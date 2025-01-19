@@ -9,7 +9,6 @@
   left: 0;
   z-index: 99;
   background-color: var(--wb100);
-  padding: 20vh 10vw;
 }
 
 .light {
@@ -22,35 +21,41 @@
 }
 
 .content {
-  width: 90vw;
-  height: 60vh;
+  background-color: var(--wb100);
+  width: 100vw;
+  height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10vw;
+  padding: 5vh 2.5vw;
+  gap: 5vh;
   display: none;
 }
 
 .img_div {
-  height: 60vh;
-}
-
-.img {
-  border: 0.5em solid var(--wb50);
-  object-fit: contain;
-  height: 100%;
+  height: 50vw;
+  aspect-ratio: 1;
+  background-color: var(--wb200);
+  transform: rotate(10deg);
+  position: absolute;
+  top: -10vw;
+  right: -10vw;
+  z-index: -1;
 }
 
 .title {
-  width: 35%;
+  width: 40vw;
+  font-size: 1.75em;
+  font-weight: 300;
+  line-height: 1.25;
+  padding: 1em;
+  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
   gap: 1em;
-  text-align: left;
-  position: relative;
-  font-size: 2em;
-  font-weight: 500;
+  color: var(--wb400);
 }
 
 .content.visible {
@@ -63,24 +68,10 @@
   transform: translateY(50px);
 }
 
-.p {
-  font-size: 1.5em;
-}
-
 .author {
   font-weight: 300;
-  font-size: 0.75em;
+  font-size: .825em;
   color: var(--wb300);
-}
-
-.quote_icon {
-  position: absolute;
-  top: -0.25em;
-  left: -0.25em;
-  font-size: 10em;
-  line-height: 1em;
-  z-index: -1;
-  opacity: 0.1;
 }
 
 .progressBar {
@@ -88,7 +79,7 @@
   bottom: 0;
   left: 0;
   height: 1em;
-  background-color: var(--orange400);
-  width: 0%;
+  background-color: var(--wb950);
+  width: 80%;
   z-index: 1000;
 }

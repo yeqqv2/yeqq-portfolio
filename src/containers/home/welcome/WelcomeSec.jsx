@@ -1,5 +1,8 @@
 import React from "react";
 import styles from "./style.module.css";
+import Carousel from "react-multi-carousel";
+
+const me = ["0.jpeg", "1.JPG", "5.jpg"];
 
 const WelcomeSec = () => {
   return (
