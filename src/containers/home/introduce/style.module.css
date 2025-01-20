@@ -1,21 +1,19 @@
 .container {
-    width: 100vw;
-    padding: 10vh 10vw;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-start;
-    gap: 10vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .header {
-    height: 5vh;
-    width: 80vw;
-    background-color: red;
+  height: 5vh;
+  width: 100vw;
+  padding: 10vh 10vw;
 }
 
 .main {
-    height: 60vh;
-    width: 80vw;
-    background-color: red;
+  height: 60vh;
+  width: 100vw;
+  background-color: red;
 }
