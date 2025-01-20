@@ -1,132 +1,91 @@
 import React from "react";
 import styles from "./style.module.css";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+const works = [
+  {
+    name: "(portfolyo)",
+    desc: "Hüseyin Canbay adına yapılan portfolyo sitesidir.",
+    img: "/assets/images/projects/canbay-portfolio.png",
+    link: "https://canbay-portfoli.vercel.app",
+  },
+  {
+    name: "(kurumsal webs sitesi)",
+    desc: "Skynotech Akıllı Site Sistemleri firması adına yapılan kurumsal web sitesidir.",
+    img: "/assets/images/projects/skynotech-ws.png",
+    link: "https://canbay-portfoli.vercel.app",
+  },
+  {
+    name: "(kurumsal webs sitesi)",
+    desc: "Kurumsal web sitesi şablonudur.",
+    img: "/assets/images/projects/dark-website.png",
+    link: "https://canbay-portfoli.vercel.app",
+  },
+  {
+    name: "(kurumsal webs sitesi, web uygulaması)",
+    desc: "Balıkesir Planlama ve Kalkınma Ajansı Kurumsal web sitesi ve web uygulamasıdır.",
+    img: "/assets/images/projects/bapka_0.png",
+    link: "https://bapka.tr",
+  },
+  {
+    name: "(web uygulaması)",
+    desc: "Skynotech Akıllı Site Sistemleri firması adına yapılan web uygulamasıdır.",
+    img: "/assets/images/projects/mockup.png",
+    link: "https://canbay-portfoli.vercel.app",
+  },
+  {
+    name: "(web uygulaması)",
+    desc: "Balıkesir İstihdam Ofisi adına yapılan iş arama web uygulamasıdır.",
+    img: "/assets/images/projects/bio_0.png",
+    link: "https://bio.balikesir.bel.tr",
+  },
+];
+
+const settings = {
+  dots: false,
+  className: styles.slider,
+  centerMode: true,
+  infinite: true,
+  variableWidth: true,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  speed: 3000,
+  autoplaySpeed: 3000,
+  centerPadding: "10vh",
+  pauseOnHover: true,
+  swipeToSlide: true,
+  rtl: true,
+};
 
 const WorksHomePage = () => {
   return (
     <div className={styles.container}>
-      <header className={styles.header}>
-        <div className={styles.header_title}>WORKS & PROJECTS</div>
-        <div className={styles.header_desc}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
-          quibusdam amet qui quidem magni incidunt accusamus autem nisi,
-          deserunt doloribus odit labore possimus beatae vero quaerat modi,
-          voluptate, aut consectetur nostrum iure? A, itaque ad modi magni
-          voluptate voluptatem, dolores vitae, veniam delectus fuga laboriosam
-          blanditiis nostrum consectetur non mollitia!
-        </div>
-      </header>
-      <hr />
-      <main className={styles.main}>
-        <div className={`${styles.project_1} ${styles.card}`}>
-          <div className={styles.card_header}>
-            <div className={styles.card_header_title}>
-              Balıkesir İstihdam Ofisi
-            </div>
-            <div className={styles.card_header_desc}>
-              Balıkesir İstihdam Ofisi, geniş kapsamlı bir iş arama, iş ilanı
-              verme ve veri raporlama uygulamasıdır. Uygulamamızda pdf
-              oluşturma, verilerden rapor oluşturma, sms doğrulama gibi
-              hizmetler kullanılarak, uygulama zenginleştirilmiştir.
-            </div>
-          </div>
-          <img
-            className={styles.card_img}
-            src="/assets/images/projects/bio_0.png"
-            alt="Balıkesir İstihdam Ofisi"
-          />
-          <img
-            className={styles.card_img}
-            src="/assets/images/projects/bio_2.png"
-            alt="Balıkesir İstihdam Ofisi"
-          />
-          <img
-            className={styles.card_img}
-            src="/assets/images/projects/bio_1.png"
-            alt="Balıkesir İstihdam Ofisi"
-          />
-        </div>
-        <div className={`${styles.project_2} ${styles.card}`}>
-          <div className={styles.card_header}>
-            <div className={styles.card_header_title}>
-              Balıkesir Planlama ve Kalkınma Ajansı Kurumsal Web Uygulaması
-            </div>
-            <div className={styles.card_header_desc}>
-              Balıkesir Planlama ve Kalkınma Ajansı Kurumsal Web Uygulaması, hem
-              bir kurumsal kimlik hem de bir raporlama uygulamasıdır. Bu
-              uygulamada Balıkesir ile ilgili anonim veriler, bu verilerin
-              işlenmesi ve istatistik tutulması sağlanmaktadır.
-            </div>
-          </div>
-          <img
-            className={styles.card_img_2}
-            src="/assets/images/projects/bapka_0.png"
-            alt="Balıkesir Planlama ve Kalkınma Ajansı"
-          />
-        </div>
-        <div className={`${styles.project_3} ${styles.card}`}>
-          <div className={styles.card_header}>
-            <div className={styles.card_header_title}>
-              Yirmibeş Yazılım | ERP Web Uygulaması
-            </div>
-            <div className={styles.card_header_desc}>
-              Yirmibeş Yazılım'ın ERP web uygulaması, satın alma, satış,
-              ihracat, finans, cash, depo, üretim, rapor ve B2B modüllerinden
-              oluşan bir web tabanlı yazılım uygulamasıdır.
-            </div>
-          </div>
-          <img
-            className={styles.card_img_3}
-            src="/assets/images/projects/yirmibes_0.png"
-            alt="Yirmibeş Yazılım"
-          />
-          <img
-            className={styles.card_img_3}
-            src="/assets/images/projects/yirmibes_1.png"
-            alt="Yirmibeş Yazılım"
-          />
-          <img
-            className={styles.card_img_3}
-            src="/assets/images/projects/yirmibes_2.png"
-            alt="Yirmibeş Yazılım"
-          />
-          <img
-            className={styles.card_img_3}
-            src="/assets/images/projects/yirmibes_3.png"
-            alt="Yirmibeş Yazılım"
-          />
-          <img
-            className={styles.card_img_3}
-            src="/assets/images/projects/yirmibes_4.png"
-            alt="Yirmibeş Yazılım"
-          />
-          <img
-            className={styles.card_img_3}
-            src="/assets/images/projects/yirmibes_5.png"
-            alt="Yirmibeş Yazılım"
-          />
-        </div>
-        <div className={styles.project_4}>
-          <div className={styles.card_header}>
-            <div className={styles.card_header_title}>
-              Web Tabanlı Emlak Uygulaması (API)
-            </div>
-            <div className={styles.card_header_desc}>
-              Emlak uygulaması; müşteri yönetimi, satış yönetimi, pazarlama
-              yönetimi, müşteri hizmetleri ve destek talepleri, döküman
-              yönetimi, raporlama ve analiz, görev ve takip yönetimi ve
-              entegrasyon katmanlarından oluşan bir web tabanlı uygulamadır.
-            </div>
-          </div>
-          <video
-            className={styles.vid}
-            src="/assets/videos/code-horizontal.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
-        </div>
-      </main>
+      <div className={styles.content}>
+        <header className={styles.header_title}>(projeler & işler)</header>
+        <main className={styles.main}>
+          <Slider {...settings}>
+            {works.map((work, index) => (
+              <a
+                target="__blank"
+                href={work.link}
+                className={styles.card}
+                key={index}
+              >
+                <div className={styles.card_content}>
+                  <img className={styles.img} src={work.img} alt="me" />
+                  <div className={styles.desc}>
+                    <div className={styles.desc_title}>{work.name}</div>
+                    <div className={styles.desc_desc}>{work.desc}</div>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </Slider>
+        </main>
+      </div>
     </div>
   );
 };

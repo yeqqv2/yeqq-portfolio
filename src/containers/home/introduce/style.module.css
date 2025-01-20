@@ -1,19 +1,35 @@
 .container {
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .header {
-  height: 5vh;
-  width: 100vw;
-  padding: 10vh 10vw;
+    height: 5vh;
+    width: 100vw;
+    padding: 10vh 10vw;
+    font-size: 1.5em;
 }
 
 .main {
-  height: 60vh;
-  width: 100vw;
-  background-color: red;
+    height: 60vh;
+    width: 100vw;
+}
+
+.slider {
+    filter: saturate(0);
+    display: flex;
+    align-items: flex-start;
+    gap: 5em;
+}
+
+.card {
+    height: 60vh;
+}
+
+.img {
+    height: 60vh;
+    object-fit: contain;
 }
