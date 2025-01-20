@@ -67,5 +67,19 @@
     aspect-ratio: 16/9;
     width: 30vw;
     object-fit: cover;
-    border-bottom: 0.5em solid var(--wb950);
+}
+
+.customCursor {
+    position: fixed;
+    background-color: red;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    padding: 0.375em 0.5em 0.375em 0.5em;
+    background-color: var(--blue400);
+    border-radius: 0.25em;
+    color: var(--blue950);
+    line-height: 1em;
+    white-space: nowrap;
 }

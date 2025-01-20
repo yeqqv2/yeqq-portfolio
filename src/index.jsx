@@ -11,7 +11,7 @@ root.render(
   <React.StrictMode>
     <AnimatedCursor
       innerSize={20}
-      innerScale={1.5}
+      innerScale={1.25}
       outerStyle={{
         display: "none",
       }}
