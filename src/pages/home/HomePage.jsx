@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styles from "./style.module.css";
 import Terminal from "../../animations/opening/OpeningAnimation";
 // CONTAINERS
@@ -11,25 +11,15 @@ import ContactHomePage from "../../containers/home/contact/ContactHomePage";
 import SocialHomePage from "./../../containers/home/social/SocialHomePage";
 
 const HomePage = () => {
-  const [showAnimation, setShowAnimation] = useState(false);
-
-  useEffect(() => {
-    const alreadyShown = localStorage.getItem("terminalShown") === "true";
-    // Eğer daha önce gösterilmediyse, animasyonu bir kez göster
-    if (!alreadyShown) {
-      setShowAnimation(true);
-      localStorage.setItem("terminalShown", "true");
-    }
-  }, []);
   return (
     <div className={styles.container}>
-      {showAnimation && <Terminal />}
+      <Terminal />
       <IntroSec />
       <WelcomeSec />
       <IntroduceHome />
       <AboutmeHome />
       <WorksHomePage />
-      {/* <SocialHomePage /> */}
+      <SocialHomePage />
       <ContactHomePage />
     </div>
   );

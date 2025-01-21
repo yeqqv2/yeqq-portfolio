@@ -62,9 +62,9 @@ const Terminal = () => {
               bottom: "0",
               right: "0",
               transform: "translateX(-50%)",
-              duration: 2,
+              duration: .5,
               borderRadius: "50%",
-              ease: "expo.in",
+              ease: "power1",
               onComplete: () => {
                 gsap.to(ballRef.current, {
                   top: "30vh",
@@ -112,17 +112,16 @@ const Terminal = () => {
                     });
                   },
                 });
-                gsap.to(titleDivRef.current, {
-                  duration: 1,
-                  text: "(yeqq)",
-                  whiteSpace: "nowrap",
-                  fontSize: "12.5em",
-                  fontWeight: 500,
-                  ease: "none",
-                  delay: 0.5,
-                  color: "black",
-                });
               },
+            });
+            gsap.to(titleDivRef.current, {
+              duration: 1.5,
+              text: "(yeqq)",
+              whiteSpace: "nowrap",
+              fontSize: "12.5em",
+              fontWeight: 500,
+              ease: "none",
+              color: "black",
             });
           },
         }

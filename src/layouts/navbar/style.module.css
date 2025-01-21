@@ -72,7 +72,6 @@
 
 .link_icon {
     width: 0;
-    transition: 0.5s;
 }
 
 .link:hover>.link_icon {
