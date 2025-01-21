@@ -29,7 +29,7 @@ const HomePage = () => {
       <IntroduceHome />
       <AboutmeHome />
       <WorksHomePage />
-      <SocialHomePage />
+      {/* <SocialHomePage /> */}
       <ContactHomePage />
     </div>
   );

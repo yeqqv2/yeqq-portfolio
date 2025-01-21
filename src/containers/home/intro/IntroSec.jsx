@@ -4,11 +4,12 @@ import Marquee from "react-double-marquee";
 
 const IntroSec = () => {
   const marqueeProps = {
-    children: "minimalism,dadaism,cubism,user(interface,experience),",
+    children: "minimalism,cubism,user(interface,experience),",
     speed: 0.4,
     direction: "left",
     childMargin: 15,
     scrollWhen: "always",
+    delay: 0,
   };
 
   return (
