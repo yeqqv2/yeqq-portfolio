@@ -12,7 +12,7 @@ const Footer = () => {
             <a className={styles.link} href="/">
               anasayfa
             </a>
-            <a className={styles.link} href="/">
+            <a className={styles.link} href="/about-me">
               hakkımda
             </a>
             <a className={styles.link} href="/">

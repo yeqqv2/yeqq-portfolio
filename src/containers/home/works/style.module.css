@@ -34,6 +34,7 @@
     flex-direction: column;
     align-items: flex-start;
     margin-inline: 1vw;
+    overflow: hidden;
 }
 
 .card_content {
@@ -71,7 +72,6 @@
 
 .customCursor {
     position: fixed;
-    background-color: red;
     border-radius: 50%;
     pointer-events: none;
     transform: translate(-50%, -50%);

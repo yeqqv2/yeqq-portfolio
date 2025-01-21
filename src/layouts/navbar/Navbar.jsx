@@ -40,7 +40,9 @@ export default function Navbar() {
           isSidebarOpen={isSidebarOpen}
         />
       </main>
-      <header className={styles.logo}>(yeqq)</header>
+      <a href="/" className={styles.logo}>
+        (yeqq)
+      </a>
       <main className={`${styles.right} ${styles.main}`}>
         <a className={styles.contact_link_colored} href="/">
           ● contact with me
@@ -62,7 +64,7 @@ export default function Navbar() {
             </span>
             Anasayfa
           </a>
-          <a className={styles.link} href="/">
+          <a className={styles.link} href="/about-me">
             <span className={styles.link_icon}>
               <GoArrowRight />
             </span>

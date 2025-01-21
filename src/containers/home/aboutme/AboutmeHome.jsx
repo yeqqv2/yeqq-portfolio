@@ -137,7 +137,7 @@ const AboutmeHome = () => {
         alt="Vue"
       />
       <footer className={styles.footer}>
-        <a className={styles.contact_link_colored} href="/">
+        <a className={styles.contact_link_colored} href="/about-me">
           ● daha fazlasını gör
         </a>
       </footer>
