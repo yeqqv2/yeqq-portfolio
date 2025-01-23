@@ -5,9 +5,10 @@
     align-items: flex-start;
     justify-content: center;
     gap: 10vh;
-    padding: 20vh 10vw;
+    padding: 20vh 10vw 10vh 10vw;
     position: relative;
     overflow: hidden;
+    border-bottom: 1px solid var(--wb950);
 }
 
 .header {

@@ -1,70 +1,103 @@
 .container {
     width: 100vw;
-    padding: 10vh 10vw;
-}
-
-.content {
-    width: 80vw;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+}
+
+.header {
+    width: 100vw;
+    display: flex;
     align-items: center;
-    gap: 10vh;
-    border: 1px solid var(--wb950);
-    padding: 10vh;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--wb950);
 }
 
 .header_title {
     font-size: 1.5em;
+    justify-content: flex-end !important;
+}
+
+.header_desc {
+    font-size: 2em;
+    font-weight: 300;
+}
+
+.div_left,
+.div_right {
+    width: 50vw;
+    height: 50vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.div_right {
+    padding: 10vh 10vh 10vh 0;
+}
+
+.div_left {
+    padding: 10vh 10vw;
+    text-align: end;
+    justify-content: space-between;
+}
+
+.main_div {
+    width: 100vw;
+    display: flex;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--wb950);
 }
 
 .main {
     width: 100vw;
-    perspective: 1000px;
-    transform-style: preserve-3d;
-    transform: rotateX(10deg);
-}
-
-.card {
-    position: relative;
-    text-decoration: none;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-inline: 1vw;
-    overflow: hidden;
 }
 
-.card_content {
-    height: 55vh;
-    width: 35vw;
-    background-color: var(--wb100);
-    border: 1px solid var(--wb950);
+.work_techs {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1em;
-    padding: 5vh 2.5vw;
+    align-items: center;
+    font-weight: 300;
+    color: var(--wb500);
+    gap: 0.25em;
 }
 
-.desc {
+.tech::after {
+    content: ' ,';
+}
+
+.tech:nth-last-child(1)::after {
+    display: none;
+}
+
+.work_context {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-end;
     gap: 0.5em;
 }
 
-.desc_title {
+.work_name {
     font-size: 1.5em;
+    font-weight: 500;
 }
 
-.desc_desc {
-    font-size: 0.875em;
+.work_desc {
+    font-size: 2em;
+    font-weight: 300;
 }
 
 .img {
-    aspect-ratio: 16/9;
-    width: 30vw;
-    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    object-position: top;
+    object-fit: contain;
+    user-select: none;
 }
 
 .customCursor {

@@ -1,86 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './style.module.css';
 import Slider from 'react-slick';
-
-const colors = [
-	{
-		bg: 'var(--green300)',
-		color: 'var(--wb950)',
-	},
-	{
-		bg: 'var(--main-color300)',
-		color: 'var(--wb950)',
-	},
-	{
-		bg: 'var(--red600)',
-		color: 'var(--wb50)',
-	},
-	{
-		bg: 'var(--pink400)',
-		color: 'var(--wb50)',
-	},
-	{
-		bg: 'var(--darkblue700)',
-		color: 'var(--wb50)',
-	},
-	{
-		bg: 'var(--blue400)',
-		color: 'var(--wb950)',
-	},
-	{
-		bg: 'var(--orange600)',
-		color: 'var(--wb50)',
-	},
-	{
-		bg: 'var(--purple500)',
-		color: 'var(--wb50)',
-	},
-];
-
-const works = [
-	{
-		name: 'portfolyo',
-		desc: 'Hüseyin Canbay adına yapılan portfolyo sitesidir.',
-		img: '/assets/images/projects/canbay-portfolio.png',
-		link: 'https://canbay-portfoli.vercel.app',
-	},
-	{
-		name: 'kurumsal web sitesi',
-		desc: 'Skynotech Akıllı Site Sistemleri firması adına yapılan kurumsal web sitesidir.',
-		img: '/assets/images/projects/skynotech-ws.png',
-		link: 'https://canbay-portfoli.vercel.app',
-	},
-	{
-		name: 'kurumsal web sitesi',
-		desc: 'Kurumsal web sitesi şablonudur.',
-		img: '/assets/images/projects/dark-website.png',
-		link: 'https://canbay-portfoli.vercel.app',
-	},
-	{
-		name: 'kurumsal web sitesi, web uygulaması',
-		desc: 'Balıkesir Planlama ve Kalkınma Ajansı Kurumsal web sitesi ve web uygulamasıdır.',
-		img: '/assets/images/projects/bapka_0.png',
-		link: 'https://bapka.tr',
-	},
-	{
-		name: 'web uygulaması',
-		desc: 'Skynotech Akıllı Site Sistemleri firması adına yapılan web uygulamasıdır.',
-		img: '/assets/images/projects/mockup.png',
-		link: 'https://canbay-portfoli.vercel.app',
-	},
-	{
-		name: 'web uygulaması',
-		desc: 'Balıkesir İstihdam Ofisi adına yapılan iş arama web uygulamasıdır.',
-		img: '/assets/images/projects/bio_0.png',
-		link: 'https://bio.balikesir.bel.tr',
-	},
-];
+import works from '../../../utils/works';
+import colors from '../../../utils/colors';
 
 const settings = {
 	dots: false,
 	centerMode: true,
 	infinite: true,
-	variableWidth: true,
+	variableWidth: false,
 	slidesToShow: 1,
 	slidesToScroll: 1,
 	autoplay: true,
@@ -118,35 +46,57 @@ const WorksHomePage = () => {
 
 	return (
 		<div className={styles.container}>
-			<div className={styles.content}>
-				<header className={styles.header_title}>(projeler & işler)</header>
-				<main className={styles.main}>
-					<div className={styles.curvedWrapper}>
-						<Slider {...settings}>
-							{works.map((work, index) => (
-								<a
-									target="__blank"
-									href={work.link}
-									className={styles.card}
+			<header className={styles.header}>
+				<div className={`${styles.header_title} ${styles.div_left}`}>
+					(projeler & işler)
+				</div>
+				<div className={`${styles.header_desc} ${styles.div_right}`}>
+					web uygulaması olan projelerin hepsinde frontend geliştiricisi ve
+					ui,ux designeri olarak görev aldım. backende ihtiyaç duymayan her
+					projemi (nosql, one page, landing page vb.) react veya next.js ile
+					geliştirdim.
+				</div>
+			</header>
+			<main className={styles.main}>
+				{works.map((work, index) => {
+					return (
+						<a
+							href={work.link}
+							className={styles.main_div}
+							key={index}
+							onMouseMove={handleMouseMove}
+							onMouseEnter={handleMouseEnter}
+							onMouseLeave={handleMouseLeave}
+							target="__blank"
+						>
+							<div key={index} className={`${styles.works} ${styles.div_left}`}>
+								<div className={styles.work_techs}>
+									{work.techs.map((tech, index) => (
+										<span className={styles.tech} key={index}>
+											{tech}
+										</span>
+									))}
+								</div>
+								<div className={styles.work_context}>
+									<div className={styles.work_name}>({work.name})</div>
+									<div className={styles.work_desc}>{work.desc}</div>
+								</div>
+							</div>
+							<div
+								className={`${styles.work_img} ${styles.div_right}`}
+								style={{ backgroundColor: work.color }}
+							>
+								<img
 									key={index}
-									onMouseEnter={handleMouseEnter}
-									onMouseLeave={handleMouseLeave}
-									onMouseMove={handleMouseMove}
-									style={{ cursor: 'none' }}
-								>
-									<div className={styles.card_content}>
-										<img className={styles.img} src={work.img} alt="me" />
-										<div className={styles.desc}>
-											<div className={styles.desc_title}>{work.name}</div>
-											<div className={styles.desc_desc}>{work.desc}</div>
-										</div>
-									</div>
-								</a>
-							))}
-						</Slider>
-					</div>
-				</main>
-			</div>
+									src={work.img}
+									alt={work.desc}
+									className={styles.img}
+								/>
+							</div>
+						</a>
+					);
+				})}
+			</main>
 			<span
 				className={styles.customCursor}
 				style={{

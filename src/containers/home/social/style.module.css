@@ -27,44 +27,15 @@
 .main {
     width: 80vw;
     display: flex;
-    flex-direction: column;
     align-items: flex-start;
-    gap: 3em;
 }
 
-.social {
-    width: 80vw;
-    display: flex;
-    align-items: flex-start;
-    gap: 0.5em;
+.link_title {
+    font-size: 1.25em;
+    font-weight: 300;
 }
 
-.social_card {
-    flex: 1;
-    aspect-ratio: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.social_card:nth-child(1) {
-    background-color: transparent;
-}
-
-.social_icon {
-    height: 30%;
-    min-height: 3em;
-}
-
-.img {
-    height: 100%;
-    aspect-ratio: 1;
-    object-fit: cover;
-    object-position: top left;
-    filter: saturate(0);
-    transition: 0.3s;
-}
-
-.social_card:hover>.img {
-    filter: saturate(1);
+.link_link {
+    font-weight: 300;
+    color: var(--wb300);
 }
