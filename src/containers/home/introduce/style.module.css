@@ -17,6 +17,7 @@
 .main {
     height: 60vh;
     width: 100vw;
+    overflow: hidden;
 }
 
 .slider {

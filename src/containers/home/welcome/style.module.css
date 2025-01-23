@@ -1,46 +1,62 @@
 .container {
-    height: 80vh;
-    width: 100vw;
-    padding: 10vh 10vw 10vh 10vw;
-    position: relative;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    border-top: 1px solid var(--wb950);
+	height: 80vh;
+	width: 100vw;
+	padding: 10vh 10vw 10vh 10vw;
+	position: relative;
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	border-top: 1px solid var(--wb950);
 }
 
 .content {
-    width: 30vw;
-    font-size: 2em;
+	width: 30vw;
+	font-size: 2em;
 }
-
 
 /* style.module.css */
 
 .name {
-    position: relative;
+	position: relative;
 }
 
 .name::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0;
-    /*Animasyonbaşlangıcıiçin0*/
-    height: 40%;
-    z-index: -1;
-    background-color: var(--green300);
-    opacity: 0.5;
-    display: block;
-    animation: animateWidth 1s 1s forwards;
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 0;
+	/*Animasyonbaşlangıcıiçin0*/
+	height: 40%;
+	z-index: -1;
+	background-color: var(--green300);
+	opacity: 0.5;
+	display: block;
+	animation: animateWidth 1s 1s forwards;
 }
 
 @keyframes animateWidth {
-    from {
-        width: 0;
-    }
-    to {
-        width: 100%;
-    }
+	from {
+		width: 0;
+	}
+	to {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.container {
+		height: 60vh;
+	}
+
+	.content {
+		width: 50vw;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.content {
+		width: 90vw;
+		font-size: 1.5em;
+	}
 }

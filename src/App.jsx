@@ -11,6 +11,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import HomePage from './pages/home/HomePage';
 import AboutPage from './pages/about/AboutPage';
+import ProjectsPage from './pages/projects/ProjectsPage';
 
 function App() {
 	return (
@@ -18,6 +19,9 @@ function App() {
 			{/* HOME PAGE */}
 			<Route path="/" element={<HomePage />} />
 			<Route path="/about-me" element={<AboutPage />} />
+			<Route path="/projects" element={<ProjectsPage />} />
+			<Route path="/gallery" element={<AboutPage />} />
+			<Route path="/contact-me" element={<AboutPage />} />
 		</Routes>
 	);
 }

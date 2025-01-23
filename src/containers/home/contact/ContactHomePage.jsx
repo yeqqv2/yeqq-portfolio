@@ -78,20 +78,29 @@ const ContactHomePage = () => {
 			setTimeout(() => {
 				gsap.fromTo(
 					`.word-${newWord.id}`,
-					{ opacity: 0, y: 0 },
+					{ opacity: 0, y: 0, scale: 1 },
 					{ opacity: 1, duration: 0 }
 				);
 				gsap.to(`.word-${newWord.id}`, {
-					opacity: 0,
-					duration: .25,
-					delay: 1.5,
+					scale: 1.25,
+					duration: 1.5,
 					ease: 'power1.out',
 					onComplete: () => {
-						setWords((prev) => prev.filter((word) => word.id !== newWord.id));
+						gsap.to(`.word-${newWord.id}`, {
+							opacity: 0,
+							duration: 0.25,
+							delay: 1.5,
+							ease: 'power1.out',
+							onComplete: () => {
+								setWords((prev) =>
+									prev.filter((word) => word.id !== newWord.id)
+								);
+							},
+						});
 					},
 				});
 			}, 0);
-		}, 50),
+		}, 100),
 		[]
 	);
 
@@ -121,7 +130,7 @@ const ContactHomePage = () => {
 								opacity: 0, // Başlangıçta görünmez
 							}}
 						>
-							{word.word}
+							● {word.word}
 						</span>
 					))}
 				</div>

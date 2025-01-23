@@ -33,22 +33,23 @@ export default function Navbar() {
 	};
 
 	return (
-		<div className={styles.container}>
-			<main className={`${styles.left} ${styles.main}`}>
-				<MenuButton
-					toggleSidebar={toggleSidebar}
-					isSidebarOpen={isSidebarOpen}
-				/>
-			</main>
-			<a href="/" className={styles.logo}>
-				(yeqq)
-			</a>
-			<main className={`${styles.right} ${styles.main}`}>
-				<a className={styles.contact_link_colored} href="/">
-					● iletişime geç
+		<>
+			<div className={styles.container}>
+				<main className={`${styles.left} ${styles.main}`}>
+					<MenuButton
+						toggleSidebar={toggleSidebar}
+						isSidebarOpen={isSidebarOpen}
+					/>
+				</main>
+				<a href="/" className={styles.logo}>
+					(yeqq)
 				</a>
-			</main>
-
+				<main className={`${styles.right} ${styles.main}`}>
+					<a className={styles.contact_link_colored} href="/contact-me">
+						● iletişime geç
+					</a>
+				</main>
+			</div>
 			{/* SIDEBAR */}
 			<section ref={sidebarRef} className={styles.sidebar}>
 				<span className={styles.close}>
@@ -58,25 +59,25 @@ export default function Navbar() {
 					/>
 				</span>
 				<div className={styles.links}>
-					<a className={styles.link} href="/">
+					<a className={styles.link} href="/" onClick={toggleSidebar}>
 						<span className={styles.link_icon}>
 							<GoArrowRight />
 						</span>
 						Anasayfa
 					</a>
-					<a className={styles.link} href="/about-me">
+					<a className={styles.link} href="/about-me" onClick={toggleSidebar}>
 						<span className={styles.link_icon}>
 							<GoArrowRight />
 						</span>
 						Hakkımda
 					</a>
-					<a className={styles.link} href="/">
+					<a className={styles.link} href="/projects" onClick={toggleSidebar}>
 						<span className={styles.link_icon}>
 							<GoArrowRight />
 						</span>
 						Projeler
 					</a>
-					<a className={styles.link} href="/">
+					<a className={styles.link} href="/gallery" onClick={toggleSidebar}>
 						<span className={styles.link_icon}>
 							<GoArrowRight />
 						</span>
@@ -87,7 +88,11 @@ export default function Navbar() {
 					<div className={styles.contact_link_sec}>
 						<div className={styles.contact_link_header}>(iletişim)</div>
 						<div className={styles.contact_links}>
-							<a className={styles.contact_link_colored} href="/">
+							<a
+								className={styles.contact_link_colored}
+								href="/contact-me"
+								onClick={toggleSidebar}
+							>
 								● iletişime geç
 							</a>
 						</div>
@@ -95,21 +100,45 @@ export default function Navbar() {
 					<div className={styles.contact_link_sec}>
 						<div className={styles.contact_link_header}>(bağlantı)</div>
 						<div className={styles.contact_links}>
-							<a className={styles.contact_link} href="/">
+							<a
+								className={styles.contact_link}
+								target="__blank"
+								href="https://www.instagram.com/1yunusewre"
+								onClick={toggleSidebar}
+							>
 								instagram
 							</a>
 							,
-							<a className={styles.contact_link} href="/">
+							<a
+								className={styles.contact_link}
+								target="__blank"
+								href="https://dribbble.com/yeqqv2"
+								onClick={toggleSidebar}
+							>
 								dribbble
 							</a>
 							,
-							<a className={styles.contact_link} href="/">
+							<a
+								className={styles.contact_link}
+								target="__blank"
+								href="https://github.com/yeqqv2"
+								onClick={toggleSidebar}
+							>
+								github
+							</a>
+							,
+							<a
+								className={styles.contact_link}
+								target="__blank"
+								href="https://tr.linkedin.com/in/yunusemrekorkmaz34"
+								onClick={toggleSidebar}
+							>
 								linkedin
 							</a>
 						</div>
 					</div>
 				</div>
 			</section>
-		</div>
+		</>
 	);
 }

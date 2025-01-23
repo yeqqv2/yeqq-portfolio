@@ -1,40 +1,40 @@
 * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  cursor: none;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	cursor: none;
 }
 
 html {
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
 }
 
 body {
-  color: var(--wb950);
-  background-color: var(--wb100);
-  font-size: clamp(12px, 0.85vw, 72px);
-  height: 100vh;
-  width: 100vw;
-  overflow-x: hidden;
-  overflow-y: auto;
-  font-family: "Outfit", system-ui, sans-serif !important;
+	color: var(--wb950);
+	background-color: var(--wb100);
+	font-size: clamp(12px, 0.85vw, 72px);
+	height: 100vh;
+	width: 100vw;
+	overflow-x: hidden;
+	overflow-y: auto;
+	font-family: 'Outfit', system-ui, sans-serif !important;
 }
 
 hr {
-  width: 100%;
-  opacity: 0.15;
+	width: 100%;
+	opacity: 0.15;
 }
 
 .flexbox {
-  display: flex;
-  align-items: center;
-  gap: 1em;
+	display: flex;
+	align-items: center;
+	gap: 1em;
 }
 
 .input-group {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
 }
