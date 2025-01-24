@@ -60,10 +60,9 @@ const ExpAbout = () => {
 			<div className={styles.header}>
 				<div className={styles.title}>(tecrübe)</div>
 				<div className={styles.desc}>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum
-					necessitatibus quisquam, ea reiciendis nobis praesentium officia sunt
-					consectetur, voluptates in quidem magnam excepturi commodi veniam
-					reprehenderit? Eos eius inventore at.
+					her zaman kullanıcı odaklı, estetik ve işlevsel çözümler üretmeye
+					odaklanıyorum. kişiye / firmaya özel tasarımları yapmanın,
+					yaratıcılığımı beslediğine inanıyorum.
 				</div>
 			</div>
 			<div className={styles.main}>

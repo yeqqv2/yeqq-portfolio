@@ -105,7 +105,7 @@ const ContactHomePage = () => {
 	);
 
 	return (
-		<div className={styles.container}>
+		<a href="/contact-me" className={styles.container}>
 			<div
 				className={styles.context}
 				ref={contextRef}
@@ -135,7 +135,7 @@ const ContactHomePage = () => {
 					))}
 				</div>
 			</div>
-		</div>
+		</a>
 	);
 };
 
