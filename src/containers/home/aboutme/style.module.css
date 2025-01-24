@@ -1,51 +1,77 @@
 .container {
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 10vh;
-    padding: 20vh 10vw 10vh 10vw;
-    position: relative;
-    overflow: hidden;
-    border-bottom: 1px solid var(--wb950);
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	gap: 10vh;
+	padding: 20vh 10vw 10vh 10vw;
+	position: relative;
+	overflow: hidden;
+	border-bottom: 1px solid var(--wb950);
 }
 
 .header {
-    font-size: 1.5em;
+	font-size: 1.5em;
 }
 
 .main {
-    height: 30vh;
-    width: 50vw;
-    font-size: 2em;
+	height: 30vh;
+	width: 50vw;
+	font-size: 2em;
 }
 
 .name {
-    color: var(--orange600);
+	color: var(--orange600);
 }
 
 .svg_name {
-    text-decoration: underline;
+	text-decoration: underline;
 }
 
 .svg {
-    position: absolute;
-    top: 50%;
-    right: -100%;
-    transform: translate(0, -50%);
-    width: 30vw;
+	position: absolute;
+	top: 50%;
+	right: -100%;
+	transform: translate(0, -50%);
+	width: 30vw;
 }
 
 .contact_link_colored {
-    padding: 0.375em 0.5em 0.375em 0.5em;
-    border-radius: 0.25em;
-    position: relative;
-    color: var(--blue950);
-    line-height: 1em;
+	padding: 0.375em 0.5em 0.375em 0.5em;
+	border-radius: 0.25em;
+	position: relative;
+	color: var(--blue950);
+	line-height: 1em;
 }
 
 .contact_link_colored:hover {
-    background-color: var(--main-color400);
-    letter-spacing: 0.05em;
+	background-color: var(--main-color400);
+	letter-spacing: 0.05em;
+}
+
+@media screen and (max-width: 1024px) {
+	.container {
+	}
+
+	.header {
+	}
+
+	.main {
+	}
+}
+@media screen and (max-width: 600px) {
+	.container {
+		padding: 5vh 5vw;
+		gap: 5vh;
+	}
+
+	.header {
+		font-size: 1em;
+	}
+
+	.main {
+		width: 60vw;
+		font-size: 1.25em;
+	}
 }

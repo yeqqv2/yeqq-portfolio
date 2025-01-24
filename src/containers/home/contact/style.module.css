@@ -127,3 +127,19 @@
 	color: var(--wb50);
 	transform: rotate(-20deg);
 }
+
+@media screen and (max-width: 1024px) {
+	.context {
+		gap: 0.5em;
+		border: none;
+	}
+
+	.context_text {
+		font-size: 1.5em;
+		text-align: center;
+	}
+
+	.contact_me {
+		font-size: 1.25em;
+	}
+}
