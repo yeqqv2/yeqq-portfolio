@@ -77,12 +77,6 @@ export default function Navbar() {
 						</span>
 						Projeler
 					</a>
-					<a className={styles.link} href="/gallery" onClick={toggleSidebar}>
-						<span className={styles.link_icon}>
-							<GoArrowRight />
-						</span>
-						Galeri
-					</a>
 				</div>
 				<div className={styles.links}>
 					<div className={styles.contact_link_sec}>

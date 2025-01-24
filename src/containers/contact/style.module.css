@@ -1,4 +1,125 @@
 .container {
 	height: 100vh;
 	width: 100vw;
+	padding: 20vh 10vw 10vh 10vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-end;
+	gap: 5vh;
+}
+
+.header {
+	width: 55vw;
+	font-size: 1.5em;
+}
+
+.main {
+	width: 80vw;
+	flex: 1;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 5vw;
+}
+
+.sidebar {
+	width: 20vw;
+	height: 100%;
+	font-size: 2em;
+	font-weight: 300;
+}
+
+.content {
+	width: 55vw;
+	height: 100%;
+	display: flex;
+	align-items: flex-start;
+	gap: 2em;
+}
+
+.form {
+	flex: 5;
+	height: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1em;
+	grid-template-rows: auto;
+}
+
+.input_group {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	transition: 0.3s;
+	padding: 1em;
+	width: calc(50% - 0.5em);
+}
+
+.textarea_group {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	transition: 0.3s;
+	padding: 1em;
+	width: 100%;
+	height: auto;
+}
+
+.input_group:has(.input:focus),
+.textarea_group:has(.textarea:focus) {
+	background-color: var(--wb200);
+}
+
+.label {
+	font-size: 1.25em;
+	color: var(--wb400);
+}
+
+.label::before {
+	content: '● ';
+}
+
+.input {
+	background-color: var(--wb100);
+	outline: none;
+	border: none;
+	padding: 1em 0em;
+	width: 100%;
+	resize: none;
+	transition: 0.3s;
+}
+
+.input:hover,
+.textarea:hover {
+	background-color: var(--wb200);
+}
+
+.input:focus,
+.textarea:focus {
+	background-color: var(--wb200);
+}
+
+.textarea {
+	width: 100%;
+	height: 100%;
+	background-color: var(--wb100);
+	outline: none;
+	border: none;
+	padding: 1em 0em;
+	resize: none;
+	transition: 0.3s;
+}
+
+.date {
+	flex: 3;
+	height: 100%;
+}
+
+.footer {
+	height: 5vh;
+	width: 80vw;
+	background-color: black;
 }

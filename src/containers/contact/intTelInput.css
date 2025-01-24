@@ -1,0 +1,64 @@
+.country-list {
+	font-size: 0.875em;
+	padding: 1em !important;
+	width: 100%;
+	background-color: var(--wb200) !important;
+	border: none;
+	box-shadow: none;
+	white-space: nowrap;
+	max-height: 15em;
+	overflow-y: scroll;
+}
+
+.react-calendar {
+	background-color: var(--wb200);
+	aspect-ratio: 1;
+}
+
+.react-calendar__month-view > div > div {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	aspect-ratio: 1;
+}
+
+.react-calendar__month-view__weekdays {
+	background-color: var(--wb300);
+	aspect-ratio: 7/1;
+	display: flex;
+	align-items: center;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+	padding: 1em;
+	color: var(--wb50);
+	font-weight: 400;
+	font-size: 0.875em;
+	aspect-ratio: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.react-calendar__month-view__weekdays__weekday > abbr {
+	text-decoration: none !important;
+}
+
+.react-calendar__month-view__days {
+	height: 100%;
+}
+
+.react-calendar__tile {
+	padding: 1em;
+	aspect-ratio: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	line-height: 1;
+	font-size: 1.25em;
+}
+
+.react-calendar__tile--active {
+	background-color: red;
+}
