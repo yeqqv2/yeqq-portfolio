@@ -39,7 +39,7 @@ const ExpAbout = () => {
 			{ innerText: 0 },
 			{
 				innerText: 2,
-				duration: .5,
+				duration: 0.5,
 				scrollTrigger: {
 					trigger: number2Ref.current, // or any parent container
 					start: 'top 80%',
@@ -60,9 +60,10 @@ const ExpAbout = () => {
 			<div className={styles.header}>
 				<div className={styles.title}>(tecrübe)</div>
 				<div className={styles.desc}>
-					Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa
-					dignissimos esse sint earum ipsa impedit quam, sunt iste, perferendis
-					unde illo alias iure error sed soluta debitis ut id quasi?
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum
+					necessitatibus quisquam, ea reiciendis nobis praesentium officia sunt
+					consectetur, voluptates in quidem magnam excepturi commodi veniam
+					reprehenderit? Eos eius inventore at.
 				</div>
 			</div>
 			<div className={styles.main}>
