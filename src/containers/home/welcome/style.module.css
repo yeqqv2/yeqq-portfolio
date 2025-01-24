@@ -14,35 +14,6 @@
 	font-size: 2em;
 }
 
-/* style.module.css */
-
-.name {
-	position: relative;
-}
-
-.name::before {
-	content: '';
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	width: 0;
-	/*Animasyonbaşlangıcıiçin0*/
-	height: 40%;
-	z-index: -1;
-	background-color: var(--green300);
-	opacity: 0.5;
-	display: block;
-	animation: animateWidth 1s 1s forwards;
-}
-
-@keyframes animateWidth {
-	from {
-		width: 0;
-	}
-	to {
-		width: 100%;
-	}
-}
 
 @media screen and (max-width: 1024px) {
 	.container {

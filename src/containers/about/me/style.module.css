@@ -39,6 +39,7 @@
 
 .link {
 	text-decoration: underline;
+    display: inline-block; /* veya block */
 }
 
 .card_text:nth-child(1) {

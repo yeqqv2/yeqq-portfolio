@@ -26,9 +26,7 @@ const AboutmeAbout = () => {
 	const handleMouseLeave = () => {
 		setHovered(false);
 	};
-	const handleMouseClick = () => {
-		navigate('/projects');
-	};
+	
 	return (
 		<div className={styles.container}>
 			<div className={styles.content}>
@@ -64,16 +62,16 @@ const AboutmeAbout = () => {
 					<div className={`${styles.card} ${styles.card_text}`}>
 						<p className={styles.text}>
 							23 yaşında ilk şirketimi kurarak yazılım geliştiricisi olarak
-							birçok tecrübe kazandım. bu tecrübelerim sayesinde{' '}
-							<span
+							birçok tecrübe kazandım. bu tecrübelerim sayesinde
+							<a
+								href="/projects"
 								onMouseMove={handleMouseMove}
 								onMouseEnter={handleMouseEnter}
 								onMouseLeave={handleMouseLeave}
-								onClick={handleMouseClick}
 								className={styles.link}
 							>
 								birçok farklı projede
-							</span>{' '}
+							</a>{' '}
 							çalışma fırsatı buldum.
 						</p>
 					</div>
