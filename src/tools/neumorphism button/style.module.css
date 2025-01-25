@@ -1,7 +1,7 @@
 .light {
   display: flex;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   align-items: center;
   justify-content: space-around;
   background-color: var(--wb100);

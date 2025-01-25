@@ -6,7 +6,7 @@
 }
 
 html {
-	height: 100vh;
+	height: 100dvh;
 	width: 100vw;
 	overflow: hidden;
 }
@@ -15,7 +15,7 @@ body {
 	color: var(--wb950);
 	background-color: var(--wb100);
 	font-size: clamp(12px, 0.85vw, 72px);
-	height: 100vh;
+	height: 100dvh;
 	width: 100vw;
 	overflow-x: hidden;
 	overflow-y: auto;

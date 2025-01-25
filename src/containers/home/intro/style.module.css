@@ -1,7 +1,7 @@
 /* INTRO */
 
 .container {
-	height: 100vh;
+	height: 100dvh;
 	width: 100vw;
 	padding: 20vh 10vw 10vh 10vw;
 	display: flex;

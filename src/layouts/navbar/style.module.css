@@ -40,7 +40,7 @@
 	position: fixed;
 	top: 0;
 	left: 0;
-	height: 100vh;
+	height: 100dvh;
 	width: 30vw;
 	background-color: var(--green300);
 	padding: 10vh 5vw;

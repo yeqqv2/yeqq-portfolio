@@ -20,6 +20,7 @@ const ExpAbout = () => {
 				scrollTrigger: {
 					trigger: number1Ref.current, // or any parent container
 					start: 'top 80%', // adjust as needed
+					invalidateOnRefresh: true,
 					toggleActions: 'play none none none',
 					snap: 1,
 				},
