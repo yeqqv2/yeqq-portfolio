@@ -5,12 +5,16 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const me = [
-	{ img: '/assets/images/me/0.jpeg' },
-	{ img: '/assets/images/me/7.jpg' },
-	{ img: '/assets/images/me/2.jpg' },
-	{ img: '/assets/images/me/6.jpeg' },
-	{ img: '/assets/images/me/1.jpg' },
-	{ img: '/assets/images/me/5.jpg' },
+	{ img: '/assets/images/me/0.webp' },
+	{ img: '/assets/images/me/1.webp' },
+	{ img: '/assets/images/me/2.webp' },
+	{ img: '/assets/images/me/3.webp' },
+	{ img: '/assets/images/me/4.webp' },
+	{ img: '/assets/images/me/5.webp' },
+	{ img: '/assets/images/me/6.webp' },
+	{ img: '/assets/images/me/7.webp' },
+	{ img: '/assets/images/me/8.webp' },
+	{ img: '/assets/images/me/9.webp' },
 ];
 
 const settings = {
