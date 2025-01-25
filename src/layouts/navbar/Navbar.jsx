@@ -42,7 +42,7 @@ export default function Navbar() {
 					/>
 				</main>
 				<a href="/" className={styles.logo}>
-					(yeqq)
+					( yeqq )
 				</a>
 				<main className={`${styles.right} ${styles.main}`}>
 					<a className={styles.contact_link_colored} href="/contact-me">
