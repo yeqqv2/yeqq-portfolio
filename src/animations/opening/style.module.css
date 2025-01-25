@@ -118,10 +118,6 @@
 }
 
 @media screen and (max-width: 1024px) {
-	.container {
-		/* opacity: 0.5; */
-	}
-
 	.img_div {
 		width: 80vw;
 		height: 80vw;
