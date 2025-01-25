@@ -25,7 +25,7 @@ const WelcomeSec = () => {
 	return (
 		<section className={styles.container}>
 			<div className={styles.content}>
-				merhaba ben yunus emre korkmaz , kullanıcı odaklı ve estetik tasarımlar
+				merhaba ben yunus emre korkmaz, kullanıcı odaklı ve estetik tasarımlar
 				oluşturuyorum.
 			</div>
 		</section>
