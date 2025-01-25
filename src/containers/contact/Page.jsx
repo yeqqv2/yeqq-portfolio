@@ -1,8 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import styles from './style.module.css';
 import IntlTelInput from 'react-intl-tel-input-18';
 import './intTelInput.css';
-import Calendar from 'react-calendar';
 
 const ContactPage = () => {
 	return (
@@ -24,6 +23,17 @@ const ContactPage = () => {
 								name="name"
 								type="text"
 								placeholder="yunus emre korkmaz"
+							/>
+						</div>
+						<div className={styles.input_group}>
+							<label className={styles.label} htmlFor="company">
+								firma
+							</label>
+							<input
+								className={styles.input}
+								name="company"
+								type="text"
+								placeholder="firma adı"
 							/>
 						</div>
 						<div className={styles.input_group}>
@@ -96,36 +106,63 @@ const ContactPage = () => {
 								placeholder="mesajınızı buraya yazabilirsiniz"
 							/>
 						</div>
-					</div>
-					<div className={styles.date}>
-						<Calendar
-							selectRange={false}
-							defaultValue={new Date()}
-							defaultView="month"
-							goToRangeStartOnSelect={false}
-							maxDate={new Date(2028, 11, 31)}
-							minDate={new Date(2022, 0, 1)}
-							view="month"
-							minDetail="month"
-							maxDetail="month"
-							showNavigation={false}
-							showNeighboringMonth={false}
-							showDoubleView={false}
-							navigationAriaLabel="Go up"
-							navigationAriaLive="polite"
-							next2AriaLabel="Jump forwards"
-							next2Label="»"
-							nextAriaLabel="Next"
-							nextLabel="›"
-							prev2AriaLabel="Jump backwards"
-							prev2Label="«"
-							prevAriaLabel="Previous"
-							prevLabel="‹"
-						/>
+						<div className={styles.button}>● gönder</div>
 					</div>
 				</div>
+				<div className={styles.vid_content}>
+					{/* <video
+						className={styles.vid}
+						src="https://videos.pexels.com/video-files/18069700/18069700-uhd_1440_2560_24fps.mp4"
+						autoPlay
+						preload="auto"
+						loop
+						muted
+						playsInline
+					/> */}
+				</div>
 			</div>
-			<div className={styles.footer}></div>
+			<div className={styles.footer}>
+				<div className={styles.footer_content}>
+					<p className={styles.footer_content_title}>(iletişim)</p>
+					<p className={styles.footer_content_content}>ynsmrkrkmzz@gmail.com</p>
+				</div>
+				<div className={styles.footer_content}>
+					<p className={styles.footer_content_title}>(bağlantılar)</p>
+					<p className={styles.footer_content_content}>
+						<a
+							className={styles.contact_link}
+							target="__blank"
+							href="https://www.instagram.com/1yunusewre"
+						>
+							instagram
+						</a>
+						,
+						<a
+							className={styles.contact_link}
+							target="__blank"
+							href="https://dribbble.com/yeqqv2"
+						>
+							dribbble
+						</a>
+						,
+						<a
+							className={styles.contact_link}
+							target="__blank"
+							href="https://github.com/yeqqv2"
+						>
+							github
+						</a>
+						,
+						<a
+							className={styles.contact_link}
+							target="__blank"
+							href="https://tr.linkedin.com/in/yunusemrekorkmaz34"
+						>
+							linkedin
+						</a>
+					</p>
+				</div>
+			</div>
 		</div>
 	);
 };

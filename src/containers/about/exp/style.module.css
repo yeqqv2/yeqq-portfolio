@@ -82,15 +82,18 @@
 
 @media screen and (max-width: 600px) {
 	.container {
+		position: relative;
 		padding: 5vh 5vw;
 	}
 
 	.header {
+		position: relative;
 		width: 90vw;
 		flex-direction: column;
 	}
 
 	.desc {
+		position: relative;
 		width: 90vw;
 	}
 
@@ -98,13 +101,16 @@
 		width: 90vw;
 		gap: 5vw;
 		justify-content: space-between;
+		position: relative;
 	}
 
 	.card_header {
+		position: relative;
 		font-size: 7.5em;
 	}
 
 	.card_footer {
+		position: relative;
 		font-size: 1.2em;
 	}
 }

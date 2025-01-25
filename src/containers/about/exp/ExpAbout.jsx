@@ -41,11 +41,13 @@ const ExpAbout = () => {
 				innerText: 2,
 				duration: 0.5,
 				scrollTrigger: {
-					trigger: number2Ref.current, // or any parent container
+					trigger: number1Ref.current,
 					start: 'top 80%',
+					invalidateOnRefresh: true,
 					toggleActions: 'play none none none',
 					snap: 1,
 				},
+
 				onUpdate: function () {
 					number2Ref.current.innerText = Math.floor(
 						this.targets()[0].innerText
