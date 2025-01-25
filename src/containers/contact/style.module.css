@@ -113,6 +113,10 @@
 	transition: 0.3s;
 }
 
+.input::placeholder, .textarea::placeholder{
+	opacity: .5;
+}
+
 .date {
 	flex: 3;
 	height: 100%;

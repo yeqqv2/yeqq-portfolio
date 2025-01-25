@@ -23,7 +23,7 @@ const ContactPage = () => {
 								className={styles.input}
 								name="name"
 								type="text"
-								placeholder="adınız,soyadınız"
+								placeholder="yunus emre korkmaz"
 							/>
 						</div>
 						<div className={styles.input_group}>
@@ -39,7 +39,7 @@ const ContactPage = () => {
 						</div>
 						<div className={styles.input_group}>
 							<label className={styles.label} htmlFor="tel">
-								tel
+								telefon numarası
 							</label>
 							<IntlTelInput
 								style={{ fontFamily: 'Outfit' }}
