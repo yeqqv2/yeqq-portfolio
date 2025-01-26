@@ -150,8 +150,7 @@ const Terminal = () => {
 
 				<div className={styles.title} ref={titleDivRef}>
 					<div className={styles.p}>
-						“Gökyüzünü renklerle bezemenin üstesinden geldim. Beyaz boşlukta
-						yüzün, sonsuzluk karşınızda.”
+						“I have broken the blue boundary of color limits, come out into the white; beside me comrade pilots swim in this infinity.”
 					</div>
 					<i className={styles.author}>(Kazimir Malevich, White on White)</i>
 				</div>

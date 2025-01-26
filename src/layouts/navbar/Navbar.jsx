@@ -46,7 +46,7 @@ export default function Navbar() {
 				</a>
 				<main className={`${styles.right} ${styles.main}`}>
 					<a className={styles.contact_link_colored} href="/contact-me">
-						● iletişime geç
+						● contact with me
 					</a>
 				</main>
 			</div>
@@ -63,36 +63,36 @@ export default function Navbar() {
 						<span className={styles.link_icon}>
 							<GoArrowRight />
 						</span>
-						Anasayfa
+						home
 					</a>
 					<a className={styles.link} href="/about-me" onClick={toggleSidebar}>
 						<span className={styles.link_icon}>
 							<GoArrowRight />
 						</span>
-						Hakkımda
+						aboutme
 					</a>
 					<a className={styles.link} href="/projects" onClick={toggleSidebar}>
 						<span className={styles.link_icon}>
 							<GoArrowRight />
 						</span>
-						Projeler
+						projects
 					</a>
 				</div>
 				<div className={styles.links}>
 					<div className={styles.contact_link_sec}>
-						<div className={styles.contact_link_header}>(iletişim)</div>
+						<div className={styles.contact_link_header}>(contact)</div>
 						<div className={styles.contact_links}>
 							<a
 								className={styles.contact_link_colored}
 								href="/contact-me"
 								onClick={toggleSidebar}
 							>
-								● iletişime geç
+								● let's work together
 							</a>
 						</div>
 					</div>
 					<div className={styles.contact_link_sec}>
-						<div className={styles.contact_link_header}>(bağlantı)</div>
+						<div className={styles.contact_link_header}>(connect)</div>
 						<div className={styles.contact_links}>
 							<a
 								className={styles.contact_link}

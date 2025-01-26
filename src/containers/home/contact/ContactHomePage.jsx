@@ -10,21 +10,17 @@ const ContactHomePage = () => {
 	const styleIndexRef = useRef(0); // Mevcut stil indeksini takip eder
 
 	const sentencesData = [
-		'bir',
-		'yazılım',
-		'geliştirmek',
-		'istiyorsan',
-		'burası',
-		'senin',
-		'yerin',
-		'bir',
-		'fikrin',
-		'mi',
-		'var?',
-		'hayalini',
-		'gerçekleştir!',
-		'projeni',
-		'başlat!',
+		'if you want',
+		'develop',
+		'a software',
+		'this is',
+		'your place',
+		'do you have',
+		'an idea?',
+		'your dream',
+		'make it happen!',
+		'start',
+		'your project!',
 	];
 
 	const stylesArray = [
@@ -112,10 +108,10 @@ const ContactHomePage = () => {
 				onMouseMove={handleMouseMove}
 			>
 				<div className={styles.context_text}>
-					Herhangi bir yazılım fikrin mi var?
+					do you have any software idea?
 				</div>
 				<div className={styles.contact_me}>
-					Hemen (<span className={styles.contact}>iletişime geç</span>)
+					let's (<span className={styles.contact}>get in touch</span>)
 				</div>
 				<div className={styles.sentences}>
 					{words.map((word) => (

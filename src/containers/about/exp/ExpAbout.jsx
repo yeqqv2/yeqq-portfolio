@@ -61,11 +61,11 @@ const ExpAbout = () => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
-				<div className={styles.title}>(tecrübe)</div>
+				<div className={styles.title}>(experience)</div>
 				<div className={styles.desc}>
-					her zaman kullanıcı odaklı, estetik ve işlevsel çözümler üretmeye
-					odaklanıyorum. kişiye / firmaya özel tasarımları yapmanın,
-					yaratıcılığımı beslediğine inanıyorum.
+					I always focus on creating user-centered, aesthetic, and functional
+					solutions. I believe that crafting custom designs for individuals or
+					companies fuels my creativity.
 				</div>
 			</div>
 			<div className={styles.main}>
@@ -76,7 +76,7 @@ const ExpAbout = () => {
 							10
 						</p>
 					</div>
-					<div className={styles.card_footer}>(toplam proje)</div>
+					<div className={styles.card_footer}>(total projects)</div>
 				</div>
 				<div className={styles.card}>
 					<div className={styles.card_header}>
@@ -85,7 +85,7 @@ const ExpAbout = () => {
 							2
 						</p>
 					</div>
-					<div className={styles.card_footer}>(yıllık tecrübe)</div>
+					<div className={styles.card_footer}>(years of experience)</div>
 				</div>
 			</div>
 		</div>

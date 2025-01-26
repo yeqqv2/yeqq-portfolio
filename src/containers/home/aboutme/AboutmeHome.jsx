@@ -67,8 +67,8 @@ const AboutmeHome = () => {
 		<div className={styles.container}>
 			<header className={styles.header}>(hakkımda)</header>
 			<main className={styles.main}>
-				Frontend Developer olarak kullanıcı odaklı ve estetik ara yüzler
-				tasarlamaktan hoşlanıyorum.{' '}
+				as a frontend developer, I view every project I design and code as a
+				piece of art.{' '}
 				<span ref={htmlNameRef} className={`${styles.svg_name} ${styles.html}`}>
 					HTML
 				</span>
@@ -80,11 +80,11 @@ const AboutmeHome = () => {
 				<span ref={sassNameRef} className={`${styles.svg_name} ${styles.sass}`}>
 					SASS
 				</span>{' '}
-				ve{' '}
+				and{' '}
 				<span ref={jsNameRef} className={`${styles.svg_name} ${styles.js}`}>
 					Javascript
 				</span>{' '}
-				başta olmak üzere modern web teknolojilerine hâkimim ve{' '}
+				primarily among modern web technologies, and{' '}
 				<span
 					ref={reactNameRef}
 					className={`${styles.svg_name} ${styles.react}`}
@@ -95,7 +95,7 @@ const AboutmeHome = () => {
 				<span ref={vueNameRef} className={`${styles.svg_name} ${styles.vue}`}>
 					Vue
 				</span>{' '}
-				gibi kütüphanelerle dinamik projeler geliştiriyorum.
+				are some libraries I use to develop dynamic projects.
 			</main>
 
 			{/* SVG’ler - başlangıçta gizli konumda duracaklar */}
@@ -137,7 +137,7 @@ const AboutmeHome = () => {
 			/>
 			<footer className={styles.footer}>
 				<a className={styles.contact_link_colored} href="/about-me">
-					● daha fazlasını gör
+					● more about me
 				</a>
 			</footer>
 		</div>

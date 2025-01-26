@@ -6,17 +6,17 @@ import './intTelInput.css';
 const ContactPage = () => {
 	return (
 		<div className={styles.container}>
-			<div className={styles.header}>(online randevu, iletişim)</div>
+			<div className={styles.header}>(online meeting, message me)</div>
 			<div className={styles.main}>
 				<div className={styles.sidebar}>
-					online toplantı ayarlamak veya sorularınızı sormak için lütfen benimle
-					iletişime geçin
+					please contact me to set up an online meeting or ask any questions you
+					have.
 				</div>
 				<div className={styles.content}>
 					<div className={styles.form}>
 						<div className={styles.input_group}>
 							<label className={styles.label} htmlFor="name">
-								ad,soyad
+								name,surname
 							</label>
 							<input
 								className={styles.input}
@@ -27,13 +27,13 @@ const ContactPage = () => {
 						</div>
 						<div className={styles.input_group}>
 							<label className={styles.label} htmlFor="company">
-								firma
+								company
 							</label>
 							<input
 								className={styles.input}
 								name="company"
 								type="text"
-								placeholder="firma adı"
+								placeholder="apple computer, inc."
 							/>
 						</div>
 						<div className={styles.input_group}>
@@ -49,7 +49,7 @@ const ContactPage = () => {
 						</div>
 						<div className={styles.input_group}>
 							<label className={styles.label} htmlFor="tel">
-								telefon numarası
+								phone
 							</label>
 							<IntlTelInput
 								style={{ fontFamily: 'Outfit' }}
@@ -86,7 +86,7 @@ const ContactPage = () => {
 						</div>
 						<div className={styles.input_group}>
 							<label className={styles.label} htmlFor="subject">
-								konu
+								subject
 							</label>
 							<input
 								className={styles.input}
@@ -97,16 +97,16 @@ const ContactPage = () => {
 						</div>
 						<div className={styles.textarea_group}>
 							<label className={styles.label} htmlFor="message">
-								mesaj
+								message
 							</label>
 							<textarea
 								className={styles.textarea}
 								name="message"
 								type="text"
-								placeholder="mesajınızı buraya yazabilirsiniz"
+								placeholder="describe whatever you want."
 							/>
 						</div>
-						<div className={styles.button}>● gönder</div>
+						<div className={styles.button}>● let's get started</div>
 					</div>
 				</div>
 				<div className={styles.vid_content}>
@@ -123,11 +123,11 @@ const ContactPage = () => {
 			</div>
 			<div className={styles.footer}>
 				<div className={styles.footer_content}>
-					<p className={styles.footer_content_title}>(iletişim)</p>
+					<p className={styles.footer_content_title}>(contact)</p>
 					<p className={styles.footer_content_content}>ynsmrkrkmzz@gmail.com</p>
 				</div>
 				<div className={styles.footer_content}>
-					<p className={styles.footer_content_title}>(bağlantılar)</p>
+					<p className={styles.footer_content_title}>(connect)</p>
 					<p className={styles.footer_content_content}>
 						<a
 							className={styles.contact_link}

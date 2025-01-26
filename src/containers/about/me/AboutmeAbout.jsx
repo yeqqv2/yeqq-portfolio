@@ -26,14 +26,15 @@ const AboutmeAbout = () => {
 	const handleMouseLeave = () => {
 		setHovered(false);
 	};
-	
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.content}>
 				<div className={styles.flex}>
 					<div className={`${styles.card} ${styles.card_text}`}>
-						bursa uludağ üniversitesi, elektrik-elektronik mühendisliği okurken
-						yazılıma ilgi duymaya başladım ve bu ilgimin üzerine düştüm.
+						while studying electrical-electronics engineering at Bursa Uludağ
+						University, I developed an interest in software and pursued it
+						deeply.
 					</div>
 					<div className={styles.card}>
 						<video
@@ -61,8 +62,9 @@ const AboutmeAbout = () => {
 					</div>
 					<div className={`${styles.card} ${styles.card_text}`}>
 						<p className={styles.text}>
-							23 yaşında ilk şirketimi kurarak yazılım geliştiricisi olarak
-							birçok tecrübe kazandım. bu tecrübelerim sayesinde
+							when I was 23, I started my first company as a software developer,
+							gaining a wealth of experience. thanks to this, i’ve had the
+							opportunity to work on
 							<a
 								href="/projects"
 								onMouseMove={handleMouseMove}
@@ -70,9 +72,9 @@ const AboutmeAbout = () => {
 								onMouseLeave={handleMouseLeave}
 								className={styles.link}
 							>
-								birçok farklı projede
-							</a>{' '}
-							çalışma fırsatı buldum.
+								many different projects
+							</a>
+							.
 						</p>
 					</div>
 				</div>
@@ -87,7 +89,7 @@ const AboutmeAbout = () => {
 					color: cursorStyles.color,
 				}}
 			>
-				● daha fazlasını gör
+				● see all projects
 			</span>
 		</div>
 	);

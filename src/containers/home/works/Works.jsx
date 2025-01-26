@@ -48,13 +48,13 @@ const WorksHomePage = () => {
 		<div className={styles.container}>
 			<header className={styles.header}>
 				<div className={`${styles.header_title} ${styles.div_left}`}>
-					(projeler & işler)
+					(projects & works)
 				</div>
 				<div className={`${styles.header_desc} ${styles.div_right}`}>
-					web uygulaması olan projelerin hepsinde frontend geliştiricisi ve
-					ui,ux designeri olarak görev aldım. backende ihtiyaç duymayan her
-					projemi (nosql, one page, landing page vb.) react veya next.js ile
-					geliştirdim.
+					for all web-based projects, I took on the role of frontend developer
+					and UI/UX designer. for any project that didn’t require a backend
+					(NoSQL, one-page, landing page, etc.), I developed them using React or
+					Next.js.
 				</div>
 			</header>
 			<main className={styles.main}>
@@ -107,7 +107,7 @@ const WorksHomePage = () => {
 					color: cursorStyles.color,
 				}}
 			>
-				● daha fazlasını gör
+				● see my projects
 			</span>
 		</div>
 	);
