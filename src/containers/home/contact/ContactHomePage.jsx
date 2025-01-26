@@ -74,19 +74,19 @@ const ContactHomePage = () => {
 			setTimeout(() => {
 				gsap.fromTo(
 					`.word-${newWord.id}`,
-					{ opacity: 0, y: 0, scale: 1 },
-					{ opacity: 1, duration: 0 }
+					{ y: 0, scale: 0 },
+					{ opacity: 1, scale: 1 }
 				);
 				gsap.to(`.word-${newWord.id}`, {
 					scale: 1.25,
-					duration: 1.5,
+					duration: .5,
 					ease: 'power1.out',
 					onComplete: () => {
 						gsap.to(`.word-${newWord.id}`, {
-							opacity: 0,
-							duration: 0.25,
-							delay: 1.5,
-							ease: 'power1.out',
+							scale: 0,
+							duration: 0.5,
+							delay: 1,
+							ease: 'expo.out',
 							onComplete: () => {
 								setWords((prev) =>
 									prev.filter((word) => word.id !== newWord.id)
