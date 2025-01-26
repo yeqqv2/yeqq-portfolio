@@ -1,0 +1,165 @@
+{
+	"navbar": {
+		"contactLinkText": "● contact with me",
+		"sidebar": {
+			"links": [
+				{
+					"text": "home"
+				},
+				{
+					"text": "aboutme"
+				},
+				{
+					"text": "projects"
+				}
+			],
+			"contactSection": {
+				"header": "(contact)",
+				"text": "● let's work together"
+			},
+			"socialSection": "(connect)"
+		}
+	},
+	"terminal": {
+		"quote": "I have broken the blue boundary of color limits, come out into the white; beside me comrade-pilots swim in this infinity.",
+		"author": "(kazimir malevich, white on white)"
+	},
+	"introSec": {
+		"marqueeText": "minimalism,cubism,user(interface,experience),"
+	},
+	"welcomeSec": {
+		"message": "hey, it's yunus emre korkmaz, I create aesthetic and easy designs."
+	},
+	"aboutmeHome": {
+		"header": "(about me)",
+		"mainPart1": "as a frontend developer, I view every project I design and code as a piece of art.",
+		"html": "HTML",
+		"css": "CSS",
+		"sass": "SASS",
+		"js": "Javascript",
+		"mainPart2": "primarily among modern web technologies, and",
+		"react": "React",
+		"vue": "Vue",
+		"mainPart3": "are some libraries I use to develop dynamic projects.",
+		"footerLink": "● more about me"
+	},
+	"worksHomePage": {
+		"headerTitleLeft": "(projects & works)",
+		"headerDescRight": "for all web-based projects, I took on the role of frontend developer and UI/UX designer. for any project that didn’t require a backend (NoSQL, one-page, landing page, etc.), I developed them using React or Next.js.",
+		"cursorText": "● see my projects",
+		"works": [
+			{
+				"name": "skynotech smart site systems",
+				"desc": "a web application built for skynotech smart site systems.",
+				"techs": ["next.js", "react", "nest.js", "typeScript", "mongoDB"],
+				"img": "/assets/images/projects/mockup.png",
+				"link": "https://canbay-portfoli.vercel.app",
+				"color": "var(--wb950)"
+			},
+			{
+				"name": "skynotech corporate website",
+				"desc": "a corporate website built for skynotech smart site systems.",
+				"techs": ["next.js", "firebase"],
+				"img": "/assets/images/projects/skynotech-ws.png",
+				"link": "https://canbay-portfoli.vercel.app",
+				"color": "var(--wb200)"
+			},
+			{
+				"name": "corporate website",
+				"desc": "a template for a corporate website.",
+				"techs": ["next.js", "react", "styled-component"],
+				"img": "/assets/images/projects/dark-website.png",
+				"link": "https://canbay-portfoli.vercel.app",
+				"color": "var(--wb800)"
+			},
+			{
+				"name": "web application",
+				"desc": "a job-search web application developed for the 'balıkesir istihdam ofisi'.",
+				"techs": ["react", "node.js", "express", "mssql", "linux devops"],
+				"img": "/assets/images/projects/bio_0.png",
+				"link": "https://bio.balikesir.bel.tr",
+				"color": "black"
+			},
+			{
+				"name": "portfolio",
+				"desc": "a portfolio site created for Hüseyin Canbay.",
+				"techs": ["react", "styled-components"],
+				"img": "/assets/images/projects/canbay-portfolio.png",
+				"link": "https://canbay-portfoli.vercel.app",
+				"color": "var(--wb50)"
+			},
+			{
+				"name": "corporate website, web application",
+				"desc": "corporate website and web application for the 'balıkesir planlama ve kalkınma ajansı'.",
+				"techs": ["react", "node.js", "express", "mssql", "linux devops"],
+				"img": "/assets/images/projects/bapka_0.png",
+				"link": "https://bapka.tr",
+				"color": "var(--wb900)"
+			}
+		]
+	},
+	"contactHomePage": {
+		"sentencesData": [
+			"if you want",
+			"develop",
+			"a software",
+			"this is",
+			"your place",
+			"do you have",
+			"an idea?",
+			"your dream",
+			"make it happen!",
+			"start",
+			"your project!"
+		],
+		"contextText": "do you have any software idea?",
+		"contactMePrefix": "let's (",
+		"contactMeSpan": "get in touch",
+		"contactMeSuffix": ")"
+	},
+	"socialHomePage": {
+		"headerTitle": "(social media 👌)"
+	},
+	"aboutmeAbout": {
+		"cardOneText": "while studying electrical-electronics engineering at Bursa Uludağ University, I developed an interest in software and pursued it deeply.",
+		"cardTwoPart1": "when I was 23, I started my first company as a software developer, gaining a wealth of experience. thanks to this, i’ve had the opportunity to work on",
+		"cardTwoLink": "many different projects",
+		"cardTwoPart2": ".",
+		"customCursorText": "● see my all projects"
+	},
+	"expAbout": {
+		"headerTitle": "(experience)",
+		"headerDesc": "I always focus on creating user-centered, aesthetic, and functional solutions. I believe that crafting custom designs for individuals or companies fuels my creativity.",
+		"cardOneFooter": "(total projects)",
+		"cardTwoFooter": "(years of experience)"
+	},
+	"contactPage": {
+		"header": "(online meeting, message me)",
+		"sidebar": "please contact me to set up an online meeting or ask any questions you have.",
+		"form": {
+			"nameLabel": "fullname",
+			"companyLabel": "company",
+			"companyPlaceholder": "apple computer, inc.",
+			"emailLabel": "email",
+			"emailPlaceholder": "example@example.com",
+			"telLabel": "phone number",
+			"subjectLabel": "subject",
+			"subjectPlaceholder": "web application, mobile application",
+			"messageLabel": "message",
+			"messagePlaceholder": "you can type your message here",
+			"submitButton": "● let's get started"
+		},
+		"footer": {
+			"content1Title": "(contact)",
+			"content2Title": "(connect)"
+		}
+	},
+	"footer": {
+		"routesHeader": "(links)",
+		"routesLinks": ["home", "aboutme", "projects"],
+		"socialLinksHeader": "(connect)",
+		"contactHeader": "(contact)",
+		"contactLinkText": "get in touch",
+		"footerText": "created by yunus emre korkmaz © 2025"
+	}
+}

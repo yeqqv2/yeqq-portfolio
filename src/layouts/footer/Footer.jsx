@@ -1,28 +1,35 @@
 import React from 'react';
 import styles from './style.module.css';
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
+	const { t } = useTranslation();
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.content}>
 				<header className={styles.logo}>( yeqq )</header>
 				<main className={styles.links}>
-					<div className={styles.links_header}>(rotalar)</div>
+					<div className={styles.links_header}>{t('footer.routesHeader')}</div>
 					<div className={styles.links_content}>
-						<a className={styles.link} href="/">
-							anasayfa
-						</a>
-						<a className={styles.link} href="/about-me">
-							hakkımda
-						</a>
-						<a className={styles.link} href="/">
-							projeler
-						</a>
+						{t('footer.routesLinks', { returnObjects: true }).map(
+							(link, index) => (
+								<a
+									key={index}
+									className={styles.link}
+									href={['/', '/about-me', '/projects'][index]}
+								>
+									{link}
+								</a>
+							)
+						)}
 					</div>
 				</main>
 
 				<main className={styles.links}>
-					<div className={styles.links_header}>(bağlantılar)</div>
+					<div className={styles.links_header}>
+						{t('footer.socialLinksHeader')}
+					</div>
 					<div className={styles.links_content}>
 						<a
 							className={styles.link}
@@ -55,18 +62,16 @@ const Footer = () => {
 					</div>
 				</main>
 				<main className={styles.links}>
-					<div className={styles.links_header}>(iletişim)</div>
+					<div className={styles.links_header}>{t('footer.contactHeader')}</div>
 					<div className={styles.links_content}>
 						<a className={styles.link} href="/contact-me">
-							iletişime geç
+							{t('footer.contactLinkText')}
 						</a>
 					</div>
 				</main>
 			</div>
 			<hr />
-			<footer className={styles.footer}>
-				created by yunus emre korkmaz © 2025
-			</footer>
+			<footer className={styles.footer}>{t('footer.footerText')}</footer>
 		</div>
 	);
 };

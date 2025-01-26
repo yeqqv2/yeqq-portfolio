@@ -16,6 +16,7 @@ import ProjectsPage from './pages/projects/ProjectsPage';
 import ContactPage from './containers/contact/Page';
 
 function App() {
+
 	return (
 		<Routes>
 			{/* HOME PAGE */}

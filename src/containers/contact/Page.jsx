@@ -2,54 +2,64 @@ import React from 'react';
 import styles from './style.module.css';
 import IntlTelInput from 'react-intl-tel-input-18';
 import './intTelInput.css';
+// ================================================
+// TRANSLATE
+// ================================================
+import { useTranslation } from 'react-i18next';
 
 const ContactPage = () => {
+	const { t } = useTranslation();
+
 	return (
 		<div className={styles.container}>
-			<div className={styles.header}>(online randevu, iletişim)</div>
+			<div className={styles.header}>{t('contactPage.header')}</div>
 			<div className={styles.main}>
-				<div className={styles.sidebar}>
-					online toplantı ayarlamak veya sorularınızı sormak için lütfen benimle
-					iletişime geçin
-				</div>
+				<div className={styles.sidebar}>{t('contactPage.sidebar')}</div>
 				<div className={styles.content}>
 					<div className={styles.form}>
+						{/* Name Input */}
 						<div className={styles.input_group}>
 							<label className={styles.label} htmlFor="name">
-								ad,soyad
+								{t('contactPage.form.nameLabel')}
 							</label>
 							<input
 								className={styles.input}
 								name="name"
 								type="text"
-								placeholder="yunus emre korkmaz"
+								placeholder={t('contactPage.form.namePlaceholder')}
 							/>
 						</div>
+
+						{/* Company Input */}
 						<div className={styles.input_group}>
 							<label className={styles.label} htmlFor="company">
-								firma
+								{t('contactPage.form.companyLabel')}
 							</label>
 							<input
 								className={styles.input}
 								name="company"
 								type="text"
-								placeholder="firma adı"
+								placeholder={t('contactPage.form.companyPlaceholder')}
 							/>
 						</div>
+
+						{/* Email Input */}
 						<div className={styles.input_group}>
 							<label className={styles.label} htmlFor="email">
-								email
+								{t('contactPage.form.emailLabel')}
 							</label>
 							<input
 								className={styles.input}
 								name="email"
 								type="email"
-								placeholder="example@example.com"
+								placeholder={t('contactPage.form.emailPlaceholder')}
 							/>
 						</div>
+
+						{/* Phone Input */}
 						<div className={styles.input_group}>
 							<label className={styles.label} htmlFor="tel">
-								telefon numarası
+								{t('contactPage.form.telLabel')}
 							</label>
 							<IntlTelInput
 								style={{ fontFamily: 'Outfit' }}
@@ -77,57 +87,56 @@ const ContactPage = () => {
 								onPhoneNumberChange={() => {}}
 								utilsScript="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
 							/>
-							{/* <input
-								className={styles.input}
-								name="tel"
-								type="tel"
-								placeholder="+90 000 000 0000"
-							/> */}
 						</div>
+
+						{/* Subject Input */}
 						<div className={styles.input_group}>
 							<label className={styles.label} htmlFor="subject">
-								konu
+								{t('contactPage.form.subjectLabel')}
 							</label>
 							<input
 								className={styles.input}
 								name="subject"
 								type="text"
-								placeholder="web uygulaması, mobil uygulama"
+								placeholder={t('contactPage.form.subjectPlaceholder')}
 							/>
 						</div>
+
+						{/* Message Textarea */}
 						<div className={styles.textarea_group}>
 							<label className={styles.label} htmlFor="message">
-								mesaj
+								{t('contactPage.form.messageLabel')}
 							</label>
 							<textarea
 								className={styles.textarea}
 								name="message"
-								type="text"
-								placeholder="mesajınızı buraya yazabilirsiniz"
+								placeholder={t('contactPage.form.messagePlaceholder')}
 							/>
 						</div>
-						<div className={styles.button}>● gönder</div>
+
+						{/* Submit Button */}
+						<div className={styles.button}>
+							{t('contactPage.form.submitButton')}
+						</div>
 					</div>
 				</div>
-				<div className={styles.vid_content}>
-					{/* <video
-						className={styles.vid}
-						src="https://videos.pexels.com/video-files/18069700/18069700-uhd_1440_2560_24fps.mp4"
-						autoPlay
-						preload="auto"
-						loop
-						muted
-						playsInline
-					/> */}
-				</div>
+
+				{/* Sidebar Video Content */}
+				<div className={styles.vid_content}>{/* Video Eklenebilir */}</div>
 			</div>
+
+			{/* Footer Section */}
 			<div className={styles.footer}>
 				<div className={styles.footer_content}>
-					<p className={styles.footer_content_title}>(iletişim)</p>
+					<p className={styles.footer_content_title}>
+						{t('contactPage.footer.content1Title')}
+					</p>
 					<p className={styles.footer_content_content}>ynsmrkrkmzz@gmail.com</p>
 				</div>
 				<div className={styles.footer_content}>
-					<p className={styles.footer_content_title}>(bağlantılar)</p>
+					<p className={styles.footer_content_title}>
+						{t('contactPage.footer.content2Title')}
+					</p>
 					<p className={styles.footer_content_content}>
 						<a
 							className={styles.contact_link}

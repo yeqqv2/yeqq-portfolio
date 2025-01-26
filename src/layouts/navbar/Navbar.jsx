@@ -3,8 +3,10 @@ import styles from './style.module.css';
 import MenuButton from '../../tools/menu/MenuButton';
 import gsap from 'gsap';
 import { GoArrowRight } from 'react-icons/go';
+import { useTranslation } from 'react-i18next';
 
 export default function Navbar() {
+	const { t } = useTranslation(); // Çeviriler için `t` fonksiyonu
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 	const sidebarRef = useRef(null);
 
@@ -42,11 +44,11 @@ export default function Navbar() {
 					/>
 				</main>
 				<a href="/" className={styles.logo}>
-					( yeqq )
+				( yeqq )
 				</a>
 				<main className={`${styles.right} ${styles.main}`}>
 					<a className={styles.contact_link_colored} href="/contact-me">
-						● iletişime geç
+						{t('navbar.contactLinkText')}
 					</a>
 				</main>
 			</div>
@@ -59,40 +61,41 @@ export default function Navbar() {
 					/>
 				</span>
 				<div className={styles.links}>
-					<a className={styles.link} href="/" onClick={toggleSidebar}>
-						<span className={styles.link_icon}>
-							<GoArrowRight />
-						</span>
-						Anasayfa
-					</a>
-					<a className={styles.link} href="/about-me" onClick={toggleSidebar}>
-						<span className={styles.link_icon}>
-							<GoArrowRight />
-						</span>
-						Hakkımda
-					</a>
-					<a className={styles.link} href="/projects" onClick={toggleSidebar}>
-						<span className={styles.link_icon}>
-							<GoArrowRight />
-						</span>
-						Projeler
-					</a>
+					{t('navbar.sidebar.links', { returnObjects: true }).map(
+						(link, index) => (
+							<a
+								key={index}
+								className={styles.link}
+								href={['/', '/about-me', '/projects'][index]}
+								onClick={toggleSidebar}
+							>
+								<span className={styles.link_icon}>
+									<GoArrowRight />
+								</span>
+								{link.text}
+							</a>
+						)
+					)}
 				</div>
 				<div className={styles.links}>
 					<div className={styles.contact_link_sec}>
-						<div className={styles.contact_link_header}>(iletişim)</div>
+						<div className={styles.contact_link_header}>
+							{t('navbar.sidebar.contactSection.header')}
+						</div>
 						<div className={styles.contact_links}>
 							<a
 								className={styles.contact_link_colored}
 								href="/contact-me"
 								onClick={toggleSidebar}
 							>
-								● iletişime geç
+								{t('navbar.sidebar.contactSection.text')}
 							</a>
 						</div>
 					</div>
 					<div className={styles.contact_link_sec}>
-						<div className={styles.contact_link_header}>(bağlantı)</div>
+						<div className={styles.contact_link_header}>
+							{t('navbar.sidebar.socialSection')}
+						</div>
 						<div className={styles.contact_links}>
 							<a
 								className={styles.contact_link}

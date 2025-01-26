@@ -5,7 +5,7 @@ import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import styles from './style.module.css';
 import NeumorphismButton from '../../tools/neumorphism button/NeumorphismButton';
 
-const Terminal = () => {
+const Terminal = ({ quote, author }) => {
 	const [start, setStart] = useState(false);
 	const containerRef = useRef(null);
 	const lightRef = useRef(null);
@@ -149,11 +149,8 @@ const Terminal = () => {
 				</div>
 
 				<div className={styles.title} ref={titleDivRef}>
-					<div className={styles.p}>
-						“Gökyüzünü renklerle bezemenin üstesinden geldim. Beyaz boşlukta
-						yüzün, sonsuzluk karşınızda.”
-					</div>
-					<i className={styles.author}>(Kazimir Malevich, White on White)</i>
+					<div className={styles.p}>“{quote}”</div>
+					<i className={styles.author}>{author}</i>
 				</div>
 			</div>
 			{start && <div ref={progressBarRef} className={styles.progressBar}></div>}

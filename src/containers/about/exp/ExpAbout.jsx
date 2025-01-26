@@ -5,7 +5,12 @@ import styles from './style.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ExpAbout = () => {
+const ExpAbout = ({
+	headerTitle,
+	headerDesc,
+	cardOneFooter,
+	cardTwoFooter,
+}) => {
 	const number1Ref = useRef(null);
 	const number2Ref = useRef(null);
 
@@ -18,16 +23,15 @@ const ExpAbout = () => {
 				innerText: 10,
 				duration: 1,
 				scrollTrigger: {
-					trigger: number1Ref.current, // or any parent container
-					start: 'top 80%', // adjust as needed
-					invalidateOnRefresh: true,
+					trigger: number1Ref.current, // Kartın kendisini tetikleme noktası olarak kullan
+					start: 'top 80%', // Sayfanın 80% noktasında tetikleme
 					toggleActions: 'play none none none',
-					snap: 1,
+					invalidateOnRefresh: true,
+					snap: { innerText: 1 }, // Tam sayılara yuvarlama
 				},
-				// Snap to whole numbers
 				onUpdate: function () {
-					// rounding to avoid decimals
-					number1Ref.current.innerText = Math.floor(
+					// Rakamları tam sayıya yuvarla ve elemanın içeriğini güncelle
+					number1Ref.current.innerText = Math.round(
 						this.targets()[0].innerText
 					);
 				},
@@ -40,17 +44,16 @@ const ExpAbout = () => {
 			{ innerText: 0 },
 			{
 				innerText: 2,
-				duration: 0.5,
+				duration: 1,
 				scrollTrigger: {
-					trigger: number1Ref.current,
+					trigger: number2Ref.current, // İkinci kart için bağımsız tetikleme
 					start: 'top 80%',
-					invalidateOnRefresh: true,
 					toggleActions: 'play none none none',
-					snap: 1,
+					invalidateOnRefresh: true,
+					snap: { innerText: 1 },
 				},
-
 				onUpdate: function () {
-					number2Ref.current.innerText = Math.floor(
+					number2Ref.current.innerText = Math.round(
 						this.targets()[0].innerText
 					);
 				},
@@ -61,31 +64,27 @@ const ExpAbout = () => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
-				<div className={styles.title}>(tecrübe)</div>
-				<div className={styles.desc}>
-					her zaman kullanıcı odaklı, estetik ve işlevsel çözümler üretmeye
-					odaklanıyorum. kişiye / firmaya özel tasarımları yapmanın,
-					yaratıcılığımı beslediğine inanıyorum.
-				</div>
+				<div className={styles.title}>{headerTitle}</div>
+				<div className={styles.desc}>{headerDesc}</div>
 			</div>
 			<div className={styles.main}>
 				<div className={styles.card}>
 					<div className={styles.card_header}>
 						<span className={styles.plus}>+</span>
 						<p className={styles.number} ref={number1Ref}>
-							10
+							0
 						</p>
 					</div>
-					<div className={styles.card_footer}>(toplam proje)</div>
+					<div className={styles.card_footer}>{cardOneFooter}</div>
 				</div>
 				<div className={styles.card}>
 					<div className={styles.card_header}>
 						<span className={styles.plus}>+</span>
 						<p className={styles.number} ref={number2Ref}>
-							2
+							0
 						</p>
 					</div>
-					<div className={styles.card_footer}>(yıllık tecrübe)</div>
+					<div className={styles.card_footer}>{cardTwoFooter}</div>
 				</div>
 			</div>
 		</div>

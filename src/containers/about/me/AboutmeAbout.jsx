@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import styles from './style.module.css';
 import colors from '../../../utils/colors';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const AboutmeAbout = () => {
+	const { t } = useTranslation();
 	const navigate = useNavigate();
+
 	const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
 	const [hovered, setHovered] = useState(false);
 	const [cursorStyles, setCursorStyles] = useState({
@@ -18,7 +21,10 @@ const AboutmeAbout = () => {
 
 	const handleMouseEnter = () => {
 		const randomIndex = Math.floor(Math.random() * colors.length);
-		const randomColor = colors[randomIndex];
+		const randomColor = colors[randomIndex] || {
+			bg: 'var(--main-color500)',
+			color: 'var(--wb950)',
+		};
 		setCursorStyles({ bg: randomColor.bg, color: randomColor.color });
 		setHovered(true);
 	};
@@ -26,14 +32,13 @@ const AboutmeAbout = () => {
 	const handleMouseLeave = () => {
 		setHovered(false);
 	};
-	
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.content}>
 				<div className={styles.flex}>
 					<div className={`${styles.card} ${styles.card_text}`}>
-						bursa uludağ üniversitesi, elektrik-elektronik mühendisliği okurken
-						yazılıma ilgi duymaya başladım ve bu ilgimin üzerine düştüm.
+						{t('aboutmeAbout.cardOneText')}
 					</div>
 					<div className={styles.card}>
 						<video
@@ -61,8 +66,7 @@ const AboutmeAbout = () => {
 					</div>
 					<div className={`${styles.card} ${styles.card_text}`}>
 						<p className={styles.text}>
-							23 yaşında ilk şirketimi kurarak yazılım geliştiricisi olarak
-							birçok tecrübe kazandım. bu tecrübelerim sayesinde
+							{t('aboutmeAbout.cardTwoPart1')}{' '}
 							<a
 								href="/projects"
 								onMouseMove={handleMouseMove}
@@ -70,9 +74,9 @@ const AboutmeAbout = () => {
 								onMouseLeave={handleMouseLeave}
 								className={styles.link}
 							>
-								birçok farklı projede
+								{t('aboutmeAbout.cardTwoLink')}
 							</a>{' '}
-							çalışma fırsatı buldum.
+							{t('aboutmeAbout.cardTwoPart2')}
 						</p>
 					</div>
 				</div>
@@ -87,7 +91,7 @@ const AboutmeAbout = () => {
 					color: cursorStyles.color,
 				}}
 			>
-				● daha fazlasını gör
+				{t('aboutmeAbout.customCursorText')}
 			</span>
 		</div>
 	);
