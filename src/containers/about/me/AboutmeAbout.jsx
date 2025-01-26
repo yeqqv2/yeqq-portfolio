@@ -64,7 +64,7 @@ const AboutmeAbout = () => {
 						<p className={styles.text}>
 							when I was 23, I started my first company as a software developer,
 							gaining a wealth of experience. thanks to this, i’ve had the
-							opportunity to work on
+							opportunity to work on{" "}
 							<a
 								href="/projects"
 								onMouseMove={handleMouseMove}
