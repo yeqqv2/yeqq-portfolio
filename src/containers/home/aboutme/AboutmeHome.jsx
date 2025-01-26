@@ -2,14 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import styles from './style.module.css';
 
-const AboutmeHome = ({
-	header,
-	mainPart1,
-	mainPart2,
-	mainPart3,
-	technologies,
-	footerLink,
-}) => {
+const AboutmeHome = () => {
 	// 1. Span’ler (teknoloji isimleri) için referanslar
 	const htmlNameRef = useRef(null);
 	const cssNameRef = useRef(null);
@@ -72,9 +65,10 @@ const AboutmeHome = ({
 
 	return (
 		<div className={styles.container}>
-			<header className={styles.header}>{header}</header>
+			<header className={styles.header}>(hakkımda)</header>
 			<main className={styles.main}>
-				{mainPart1}{' '}
+				Frontend Developer olarak kullanıcı odaklı ve estetik ara yüzler
+				tasarlamaktan hoşlanıyorum.{' '}
 				<span ref={htmlNameRef} className={`${styles.svg_name} ${styles.html}`}>
 					HTML
 				</span>
@@ -82,15 +76,15 @@ const AboutmeHome = ({
 				<span ref={cssNameRef} className={`${styles.svg_name} ${styles.css}`}>
 					CSS
 				</span>{' '}
-				,{' '}
+				&{' '}
 				<span ref={sassNameRef} className={`${styles.svg_name} ${styles.sass}`}>
 					SASS
 				</span>{' '}
-				&{' '}
+				ve{' '}
 				<span ref={jsNameRef} className={`${styles.svg_name} ${styles.js}`}>
 					Javascript
 				</span>{' '}
-				{mainPart2}{' '}
+				başta olmak üzere modern web teknolojilerine hâkimim ve{' '}
 				<span
 					ref={reactNameRef}
 					className={`${styles.svg_name} ${styles.react}`}
@@ -101,7 +95,7 @@ const AboutmeHome = ({
 				<span ref={vueNameRef} className={`${styles.svg_name} ${styles.vue}`}>
 					Vue
 				</span>{' '}
-				{mainPart3}
+				gibi kütüphanelerle dinamik projeler geliştiriyorum.
 			</main>
 
 			{/* SVG’ler - başlangıçta gizli konumda duracaklar */}
@@ -143,7 +137,7 @@ const AboutmeHome = ({
 			/>
 			<footer className={styles.footer}>
 				<a className={styles.contact_link_colored} href="/about-me">
-					{footerLink}
+					● daha fazlasını gör
 				</a>
 			</footer>
 		</div>

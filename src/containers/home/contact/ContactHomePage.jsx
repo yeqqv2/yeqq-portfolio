@@ -3,17 +3,29 @@ import styles from './style.module.css';
 import gsap from 'gsap';
 import { throttle } from 'lodash';
 
-const ContactHomePage = ({
-	contextText,
-	contactMePrefix,
-	contactMeSpan,
-	contactMeSuffix,
-	sentencesData = [],
-}) => {
+const ContactHomePage = () => {
 	const [words, setWords] = useState([]);
 	const contextRef = useRef(null);
 	const wordIndexRef = useRef(0); // Mevcut kelime indeksini takip eder
 	const styleIndexRef = useRef(0); // Mevcut stil indeksini takip eder
+
+	const sentencesData = [
+		'bir',
+		'yazılım',
+		'geliştirmek',
+		'istiyorsan',
+		'burası',
+		'senin',
+		'yerin',
+		'bir',
+		'fikrin',
+		'mi',
+		'var?',
+		'hayalini',
+		'gerçekleştir!',
+		'projeni',
+		'başlat!',
+	];
 
 	const stylesArray = [
 		styles.style1,
@@ -28,9 +40,6 @@ const ContactHomePage = ({
 
 	const handleMouseMove = useCallback(
 		throttle((e) => {
-			// Eğer cümleler henüz yüklenmediyse hiçbir şey yapma.
-			if (!sentencesData || sentencesData.length === 0) return;
-
 			const context = contextRef.current;
 			if (!context) return;
 
@@ -83,14 +92,16 @@ const ContactHomePage = ({
 							delay: 1.5,
 							ease: 'power1.out',
 							onComplete: () => {
-								setWords((prev) => prev.filter((w) => w.id !== newWord.id));
+								setWords((prev) =>
+									prev.filter((word) => word.id !== newWord.id)
+								);
 							},
 						});
 					},
 				});
 			}, 0);
 		}, 100),
-		[sentencesData] // sentencesData değişince fonksiyon güncellensin
+		[]
 	);
 
 	return (
@@ -100,26 +111,26 @@ const ContactHomePage = ({
 				ref={contextRef}
 				onMouseMove={handleMouseMove}
 			>
-				<div className={styles.context_text}>{contextText}</div>
+				<div className={styles.context_text}>
+					Herhangi bir yazılım fikrin mi var?
+				</div>
 				<div className={styles.contact_me}>
-					{contactMePrefix}(
-					<span className={styles.contact}>{contactMeSpan}</span>)
-					{contactMeSuffix}
+					Hemen (<span className={styles.contact}>iletişime geç</span>)
 				</div>
 				<div className={styles.sentences}>
-					{words.map((item) => (
+					{words.map((word) => (
 						<span
-							key={item.id}
-							className={`word-${item.id} ${item.style}`}
+							key={word.id}
+							className={`word-${word.id} ${word.style}`}
 							style={{
 								position: 'absolute',
-								left: item.x,
-								top: item.y,
+								left: word.x,
+								top: word.y,
 								pointerEvents: 'none',
 								opacity: 0, // Başlangıçta görünmez
 							}}
 						>
-							● {item.word}
+							● {word.word}
 						</span>
 					))}
 				</div>

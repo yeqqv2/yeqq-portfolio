@@ -5,7 +5,7 @@ import styles from './style.module.css';
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
-const WelcomeSec = ({ message }) => {
+const WelcomeSec = () => {
 	// Hedef container ref'i
 	const nameRef = useRef(null);
 
@@ -24,7 +24,10 @@ const WelcomeSec = ({ message }) => {
 
 	return (
 		<section className={styles.container}>
-			<div className={styles.content}>{message}</div>
+			<div className={styles.content}>
+				merhaba ben yunus emre korkmaz, kullanıcı odaklı ve estetik tasarımlar
+				oluşturuyorum.
+			</div>
 		</section>
 	);
 };

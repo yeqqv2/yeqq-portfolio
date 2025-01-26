@@ -49,11 +49,11 @@ const social = [
 	},
 ];
 
-const SocialHomePage = ({ header }) => {
+const SocialHomePage = () => {
 	return (
 		<div className={styles.container}>
 			<header className={styles.header}>
-				<div className={styles.header_title}>{header}</div>
+				<div className={styles.header_title}>(sosyal medya 👌)</div>
 			</header>
 			<main className={styles.main}>
 				{social.map((item, index) => {

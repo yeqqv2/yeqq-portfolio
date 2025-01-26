@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './style.module.css';
+import Slider from 'react-slick';
+import works from '../../../utils/works';
 import colors from '../../../utils/colors';
 
 const settings = {
@@ -19,12 +21,7 @@ const settings = {
 	className: styles.slider,
 };
 
-const WorksHomePage = ({
-	headerTitleLeft,
-	headerDescRight,
-	cursorText,
-	works = [],
-}) => {
+const WorksHomePage = () => {
 	const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
 	const [hovered, setHovered] = useState(false);
 	const [cursorStyles, setCursorStyles] = useState({
@@ -51,15 +48,18 @@ const WorksHomePage = ({
 		<div className={styles.container}>
 			<header className={styles.header}>
 				<div className={`${styles.header_title} ${styles.div_left}`}>
-					{headerTitleLeft}
+					(projeler & işler)
 				</div>
 				<div className={`${styles.header_desc} ${styles.div_right}`}>
-					{headerDescRight}
+					web uygulaması olan projelerin hepsinde frontend geliştiricisi ve
+					ui,ux designeri olarak görev aldım. backende ihtiyaç duymayan her
+					projemi (nosql, one page, landing page vb.) react veya next.js ile
+					geliştirdim.
 				</div>
 			</header>
 			<main className={styles.main}>
-				{works && works.length > 0 ? (
-					works.map((work, index) => (
+				{works.map((work, index) => {
+					return (
 						<a
 							href={work.link}
 							className={styles.main_div}
@@ -69,14 +69,13 @@ const WorksHomePage = ({
 							onMouseLeave={handleMouseLeave}
 							target="__blank"
 						>
-							<div className={`${styles.works} ${styles.div_left}`}>
+							<div key={index} className={`${styles.works} ${styles.div_left}`}>
 								<div className={styles.work_techs}>
-									{work.techs &&
-										work.techs.map((tech, index) => (
-											<span className={styles.tech} key={index}>
-												{tech}
-											</span>
-										))}
+									{work.techs.map((tech, index) => (
+										<span className={styles.tech} key={index}>
+											{tech}
+										</span>
+									))}
 								</div>
 								<div className={styles.work_context}>
 									<div className={styles.work_name}>({work.name})</div>
@@ -87,13 +86,16 @@ const WorksHomePage = ({
 								className={`${styles.work_img} ${styles.div_right}`}
 								style={{ backgroundColor: work.color }}
 							>
-								<img src={work.img} alt={work.desc} className={styles.img} />
+								<img
+									key={index}
+									src={work.img}
+									alt={work.desc}
+									className={styles.img}
+								/>
 							</div>
 						</a>
-					))
-				) : (
-					<p>No works available</p>
-				)}
+					);
+				})}
 			</main>
 			<span
 				className={styles.customCursor}
@@ -105,7 +107,7 @@ const WorksHomePage = ({
 					color: cursorStyles.color,
 				}}
 			>
-				{cursorText}
+				● daha fazlasını gör
 			</span>
 		</div>
 	);

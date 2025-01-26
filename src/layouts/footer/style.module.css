@@ -44,7 +44,7 @@
 
 .contact_link_colored {
 	padding: 0.375em 0.5em 0.375em 0.5em;
-	background-color: var(--purple600);
+	background-color: var(--blue400);
 	border-radius: 0.25em;
 	position: relative;
 	color: var(--blue950);
@@ -57,12 +57,13 @@
 }
 
 @media screen and (max-width: 600px) {
-	.container {
-		padding: 10vh 5vw;
-	}
+  .container{
+    padding: 10vh 5vw;
+  }
 
-	.content {
-		width: 90vw;
-		flex-direction: column;
-	}
+  .content{
+    width: 90vw;
+    flex-direction: column;
+  }
+  
 }
