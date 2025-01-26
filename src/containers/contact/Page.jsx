@@ -26,7 +26,7 @@ const ContactPage = () => {
 								className={styles.input}
 								name="name"
 								type="text"
-								placeholder={t('contactPage.form.namePlaceholder')}
+								placeholder="yunus emre korkmaz"
 							/>
 						</div>
 
