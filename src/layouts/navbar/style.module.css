@@ -10,6 +10,8 @@
 	justify-content: space-between;
 	gap: 10vw;
 	background-color: transparent;
+	mix-blend-mode: difference;
+	color: white;
 }
 
 .logo {
@@ -88,10 +90,19 @@
 
 .contact_link_colored {
 	padding: 0.375em 0.5em 0.375em 0.5em;
+	background-color: var(--wb50);
+	border-radius: 0.25em;
+	position: relative;
+	color: var(--wb950);
+	line-height: 1em;
+}
+
+.contact_link_colored_sidebar {
+	padding: 0.375em 0.5em 0.375em 0.5em;
 	background-color: var(--blue400);
 	border-radius: 0.25em;
 	position: relative;
-	color: var(--blue950);
+	color: var(--wb950);
 	line-height: 1em;
 }
 
