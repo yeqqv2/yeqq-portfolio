@@ -83,7 +83,7 @@ export default function Navbar() {
 						<div className={styles.contact_link_header}>(contact)</div>
 						<div className={styles.contact_links}>
 							<a
-								className={styles.contact_link_colored}
+								className={styles.contact_link_colored_sidebar}
 								href="/contact-me"
 								onClick={toggleSidebar}
 							>
