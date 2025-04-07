@@ -4,6 +4,23 @@ import { TextPlugin } from 'gsap/TextPlugin';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import styles from './style.module.css';
 import NeumorphismButton from '../../tools/neumorphism button/NeumorphismButton';
+import { AutoTextSize } from 'auto-text-size';
+
+// Basit bir useMediaQuery hook'u
+const useMediaQuery = (query) => {
+	const [matches, setMatches] = useState(
+		typeof window !== 'undefined' ? window.matchMedia(query).matches : false
+	);
+
+	useEffect(() => {
+		const media = window.matchMedia(query);
+		const listener = () => setMatches(media.matches);
+		media.addListener(listener);
+		return () => media.removeListener(listener);
+	}, [query]);
+
+	return matches;
+};
 
 const Terminal = () => {
 	const [start, setStart] = useState(false);
@@ -11,15 +28,18 @@ const Terminal = () => {
 	const lightRef = useRef(null);
 	const titleRef = useRef(null);
 	const titleDivRef = useRef(null);
-	const squareRef = useRef(null);
 	const ballRef = useRef(null);
 	const progressBarRef = useRef(null);
 	const pathRef = useRef(null);
+	const quoteRef = useRef(null);
 
 	gsap.registerPlugin(TextPlugin);
 	gsap.registerPlugin(MotionPathPlugin);
 
 	const loadingDuration = 5;
+
+	// Tablet ve mobil için media query (örneğin max-width: 768px)
+	const isTablet = useMediaQuery('(max-width: 768px)');
 
 	const handleStart = () => {
 		gsap.to(lightRef.current, {
@@ -41,6 +61,37 @@ const Terminal = () => {
 				{ opacity: 0, y: 50 },
 				{ opacity: 1, y: 0, duration: 1 }
 			);
+
+			gsap.set(quoteRef.current, { fontWeight: 100 });
+			gsap.to(quoteRef.current, {
+				fontWeight: 500,
+				duration: 1,
+				ease: 'power1.inOut'
+			});
+
+			const lines = quoteRef.current.children;
+			Array.from(lines).forEach((line) => {
+				const text = line.textContent;
+				line.innerHTML = '';
+				text.split('').forEach((letter) => {
+					const span = document.createElement('span');
+					span.className = 'letter';
+					span.style.fontWeight = 100;
+					span.style.display = 'inline-block';
+					span.style.whiteSpace = 'pre'; // Boşlukları korumak için
+					span.textContent = letter;
+					line.appendChild(span);
+				});
+			});
+
+			const letters = quoteRef.current.querySelectorAll('.letter');
+			gsap.to(letters, {
+				fontWeight: 500,
+				duration: 0.3,
+				stagger: 0.025,
+				ease: 'power1.inOut'
+			});
+
 			gsap.fromTo(
 				progressBarRef.current,
 				{ width: '0%' },
@@ -49,76 +100,55 @@ const Terminal = () => {
 					duration: loadingDuration,
 					ease: 'linear',
 					onComplete: () => {
-						gsap.to(squareRef.current, {
-							rotate: '0deg',
-							top: '20vh',
-							left: '50%',
-							bottom: '0',
-							right: '0',
-							transform: 'translateX(-50%)',
-							duration: 0.5,
-							borderRadius: '50%',
-							ease: 'power1',
-							scale: 1,
+						gsap.to(ballRef.current, {
+							top: '30vh',
+							duration: 1,
+							ease: 'expo.in',
 							onComplete: () => {
 								gsap.to(ballRef.current, {
-									top: '30vh',
+									motionPath: {
+										path: pathRef.current,
+										align: pathRef.current,
+										alignOrigin: [0.5, 0.5],
+										autoRotate: false,
+										start: 1,
+										end: 0,
+									},
 									duration: 1,
-									ease: 'expo.in',
 									onComplete: () => {
 										gsap.to(ballRef.current, {
-											motionPath: {
-												path: pathRef.current,
-												align: pathRef.current,
-												alignOrigin: [0.5, 0.5],
-												autoRotate: false,
-												start: 1,
-												end: 0,
-											},
-											duration: 1,
+											width: '100%',
+											height: '100%',
+											duration: 0.5,
+											ease: 'power1.inOut',
+										});
+										gsap.to(ballRef.current, {
+											top: '50%',
+											left: '50%',
+											transform: 'translate(-50%, -50%) scale(1)',
+											transformOrigin: '50% 50%',
+											duration: 0.5,
+											ease: 'power1.inOut',
 											onComplete: () => {
-												gsap.to(ballRef.current, {
-													width: '100%',
-													height: '100%',
-													duration: 0.5,
-													ease: 'power1.inOut',
-												});
-												gsap.to(ballRef.current, {
-													top: '50%',
-													left: '50%',
-													transform: 'translate(-50%, -50%) scale(1)',
-													transformOrigin: '50% 50%',
-													duration: 0.5,
-													ease: 'power1.inOut',
+												gsap.to(containerRef.current, {
+													opacity: 0,
+													ease: 'linear',
 													onComplete: () => {
-														gsap.to(containerRef.current, {
-															opacity: 0,
-															ease: 'linear',
-															onComplete: () => {
-																if (containerRef.current) {
-																	containerRef.current.style.display = 'none';
-																}
-															},
-														});
+														if (containerRef.current) {
+															containerRef.current.style.display = 'none';
+														}
 													},
 												});
-											},
-										});
+											}
+										},
+										);
 									},
 								});
 							},
 						});
-						gsap.to(titleDivRef.current, {
-							duration: 1.5,
-							text: '(yeqq)',
-							whiteSpace: 'nowrap',
-							fontSize: '12.5em',
-							fontWeight: 500,
-							ease: 'none',
-							color: 'black',
-						});
+
 					},
-				}
+				},
 			);
 		}
 	}, [start]);
@@ -132,11 +162,10 @@ const Terminal = () => {
 			)}
 			<div
 				ref={titleRef}
-				className={`${styles.content} ${
-					start ? styles.visible : styles.hidden
-				}`}
+				className={`${styles.content} ${start ? styles.visible : styles.hidden
+					}`}
 			>
-				<div className={styles.img_div} ref={squareRef}>
+				<div className={styles.img_div} >
 					<svg className={styles.svg} viewBox="0 0 357 371">
 						<path
 							ref={pathRef}
@@ -149,13 +178,38 @@ const Terminal = () => {
 				</div>
 
 				<div className={styles.title} ref={titleDivRef}>
-					<div className={styles.p}>
-						“I have broken the blue boundary of color limits, <br />
-						come out into the white;
-						<br /> beside me comrade pilots, <br />
-						swim in this infinity.”
-					</div>
-					<i className={styles.author}>(Kazimir Malevich, White on White)</i>
+					{isTablet ? (
+						<>
+							<div className={styles.quote} ref={quoteRef}>
+								<AutoTextSize>I have broken</AutoTextSize>
+								<AutoTextSize>the blue boundary</AutoTextSize>
+								<AutoTextSize>of color limits,</AutoTextSize>
+								<AutoTextSize>beside me</AutoTextSize>
+								<AutoTextSize>comrade pilots,</AutoTextSize>
+								<AutoTextSize>come out</AutoTextSize>
+								<AutoTextSize>into the white;</AutoTextSize>
+								<AutoTextSize>swim</AutoTextSize>
+								<AutoTextSize>in this infinity.</AutoTextSize>
+							</div>
+							<div className={styles.author}>
+								<AutoTextSize>(Kazimir Malevich, White on White)</AutoTextSize>
+							</div>
+						</>
+					) : (
+						<>
+							<div className={styles.quote} ref={quoteRef}>
+								<AutoTextSize>I have broken</AutoTextSize>
+								<AutoTextSize>the blue boundary</AutoTextSize>
+								<AutoTextSize>of color limits,</AutoTextSize>
+								<AutoTextSize>beside me comrade pilots,</AutoTextSize>
+								<AutoTextSize>come out into the white;</AutoTextSize>
+								<AutoTextSize>swim in this infinity.</AutoTextSize>
+							</div>
+							<div className={styles.author}>
+								<AutoTextSize>(Kazimir Malevich, White on White)</AutoTextSize>
+							</div>
+						</>
+					)}
 				</div>
 			</div>
 			{start && <div ref={progressBarRef} className={styles.progressBar}></div>}

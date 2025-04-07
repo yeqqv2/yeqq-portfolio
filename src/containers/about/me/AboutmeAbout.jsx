@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import styles from './style.module.css';
 import colors from '../../../utils/colors';
-import { useNavigate } from 'react-router-dom';
 
 const AboutmeAbout = () => {
-	const navigate = useNavigate();
 	const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
 	const [hovered, setHovered] = useState(false);
 	const [cursorStyles, setCursorStyles] = useState({

@@ -4,12 +4,16 @@ import styles from "./style.module.css";
 const NeumorphismButton = ({ handleStart }) => {
   return (
     <div className={styles.light}>
+
       <label className={styles.circle}>
         <input
           onChange={handleStart}
           type="checkbox"
           className={styles.input}
         />
+        <div className={styles.tooltip}>
+          <p>Press Me👋</p>
+        </div>
       </label>
     </div>
   );

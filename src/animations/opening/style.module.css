@@ -36,18 +36,17 @@
 
 .img_div {
 	height: 70vh;
-	width: 70vh;
-	background-color: var(--wb200);
-	transform: scale(2) rotate(10deg);
+	aspect-ratio: 1;
+	transform: translateX(-50%);
 	position: absolute;
-	top: -10vw;
-	left: 90%;
-	z-index: -1;
+	top: 20vh;
+	left: 50%;
 	aspect-ratio: 1;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	transform-origin: 50% 50% !important;
+	z-index: 2;
 }
 
 .svg {
@@ -63,20 +62,18 @@
 
 .title {
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 40vw;
-	font-size: 1.75em;
-	font-weight: 300;
-	line-height: 1;
+	top: 0;
+	left: 0;
+	transform: translateX(-50%,);
+	height: 100dvh;
+	width: 100vw;
 	padding: 1em;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: space-between;
 	text-align: center;
 	gap: 1em;
-	color: var(--wb400);
 }
 
 .content.visible {
@@ -89,10 +86,21 @@
 	transform: translateY(50px);
 }
 
+.quote {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-weight: 100;
+	line-height: 0.75;
+	color: var(--wb300);
+}
+
 .author {
 	font-weight: 300;
 	font-size: 0.825em;
-	color: var(--wb300);
+	color: var(--wb200);
+	width: 100%;
 }
 
 .ball {
@@ -101,7 +109,7 @@
 	top: -70vh;
 	left: 0;
 	border-radius: 50%;
-	z-index: 999;
+	z-index: 9999;
 	background: white;
 	aspect-ratio: 1;
 	transform-origin: 50% 50% !important;
@@ -124,30 +132,9 @@
 		left: 50%;
 		transform: scale(1) rotate(10deg);
 	}
-
-	.title {
-		height: 100dvh;
-		width: 100vw;
-		padding: 10vw;
-		font-size: 2em;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		top: 0;
-		left: 0;
-		transform: scale(0.8);
-	}
 }
 
 @media screen and (max-width: 600px) {
-	.title {
-		transform: scale(0.6);
-		width: 100%;
-		padding: 0;
-		font-size: 2em;
-	}
-
 	.img_div {
 		top: 50% !important;
 		left: 50% !important;

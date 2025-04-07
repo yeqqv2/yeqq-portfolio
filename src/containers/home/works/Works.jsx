@@ -1,25 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './style.module.css';
-import Slider from 'react-slick';
 import works from '../../../utils/works';
 import colors from '../../../utils/colors';
-
-const settings = {
-	dots: false,
-	centerMode: true,
-	infinite: true,
-	variableWidth: false,
-	slidesToShow: 1,
-	slidesToScroll: 1,
-	autoplay: true,
-	speed: 3000,
-	autoplaySpeed: 3000,
-	pauseOnHover: true,
-	swipeToSlide: true,
-	rtl: true,
-	touchMove: true,
-	className: styles.slider,
-};
 
 const WorksHomePage = () => {
 	const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -88,7 +70,7 @@ const WorksHomePage = () => {
 							>
 								<img
 									key={index}
-									src={work.img}
+									src={`${work.asset}/1.png`}
 									alt={work.desc}
 									className={styles.img}
 								/>

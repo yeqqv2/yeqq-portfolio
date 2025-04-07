@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import styles from './style.module.css';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -33,12 +33,27 @@ const settings = {
 };
 
 export const IntroduceHome = () => {
+	const sliderRef = useRef(null);
+
+	// Pencere yeniden boyutlandırıldığında slider'ı güncelle
+	useEffect(() => {
+		const handleResize = () => {
+			if (sliderRef.current && sliderRef.current.innerSlider) {
+				sliderRef.current.innerSlider.onWindowResized();
+			}
+		};
+
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
+	}, []);
+
 	return (
 		<div className={styles.container}>
 			<main className={styles.main}>
-				<Slider {...settings}>
+				<Slider ref={sliderRef} {...settings}>
 					{me.map((item, index) => (
-						<div className={styles.card} key={index}>
+						// VariableWidth kullanıldığından her slayta genişlik tanımlaması ekleyin.
+						<div className={styles.card} key={index} style={{ width: 'auto' }}>
 							<img className={styles.img} src={item.img} alt="me" />
 						</div>
 					))}
