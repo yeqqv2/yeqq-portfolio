@@ -8,6 +8,7 @@
 
 .techs {
 	display: flex;
+	flex-wrap: wrap;
 	list-style-type: none;
 	gap: 0.5em;
 }
@@ -19,6 +20,7 @@
 	line-height: 1;
 	display: flex;
 	align-items: center;
+	white-space: nowrap;
 }
 
 /* Örnek renk atamaları */
@@ -91,7 +93,7 @@
 	width: 100%;
 	height: auto;
 	object-fit: contain;
-	box-shadow: 0 0 30px rgba(0, 0, 0, .05);
+	box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
 }
 
 .customCursor {
@@ -106,4 +108,10 @@
 	color: var(--blue950);
 	line-height: 1em;
 	white-space: nowrap;
+}
+
+@media screen and (max-width: 1024px) {
+}
+
+@media screen and (max-width: 600px) {
 }
