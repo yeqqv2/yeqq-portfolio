@@ -122,4 +122,9 @@
 	.active {
 		opacity: 1;
 	}
+
+	.overlayTop,
+	.overlayBottom {
+		height: 100dvh;
+	}
 }

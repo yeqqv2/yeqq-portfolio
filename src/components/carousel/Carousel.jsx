@@ -57,7 +57,6 @@ const Carousel = () => {
         animateVideoTransition();
     }, []);
 
-    // Otomatik geçiş: her 5 saniyede bir handleSlider çalışıyor
     useEffect(() => {
         const interval = setInterval(handleSlider, 5000);
         return () => clearInterval(interval);
@@ -121,7 +120,6 @@ const Carousel = () => {
                     <video
                         ref={videoTopRef}
                         preload="auto"
-                        poster="/assets/posters/video-placeholder.webp"
                         autoPlay
                         loop
                         muted
@@ -130,12 +128,10 @@ const Carousel = () => {
                     />
                     <div className={styles.overlayTop} ref={overlayTopRef}></div>
                 </div>
-                {/* videoBottom bölümü */}
                 <div className={styles.video_wrapper}>
                     <video
                         ref={videoBottomRef}
                         preload="auto"
-                        poster="/assets/posters/video-placeholder.webp"
                         autoPlay
                         loop
                         muted

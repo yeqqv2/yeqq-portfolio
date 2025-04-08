@@ -3,7 +3,6 @@ import gsap from 'gsap';
 import { ScrollTrigger, TextPlugin } from 'gsap/all';
 import styles from './style.module.css';
 import colors from '../../../utils/colors';
-import Carousel from '../../../components/carousel/Carousel';
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
