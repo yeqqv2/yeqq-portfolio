@@ -5,6 +5,7 @@
 	align-items: flex-start;
 	justify-content: space-between;
 	border-top: 1px solid var(--wb950);
+	width: 100vw;
 }
 
 .content {
@@ -14,9 +15,27 @@
 	font-weight: 300;
 }
 
+.link {
+	text-decoration: underline;
+	display: inline-block; /* veya block */
+}
+
+.customCursor {
+	position: fixed;
+	border-radius: 50%;
+	pointer-events: none;
+	transform: translate(-50%, -50%);
+	z-index: 999;
+	padding: 0.375em 0.5em 0.375em 0.5em;
+	background-color: var(--blue400);
+	border-radius: 0.25em;
+	color: var(--blue950);
+	line-height: 1em;
+	white-space: nowrap;
+}
 
 @media screen and (max-width: 1024px) {
-	.content{
+	.content {
 		width: 90vw;
 	}
 }

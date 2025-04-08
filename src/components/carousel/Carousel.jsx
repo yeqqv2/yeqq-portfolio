@@ -6,26 +6,37 @@ const Carousel = () => {
     const totalSlides = 6;
     const [currentIndex, setCurrentIndex] = useState(0);
 
+    // Mevcut yapıdaki referanslar
     const sliderTitlesRef = useRef(null);
     const videoTopRef = useRef(null);
     const videoBottomRef = useRef(null);
+    const overlayTopRef = useRef(null);
+    const overlayBottomRef = useRef(null);
 
+    // Video geçiş animasyonu (clipPath ve scale efektleri)
     const animateVideoTransition = () => {
-        if (videoTopRef.current && videoBottomRef.current) {
-            gsap.set([videoTopRef.current, videoBottomRef.current], {
-                clipPath: "polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)",
-                scale: 2,
-            });
-            gsap.to([videoTopRef.current, videoBottomRef.current], {
-                clipPath: "polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%)",
-                scale: 1,
+        if (overlayTopRef.current && overlayBottomRef.current) {
+            // Overlay'ları başlangıç konumuna getiriyoruz.
+            gsap.set(overlayTopRef.current, { x: "0%" });
+            gsap.set(overlayBottomRef.current, { x: "0%" });
+
+            // videoTop: Overlay soldan sağa kayarak videoyu açacak.
+            gsap.to(overlayTopRef.current, {
+                x: "100%",
                 duration: 2,
-                ease: 'power4.out',
-                stagger: 0.15,
+                ease: "power4.out"
+            });
+
+            // videoBottom: Overlay sağdan sola kayarak videoyu açacak.
+            gsap.to(overlayBottomRef.current, {
+                x: "-100%",
+                duration: 2,
+                ease: "power4.out"
             });
         }
     };
 
+    // Slider geçişini yöneten fonksiyon
     const handleSlider = () => {
         setCurrentIndex(prevIndex => {
             const newIndex = (prevIndex + 1) % totalSlides;
@@ -41,16 +52,35 @@ const Carousel = () => {
         });
     };
 
+    // İlk render'da video animasyonunu çalıştırıyoruz
     useEffect(() => {
         animateVideoTransition();
     }, []);
 
+    // Otomatik geçiş: her 5 saniyede bir handleSlider çalışıyor
     useEffect(() => {
         const interval = setInterval(handleSlider, 5000);
         return () => clearInterval(interval);
     }, []);
 
-    const videoSrc = `/assets/interestes/${currentIndex + 1}.mp4`;
+    // currentIndex değiştiğinde video elementlerinin "src" attribute'unu manuel güncelliyoruz.
+    // Böylece video elementleri yeniden render edilmeden, yalnızca kaynak URL'si değişiyor.
+    useEffect(() => {
+        const videoUrl = `/assets/interestes/${currentIndex + 1}.mp4`;
+        if (videoTopRef.current) {
+            // Eğer mevcut src farklı ise güncelle, ardından load() çağırarak video cache’de varsa hemen oynatılmasını sağlıyoruz.
+            if (videoTopRef.current.src !== window.location.origin + videoUrl) {
+                videoTopRef.current.src = videoUrl;
+                videoTopRef.current.load();
+            }
+        }
+        if (videoBottomRef.current) {
+            if (videoBottomRef.current.src !== window.location.origin + videoUrl) {
+                videoBottomRef.current.src = videoUrl;
+                videoBottomRef.current.load();
+            }
+        }
+    }, [currentIndex]);
 
     return (
         <div className={styles.slider} onClick={handleSlider}>
@@ -87,33 +117,35 @@ const Carousel = () => {
                 </div>
             </div>
             <div className={styles.slider_images}>
-                <video
-                    ref={videoTopRef}
-                    key={`video-top-${currentIndex}`}
-                    src={videoSrc}
-                    preload="auto"
-                    poster="/assets/posters/video-placeholder.webp"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className={`${styles.video} ${styles.vid_top}`}
-                />
-                <video
-                    ref={videoBottomRef}
-                    key={`video-bottom-${currentIndex}`}
-                    src={videoSrc}
-                    preload="auto"
-                    poster="/assets/posters/video-placeholder.webp"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className={`${styles.video} ${styles.vid_bottom}`}
-                />
-
+                <div className={styles.video_wrapper}>
+                    <video
+                        ref={videoTopRef}
+                        preload="auto"
+                        poster="/assets/posters/video-placeholder.webp"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className={`${styles.video} ${styles.vid_top}`}
+                    />
+                    <div className={styles.overlayTop} ref={overlayTopRef}></div>
+                </div>
+                {/* videoBottom bölümü */}
+                <div className={styles.video_wrapper}>
+                    <video
+                        ref={videoBottomRef}
+                        preload="auto"
+                        poster="/assets/posters/video-placeholder.webp"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className={`${styles.video} ${styles.vid_bottom}`}
+                    />
+                    <div className={styles.overlayBottom} ref={overlayBottomRef}></div>
+                </div>
             </div>
-        </div >
+        </div>
     );
 };
 

@@ -5,9 +5,7 @@ import Carousel from '../../../components/carousel/Carousel';
 const InterestesAbout = () => {
     return (
         <div className={styles.container}>
-            <div className={styles.main}>
-                <Carousel />
-            </div>
+            <Carousel />
         </div>
     );
 };

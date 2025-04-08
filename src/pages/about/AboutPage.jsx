@@ -12,7 +12,7 @@ const AboutPage = () => {
 		<div className={styles.container}>
 			<IntroduceHome />
 			<WelcomeSec />
-			{/* <InterestesAbout /> */}
+			<InterestesAbout />
 			<AboutmeAbout />
 			<ExpAbout />
 			<ContactHomePage />
