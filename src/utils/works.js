@@ -37,6 +37,7 @@ const works = [
 		img: '/assets/images/projects/skynotech-ws.png',
 		link: '/projects/skynotech-smart-site-systems-website',
 		color: 'var(--wb200)',
+		weblink: 'https://skynotech-web-site-parallax.vercel.app/',
 		photo: 5,
 		asset: '/assets/images/projects/skynotech-website',
 	},

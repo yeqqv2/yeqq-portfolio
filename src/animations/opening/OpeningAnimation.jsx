@@ -188,8 +188,8 @@ const Terminal = () => {
 								<AutoTextSize>comrade pilots,</AutoTextSize>
 								<AutoTextSize>come out</AutoTextSize>
 								<AutoTextSize>into the white;</AutoTextSize>
-								<AutoTextSize>swim</AutoTextSize>
-								<AutoTextSize>in this infinity.</AutoTextSize>
+								<AutoTextSize>swim in this</AutoTextSize>
+								<AutoTextSize>infinity.</AutoTextSize>
 							</div>
 							<div className={styles.author}>
 								<AutoTextSize>(Kazimir Malevich, White on White)</AutoTextSize>

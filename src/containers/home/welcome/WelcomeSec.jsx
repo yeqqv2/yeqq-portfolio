@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger, TextPlugin } from 'gsap/all';
 import styles from './style.module.css';
+import Carousel from '../../../components/carousel/Carousel';
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
@@ -26,7 +27,9 @@ const WelcomeSec = () => {
 		<section className={styles.container}>
 			<div className={styles.content}>
 				hey, it's yunus emre korkmaz, I create aesthetic and easy designs.
+				these are my interestes in life
 			</div>
+			<Carousel />
 		</section>
 	);
 };
