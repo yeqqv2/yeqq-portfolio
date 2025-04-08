@@ -91,6 +91,8 @@ const Carousel = () => {
                     ref={videoTopRef}
                     key={`video-top-${currentIndex}`}
                     src={videoSrc}
+                    preload="auto"
+                    poster="/assets/posters/video-placeholder.webp"
                     autoPlay
                     loop
                     muted
@@ -101,12 +103,15 @@ const Carousel = () => {
                     ref={videoBottomRef}
                     key={`video-bottom-${currentIndex}`}
                     src={videoSrc}
+                    preload="auto"
+                    poster="/assets/posters/video-placeholder.webp"
                     autoPlay
                     loop
                     muted
                     playsInline
                     className={`${styles.video} ${styles.vid_bottom}`}
                 />
+
             </div>
         </div >
     );
