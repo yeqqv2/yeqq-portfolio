@@ -69,7 +69,7 @@ const IntroAbout = () => {
                     },
                 });
             });
-        }, containerRef);
+        }, containerRef, cardsConfig, innerHeight);
 
         return () => ctx.revert();
     }, []);
