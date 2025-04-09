@@ -29,10 +29,12 @@
 
 .card {
     height: 60vh;
+    width: 100%;
     margin-inline: .5vw;
 }
 
 .img {
     height: 60vh;
     object-fit: contain;
+    background-color: var(--wb950);
 }

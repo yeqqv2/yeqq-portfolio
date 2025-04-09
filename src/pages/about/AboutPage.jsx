@@ -6,13 +6,17 @@ import AboutmeAbout from '../../containers/about/me/AboutmeAbout';
 import ExpAbout from '../../containers/about/exp/ExpAbout';
 import ContactHomePage from '../../containers/home/contact/ContactHomePage';
 import InterestesAbout from '../../containers/about/interest/InterestesAbout';
+import IntroAbout from '../../containers/about/intro/IntroAbout';
 
 const AboutPage = () => {
 	return (
 		<div className={styles.container}>
-			<IntroduceHome />
-			<WelcomeSec />
-			<InterestesAbout />
+			<div className={styles.sec}>
+				<IntroAbout />
+			</div>
+			{/* <WelcomeSec /> */}
+			{/* <InterestesAbout /> */}
+			{/* <IntroduceHome /> */}
 			<AboutmeAbout />
 			<ExpAbout />
 			<ContactHomePage />

@@ -53,7 +53,7 @@ export const IntroduceHome = () => {
 				<Slider ref={sliderRef} {...settings}>
 					{me.map((item, index) => (
 						// VariableWidth kullanıldığından her slayta genişlik tanımlaması ekleyin.
-						<div className={styles.card} key={index} style={{ width: 'auto' }}>
+						<div className={styles.card} key={index}>
 							<img className={styles.img} src={item.img} alt="me" />
 						</div>
 					))}

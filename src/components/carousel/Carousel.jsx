@@ -43,7 +43,7 @@ const Carousel = () => {
             if (sliderTitlesRef.current) {
                 gsap.to(sliderTitlesRef.current, {
                     x: `-${newIndex * (100 / totalSlides)}%`,
-                    duration: 5,
+                    duration: 2,
                     ease: 'power4.out',
                 });
             }
@@ -65,7 +65,7 @@ const Carousel = () => {
     // currentIndex değiştiğinde video elementlerinin "src" attribute'unu manuel güncelliyoruz.
     // Böylece video elementleri yeniden render edilmeden, yalnızca kaynak URL'si değişiyor.
     useEffect(() => {
-        const videoUrl = `/assets/interestes/${currentIndex + 1}.mp4`;
+        const videoUrl = `/assets/interestes/${currentIndex + 1}.webm`;
         if (videoTopRef.current) {
             // Eğer mevcut src farklı ise güncelle, ardından load() çağırarak video cache’de varsa hemen oynatılmasını sağlıyoruz.
             if (videoTopRef.current.src !== window.location.origin + videoUrl) {

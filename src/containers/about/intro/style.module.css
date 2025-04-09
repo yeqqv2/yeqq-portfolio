@@ -1,0 +1,121 @@
+.container {
+	width: 100vw;
+	min-height: 100vh;
+	background-color: var(--wb950);
+	margin-bottom: 250vh;
+	position: relative;
+}
+
+.h1 {
+	width: 100%;
+	color: var(--wb50);
+	font-size: 50vw;
+	font-weight: 400;
+	margin: 0;
+}
+
+.wrapper {
+	position: absolute;
+	top: 0;
+	width: 500vw;
+	height: 100vh;
+	will-change: transform;
+	background-color: var(--wb950);
+}
+
+.card {
+	position: absolute;
+	width: 300px;
+	height: 300px;
+	border-radius: 20px;
+	overflow: hidden;
+}
+
+.img {
+	width: 300px;
+	height: 300px;
+	object-fit: cover;
+	object-position: center;
+}
+
+/* nth-child seçicileri 1’den başladığı için aşağıdaki düzenleme yapıldı */
+.card:nth-child(1) {
+	top: 60%;
+	left: 10%;
+}
+
+.card:nth-child(2) {
+	top: 15%;
+	left: 30%;
+}
+
+.card:nth-child(3) {
+	top: 45%;
+	left: 50%;
+}
+
+.card:nth-child(4) {
+	top: 15%;
+	left: 70%;
+}
+
+.card:nth-child(5) {
+	top: 60%;
+	left: 90%;
+}
+
+.outro {
+	position: absolute;
+	top: 230vh;
+	height: 120vh;
+	display: flex;
+	flex-direction: column;
+	gap: 10vh;
+	background-color: var(--wb950);
+}
+
+.outro_text {
+	margin-left: 10vw;
+	width: 30%;
+	font-size: 2em;
+	font-weight: 300;
+	color: var(--wb50);
+}
+
+@media screen and (max-width: 1024px) {
+	.wrapper {
+		padding-top: 25vh;
+	}
+
+	.outro {
+		top: 190vh;
+	}
+
+	.outro_text {
+		width: 80%;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.wrapper {
+		top: 0%;
+	}
+
+	.outro{
+		top: 230vh;
+	}
+
+	.outro_text {
+		width: 80%;
+	}
+
+	.card {
+		height: 150px;
+		width: 150px;
+	}
+
+	.img {
+		width: 150px;
+		height: 150px;
+	}
+}

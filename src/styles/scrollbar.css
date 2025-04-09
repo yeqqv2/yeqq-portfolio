@@ -11,8 +11,5 @@
 
 ::-webkit-scrollbar-thumb {
   display: none;
-  position: absolute;
-  top: 0;
-  right: 0;
   background-color: var(--wb950);
 }

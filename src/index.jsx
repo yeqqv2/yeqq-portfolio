@@ -11,13 +11,14 @@ root.render(
 	<React.StrictMode>
 		<AnimatedCursor
 			innerSize={10}
-			innerScale={1.25}
+			innerScale={2}
 			outerStyle={{
 				display: 'none',
 			}}
 			innerStyle={{
-				backgroundColor: 'black',
+				backgroundColor: 'white',
 				zIndex: 999,
+				mixBlendMode: 'difference'
 			}}
 			clickables={[
 				'a',

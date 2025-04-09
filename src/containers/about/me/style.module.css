@@ -4,7 +4,7 @@
 
 .content {
 	width: 80vw;
-	border: 1px solid var(--wb950);
+	border: 2px solid var(--wb950);
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;

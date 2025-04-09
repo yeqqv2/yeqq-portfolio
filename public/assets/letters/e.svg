@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <style type="text/css">
+        @font-face {
+        font-family: 'Outfit';
+        font-style: normal;
+        font-weight: 400;
+        src: url('https://fonts.gstatic.com/s/outfit/v1/your-font-file.woff2') format('woff2');
+        }
+    </style>
+    <text
+        x="50"
+        y="50"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        font-size="80"
+        fill="#fff"
+        font-family="Outfit">
+        Ee
+    </text>
+</svg>
