@@ -40,12 +40,13 @@
 	font-weight: 400;
 	transition: color 0.25s ease, opacity 0.25s ease;
 	transition: 0.25s;
-	color: rgba(255, 255, 255, .33);
+	color: rgba(0, 0, 0, 0.33);
+	mix-blend-mode: difference;
 }
 
 .active {
 	transition: 0.25s;
-	color: #fff;
+	color: var(--wn950);
 }
 
 .slider_images {
@@ -66,7 +67,7 @@
 	left: 0;
 	width: 80vh;
 	height: 65vh;
-	background-color: var(--wb950);
+	background-color: var(--wb100);
 	pointer-events: none;
 	z-index: -1;
 }
