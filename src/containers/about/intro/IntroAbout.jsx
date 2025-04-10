@@ -83,14 +83,14 @@ const IntroAbout = () => {
     return (
         <div className={styles.container} ref={containerRef}>
             {/* Animasyonun gerçekleştiği bölüm */}
-            <section className={styles.wrapper} ref={wrapperRef}>
+            {/* <section className={styles.wrapper} ref={wrapperRef}>
                 <h1 className={styles.h1}>(yunusemrekorkmaz)</h1>
                 {cardsConfig.map((config, index) => (
                     <div className={styles.card} key={index} ref={addToCardsRefs}>
                         <img className={styles.img} src={`/assets/images/me/${index}.webp`} alt="" />
                     </div>
                 ))}
-            </section>
+            </section> */}
 
             {/* Animasyon tamamlandıktan sonra görünen outro bölümü */}
             <section className={styles.outro}>
