@@ -11,18 +11,26 @@ const IntroAbout = () => {
     const wrapperRef = useRef(null);
     const cardsRefs = useRef([]);
 
+    useEffect(() => {
+        const handleResize = () => {
+            ScrollTrigger.refresh();
+        };
+        window.addEventListener('resize', handleResize);
+        window.addEventListener('orientationchange', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            window.removeEventListener('orientationchange', handleResize);
+        };
+    }, []);
+
     const innerHeight = window.innerHeight;
 
-    console.log(innerHeight)
-
-    // Her kartın DOM referansını diziye eklemek için callback ref
     const addToCardsRefs = (el) => {
         if (el && !cardsRefs.current.includes(el)) {
             cardsRefs.current.push(el);
         }
     };
 
-    // Her kart için animasyon ayarları
     const cardsConfig = [
         { endTranslateX: -1800, rotate: 45 },
         { endTranslateX: -1600, rotate: 30 },
@@ -33,7 +41,6 @@ const IntroAbout = () => {
 
     useEffect(() => {
         let ctx = gsap.context(() => {
-            // Wrapper bölümünü yalnızca bu bileşen yüksekliği kadar (100vh) pinle
             ScrollTrigger.create({
                 trigger: wrapperRef.current,
                 start: "top top",
@@ -50,7 +57,6 @@ const IntroAbout = () => {
                 },
             });
 
-            // Her kart için ayrı animasyonlar
             cardsRefs.current.forEach((card, idx) => {
                 const { endTranslateX, rotate } = cardsConfig[idx];
                 ScrollTrigger.create({
