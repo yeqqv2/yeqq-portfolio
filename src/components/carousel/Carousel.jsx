@@ -33,14 +33,14 @@ const Carousel = () => {
             // videoTop: Overlay soldan sağa kayarak videoyu açacak.
             gsap.to(overlayTopRef.current, {
                 x: "100%",
-                duration: 2,
+                duration: 1,
                 ease: "power4.out"
             });
 
             // videoBottom: Overlay sağdan sola kayarak videoyu açacak.
             gsap.to(overlayBottomRef.current, {
                 x: "-100%",
-                duration: 2,
+                duration: 1,
                 ease: "power4.out"
             });
         }
@@ -53,7 +53,7 @@ const Carousel = () => {
             if (sliderTitlesRef.current) {
                 gsap.to(sliderTitlesRef.current, {
                     x: `-${newIndex * (100 / totalSlides)}%`,
-                    duration: 2,
+                    duration: 1,
                     ease: 'power4.out',
                 });
             }
@@ -69,7 +69,7 @@ const Carousel = () => {
 
     // Otomatik slider geçişi
     useEffect(() => {
-        const interval = setInterval(handleSlider, 5000);
+        const interval = setInterval(handleSlider, 10000);
         return () => clearInterval(interval);
     }, []);
 

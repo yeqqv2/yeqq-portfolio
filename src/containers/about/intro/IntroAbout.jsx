@@ -122,7 +122,7 @@ const IntroAbout = () => {
                 ))}
             </section>
 
-            <section className={styles.outro} id='outro'>
+            <section className={styles.outro}>
                 <div className={styles.outro_text}>
                     hey, it's yunus emre korkmaz, I create aesthetic and easy designs.
                     these are my interestes in life
