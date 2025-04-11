@@ -40,13 +40,12 @@
 	font-weight: 400;
 	transition: color 0.25s ease, opacity 0.25s ease;
 	transition: 0.25s;
-	color: rgba(0, 0, 0, 0.33);
-	mix-blend-mode: difference;
+	color: var(--wb300);
 }
 
 .active {
 	transition: 0.25s;
-	color: var(--wn950);
+	color: var(--wb50);
 }
 
 .slider_images {

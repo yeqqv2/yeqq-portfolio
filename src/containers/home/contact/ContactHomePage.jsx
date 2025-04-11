@@ -124,7 +124,7 @@ const ContactHomePage = () => {
 								left: word.x,
 								top: word.y,
 								pointerEvents: 'none',
-								opacity: 0, // Başlangıçta görünmez
+								opacity: 0,
 							}}
 						>
 							● {word.word}

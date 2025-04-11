@@ -2,11 +2,21 @@ import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import styles from './style.module.css';
 
+// Videoların URL'lerini içeren dizi
+const videos = [
+    { id: 1, src: 'https://videos.pexels.com/video-files/6688641/6688641-uhd_2560_1440_25fps.mp4' },
+    { id: 2, src: 'https://videos.pexels.com/video-files/4360158/4360158-uhd_2560_1440_24fps.mp4' },
+    { id: 3, src: 'https://videos.pexels.com/video-files/2022395/2022395-hd_1920_1080_30fps.mp4' },
+    { id: 4, src: 'https://videos.pexels.com/video-files/5427565/5427565-uhd_2732_1440_25fps.mp4' },
+    { id: 5, src: 'https://videos.pexels.com/video-files/9329520/9329520-uhd_1440_2732_25fps.mp4' },
+    { id: 6, src: 'https://videos.pexels.com/video-files/6491258/6491258-uhd_2732_1440_25fps.mp4' },
+];
+
 const Carousel = () => {
-    const totalSlides = 6;
+    const totalSlides = videos.length;
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    // Mevcut yapıdaki referanslar
+    // Referanslar
     const sliderTitlesRef = useRef(null);
     const videoTopRef = useRef(null);
     const videoBottomRef = useRef(null);
@@ -57,27 +67,20 @@ const Carousel = () => {
         animateVideoTransition();
     }, []);
 
+    // Otomatik slider geçişi
     useEffect(() => {
         const interval = setInterval(handleSlider, 5000);
         return () => clearInterval(interval);
     }, []);
 
-    // currentIndex değiştiğinde video elementlerinin "src" attribute'unu manuel güncelliyoruz.
-    // Böylece video elementleri yeniden render edilmeden, yalnızca kaynak URL'si değişiyor.
     useEffect(() => {
-        const videoUrl = `/assets/interestes/${currentIndex + 1}.webm`;
-        if (videoTopRef.current) {
-            // Eğer mevcut src farklı ise güncelle, ardından load() çağırarak video cache’de varsa hemen oynatılmasını sağlıyoruz.
-            if (videoTopRef.current.src !== window.location.origin + videoUrl) {
-                videoTopRef.current.src = videoUrl;
-                videoTopRef.current.load();
-            }
-        }
-        if (videoBottomRef.current) {
-            if (videoBottomRef.current.src !== window.location.origin + videoUrl) {
-                videoBottomRef.current.src = videoUrl;
-                videoBottomRef.current.load();
-            }
+        if (videoTopRef.current && videoBottomRef.current) {
+            
+            videoTopRef.current.src = videos[currentIndex].src;
+            videoBottomRef.current.src = videos[currentIndex].src;
+
+            videoTopRef.current.load();
+            videoBottomRef.current.load();
         }
     }, [currentIndex]);
 
