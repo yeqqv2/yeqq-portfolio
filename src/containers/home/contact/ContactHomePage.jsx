@@ -66,7 +66,7 @@ const ContactHomePage = () => {
 				x,
 				y,
 				word,
-				style, // Sırayla seçilen stil
+				style,
 			};
 
 			setWords((prev) => [...prev, newWord]);
@@ -79,12 +79,13 @@ const ContactHomePage = () => {
 				);
 				gsap.to(`.word-${newWord.id}`, {
 					scale: 1.25,
-					duration: .5,
+					delay: .5,
+					duration: 1,
 					ease: 'power1.out',
 					onComplete: () => {
 						gsap.to(`.word-${newWord.id}`, {
 							scale: 0,
-							duration: 0.5,
+							duration: .5,
 							delay: 1,
 							ease: 'expo.out',
 							onComplete: () => {
@@ -96,7 +97,7 @@ const ContactHomePage = () => {
 					},
 				});
 			}, 0);
-		}, 80),
+		}, 60),
 		[]
 	);
 
