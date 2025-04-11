@@ -2,7 +2,7 @@
 	width: 100vw;
 	min-height: 100vh;
 	background-color: var(--wb100);
-	margin-bottom: 250vh;
+	margin-bottom: 200vh;
 	position: relative;
 	padding: 50vh 0vw 10vh 0vw;
 }
@@ -26,6 +26,8 @@
 
 .card {
 	position: absolute;
+	top: 75%;
+	left: 10%;
 	width: 300px;
 	height: 300px;
 	border-radius: 20px;
@@ -41,7 +43,7 @@
 
 .card:nth-child(1) {
 	top: 60%;
-	left: 10%;
+	left: 20%;
 }
 
 .card:nth-child(2) {
@@ -66,7 +68,7 @@
 
 .outro {
 	position: absolute;
-	top: 230vh;
+	top: 175vh;
 	height: 120vh;
 	display: flex;
 	flex-direction: column;

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from "./style.module.css";
@@ -10,10 +10,19 @@ const IntroAbout = () => {
     const containerRef = useRef(null);
     const wrapperRef = useRef(null);
     const cardsRefs = useRef([]);
+    const [innerHeight, setInnerHeight] = useState(0);
 
     useEffect(() => {
+        // Bu kod yalnızca tarayıcıda çalışır.
+        if (typeof window !== "undefined") {
+            setInnerHeight(window.innerHeight);
+        }
+
         const handleResize = () => {
             ScrollTrigger.refresh();
+            if (typeof window !== "undefined") {
+                setInnerHeight(window.innerHeight);
+            }
         };
         window.addEventListener('resize', handleResize);
         window.addEventListener('orientationchange', handleResize);
@@ -23,8 +32,6 @@ const IntroAbout = () => {
         };
     }, []);
 
-    const innerHeight = window.innerHeight;
-
     const addToCardsRefs = (el) => {
         if (el && !cardsRefs.current.includes(el)) {
             cardsRefs.current.push(el);
@@ -32,14 +39,17 @@ const IntroAbout = () => {
     };
 
     const cardsConfig = [
-        { endTranslateX: -1800, rotate: 45 },
-        { endTranslateX: -1600, rotate: 30 },
-        { endTranslateX: -1400, rotate: 20 },
-        { endTranslateX: -1200, rotate: 10 },
-        { endTranslateX: -1000, rotate: 0 },
+        { endTranslateX: 0, rotate: 45 },
+        { endTranslateX: 0, rotate: 30 },
+        { endTranslateX: 0, rotate: 20 },
+        { endTranslateX: 0, rotate: 10 },
+        { endTranslateX: 0, rotate: 0 },
     ];
 
     useEffect(() => {
+        // innerHeight'in 0 olmadığına emin olmalısın
+        if (!innerHeight || !wrapperRef.current) return;
+
         let ctx = gsap.context(() => {
             ScrollTrigger.create({
                 trigger: wrapperRef.current,
@@ -50,7 +60,7 @@ const IntroAbout = () => {
                 onUpdate: (self) => {
                     const progress = self.progress;
                     gsap.to(wrapperRef.current, {
-                        x: `${-450 * progress}vw`,
+                        x: `${-550 * progress}vw`,
                         duration: 0.5,
                         ease: "power3.out",
                     });
@@ -75,10 +85,11 @@ const IntroAbout = () => {
                     },
                 });
             });
-        }, containerRef, cardsConfig, innerHeight);
+        }, containerRef);
 
         return () => ctx.revert();
-    }, []);
+    }, [innerHeight]); // innerHeight değiştiğinde yeniden çalıştır
+
 
     return (
         <div className={styles.container} ref={containerRef}>
