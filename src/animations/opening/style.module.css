@@ -132,6 +132,10 @@
 		left: 50%;
 		transform: scale(1) rotate(10deg);
 	}
+
+	.title{
+		padding: 10vw;
+	}
 }
 
 @media screen and (max-width: 600px) {

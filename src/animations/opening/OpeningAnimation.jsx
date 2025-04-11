@@ -184,12 +184,9 @@ const Terminal = () => {
 								<AutoTextSize>I have broken</AutoTextSize>
 								<AutoTextSize>the blue boundary</AutoTextSize>
 								<AutoTextSize>of color limits,</AutoTextSize>
-								<AutoTextSize>beside me</AutoTextSize>
-								<AutoTextSize>comrade pilots,</AutoTextSize>
-								<AutoTextSize>come out</AutoTextSize>
-								<AutoTextSize>into the white;</AutoTextSize>
-								<AutoTextSize>swim in this</AutoTextSize>
-								<AutoTextSize>infinity.</AutoTextSize>
+								<AutoTextSize>beside me comrade pilots,</AutoTextSize>
+								<AutoTextSize>come out into the white;</AutoTextSize>
+								<AutoTextSize>swim in this infinity.</AutoTextSize>
 							</div>
 							<div className={styles.author}>
 								<AutoTextSize>(Kazimir Malevich, White on White)</AutoTextSize>
