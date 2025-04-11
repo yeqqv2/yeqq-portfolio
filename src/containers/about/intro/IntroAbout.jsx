@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useLayoutEffect, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from "./style.module.css";
@@ -10,25 +10,21 @@ const IntroAbout = () => {
     const containerRef = useRef(null);
     const wrapperRef = useRef(null);
     const cardsRefs = useRef([]);
-    const [innerHeight, setInnerHeight] = useState(0);
+    const [viewportHeight, setViewportHeight] = useState(0);
 
     useEffect(() => {
-        // Bu kod yalnızca tarayıcıda çalışır.
-        if (typeof window !== "undefined") {
-            setInnerHeight(window.innerHeight);
-        }
-
-        const handleResize = () => {
+        const updateHeight = () => {
+            setViewportHeight(window.innerHeight);
             ScrollTrigger.refresh();
-            if (typeof window !== "undefined") {
-                setInnerHeight(window.innerHeight);
-            }
         };
-        window.addEventListener('resize', handleResize);
-        window.addEventListener('orientationchange', handleResize);
+
+        updateHeight();
+
+        window.addEventListener('resize', updateHeight);
+        window.addEventListener('orientationchange', updateHeight);
         return () => {
-            window.removeEventListener('resize', handleResize);
-            window.removeEventListener('orientationchange', handleResize);
+            window.removeEventListener('resize', updateHeight);
+            window.removeEventListener('orientationchange', updateHeight);
         };
     }, []);
 
@@ -46,15 +42,14 @@ const IntroAbout = () => {
         { endTranslateX: 0, rotate: 0 },
     ];
 
-    useEffect(() => {
-        // innerHeight'in 0 olmadığına emin olmalısın
-        if (!innerHeight || !wrapperRef.current) return;
+    useLayoutEffect(() => {
+        if (viewportHeight === 0 || !wrapperRef.current) return;
 
-        let ctx = gsap.context(() => {
+        let context = gsap.context(() => {
             ScrollTrigger.create({
                 trigger: wrapperRef.current,
                 start: "top top",
-                end: `+=${innerHeight}vh`,
+                end: `+=${viewportHeight}vh`,
                 scrub: 1,
                 pin: true,
                 onUpdate: (self) => {
@@ -62,17 +57,17 @@ const IntroAbout = () => {
                     gsap.to(wrapperRef.current, {
                         x: `${-550 * progress}vw`,
                         duration: 0.5,
-                        ease: "power3.out",
+                        ease: "power3.out"
                     });
-                },
+                }
             });
 
             cardsRefs.current.forEach((card, idx) => {
-                const { endTranslateX, rotate } = cardsConfig[idx];
+                const { endTranslateX = 0, rotate = 0 } = cardsConfig[idx] || {};
                 ScrollTrigger.create({
                     trigger: wrapperRef.current,
                     start: "top top",
-                    end: `+=${innerHeight}vh`,
+                    end: `+=${viewportHeight}vh`,
                     scrub: 1,
                     onUpdate: (self) => {
                         const progress = self.progress;
@@ -80,16 +75,18 @@ const IntroAbout = () => {
                             x: `${endTranslateX * progress}px`,
                             rotate: rotate + progress * 2,
                             duration: 0.5,
-                            ease: "power3.out",
+                            ease: "power3.out"
                         });
-                    },
+                    }
                 });
             });
         }, containerRef);
 
-        return () => ctx.revert();
-    }, [innerHeight]); // innerHeight değiştiğinde yeniden çalıştır
-
+        return () => {
+            context.revert();
+            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        };
+    }, [viewportHeight]); 
 
     return (
         <div className={styles.container} ref={containerRef}>
@@ -102,7 +99,6 @@ const IntroAbout = () => {
                     </div>
                 ))}
             </section>
-
             {/* Animasyon tamamlandıktan sonra görünen outro bölümü */}
             <section className={styles.outro}>
                 <div className={styles.outro_text}>

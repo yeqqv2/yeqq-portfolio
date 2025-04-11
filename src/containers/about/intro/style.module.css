@@ -90,6 +90,10 @@
 		padding-top: 25vh;
 	}
 
+	.card {
+		top: 50%;
+	}
+
 	.outro {
 		top: 190vh;
 	}
@@ -99,14 +103,14 @@
 	}
 }
 
-@media screen and (max-width: 1024px) {
-	/* .wrapper {
-		top: 0%;
+@media screen and (max-width: 600px) {
+	.container {
+		margin-bottom: 220vh;
 	}
 
-	.outro{
-		top: 230vh;
-	} */
+	.outro {
+		top: 190vh;
+	}
 
 	.outro_text {
 		width: 80%;
