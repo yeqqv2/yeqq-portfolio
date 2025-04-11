@@ -9,9 +9,11 @@ gsap.registerPlugin(ScrollTrigger);
 const IntroAbout = () => {
     const containerRef = useRef(null);
     const wrapperRef = useRef(null);
+    const h1Ref = useRef(null);
     const cardsRefs = useRef([]);
     const [viewportHeight, setViewportHeight] = useState(0);
 
+    // Viewport yüksekliğini güncel tut ve ScrollTrigger'ı yenile
     useEffect(() => {
         const updateHeight = () => {
             setViewportHeight(window.innerHeight);
@@ -28,6 +30,7 @@ const IntroAbout = () => {
         };
     }, []);
 
+    // Kart referanslarını ekle (aynı referansın iki kez eklenmesini önle)
     const addToCardsRefs = (el) => {
         if (el && !cardsRefs.current.includes(el)) {
             cardsRefs.current.push(el);
@@ -42,10 +45,25 @@ const IntroAbout = () => {
         { endTranslateX: 0, rotate: 0 },
     ];
 
+    // İlk render aşamasında h1 statik görünsün; LCP gecikmesini azaltmak için animasyonu kısa bir süre sonra başlat.
+    useEffect(() => {
+        if (h1Ref.current) {
+            setTimeout(() => {
+                gsap.fromTo(
+                    h1Ref.current,
+                    { opacity: 0, y: 20 },
+                    { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
+                );
+            }, 150); // Kısa bir gecikme: 150ms
+        }
+    }, []);
+
+    // GSAP ve ScrollTrigger animasyonlarını uygulamak için useLayoutEffect kullanıyoruz.
     useLayoutEffect(() => {
         if (viewportHeight === 0 || !wrapperRef.current) return;
 
         let context = gsap.context(() => {
+            // Wrapper üzerindeki parallax animasyonunu başlatıyoruz.
             ScrollTrigger.create({
                 trigger: wrapperRef.current,
                 start: "top top",
@@ -57,11 +75,12 @@ const IntroAbout = () => {
                     gsap.to(wrapperRef.current, {
                         x: `${-550 * progress}vw`,
                         duration: 0.5,
-                        ease: "power3.out"
+                        ease: "power3.out",
                     });
-                }
+                },
             });
 
+            // Her kart için ayrı ScrollTrigger animasyonu oluşturuyoruz.
             cardsRefs.current.forEach((card, idx) => {
                 const { endTranslateX = 0, rotate = 0 } = cardsConfig[idx] || {};
                 ScrollTrigger.create({
@@ -75,24 +94,24 @@ const IntroAbout = () => {
                             x: `${endTranslateX * progress}px`,
                             rotate: rotate + progress * 2,
                             duration: 0.5,
-                            ease: "power3.out"
+                            ease: "power3.out",
                         });
-                    }
+                    },
                 });
             });
         }, containerRef);
 
         return () => {
             context.revert();
-            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+            ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
         };
-    }, [viewportHeight]); 
+    }, [viewportHeight]);
 
     return (
         <div className={styles.container} ref={containerRef}>
             {/* Animasyonun gerçekleştiği bölüm */}
             <section className={styles.wrapper} ref={wrapperRef}>
-                <h1 className={styles.h1}>(yunusemrekorkmaz)</h1>
+                <h1 ref={h1Ref} className={styles.h1}>(yunusemrekorkmaz)</h1>
                 {cardsConfig.map((config, index) => (
                     <div className={styles.card} key={index} ref={addToCardsRefs}>
                         <img className={styles.img} src={`/assets/images/me/${index}.webp`} alt="" />
