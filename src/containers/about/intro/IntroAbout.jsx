@@ -111,20 +111,9 @@ const IntroAbout = () => {
         };
     }, [viewportHeight]);
 
-    const handleScrollDown = (e) => {
-        e.preventDefault();
-        const outroEl = document.getElementById('outro');
-        if (outroEl) {
-            outroEl.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
-
     return (
         <div className={styles.container} ref={containerRef}>
             <section className={styles.wrapper} ref={wrapperRef}>
-                <a href="#outro" onClick={handleScrollDown} className={styles.scroll}>
-                    <div className={styles.mouse}></div>
-                </a>
                 <h1 ref={h1Ref} className={styles.h1}>(yunusemrekorkmaz)</h1>
                 {cardsConfig.map((config, index) => (
                     <div className={styles.card} key={index} ref={addToCardsRefs}>
