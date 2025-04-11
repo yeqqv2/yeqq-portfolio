@@ -1,8 +1,10 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import styles from './style.module.css';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import { useKeenSlider } from "keen-slider/react";
+import "keen-slider/keen-slider.min.css";
+
+
+const animation = { duration: 10000, easing: (t) => t }
 
 const me = [
 	{ img: '/assets/images/me/0.webp' },
@@ -11,54 +13,33 @@ const me = [
 	{ img: '/assets/images/me/3.webp' },
 	{ img: '/assets/images/me/4.webp' },
 	{ img: '/assets/images/me/5.webp' },
-	{ img: '/assets/images/me/6.webp' },
+	// { img: '/assets/images/me/6.webp' },
 	{ img: '/assets/images/me/7.webp' },
 	{ img: '/assets/images/me/8.webp' },
 ];
 
-const settings = {
-	dots: false,
-	className: styles.slider,
-	centerMode: true,
-	infinite: true,
-	variableWidth: true,
-	slidesToShow: 1,
-	slidesToScroll: 1,
-	autoplay: true,
-	speed: 2000,
-	autoplaySpeed: 2000,
-	pauseOnHover: true,
-	swipeToSlide: true,
-	rtl: true,
-};
-
 export const IntroduceHome = () => {
-	const sliderRef = useRef(null);
-
-	// Pencere yeniden boyutlandırıldığında slider'ı güncelle
-	useEffect(() => {
-		const handleResize = () => {
-			if (sliderRef.current && sliderRef.current.innerSlider) {
-				sliderRef.current.innerSlider.onWindowResized();
-			}
-		};
-
-		window.addEventListener('resize', handleResize);
-		return () => window.removeEventListener('resize', handleResize);
-	}, []);
+	const [sliderRef] = useKeenSlider({
+		loop: true,
+		mode: "free-snap",
+		drag: true,
+		slides: { perView: "auto", spacing: 10 },
+		created(s) {
+			s.moveToIdx(5, true, animation)
+		},
+		updated(s) {
+			s.moveToIdx(s.track.details.abs + 5, true, animation)
+		},
+		animationEnded(s) {
+			s.moveToIdx(s.track.details.abs + 5, true, animation)
+		},
+	});
 
 	return (
-		<div className={styles.container}>
-			<main className={styles.main}>
-				<Slider ref={sliderRef} {...settings}>
-					{me.map((item, index) => (
-						// VariableWidth kullanıldığından her slayta genişlik tanımlaması ekleyin.
-						<div className={styles.card} key={index}>
-							<img className={styles.img} src={item.img} alt="me" />
-						</div>
-					))}
-				</Slider>
-			</main>
-		</div>
+		<main className={`${styles.main} keen-slider`} ref={sliderRef}>
+			{me.map((item, index) => (
+				<img style={{ minWidth: '60vh', objectFit: 'cover' }} key={index} className={`${styles.img} keen-slider__slide`} src={item.img} alt="me" />
+			))}
+		</main>
 	);
 };

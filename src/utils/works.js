@@ -41,22 +41,22 @@ const works = [
 		photo: 5,
 		asset: '/assets/images/projects/skynotech-website',
 	},
-	{
-		name: 'corporate website',
-		desc: 'a template for a corporate website.',
-		techs: ['next.js', 'react', 'styled-component'],
-		intro_1:
-			'This corporate website template is designed to offer a clean and modern aesthetic that caters to diverse business needs.',
-		intro_2:
-			'Leveraging next.js and react, the template ensures high performance and a responsive design across various devices.',
-		intro_3:
-			'Its modular architecture allows for easy customization, making it an ideal starting point for any corporate branding project.',
-		img: '/assets/images/projects/dark-website.png',
-		link: '/projects/skynotech-smart-site-systems-website-dark',
-		color: 'var(--wb800)',
-		photo: 4,
-		asset: '/assets/images/projects/skynotech-website-dark',
-	},
+	// {
+	// 	name: 'corporate website',
+	// 	desc: 'a template for a corporate website.',
+	// 	techs: ['next.js', 'react', 'styled-component'],
+	// 	intro_1:
+	// 		'This corporate website template is designed to offer a clean and modern aesthetic that caters to diverse business needs.',
+	// 	intro_2:
+	// 		'Leveraging next.js and react, the template ensures high performance and a responsive design across various devices.',
+	// 	intro_3:
+	// 		'Its modular architecture allows for easy customization, making it an ideal starting point for any corporate branding project.',
+	// 	img: '/assets/images/projects/dark-website.png',
+	// 	link: '/projects/skynotech-smart-site-systems-website-dark',
+	// 	color: 'var(--wb800)',
+	// 	photo: 4,
+	// 	asset: '/assets/images/projects/skynotech-website-dark',
+	// },
 	{
 		name: 'web application',
 		desc: "a job-search web application developed for the 'balıkesir istihdam ofisi'.",

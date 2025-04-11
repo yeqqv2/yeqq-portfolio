@@ -65,7 +65,7 @@ const AboutmeHome = () => {
 
 	return (
 		<div className={styles.container}>
-			<header className={styles.header}>(hakkımda)</header>
+			<header className={styles.header}>(aboutme)</header>
 			<main className={styles.main}>
 				as a frontend developer, I view every project I design and code as a
 				piece of art.{' '}

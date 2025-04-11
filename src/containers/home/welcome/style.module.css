@@ -6,6 +6,7 @@
 	justify-content: space-between;
 	border-top: 1px solid var(--wb950);
 	width: 100vw;
+	margin-bottom: 20vh;
 }
 
 .content {

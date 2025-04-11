@@ -1,40 +1,12 @@
-.container {
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20vh;
-}
-
-.header {
-    height: 5vh;
-    width: 100vw;
-    padding: 10vh 10vw;
-    font-size: 1.5em;
-}
-
 .main {
-    height: 60vh;
-    width: 100vw;
-    overflow: hidden;
-}
-
-.slider {
-    filter: saturate(0);
-    display: flex;
-    align-items: flex-start;
-    gap: 5em;
-}
-
-.card {
-    height: 60vh;
-    width: 100%;
-    margin-inline: .5vw;
+	height: 60vh;
+	width: 100vw;
+	display: flex;
+	align-items: flex-start;
 }
 
 .img {
-    height: 60vh;
-    object-fit: contain;
-    background-color: var(--wb950);
+	height: 60vh;
+	width: 30vw;
+	object-fit: contain;
 }
