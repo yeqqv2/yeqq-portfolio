@@ -37,12 +37,14 @@ const IntroAbout = () => {
         }
     };
 
+    // Her kart için dönüş (rotate) limiti—burada istediğiniz değeri ayarlayabilirsiniz.
+    // Örneğin, ilk kart 45deg, ikinci 30deg, vb.
     const cardsConfig = [
-        { endTranslateX: 0, rotate: 45 },
-        { endTranslateX: 0, rotate: 30 },
-        { endTranslateX: 0, rotate: 20 },
-        { endTranslateX: 0, rotate: 10 },
-        { endTranslateX: 0, rotate: 0 },
+        { rotate: 45 },
+        { rotate: 30 },
+        { rotate: 20 },
+        { rotate: 10 },
+        { rotate: 0 },
     ];
 
     // İlk render aşamasında h1 statik görünsün; LCP gecikmesini azaltmak için animasyonu kısa bir süre sonra başlat.
@@ -54,7 +56,7 @@ const IntroAbout = () => {
                     { opacity: 0, y: 20 },
                     { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
                 );
-            }, 150); // Kısa bir gecikme: 150ms
+            }, 150);
         }
     }, []);
 
@@ -62,8 +64,8 @@ const IntroAbout = () => {
     useLayoutEffect(() => {
         if (viewportHeight === 0 || !wrapperRef.current) return;
 
-        let context = gsap.context(() => {
-            // Wrapper üzerindeki parallax animasyonunu başlatıyoruz.
+        let ctx = gsap.context(() => {
+            // Wrapper üzerindeki parallax animasyonu
             ScrollTrigger.create({
                 trigger: wrapperRef.current,
                 start: "top top",
@@ -80,21 +82,23 @@ const IntroAbout = () => {
                 },
             });
 
-            // Her kart için ayrı ScrollTrigger animasyonu oluşturuyoruz.
+            // Her kart için ayrı ScrollTrigger oluşturuyoruz;
+            // Kart, ekranın içine girdiği andan (start: "top bottom")
+            // ekranın dışına çıkana kadar (end: "bottom top") progress 0'dan 1'e çıkacak
+            // ve bu progress ile kartın rotate değeri animasyonla uygulanacak.
             cardsRefs.current.forEach((card, idx) => {
-                const { endTranslateX = 0, rotate = 0 } = cardsConfig[idx] || {};
+                const maxRotate = cardsConfig[idx]?.rotate || 0;
                 ScrollTrigger.create({
-                    trigger: wrapperRef.current,
-                    start: "top top",
-                    end: `+=${viewportHeight}vh`,
-                    scrub: 1,
+                    trigger: card,
+                    start: "top bottom", // kartın üst kısmı viewportun altına girince
+                    end: "bottom top",   // kartın alt kısmı viewportun üstünden çıkınca
+                    scrub: true,
                     onUpdate: (self) => {
-                        const progress = self.progress;
+                        // self.progress 0 ile 1 arasında değişiyor;
+                        // bu değeri maxRotate ile çarparak kartın dönüşünü ayarlıyoruz.
                         gsap.to(card, {
-                            x: `${endTranslateX * progress}px`,
-                            rotate: rotate + progress * 2,
-                            duration: 0.5,
-                            ease: "power3.out",
+                            rotate: maxRotate * self.progress,
+                            ease: "none",
                         });
                     },
                 });
@@ -102,15 +106,25 @@ const IntroAbout = () => {
         }, containerRef);
 
         return () => {
-            context.revert();
-            ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+            ctx.revert();
+            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
         };
     }, [viewportHeight]);
 
+    const handleScrollDown = (e) => {
+        e.preventDefault();
+        const outroEl = document.getElementById('outro');
+        if (outroEl) {
+            outroEl.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return (
         <div className={styles.container} ref={containerRef}>
-            {/* Animasyonun gerçekleştiği bölüm */}
             <section className={styles.wrapper} ref={wrapperRef}>
+                <a href="#outro" onClick={handleScrollDown} className={styles.scroll}>
+                    <div className={styles.mouse}></div>
+                </a>
                 <h1 ref={h1Ref} className={styles.h1}>(yunusemrekorkmaz)</h1>
                 {cardsConfig.map((config, index) => (
                     <div className={styles.card} key={index} ref={addToCardsRefs}>
@@ -118,8 +132,8 @@ const IntroAbout = () => {
                     </div>
                 ))}
             </section>
-            {/* Animasyon tamamlandıktan sonra görünen outro bölümü */}
-            <section className={styles.outro}>
+
+            <section className={styles.outro} id='outro'>
                 <div className={styles.outro_text}>
                     hey, it's yunus emre korkmaz, I create aesthetic and easy designs.
                     these are my interestes in life
