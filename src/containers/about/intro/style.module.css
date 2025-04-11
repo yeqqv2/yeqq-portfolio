@@ -2,7 +2,7 @@
 	width: 100vw;
 	min-height: 100vh;
 	background-color: var(--wb100);
-	/* margin-bottom: 250vh; */
+	margin-bottom: 250vh;
 	position: relative;
 	padding: 50vh 0vw 10vh 0vw;
 }
@@ -39,7 +39,6 @@
 	object-position: center;
 }
 
-/* nth-child seçicileri 1’den başladığı için aşağıdaki düzenleme yapıldı */
 .card:nth-child(1) {
 	top: 60%;
 	left: 10%;
@@ -66,9 +65,9 @@
 }
 
 .outro {
-	/* position: absolute; */
-	/* top: 230vh; */
-	/* height: 120vh; */
+	position: absolute;
+	top: 230vh;
+	height: 120vh;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -85,13 +84,13 @@
 }
 
 @media screen and (max-width: 1024px) {
-	/* .wrapper {
+	.wrapper {
 		padding-top: 25vh;
 	}
 
 	.outro {
 		top: 190vh;
-	} */
+	}
 
 	.outro_text {
 		width: 80%;
