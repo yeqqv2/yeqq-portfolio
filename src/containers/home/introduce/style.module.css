@@ -1,20 +1,12 @@
 .main {
-	height: 60vh;
+	height: 40vh;
 	display: flex;
 	align-items: center;
 	overflow: hidden;
 }
 
-.slide {
-	flex: 0 0 auto;
-	width: auto !important;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
 .img {
-	height: 60vh;
-	width: auto;
-	object-fit: contain;
+	height: 40vh;
+	object-fit: cover;
+	object-position: center;
 }

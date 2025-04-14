@@ -7,7 +7,7 @@ import "keen-slider/keen-slider.min.css";
 import { useNavigate } from 'react-router-dom';
 
 
-const animation = { duration: 20000, easing: (t) => t }
+const animation = { duration: 15000, easing: (t) => t }
 
 const WorksHomePage = () => {
 	const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
