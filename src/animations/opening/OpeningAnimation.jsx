@@ -5,8 +5,12 @@ import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import styles from './style.module.css';
 import NeumorphismButton from '../../tools/neumorphism button/NeumorphismButton';
 
+gsap.registerPlugin(TextPlugin);
+gsap.registerPlugin(MotionPathPlugin);
+
 const Terminal = () => {
 	const [start, setStart] = useState(false);
+	const [shouldRun, setShouldRun] = useState(true);
 	const containerRef = useRef(null);
 	const lightRef = useRef(null);
 	const titleRef = useRef(null);
@@ -16,10 +20,14 @@ const Terminal = () => {
 	const pathRef = useRef(null);
 	const quoteRef = useRef(null);
 
-	gsap.registerPlugin(TextPlugin);
-	gsap.registerPlugin(MotionPathPlugin);
-
 	const loadingDuration = 5;
+
+	useEffect(() => {
+		const terminalHasRun = localStorage.getItem('terminalHasRun');
+		if (terminalHasRun) {
+			setShouldRun(false);
+		}
+	}, []);
 
 	const handleStart = () => {
 		gsap.to(lightRef.current, {
@@ -30,6 +38,7 @@ const Terminal = () => {
 					lightRef.current.style.display = 'none';
 				}
 				setStart(true);
+				localStorage.setItem('terminalHasRun', 'true');
 			},
 		});
 	};
@@ -134,6 +143,10 @@ const Terminal = () => {
 			);
 		}
 	}, [start]);
+
+	if (!shouldRun) {
+		return null;
+	}
 
 	return (
 		<div ref={containerRef} className={styles.container}>
