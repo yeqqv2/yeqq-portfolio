@@ -31,10 +31,10 @@
 .tooltip::before {
 	content: '';
 	position: absolute;
-	bottom: -8px;
+	bottom: -7px;
 	left: 50%;
 	transform: translateX(-50%);
-	border-width: 8px 7px 0;
+	border-width: 8px 8px 0;
 	border-style: solid;
 	border-color: var(--wb50) transparent transparent transparent;
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);

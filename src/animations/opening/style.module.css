@@ -29,18 +29,16 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	gap: 5vh;
-	display: none;
 	position: relative;
 }
 
 .img_div {
 	height: 70vh;
 	aspect-ratio: 1;
-	transform: translateX(-50%);
 	position: absolute;
 	top: 20vh;
 	left: 50%;
+	transform: translateX(-50%);
 	aspect-ratio: 1;
 	display: flex;
 	align-items: center;
@@ -62,9 +60,9 @@
 
 .title {
 	position: absolute;
-	top: 0;
-	left: 0;
-	transform: translateX(-50%,);
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	height: 100dvh;
 	width: 100vw;
 	padding: 1em;
@@ -74,33 +72,43 @@
 	justify-content: space-between;
 	text-align: center;
 	gap: 1em;
+	padding: 5vh;
 }
 
-.content.visible {
+.visible {
 	display: flex;
-	transform: translateY(0);
 }
 
-.content.hidden {
+.hidden {
 	display: none;
-	transform: translateY(50px);
 }
 
 .quote {
 	width: 100%;
 	display: flex;
-	flex-direction: column;
-	align-items: center;
-	font-weight: 100;
-	line-height: 0.75;
+	flex-wrap: wrap;
+	gap: 0.25em;
 	color: var(--wb300);
+	text-align: start;
+	font-size: 9em;
+	font-weight: 100;
+	line-height: 0.6;
+}
+
+.quote > div {
+	line-height: 0.6;
 }
 
 .author {
-	font-weight: 300;
-	font-size: 0.825em;
-	color: var(--wb200);
 	width: 100%;
+}
+
+.author_text {
+	color: var(--wb200);
+	text-align: start;
+	white-space: nowrap;
+	font-size: 6.5em;
+	font-weight: 300;
 }
 
 .ball {
@@ -130,11 +138,19 @@
 		width: 80vw;
 		height: 80vw;
 		left: 50%;
-		transform: scale(1) rotate(10deg);
+		transform: translateX(-50%) scale(1) rotate(10deg);
 	}
 
-	.title{
+	.title {
 		padding: 10vw;
+	}
+
+	.quote {
+		font-size: 7em;
+	}
+
+	.author_text {
+		font-size: 3em;
 	}
 }
 
@@ -143,5 +159,18 @@
 		top: 50% !important;
 		left: 50% !important;
 		transform: translate(-50%, -50%) rotate(10deg) scale(1) !important;
+	}
+
+	.quote {
+		font-size: 3.5em;
+	}
+
+	.quote > div {
+		line-height: 0.75;
+	}
+
+	.author_text {
+		font-size: 1.5em;
+		color: var(--wb300);
 	}
 }

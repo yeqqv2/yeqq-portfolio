@@ -37,7 +37,7 @@ const AboutmeAbout = () => {
 					<div className={styles.card}>
 						<video
 							className={styles.vid}
-							src="https://videos.pexels.com/video-files/18069830/18069830-uhd_2560_1440_24fps.mp4"
+							src="https://videos.pexels.com/video-files/18069165/18069165-uhd_1440_1440_24fps.mp4"
 							autoPlay
 							preload="auto"
 							loop
@@ -50,7 +50,7 @@ const AboutmeAbout = () => {
 					<div className={styles.card}>
 						<video
 							className={styles.vid}
-							src="https://videos.pexels.com/video-files/18069165/18069165-uhd_1440_1440_24fps.mp4"
+							src="https://videos.pexels.com/video-files/18069234/18069234-uhd_1440_1440_24fps.mp4"
 							autoPlay
 							preload="auto"
 							loop

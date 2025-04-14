@@ -38,9 +38,6 @@ const Terminal = () => {
 
 	const loadingDuration = 5;
 
-	// Tablet ve mobil için media query (örneğin max-width: 768px)
-	const isTablet = useMediaQuery('(max-width: 768px)');
-
 	const handleStart = () => {
 		gsap.to(lightRef.current, {
 			opacity: 0,
@@ -117,28 +114,30 @@ const Terminal = () => {
 									duration: 1,
 									onComplete: () => {
 										gsap.to(ballRef.current, {
-											width: '100%',
-											height: '100%',
-											duration: 0.5,
-											ease: 'power1.inOut',
-										});
-										gsap.to(ballRef.current, {
 											top: '50%',
 											left: '50%',
 											transform: 'translate(-50%, -50%) scale(1)',
 											transformOrigin: '50% 50%',
-											duration: 0.5,
+											duration: 0.1,
 											ease: 'power1.inOut',
 											onComplete: () => {
-												gsap.to(containerRef.current, {
-													opacity: 0,
-													ease: 'linear',
+												gsap.to(ballRef.current, {
+													scale: 10,
+													duration: 0.5,
+													ease: 'power1.inOut',
 													onComplete: () => {
-														if (containerRef.current) {
-															containerRef.current.style.display = 'none';
-														}
-													},
+														gsap.to(containerRef.current, {
+															opacity: 0,
+															ease: 'linear',
+															onComplete: () => {
+																if (containerRef.current) {
+																	containerRef.current.style.display = 'none';
+																}
+															},
+														});
+													}
 												});
+
 											}
 										},
 										);
@@ -178,35 +177,33 @@ const Terminal = () => {
 				</div>
 
 				<div className={styles.title} ref={titleDivRef}>
-					{isTablet ? (
-						<>
-							<div className={styles.quote} ref={quoteRef}>
-								<AutoTextSize>I have broken</AutoTextSize>
-								<AutoTextSize>the blue boundary</AutoTextSize>
-								<AutoTextSize>of color limits,</AutoTextSize>
-								<AutoTextSize>beside me comrade pilots,</AutoTextSize>
-								<AutoTextSize>come out into the white;</AutoTextSize>
-								<AutoTextSize>swim in this infinity.</AutoTextSize>
-							</div>
-							<div className={styles.author}>
-								<AutoTextSize>(Kazimir Malevich, White on White)</AutoTextSize>
-							</div>
-						</>
-					) : (
-						<>
-							<div className={styles.quote} ref={quoteRef}>
-								<AutoTextSize>I have broken</AutoTextSize>
-								<AutoTextSize>the blue boundary</AutoTextSize>
-								<AutoTextSize>of color limits,</AutoTextSize>
-								<AutoTextSize>beside me comrade pilots,</AutoTextSize>
-								<AutoTextSize>come out into the white;</AutoTextSize>
-								<AutoTextSize>swim in this infinity.</AutoTextSize>
-							</div>
-							<div className={styles.author}>
-								<AutoTextSize>(Kazimir Malevich, White on White)</AutoTextSize>
-							</div>
-						</>
-					)}
+					<div className={styles.quote} ref={quoteRef}>
+						<div>I</div>
+						<div>have</div>
+						<div>broken</div>
+						<div>the</div>
+						<div>blue</div>
+						<div>boundary</div>
+						<div>of</div>
+						<div>color</div>
+						<div>limits,</div>
+						<div>beside</div>
+						<div>me</div>
+						<div>comrade</div>
+						<div>pilots,</div>
+						<div>come</div>
+						<div>out</div>
+						<div>into</div>
+						<div>the</div>
+						<div>white;</div>
+						<div>swim</div>
+						<div>in</div>
+						<div>this</div>
+						<div>infinity.</div>
+					</div>
+					<div className={styles.author}>
+						<p className={styles.author_text}>(Kazimir Malevich, White on White)</p>
+					</div>
 				</div>
 			</div>
 			{start && <div ref={progressBarRef} className={styles.progressBar}></div>}
