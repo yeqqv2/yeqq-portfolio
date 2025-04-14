@@ -22,7 +22,7 @@ const me = [
 
 export const IntroduceHome = () => {
 	const [sliderRef] = useKeenSlider({
-		loop: true,
+		loop: false,
 		loopAdditionalSlides: 5,
 		mode: "free",
 		drag: true,
