@@ -23,7 +23,7 @@ const Terminal = () => {
 	const loadingDuration = 5;
 
 	useEffect(() => {
-		const terminalHasRun = localStorage.getItem('terminalHasRun');
+		const terminalHasRun = sessionStorage.getItem('terminalHasRun');
 		if (terminalHasRun) {
 			setShouldRun(false);
 		}
@@ -38,7 +38,7 @@ const Terminal = () => {
 					lightRef.current.style.display = 'none';
 				}
 				setStart(true);
-				localStorage.setItem('terminalHasRun', 'true');
+				sessionStorage.setItem('terminalHasRun', 'true');
 			},
 		});
 	};
