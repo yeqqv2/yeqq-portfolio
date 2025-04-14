@@ -4,23 +4,6 @@ import { TextPlugin } from 'gsap/TextPlugin';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import styles from './style.module.css';
 import NeumorphismButton from '../../tools/neumorphism button/NeumorphismButton';
-import { AutoTextSize } from 'auto-text-size';
-
-// Basit bir useMediaQuery hook'u
-const useMediaQuery = (query) => {
-	const [matches, setMatches] = useState(
-		typeof window !== 'undefined' ? window.matchMedia(query).matches : false
-	);
-
-	useEffect(() => {
-		const media = window.matchMedia(query);
-		const listener = () => setMatches(media.matches);
-		media.addListener(listener);
-		return () => media.removeListener(listener);
-	}, [query]);
-
-	return matches;
-};
 
 const Terminal = () => {
 	const [start, setStart] = useState(false);
@@ -99,7 +82,7 @@ const Terminal = () => {
 					onComplete: () => {
 						gsap.to(ballRef.current, {
 							top: '30vh',
-							duration: 1,
+							duration: 0.75,
 							ease: 'expo.in',
 							onComplete: () => {
 								gsap.to(ballRef.current, {

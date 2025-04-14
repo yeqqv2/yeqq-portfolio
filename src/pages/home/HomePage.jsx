@@ -15,10 +15,10 @@ const HomePage = () => {
 		<div className={styles.container}>
 			<Terminal />
 			<IntroSec />
+			<WorksHomePage />
 			<WelcomeSec />
 			<IntroduceHome />
 			<AboutmeHome />
-			<WorksHomePage />
 			<ContactHomePage />
 			<SocialHomePage />
 		</div>

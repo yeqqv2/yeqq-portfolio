@@ -8,7 +8,6 @@
 	padding: 20vh 10vw 10vh 10vw;
 	position: relative;
 	overflow: hidden;
-	border-bottom: 1px solid var(--wb950);
 }
 
 .header {
@@ -52,15 +51,8 @@
 }
 
 @media screen and (max-width: 1024px) {
-	.container {
-	}
-
-	.header {
-	}
-
-	.main {
-	}
 }
+
 @media screen and (max-width: 600px) {
 	.container {
 		padding: 5vh 5vw;

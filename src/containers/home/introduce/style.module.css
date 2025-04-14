@@ -2,11 +2,20 @@
 	height: 60vh;
 	width: 100vw;
 	display: flex;
-	align-items: flex-start;
+	align-items: center;
+	overflow: hidden;
+}
+
+.slide {
+	flex: 0 0 auto;
+	width: auto !important;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .img {
 	height: 60vh;
-	width: 30vw;
+	width: auto;
 	object-fit: contain;
 }

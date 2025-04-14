@@ -3,8 +3,7 @@ import styles from './style.module.css';
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 
-
-const animation = { duration: 10000, easing: (t) => t }
+const animation = { duration: 10000, easing: (t) => t };
 
 const me = [
 	{ img: '/assets/images/me/0.webp' },
@@ -24,24 +23,31 @@ const me = [
 export const IntroduceHome = () => {
 	const [sliderRef] = useKeenSlider({
 		loop: true,
-		mode: "free-snap",
+		loopAdditionalSlides: 5,
+		mode: "free",
 		drag: true,
 		slides: { perView: "auto", spacing: 10 },
 		created(s) {
-			s.moveToIdx(5, true, animation)
+			s.moveToIdx(5, true, animation);
 		},
 		updated(s) {
-			s.moveToIdx(s.track.details.abs + 5, true, animation)
+			s.moveToIdx(s.track.details.abs + 5, true, animation);
 		},
 		animationEnded(s) {
-			s.moveToIdx(s.track.details.abs + 5, true, animation)
+			s.moveToIdx(s.track.details.abs + 5, true, animation);
 		},
 	});
 
 	return (
 		<main className={`${styles.main} keen-slider`} ref={sliderRef}>
 			{me.map((item, index) => (
-				<img style={{ minWidth: '60vh', objectFit: 'cover' }} key={index} className={`${styles.img} keen-slider__slide`} src={item.img} alt="me" />
+				<div key={index} className={`${styles.slide} keen-slider__slide`}>
+					<img
+						src={item.img}
+						alt={`me-${index}`}
+						className={styles.img}
+					/>
+				</div>
 			))}
 		</main>
 	);
