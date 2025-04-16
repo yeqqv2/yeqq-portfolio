@@ -110,15 +110,6 @@ const ContactPage = () => {
 					</div>
 				</div>
 				<div className={styles.vid_content}>
-					{/* <video
-						className={styles.vid}
-						src="https://videos.pexels.com/video-files/18069700/18069700-uhd_1440_2560_24fps.mp4"
-						autoPlay
-						preload="auto"
-						loop
-						muted
-						playsInline
-					/> */}
 				</div>
 			</div>
 			<div className={styles.footer}>
