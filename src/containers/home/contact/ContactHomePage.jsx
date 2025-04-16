@@ -8,6 +8,7 @@ const ContactHomePage = () => {
 	const contextRef = useRef(null);
 	const wordIndexRef = useRef(0); // Mevcut kelime indeksini takip eder
 	const styleIndexRef = useRef(0); // Mevcut stil indeksini takip eder
+	const lastSpawnRef = useRef(null); // Son spawn koordinatlarını saklar
 
 	const sentencesData = [
 		'if you want',
@@ -34,6 +35,9 @@ const ContactHomePage = () => {
 		styles.style8,
 	];
 
+	// Minimum mesafe, örneğin 50 piksel
+	const minimumDistance = 50;
+
 	const handleMouseMove = useCallback(
 		throttle((e) => {
 			const context = contextRef.current;
@@ -43,14 +47,25 @@ const ContactHomePage = () => {
 			let x = e.clientX - rect.left;
 			let y = e.clientY - rect.top;
 
+			// Rastgele küçük titreşim efekti için offset
 			x += Math.random() * 4 - 2;
 			y += Math.random() * 4 - 2;
+
+			// Önceki spawn ile aradaki mesafeyi kontrol et
+			if (lastSpawnRef.current) {
+				const dx = x - lastSpawnRef.current.x;
+				const dy = y - lastSpawnRef.current.y;
+				const distance = Math.hypot(dx, dy);
+				if (distance < minimumDistance) {
+					// Mesafe yeterince büyük değilse yeni kelime oluşturma
+					return;
+				}
+			}
 
 			// Eğer tüm kelimeler gösterildiyse, indeksi sıfırla
 			if (wordIndexRef.current >= sentencesData.length) {
 				wordIndexRef.current = 0;
 			}
-
 			const word = sentencesData[wordIndexRef.current];
 			wordIndexRef.current += 1;
 
@@ -58,7 +73,7 @@ const ContactHomePage = () => {
 			const style = stylesArray[styleIndexRef.current];
 			styleIndexRef.current += 1;
 			if (styleIndexRef.current >= stylesArray.length) {
-				styleIndexRef.current = 0; // Stil dizisinin sonuna gelindiyse sıfırla
+				styleIndexRef.current = 0;
 			}
 
 			const newWord = {
@@ -69,29 +84,26 @@ const ContactHomePage = () => {
 				style,
 			};
 
+			// Yeni kelimeyi state'e ekle
 			setWords((prev) => [...prev, newWord]);
 
+			// Yeni spawn edilen konumu kaydet (böylece üst üste binme engellenecek)
+			lastSpawnRef.current = { x, y };
+
+			// GSAP animasyon zinciri
 			setTimeout(() => {
 				const tl = gsap.timeline({
 					onComplete: () => {
 						setWords((prev) => prev.filter((word) => word.id !== newWord.id));
 					},
 				});
-
-				// Önce durum ayarını yapıp sırasıyla animasyonları başlatın:
 				tl.set(`.word-${newWord.id}`, { opacity: 0, scale: 0 })
 					.to(`.word-${newWord.id}`, {
-						duration: 0.25,
-						opacity: 1,
-						scale: 1.1,
-						rotate: Math.floor(Math.random() * 20 - 10),
-						ease: 'linear',
-					})
-					.to(`.word-${newWord.id}`, {
 						duration: 0.5,
+						opacity: 1,
 						scale: 1.3,
-						ease: 'linear',
-						delay: 0.5,
+						rotate: Math.floor(Math.random() * 20 - 10),
+						ease: 'expo.out',
 					})
 					.to(`.word-${newWord.id}`, {
 						duration: 1,
@@ -100,7 +112,7 @@ const ContactHomePage = () => {
 						delay: 1,
 					});
 			}, 0);
-		}, 50),
+		}, 10),
 		[]
 	);
 
