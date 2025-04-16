@@ -43,8 +43,8 @@ const ContactHomePage = () => {
 			let x = e.clientX - rect.left;
 			let y = e.clientY - rect.top;
 
-			x += Math.random() * 20 - 10;
-			y += Math.random() * 20 - 10;
+			x += Math.random() * 4 - 2;
+			y += Math.random() * 4 - 2;
 
 			// Eğer tüm kelimeler gösterildiyse, indeksi sıfırla
 			if (wordIndexRef.current >= sentencesData.length) {
@@ -72,32 +72,35 @@ const ContactHomePage = () => {
 			setWords((prev) => [...prev, newWord]);
 
 			setTimeout(() => {
-				gsap.fromTo(
-					`.word-${newWord.id}`,
-					{ y: 0, scale: 0 },
-					{ opacity: 1, scale: 1 }
-				);
-				gsap.to(`.word-${newWord.id}`, {
-					scale: 1.25,
-					delay: .5,
-					duration: 1,
-					ease: 'power1.out',
+				const tl = gsap.timeline({
 					onComplete: () => {
-						gsap.to(`.word-${newWord.id}`, {
-							scale: 0,
-							duration: .5,
-							delay: 1,
-							ease: 'expo.out',
-							onComplete: () => {
-								setWords((prev) =>
-									prev.filter((word) => word.id !== newWord.id)
-								);
-							},
-						});
+						setWords((prev) => prev.filter((word) => word.id !== newWord.id));
 					},
 				});
+
+				// Önce durum ayarını yapıp sırasıyla animasyonları başlatın:
+				tl.set(`.word-${newWord.id}`, { opacity: 0, scale: 0 })
+					.to(`.word-${newWord.id}`, {
+						duration: 0.25,
+						opacity: 1,
+						scale: 1.1,
+						rotate: Math.floor(Math.random() * 20 - 10),
+						ease: 'linear',
+					})
+					.to(`.word-${newWord.id}`, {
+						duration: 0.5,
+						scale: 1.3,
+						ease: 'linear',
+						delay: 0.5,
+					})
+					.to(`.word-${newWord.id}`, {
+						duration: 1,
+						scale: 0,
+						ease: 'expo.in',
+						delay: 1,
+					});
 			}, 0);
-		}, 60),
+		}, 50),
 		[]
 	);
 

@@ -76,49 +76,41 @@
 .style1 {
 	background-color: var(--red400);
 	color: var(--wb50);
-	transform: rotate(-15deg);
 }
 
 .style2 {
 	background-color: var(--pink200);
 	color: var(--wb50);
-	transform: rotate(10deg);
 }
 
 .style3 {
 	background-color: var(--purple400);
 	color: var(--wb50);
-	transform: rotate(-5deg);
 }
 
 .style4 {
 	background-color: var(--darkblue600);
 	color: var(--wb50);
-	transform: rotate(0deg);
 }
 
 .style5 {
 	background-color: var(--blue300);
 	color: var(--wb50);
-	transform: rotate(5deg);
 }
 
 .style6 {
 	background-color: var(--green300);
 	color: var(--wb50);
-	transform: rotate(-10deg);
 }
 
 .style7 {
 	background-color: var(--main-color500);
 	color: var(--wb50);
-	transform: rotate(15deg);
 }
 
 .style8 {
 	background-color: var(--orange600);
 	color: var(--wb50);
-	transform: rotate(-20deg);
 }
 
 @media screen and (max-width: 1024px) {
