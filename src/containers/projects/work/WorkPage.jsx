@@ -35,13 +35,6 @@ const WorkPage = () => {
 			<div className={styles.header}>
 				<div className={styles.title}>{work.name}</div>
 				<div className={styles.desc}>{work.desc}</div>
-				<ul className={styles.techs}>
-					{work.techs.map((tech, index) => (
-						<li className={styles.tech} key={index}>
-							● {tech}
-						</li>
-					))}
-				</ul>
 			</div>
 			<div className={styles.main}>
 				<div className={styles.main_header}>
