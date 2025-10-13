@@ -22,12 +22,12 @@ const Terminal = () => {
 
 	const loadingDuration = 5;
 
-	useEffect(() => {
-		const terminalHasRun = sessionStorage.getItem('terminalHasRun');
-		if (terminalHasRun) {
-			setShouldRun(false);
-		}
-	}, []);
+	// useEffect(() => {
+	// 	const terminalHasRun = sessionStorage.getItem('terminalHasRun');
+	// 	if (terminalHasRun) {
+	// 		setShouldRun(false);
+	// 	}
+	// }, []);
 
 	const handleStart = () => {
 		gsap.to(lightRef.current, {
