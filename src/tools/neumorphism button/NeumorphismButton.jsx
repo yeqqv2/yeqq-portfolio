@@ -12,7 +12,7 @@ const NeumorphismButton = ({ handleStart }) => {
           className={styles.input}
         />
         <div className={styles.tooltip}>
-          <p>Press Me👋</p>
+          <p>Press Me 👋</p>
         </div>
       </label>
     </div>

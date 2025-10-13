@@ -1,7 +1,4 @@
-import React from 'react';
 import styles from './style.module.css';
-import IntlTelInput from 'react-intl-tel-input-18';
-import './intTelInput.css';
 
 const ContactPage = () => {
 	return (
@@ -51,38 +48,12 @@ const ContactPage = () => {
 							<label className={styles.label} htmlFor="tel">
 								phone
 							</label>
-							<IntlTelInput
-								style={{ fontFamily: 'Outfit' }}
-								inputClassName={styles.input}
-								fieldName="phone"
-								fieldId="phone"
-								defaultValue=""
-								defaultCountry="auto"
-								geoIpLookup={(callback) => {
-									fetch('https://ipapi.co/json')
-										.then((res) => res.json())
-										.then((data) => callback(data.country_code))
-										.catch(() => callback('us'));
-								}}
-								separateDialCode={false}
-								preferredCountries={['us', 'gb', 'tr']}
-								allowDropdown={true}
-								autoHideDialCode={true}
-								autoPlaceholder="polite"
-								excludeCountries={[]}
-								formatOnInit={true}
-								autoFocus={false}
-								autoComplete="off"
-								nationalMode={true}
-								onPhoneNumberChange={() => {}}
-								utilsScript="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
-							/>
-							{/* <input
+							<input
 								className={styles.input}
 								name="tel"
 								type="tel"
-								placeholder="+90 000 000 0000"
-							/> */}
+								placeholder="+90 555 555 55 55"
+							/>
 						</div>
 						<div className={styles.input_group}>
 							<label className={styles.label} htmlFor="subject">

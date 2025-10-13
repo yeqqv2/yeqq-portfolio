@@ -1,0 +1,42 @@
+.sm_panel_item {
+  position: relative;
+  color: var(--green950);
+  font-weight: 400;
+  font-size: 3.5em;
+  cursor: pointer;
+  line-height: 1.2;
+  letter-spacing: -2px;
+  transition: color 0.25s;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.sm_panel_item:hover {
+  color: var(--green100);
+  opacity: 0.75;
+}
+
+.sm_toggle_textWrap {
+  position: relative;
+  display: inline-block;
+  height: 1.2em;
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.sm_toggle_textInner {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  will-change: transform;
+}
+
+.sm_toggle_line {
+  display: block;
+  height: 1.2em;
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+}

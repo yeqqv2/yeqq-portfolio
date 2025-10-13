@@ -3,7 +3,6 @@ import { Route, Routes } from 'react-router-dom';
 // ================================================
 // STYLES
 // ================================================
-import 'react-intl-tel-input-18/dist/main.css';
 import './styles/variables.css';
 import './styles/reset.css';
 import './styles/global.css';

@@ -3,6 +3,7 @@ import styles from './style.module.css';
 import MenuButton from '../../tools/menu/MenuButton';
 import gsap from 'gsap';
 import { GoArrowRight } from 'react-icons/go';
+import AnimatedLink from '../../components/animated link/AnimatedLink';
 
 export default function Navbar() {
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -36,13 +37,17 @@ export default function Navbar() {
 		<>
 			<div className={styles.container}>
 				<main className={`${styles.left} ${styles.main}`}>
-					<MenuButton
-						toggleSidebar={toggleSidebar}
-						isSidebarOpen={isSidebarOpen}
-					/>
+					<div className={styles.button_bg}>
+						<MenuButton
+							toggleSidebar={toggleSidebar}
+							isSidebarOpen={isSidebarOpen}
+						/>
+					</div>
 				</main>
 				<a href="/" className={styles.logo}>
-					( yeqq )
+					<div className={styles.button_bg}>
+						( yeqq )
+					</div>
 				</a>
 				<main className={`${styles.right} ${styles.main}`}>
 					<a className={styles.contact_link_colored} href="/contact-me">
@@ -59,24 +64,28 @@ export default function Navbar() {
 					/>
 				</span>
 				<div className={styles.links}>
-					<a className={styles.link} href="/" onClick={toggleSidebar}>
-						<span className={styles.link_icon}>
-							<GoArrowRight />
-						</span>
-						home
-					</a>
-					<a className={styles.link} href="/about-me" onClick={toggleSidebar}>
-						<span className={styles.link_icon}>
-							<GoArrowRight />
-						</span>
-						aboutme
-					</a>
-					<a className={styles.link} href="/projects" onClick={toggleSidebar}>
-						<span className={styles.link_icon}>
-							<GoArrowRight />
-						</span>
-						projects
-					</a>
+					<AnimatedLink
+						href="/"
+						defaultText="home"
+						hoverText="go home"
+						onClick={toggleSidebar}
+						icon={GoArrowRight}
+					/>
+					<AnimatedLink
+						href="/about-me"
+						defaultText="aboutme"
+						hoverText="info"
+						onClick={toggleSidebar}
+						icon={GoArrowRight}
+					/>
+
+					<AnimatedLink
+						href="/projects"
+						defaultText="projects"
+						hoverText="my works"
+						onClick={toggleSidebar}
+						icon={GoArrowRight}
+					/>
 				</div>
 				<div className={styles.links}>
 					<div className={styles.contact_link_sec}>
@@ -87,7 +96,7 @@ export default function Navbar() {
 								href="/contact-me"
 								onClick={toggleSidebar}
 							>
-								● let's work together
+								● get in touch
 							</a>
 						</div>
 					</div>

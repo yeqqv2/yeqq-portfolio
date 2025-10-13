@@ -3,7 +3,7 @@ import styles from './style.module.css';
 
 const social = [
 	{
-		name: 'instagram',
+		name: 'instagram,',
 		link: 'https://www.instagram.com/1yunusewre',
 		images: [
 			'/assets/images/social/instagram/1.jpeg',
@@ -12,7 +12,7 @@ const social = [
 		],
 	},
 	{
-		name: 'spotify',
+		name: 'spotify,',
 		link: 'https://shorturl.at/jFiom',
 		images: [
 			'/assets/images/social/spotify/1.png',
@@ -21,7 +21,7 @@ const social = [
 		],
 	},
 	{
-		name: 'letterboxd',
+		name: 'letterboxd,',
 		link: 'https://letterboxd.com/yeqq',
 		images: [
 			'/assets/images/social/letterboxd/1.png',
@@ -30,7 +30,7 @@ const social = [
 		],
 	},
 	{
-		name: 'github',
+		name: 'github,',
 		link: 'https://github.com/yeqqv2',
 		images: [
 			'/assets/images/social/github/1.png',
@@ -61,11 +61,13 @@ const SocialHomePage = () => {
 						<div key={index} className={styles.social}>
 							<a
 								href={item.link}
-								target="_blank"
+								target="__blank"
 								className={`${styles.social_card} ${styles.link}`}
 								rel="noopener noreferrer"
 							>
-								<div className={styles.link_title}>{item.name},</div>
+								<div className={styles.link_title}>
+									{item.name}
+								</div>
 							</a>
 						</div>
 					);

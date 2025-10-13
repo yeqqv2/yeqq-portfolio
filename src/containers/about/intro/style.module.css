@@ -1,126 +1,126 @@
 .container {
-	width: 100vw;
-	min-height: 100vh;
-	background-color: var(--wb100);
-	margin-bottom: 200vh;
-	position: relative;
-	padding: 50vh 0 10vh 0;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: var(--wb100);
+  margin-bottom: 200vh;
+  position: relative;
+  padding: 50vh 0 10vh 0;
 }
 
 .h1 {
-	width: 100%;
-	color: var(--wb950);
-	font-size: 50vw; /* Eğer 50vh istiyorsan burayı 50vh yapabilirsin */
-	font-weight: 400;
-	margin: 0;
-	will-change: transform, opacity; /* Donanım hızlandırması */
-	text-align: center;
+  width: 100%;
+  color: var(--wb950);
+  font-size: 50vw; /* Eğer 50vh istiyorsan burayı 50vh yapabilirsin */
+  font-weight: 400;
+  margin: 0;
+  will-change: transform, opacity; /* Donanım hızlandırması */
+  text-align: center;
 }
 
 .wrapper {
-	position: absolute;
-	top: 0;
-	width: 500vw;
-	height: 100vh;
-	will-change: transform;
-	background-color: var(--wb100);
+  position: absolute;
+  top: 0;
+  width: 500vw;
+  height: 100vh;
+  will-change: transform;
+  background-color: var(--wb100);
 }
 
 .card {
-	position: absolute;
-	top: 75%;
-	left: 10%;
-	width: 300px;
-	height: 300px;
-	border-radius: 20px;
-	overflow: hidden;
+  position: absolute;
+  top: 75%;
+  left: 10%;
+  width: 300px;
+  height: 300px;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 .img {
-	width: 300px;
-	height: 300px;
-	object-fit: cover;
-	object-position: center;
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  object-position: center;
 }
 
 .card:nth-child(1) {
-	top: 60%;
-	left: 20%;
+  top: 60%;
+  left: 20%;
 }
 
 .card:nth-child(2) {
-	top: 15%;
-	left: 30%;
+  top: 15%;
+  left: 30%;
 }
 
 .card:nth-child(3) {
-	top: 45%;
-	left: 50%;
+  top: 45%;
+  left: 50%;
 }
 
 .card:nth-child(4) {
-	top: 15%;
-	left: 70%;
+  top: 15%;
+  left: 70%;
 }
 
 .card:nth-child(5) {
-	top: 60%;
-	left: 90%;
+  top: 60%;
+  left: 90%;
 }
 
 .outro {
-	position: absolute;
-	top: 175vh;
-	height: 120vh;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	gap: 10vh;
-	background-color: var(--wb100);
+  position: absolute;
+  top: 175vh;
+  height: 120vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10vh;
+  background-color: var(--wb100);
 }
 
 .outro_text {
-	margin-left: 10vw;
-	width: 30%;
-	font-size: 2em;
-	font-weight: 300;
-	color: var(--wb950);
+  margin-left: 2.5vw;
+  width: 30%;
+  font-size: 2em;
+  font-weight: 300;
+  color: var(--wb950);
 }
 
 @media screen and (max-width: 1024px) {
-	.container {
-		margin-bottom: 210vh;
-	}
-	.wrapper {
-		padding-top: 25vh;
-	}
-	.card {
-		top: 50%;
-	}
-	.outro {
-		top: 190vh;
-	}
-	.outro_text {
-		width: 80%;
-	}
+  .container {
+    margin-bottom: 210vh;
+  }
+  .wrapper {
+    padding-top: 25vh;
+  }
+  .card {
+    top: 50%;
+  }
+  .outro {
+    top: 190vh;
+  }
+  .outro_text {
+    width: 80%;
+  }
 }
 
 @media screen and (max-width: 600px) {
-	.container {
-		margin-bottom: 220vh;
-	}
-	.outro {
-		top: 190vh;
-	}
-	.outro_text {
-		width: 80%;
-	}
-	.card {
-		height: 200px;
-		width: 200px;
-	}
-	.img {
-		width: 200px;
-		height: 200px;
-	}
+  .container {
+    margin-bottom: 220vh;
+  }
+  .outro {
+    top: 190vh;
+  }
+  .outro_text {
+    width: 80%;
+  }
+  .card {
+    height: 200px;
+    width: 200px;
+  }
+  .img {
+    width: 200px;
+    height: 200px;
+  }
 }

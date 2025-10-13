@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useRef, useCallback } from 'react';
 import styles from './style.module.css';
 import gsap from 'gsap';
@@ -99,17 +100,17 @@ const ContactHomePage = () => {
 				});
 				tl.set(`.word-${newWord.id}`, { opacity: 0, scale: 0 })
 					.to(`.word-${newWord.id}`, {
-						duration: 0.5,
+						duration: 0.25,
 						opacity: 1,
 						scale: 1.3,
 						rotate: Math.floor(Math.random() * 20 - 10),
 						ease: 'expo.out',
 					})
 					.to(`.word-${newWord.id}`, {
-						duration: 1,
+						duration: 0.75,
 						scale: 0,
 						ease: 'expo.in',
-						delay: 1,
+						delay: 0.3,
 					});
 			}, 0);
 		}, 10),

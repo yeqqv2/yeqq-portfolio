@@ -4,12 +4,36 @@ import styles from './style.module.css';
 
 // Videoların URL'lerini içeren dizi
 const videos = [
-    { id: 1, src: 'https://videos.pexels.com/video-files/6688641/6688641-uhd_2560_1440_25fps.mp4' },
-    { id: 2, src: 'https://videos.pexels.com/video-files/4360158/4360158-uhd_2560_1440_24fps.mp4' },
-    { id: 3, src: 'https://videos.pexels.com/video-files/2022395/2022395-hd_1920_1080_30fps.mp4' },
-    { id: 4, src: 'https://videos.pexels.com/video-files/5427565/5427565-uhd_2732_1440_25fps.mp4' },
-    { id: 5, src: 'https://videos.pexels.com/video-files/9329520/9329520-uhd_1440_2732_25fps.mp4' },
-    { id: 6, src: 'https://videos.pexels.com/video-files/6491258/6491258-uhd_2732_1440_25fps.mp4' },
+    {
+        id: 1,
+        // src: 'https://videos.pexels.com/video-files/6688641/6688641-uhd_2560_1440_25fps.mp4'
+        src: '/assets/gif/chess.gif'
+    },
+    {
+        id: 2,
+        // src: 'https://videos.pexels.com/video-files/4360158/4360158-uhd_2560_1440_24fps.mp4'
+        src: '/assets/gif/art.gif'
+    },
+    {
+        id: 3,
+        // src: 'https://videos.pexels.com/video-files/2022395/2022395-hd_1920_1080_30fps.mp4'
+        src: '/assets/gif/music.gif'
+    },
+    {
+        id: 4,
+        // src: 'https://videos.pexels.com/video-files/5427565/5427565-uhd_2732_1440_25fps.mp4'
+        src: '/assets/gif/movies.gif'
+    },
+    {
+        id: 5,
+        // src: 'https://videos.pexels.com/video-files/9329520/9329520-uhd_1440_2732_25fps.mp4'
+        src: '/assets/gif/philosophy.gif'
+    },
+    {
+        id: 6,
+        // src: 'https://videos.pexels.com/video-files/6491258/6491258-uhd_2732_1440_25fps.mp4'
+        src: '/assets/gif/psychology.gif'
+    },
 ];
 
 const Carousel = () => {
@@ -71,11 +95,12 @@ const Carousel = () => {
     useEffect(() => {
         const interval = setInterval(handleSlider, 10000);
         return () => clearInterval(interval);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
         if (videoTopRef.current && videoBottomRef.current) {
-            
+
             videoTopRef.current.src = videos[currentIndex].src;
             videoBottomRef.current.src = videos[currentIndex].src;
 
@@ -94,7 +119,7 @@ const Carousel = () => {
                 </div>
                 <div className={styles.title}>
                     <h1 className={`${styles.h1} ${currentIndex === 1 ? styles.active : ''}`}>
-                        ( drawing )
+                        ( art )
                     </h1>
                 </div>
                 <div className={styles.title}>
@@ -120,7 +145,7 @@ const Carousel = () => {
             </div>
             <div className={styles.slider_images}>
                 <div className={styles.video_wrapper}>
-                    <video
+                    {/* <video
                         ref={videoTopRef}
                         preload="auto"
                         autoPlay
@@ -128,11 +153,17 @@ const Carousel = () => {
                         muted
                         playsInline
                         className={`${styles.video} ${styles.vid_top}`}
+                    /> */}
+                    <img
+                        ref={videoTopRef}
+                        src={videos[currentIndex].src}
+                        className={`${styles.video} ${styles.vid_top}`}
+                        alt='top gif'
                     />
                     <div className={styles.overlayTop} ref={overlayTopRef}></div>
                 </div>
                 <div className={styles.video_wrapper}>
-                    <video
+                    {/* <video
                         ref={videoBottomRef}
                         preload="auto"
                         autoPlay
@@ -140,6 +171,12 @@ const Carousel = () => {
                         muted
                         playsInline
                         className={`${styles.video} ${styles.vid_bottom}`}
+                    /> */}
+                    <img
+                        ref={videoTopRef}
+                        src={videos[currentIndex].src}
+                        className={`${styles.video} ${styles.vid_bottom}`}
+                        alt='top gif'
                     />
                     <div className={styles.overlayBottom} ref={overlayBottomRef}></div>
                 </div>

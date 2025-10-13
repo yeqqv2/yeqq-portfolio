@@ -18,7 +18,6 @@ const me = [
 	{ img: '/assets/images/me/8.webp' },
 	{ img: '/assets/images/me/9.webp' },
 	{ img: '/assets/images/me/10.webp' },
-	{ img: '/assets/images/me/11.webp' },
 ];
 
 export const IntroduceHome = () => {

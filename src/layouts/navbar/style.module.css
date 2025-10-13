@@ -1,142 +1,151 @@
 .container {
-	width: 80vw;
-	position: fixed;
-	padding: 1vh 2.5vw;
-	top: 2.5vh;
-	left: 10vw;
-	z-index: 9;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 10vw;
-	background-color: transparent;
-	mix-blend-mode: difference;
-	color: var(--wb50);
+  width: 95vw;
+  position: fixed;
+  padding: 1vh 2.5vw;
+  top: 2.5vh;
+  left: 2.5vw;
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10vw;
+  color: var(--wb950);
 }
 
 .logo {
-	mix-blend-mode: difference;
-	position: relative;
-	height: 100%;
-	font-size: 2em;
-	user-select: none;
+  mix-blend-mode: difference;
+  position: relative;
+  height: 100%;
+  font-size: 2em;
+  user-select: none;
+  font-weight: 500;
+}
+
+.button_bg {
+  padding: 0.25em 0.25em;
+  border-radius: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 .main {
-	height: calc(2vh + 2em);
-	flex: 1;
-	display: flex;
-	align-items: center;
-	gap: 1em;
+  height: calc(2vh + 2em);
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 1em;
 }
 
 .left {
-	justify-content: flex-start;
+  justify-content: flex-start;
 }
 
 .right {
-	justify-content: flex-end;
+  justify-content: flex-end;
 }
 
 .sidebar {
-	position: fixed;
-	top: 0;
-	left: 0;
-	height: 100dvh;
-	width: 30vw;
-	background-color: var(--green300);
-	padding: 10vh 5vw;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	justify-content: space-between;
-	gap: 5vh;
-	z-index: 99;
-	overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100dvh;
+  width: 30vw;
+  background-color: var(--green300);
+  padding: 10vh 5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 5vh;
+  z-index: 99;
+  overflow: hidden;
 }
 
 .close {
-	position: absolute;
-	top: 3.5vh;
-	right: 2.5vw;
+  position: absolute;
+  top: 3.5vh;
+  right: 2.5vw;
 }
 
 .links {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	gap: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2em;
 }
 
 .link {
-	font-size: 3em;
-	transition: 0.5s;
+  font-size: 3em;
+  transition: 0.5s;
 }
 
 .link_icon {
-	width: 0;
+  width: 0;
 }
 
 .link:hover > .link_icon {
-	width: 100%;
+  width: 100%;
 }
 
 .contact_link_sec {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	gap: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1em;
 }
 
 .contact_link_colored {
-	padding: 0.375em 0.5em 0.375em 0.5em;
-	font-weight: 300;
-	letter-spacing: 0.025em;
-	background-color: var(--orange500);
-	color: var(--wb50);
-	border-radius: 0.25em;
-	position: relative;
-	line-height: 1em;
-	filter: invert(1);
-	z-index: 999;
+  padding: 0.375em 0.5em 0.375em 0.5em;
+  font-weight: 300;
+  letter-spacing: 0.025em;
+  background-color: var(--orange500);
+  color: var(--wb50);
+  border-radius: 0.25em;
+  position: relative;
+  line-height: 1em;
+  z-index: 999;
 }
 
 .contact_link_colored_sidebar {
-	padding: 0.375em 0.5em 0.375em 0.5em;
-	background-color: var(--blue400);
-	border-radius: 0.25em;
-	position: relative;
-	color: var(--wb950);
-	line-height: 1em;
+  padding: 0.375em 0.5em 0.375em 0.5em;
+  background-color: var(--blue400);
+  border-radius: 0.25em;
+  position: relative;
+  color: var(--wb50);
+  line-height: 1em;
+  font-weight: 300;
+  letter-spacing: 0.025em;
 }
 
 .contact_links {
-	display: flex;
-	align-items: center;
-	gap: 0.25em;
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
 }
 
 @media screen and (max-width: 1024px) {
-	.sidebar {
-		width: 60vw;
-	}
+  .sidebar {
+    width: 60vw;
+  }
 
-	.contact_link_colored {
-		font-size: 1.25em;
-	}
+  .contact_link_colored {
+    font-size: 1.25em;
+  }
 }
 @media screen and (max-width: 600px) {
-	.container {
-		width: 90vw;
-		left: 5vw;
-	}
+  .container {
+    width: 90vw;
+    left: 5vw;
+  }
 
-	.right {
-		display: none;
-	}
+  .right {
+    display: none;
+  }
 
-	.sidebar {
-		width: 100vw;
-		padding: 20vh 10vw 10vh 10vw;
-	}
+  .sidebar {
+    width: 100vw;
+    padding: 20vh 10vw 10vh 10vw;
+  }
 }

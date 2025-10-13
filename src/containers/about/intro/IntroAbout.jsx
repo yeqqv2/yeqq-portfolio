@@ -39,6 +39,7 @@ const IntroAbout = () => {
 
     // Her kart için dönüş (rotate) limiti—burada istediğiniz değeri ayarlayabilirsiniz.
     // Örneğin, ilk kart 45deg, ikinci 30deg, vb.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const cardsConfig = [
         { rotate: 45 },
         { rotate: 30 },
@@ -109,6 +110,7 @@ const IntroAbout = () => {
             ctx.revert();
             ScrollTrigger.getAll().forEach(trigger => trigger.kill());
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [viewportHeight]);
 
     return (
