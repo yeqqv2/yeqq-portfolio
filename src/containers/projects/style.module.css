@@ -104,12 +104,15 @@
   gap: 1em;
 }
 
-@media screen and (max-width: 1024px) {
-}
-
 @media screen and (max-width: 600px) {
+  .container {
+    padding: 15vh 2.5vw 5vh 2.5vw;
+    gap: 2.5vh;
+    align-items: center;
+  }
+
   .header {
-    width: 80vw;
+    width: 95vw;
     flex-direction: column;
   }
 
@@ -126,12 +129,13 @@
   }
 
   .main {
-    width: 80vw;
-    gap: 3em;
+    width: 95vw;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10vh;
   }
 
   .work {
-    width: 80vw;
+    width: 95vw;
     gap: 1em;
   }
 }

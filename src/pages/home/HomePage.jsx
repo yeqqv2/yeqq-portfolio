@@ -9,13 +9,11 @@ import AboutmeHome from '../../containers/home/aboutme/AboutmeHome';
 import WorksHomePage from '../../containers/home/works/Works';
 import ContactHomePage from '../../containers/home/contact/ContactHomePage';
 import SocialHomePage from './../../containers/home/social/SocialHomePage';
-import PreLoader from '../../animations/preloader/Preloader';
 
 const HomePage = () => {
 	return (
 		<div className={styles.container}>
-			{/* <Terminal /> */}
-			<PreLoader />
+			<Terminal />
 			<IntroSec />
 			<WorksHomePage />
 			<WelcomeSec />
