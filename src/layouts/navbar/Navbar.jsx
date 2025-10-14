@@ -46,7 +46,7 @@ export default function Navbar() {
 				</main>
 				<a href="/" className={styles.logo}>
 					<div className={styles.button_bg}>
-						( yeqq )
+						[ yeqq ]
 					</div>
 				</a>
 				<main className={`${styles.right} ${styles.main}`}>
@@ -89,7 +89,7 @@ export default function Navbar() {
 				</div>
 				<div className={styles.links}>
 					<div className={styles.contact_link_sec}>
-						<div className={styles.contact_link_header}>(contact)</div>
+						<div className={styles.contact_link_header}>[contact]</div>
 						<div className={styles.contact_links}>
 							<a
 								className={styles.contact_link_colored_sidebar}
@@ -101,7 +101,7 @@ export default function Navbar() {
 						</div>
 					</div>
 					<div className={styles.contact_link_sec}>
-						<div className={styles.contact_link_header}>(connect)</div>
+						<div className={styles.contact_link_header}>[connect]</div>
 						<div className={styles.contact_links}>
 							<a
 								className={styles.contact_link}

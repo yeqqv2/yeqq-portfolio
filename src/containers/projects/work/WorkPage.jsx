@@ -72,7 +72,7 @@ const WorkPage = () => {
 				<div className={styles.title} ref={titleRef}>{work.name}</div>
 				<div className={styles.header_context}>
 					<div className={styles.desc}>{work.desc}</div>
-					<p className={styles.scroll}>(scroll)</p>
+					<p className={styles.scroll}>[scroll]</p>
 				</div>
 			</div>
 			<div className={styles.banner}>

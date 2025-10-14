@@ -5,7 +5,7 @@ const ExpAbout = () => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
-				<div className={styles.title}>(experience)</div>
+				<div className={styles.title}>[experience]</div>
 				<div className={styles.desc}>
 					I always focus on creating user-centered, aesthetic, and functional
 					solutions. I believe that crafting custom designs for individuals or
@@ -20,7 +20,7 @@ const ExpAbout = () => {
 							10
 						</p>
 					</div>
-					<div className={styles.card_footer}>(total projects)</div>
+					<div className={styles.card_footer}>[total projects]</div>
 				</div>
 				<div className={styles.card}>
 					<div className={styles.card_header}>
@@ -29,7 +29,7 @@ const ExpAbout = () => {
 							2
 						</p>
 					</div>
-					<div className={styles.card_footer}>(years of experience)</div>
+					<div className={styles.card_footer}>[years of experience]</div>
 				</div>
 			</div>
 		</div>

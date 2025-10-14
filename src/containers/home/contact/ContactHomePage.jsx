@@ -128,7 +128,7 @@ const ContactHomePage = () => {
 					do you have any software idea?
 				</div>
 				<div className={styles.contact_me}>
-					let's (<span className={styles.contact}>get in touch</span>)
+					let's [<span className={styles.contact}>get in touch</span>]
 				</div>
 				<div className={styles.sentences}>
 					{words.map((word) => (

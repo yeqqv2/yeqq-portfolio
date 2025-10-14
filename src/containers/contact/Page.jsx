@@ -3,7 +3,7 @@ import styles from './style.module.css';
 const ContactPage = () => {
 	return (
 		<div className={styles.container}>
-			<div className={styles.header}>(online meeting, message me)</div>
+			<div className={styles.header}>[online meeting,message me]</div>
 			<div className={styles.main}>
 				<div className={styles.sidebar}>
 					please contact me to set up an online meeting or ask any questions you
@@ -85,11 +85,11 @@ const ContactPage = () => {
 			</div>
 			<div className={styles.footer}>
 				<div className={styles.footer_content}>
-					<p className={styles.footer_content_title}>(contact)</p>
+					<p className={styles.footer_content_title}>[contact]</p>
 					<p className={styles.footer_content_content}>ynsmrkrkmzz@gmail.com</p>
 				</div>
 				<div className={styles.footer_content}>
-					<p className={styles.footer_content_title}>(connect)</p>
+					<p className={styles.footer_content_title}>[connect]</p>
 					<p className={styles.footer_content_content}>
 						<a
 							className={styles.contact_link}

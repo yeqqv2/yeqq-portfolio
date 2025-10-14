@@ -114,32 +114,32 @@ const Carousel = () => {
             <div className={styles.slider_titles} ref={sliderTitlesRef}>
                 <div className={styles.title}>
                     <h1 className={`${styles.h1} ${currentIndex === 0 ? styles.active : ''}`}>
-                        ( chess )
+                        [chess]
                     </h1>
                 </div>
                 <div className={styles.title}>
                     <h1 className={`${styles.h1} ${currentIndex === 1 ? styles.active : ''}`}>
-                        ( art )
+                        [art]
                     </h1>
                 </div>
                 <div className={styles.title}>
                     <h1 className={`${styles.h1} ${currentIndex === 2 ? styles.active : ''}`}>
-                        ( music )
+                        [music]
                     </h1>
                 </div>
                 <div className={styles.title}>
                     <h1 className={`${styles.h1} ${currentIndex === 3 ? styles.active : ''}`}>
-                        ( movies )
+                        [movies]
                     </h1>
                 </div>
                 <div className={styles.title}>
                     <h1 className={`${styles.h1} ${currentIndex === 4 ? styles.active : ''}`}>
-                        ( philosophy )
+                        [philosophy]
                     </h1>
                 </div>
                 <div className={styles.title}>
                     <h1 className={`${styles.h1} ${currentIndex === 5 ? styles.active : ''}`}>
-                        ( psychology )
+                        [psychology]
                     </h1>
                 </div>
             </div>

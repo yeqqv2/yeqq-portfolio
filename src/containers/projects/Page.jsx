@@ -37,7 +37,7 @@ const ProjectsContainer = () => {
     <div className={styles.container}>
       <header className={styles.header}>
         <div className={styles.header_title}>
-          (projects & works)
+          [projects,works]
         </div>
         <div className={styles.header_desc}>
           i design and build intuitive, high-performance web solutions using modern stacks like React and Next.js, handling both the UI/UX design and the frontend development.
@@ -65,7 +65,7 @@ const ProjectsContainer = () => {
                 />
               </div>
               <div className={styles.works}>
-                <div className={styles.work_name}>({work.name})</div>
+                <div className={styles.work_name}>[{work.name}]</div>
                 <div className={styles.work_desc}>{work.desc}</div>
               </div>
             </a>

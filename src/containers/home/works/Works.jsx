@@ -66,12 +66,12 @@ const WorksHomePage = () => {
 		<div className={styles.container}>
 			<header className={styles.header}>
 				<div className={styles.header_title}>
-					(projects & works)
+					[projects,works]
 				</div>
 				<div className={styles.header_desc}>
 					for all web-based projects, I took on the role of frontend developer
 					and UI/UX designer. for any project that didn’t require a backend
-					(NoSQL, one-page, landing page, etc.), I developed them using React or
+					[NoSQL, one-page, landing page, etc.], I developed them using React or
 					Next.js.
 				</div>
 			</header>

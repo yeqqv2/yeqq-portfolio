@@ -5,9 +5,9 @@ const Footer = () => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.content}>
-				<header className={styles.logo}>( yeqq )</header>
+				<header className={styles.logo}>[ yeqq ]</header>
 				<main className={styles.links}>
-					<div className={styles.links_header}>(links)</div>
+					<div className={styles.links_header}>[links]</div>
 					<div className={styles.links_content}>
 						<a className={styles.link} href="/">
 							home
@@ -22,7 +22,7 @@ const Footer = () => {
 				</main>
 
 				<main className={styles.links}>
-					<div className={styles.links_header}>(connect)</div>
+					<div className={styles.links_header}>[connect]</div>
 					<div className={styles.links_content}>
 						<a
 							className={styles.link}
@@ -55,7 +55,7 @@ const Footer = () => {
 					</div>
 				</main>
 				<main className={styles.links}>
-					<div className={styles.links_header}>(contact)</div>
+					<div className={styles.links_header}>[contact]</div>
 					<div className={styles.links_content}>
 						<a className={styles.link} href="/contact-me">
 							get in touch

@@ -3,7 +3,7 @@ import Marquee from "react-double-marquee";
 
 const IntroSec = () => {
   const marqueeProps = {
-    children: "minimalism,cubism,user(interface,experience),",
+    children: "minimalism,cubism,user[interface,experience],",
     speed: 0.25,
     direction: "left",
     childMargin: 15,

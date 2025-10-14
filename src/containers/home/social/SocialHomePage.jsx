@@ -53,7 +53,7 @@ const SocialHomePage = () => {
 	return (
 		<div className={styles.container}>
 			<header className={styles.header}>
-				<div className={styles.header_title}>(social 👌)</div>
+				<div className={styles.header_title}>[social 👌]</div>
 			</header>
 			<main className={styles.main}>
 				{social.map((item, index) => {

@@ -21,12 +21,12 @@ const Terminal = () => {
 	const ballRef = useRef(null);
 	const pathRef = useRef(null);
 
-	// useEffect(() => {
-	// 	const terminalHasRun = sessionStorage.getItem('terminalHasRun');
-	// 	if (terminalHasRun) {
-	// 		setShouldRun(false);
-	// 	}
-	// }, []);
+	useEffect(() => {
+		const terminalHasRun = sessionStorage.getItem('terminalHasRun');
+		if (terminalHasRun) {
+			setShouldRun(false);
+		}
+	}, []);
 
 	const handleStart = () => {
 		gsap.to(lightRef.current, {
