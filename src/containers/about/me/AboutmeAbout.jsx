@@ -76,7 +76,7 @@ const AboutmeAbout = () => {
 								onMouseLeave={handleMouseLeave}
 								className={styles.link}
 							>
-								many different projects
+								portfolio.
 							</a>
 							.
 						</p>
