@@ -83,9 +83,13 @@
 }
 
 @media screen and (max-width: 600px) {
+  .vid {
+    height: 40vh;
+  }
+
   .marquee_div {
     margin-top: 0;
-    clip-path: circle(22.5vh at 50% 50%);
+    clip-path: circle(20vh at 50% 50%);
     height: 100%;
     width: 100%;
     display: flex;
