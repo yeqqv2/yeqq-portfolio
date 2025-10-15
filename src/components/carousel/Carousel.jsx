@@ -7,32 +7,32 @@ const videos = [
     {
         id: 1,
         // src: 'https://videos.pexels.com/video-files/6688641/6688641-uhd_2560_1440_25fps.mp4'
-        src: '/assets/gif/chess.gif'
+        src: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnB1ajlqa2phNzVva2Z0eXl4eWFpZnc1NHdpbHJoZnFjbGdrdGxwOCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/QW9gued0UndbeUrr8S/giphy.gif'
     },
     {
         id: 2,
         // src: 'https://videos.pexels.com/video-files/4360158/4360158-uhd_2560_1440_24fps.mp4'
-        src: '/assets/gif/art.gif'
+        src: 'https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGNsZXg1OWZyc3JxYjNoMTFoenF4b3l0N2Zqam5oMDk0d2c3MXhsaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/M52wyuahvQfJK/giphy.gif'
     },
     {
         id: 3,
         // src: 'https://videos.pexels.com/video-files/2022395/2022395-hd_1920_1080_30fps.mp4'
-        src: '/assets/gif/music.gif'
+        src: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDRscmR6OXVqcDY3aDF6YTVnbG85YXN0eTJ3aWIxcDI5dHNneWx2ZCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/tqfS3mgQU28ko/giphy.gif'
     },
     {
         id: 4,
         // src: 'https://videos.pexels.com/video-files/5427565/5427565-uhd_2732_1440_25fps.mp4'
-        src: '/assets/gif/movies.gif'
+        src: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNWF6eTNvOHZkNG42a3U5bzRpd3NpaHA4dnZid2Y3NmNleG5sZTBydCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/l6mBchxYZc7Sw/giphy.gif'
     },
     {
         id: 5,
         // src: 'https://videos.pexels.com/video-files/9329520/9329520-uhd_1440_2732_25fps.mp4'
-        src: '/assets/gif/philosophy.gif'
+        src: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWdxY2d2eGs5M21ob2E0ZGU1ZHZwb3Q1YWlub3puNThlcGtweGxhMiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/11LmeD33ETXN1C/giphy.gif'
     },
     {
         id: 6,
         // src: 'https://videos.pexels.com/video-files/6491258/6491258-uhd_2732_1440_25fps.mp4'
-        src: '/assets/gif/psychology.gif'
+        src: 'https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3NmdrYWswcWtycjAwNjBqZnU4M28wdGZnd3Y5aWxyMWNrbWQ5Z3BxZSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Mj4dUgN1pzJjq/giphy.gif'
     },
 ];
 

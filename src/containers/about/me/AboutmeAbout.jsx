@@ -30,12 +30,10 @@ const AboutmeAbout = () => {
 			<div className={styles.content}>
 				<div className={styles.flex}>
 					<div className={`${styles.card} ${styles.card_text}`}>
-						while studying electrical-electronics engineering at Bursa Uludağ
-						University, I developed an interest in software and pursued it
-						deeply.
+						My foundation in Electrical-Electronics Engineering at Bursa Uludağ University provided a strong base for analytical problem-solving, which I leveraged to make a deliberate transition into software development and UI/UX design.
 					</div>
 					<div className={styles.card}>
-						<video
+						{/* <video
 							className={styles.vid}
 							src="https://videos.pexels.com/video-files/18069165/18069165-uhd_1440_1440_24fps.mp4"
 							autoPlay
@@ -43,12 +41,17 @@ const AboutmeAbout = () => {
 							loop
 							muted
 							playsInline
+						/> */}
+						<img
+							src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3NmV2OHpzMThld2JzazRhZjVseHR3b3lnMXphOGNiZ2NkeG1xaWhtaCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/maPw2mJhdWboDLRovR/giphy.gif"
+							alt="gif"
+							className={styles.vid}
 						/>
 					</div>
 				</div>
 				<div className={styles.flex}>
 					<div className={styles.card}>
-						<video
+						{/* <video
 							className={styles.vid}
 							src="https://videos.pexels.com/video-files/18069234/18069234-uhd_1440_1440_24fps.mp4"
 							autoPlay
@@ -56,13 +59,16 @@ const AboutmeAbout = () => {
 							loop
 							muted
 							playsInline
+						/> */}
+						<img
+							src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWt5a2xzeHZuYWYzMm1ybmRrenJ0a3loZGJ5M21wMWRnNHYxYnoxMCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/YRzQnWzbn4WIxd3ZYx/giphy.gif"
+							alt="gif"
+							className={styles.vid}
 						/>
 					</div>
 					<div className={`${styles.card} ${styles.card_text}`}>
 						<p className={styles.text}>
-							when I was 23, I started my first company as a software developer,
-							gaining a wealth of experience. thanks to this, i’ve had the
-							opportunity to work on{" "}
+							I gained comprehensive product development experience as a Co-Founder, taking smart systems from concept to a functional MVP. This led to impactful roles, where I developed 5+ cross-platform applications for the public sector, as showcased in my {" "}
 							<a
 								href="/projects"
 								onMouseMove={handleMouseMove}

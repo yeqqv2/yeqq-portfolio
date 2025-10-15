@@ -10,14 +10,14 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
 		<AnimatedCursor
-			innerSize={24}
+			innerSize={8}
 			innerScale={3}
 			outerStyle={{
 				display: 'none',
 			}}
 			innerStyle={{
 				backgroundColor: 'white',
-				zIndex: 99999,
+				zIndex: 999,
 				mixBlendMode: 'difference'
 			}}
 			clickables={[
