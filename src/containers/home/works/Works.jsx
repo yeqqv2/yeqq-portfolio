@@ -100,7 +100,7 @@ const WorksHomePage = () => {
 								/>
 							</div>
 							<div className={styles.works}>
-								<div className={styles.work_name}>({work.name})</div>
+								<div className={styles.work_name}>[{work.name}]</div>
 								<div className={styles.work_desc}>{work.desc}</div>
 							</div>
 						</div>

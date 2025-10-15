@@ -9,7 +9,7 @@
 
 .slider {
   width: 100vw;
-  height: 100dvh;
+  height: 100vh;
   position: relative;
   overflow: hidden;
 }
@@ -19,7 +19,7 @@
   top: 0;
   left: 33%;
   width: 200vw;
-  height: 100dvh;
+  height: 100vh;
   display: flex;
   pointer-events: none;
   z-index: 2;
@@ -100,7 +100,7 @@
 @media screen and (max-width: 900px) {
   .slider_images {
     width: 100vw;
-    height: 100dvh;
+    height: 100vh;
   }
 
   .vid_top,
@@ -125,6 +125,6 @@
 
   .overlayTop,
   .overlayBottom {
-    height: 100dvh;
+    height: 100vh;
   }
 }

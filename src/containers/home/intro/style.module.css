@@ -1,7 +1,7 @@
 /* INTRO */
 
 .container {
-  height: 100dvh;
+  height: 100vh;
   width: 100vw;
   padding: 20vh 10vw 10vh 10vw;
   display: flex;
@@ -65,17 +65,15 @@
   }
 
   .vid {
-    width: 80vw;
-    height: auto;
+    height: 45vh;
   }
 
   .marquee_div {
-    clip-path: circle(40vw at 50% 50%);
+    clip-path: circle(22.5vh at 50% 40%);
   }
 
   .marquee_div_content {
     font-size: 10em;
-
     margin-bottom: 10vh;
   }
 
@@ -85,14 +83,9 @@
 }
 
 @media screen and (max-width: 600px) {
-  .vid {
-    width: 80vw;
-    height: auto;
-  }
-
   .marquee_div {
     margin-top: 0;
-    clip-path: circle(40vw at 50% 50%);
+    clip-path: circle(22.5vh at 50% 50%);
     height: 100%;
     width: 100%;
     display: flex;
