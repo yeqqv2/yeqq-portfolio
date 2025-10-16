@@ -17,7 +17,7 @@ root.render(
 			}}
 			innerStyle={{
 				backgroundColor: 'white',
-				zIndex: 99999,
+				zIndex: 999,
 				mixBlendMode: 'difference'
 			}}
 			clickables={[

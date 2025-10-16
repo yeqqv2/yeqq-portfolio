@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <!-- 1. STATİK (Ana) Sayfalar -->
+    
+    <!-- Ana Sayfa (En yüksek öncelik) -->
+    <url>
+        <loc>https://www.yeqq.com.tr/</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- Hakkımda Sayfası -->
+    <url>
+        <loc>https://www.yeqq.com.tr/about-me</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Projeler Listesi Sayfası -->
+    <url>
+        <loc>https://www.yeqq.com.tr/projects</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Galeri Sayfası (Eğer AboutPage ile aynıysa, önceliği düşürülebilir) -->
+    <url>
+        <loc>https://www.yeqq.com.tr/gallery</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- İletişim Sayfası -->
+    <url>
+        <loc>https://www.yeqq.com.tr/contact-me</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    
+    <!-- 2. DİNAMİK (Proje Detay) Sayfaları -->
+
+    <!-- skynotech smart site systems -->
+    <url>
+        <loc>https://www.yeqq.com.tr/projects/skynotech-smart-site-systems</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- skynotech smart site systems website -->
+    <url>
+        <loc>https://www.yeqq.com.tr/projects/skynotech-smart-site-systems-website</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- balikesir istihdam ofisi -->
+    <url>
+        <loc>https://www.yeqq.com.tr/projects/balikesir-istihdam-ofisi</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- balikesir planlama ve kalkınma ajansı website -->
+    <url>
+        <loc>https://www.yeqq.com.tr/projects/bapka-website</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- balıkesir events mobile application -->
+    <url>
+        <loc>https://www.yeqq.com.tr/projects/balikesir-etkinlik</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- yakın kart mobile application -->
+    <url>
+        <loc>https://www.yeqq.com.tr/projects/yakin-kart</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- askıda fatura mobile application -->
+    <url>
+        <loc>https://www.yeqq.com.tr/projects/askida-fatura</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- candostlar mobile application -->
+    <url>
+        <loc>https://www.yeqq.com.tr/projects/can-dostlar</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- balıkesir eczane mobile application -->
+    <url>
+        <loc>https://www.yeqq.com.tr/projects/balikesir-eczane</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+</urlset>

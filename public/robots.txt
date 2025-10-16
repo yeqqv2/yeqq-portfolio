@@ -1,3 +1,12 @@
-# https://www.robotstxt.org/robotstxt.html
+# -------------------------------------------------------------------
+# 1. Genel Kurallar (Tüm Tarayıcılar için)
+# -------------------------------------------------------------------
 User-agent: *
 Disallow:
+
+# -------------------------------------------------------------------
+# 2. Site Haritası (Sitemap) Yönlendirmesi (KRİTİK)
+# Arama motorlarına sitenizin yapısını nerede bulacaklarını söyler.
+# Bu olmadan tarama, sitenizi kaçırabilir.
+# -------------------------------------------------------------------
+Sitemap: https://www.yeqq.com.tr/sitemap.xml

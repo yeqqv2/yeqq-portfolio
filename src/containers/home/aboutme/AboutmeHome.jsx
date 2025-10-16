@@ -93,7 +93,7 @@ const AboutmeHome = () => {
 				</span>
 				,{' '}
 				<span ref={vueNameRef} className={`${styles.svg_name} ${styles.vue}`}>
-					Vue
+					React Native (Expo)
 				</span>{' '}
 				are some libraries I use to develop dynamic projects.
 			</main>
@@ -137,8 +137,8 @@ const AboutmeHome = () => {
 			<img
 				ref={vueRef}
 				className={styles.svg}
-				src="/assets/svg/vue.svg"
-				alt="Vue"
+				src="/assets/svg/expo.svg"
+				alt="Expo"
 				loading="lazy"
 			/>
 			<footer className={styles.footer}>
