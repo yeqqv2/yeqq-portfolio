@@ -76,11 +76,16 @@ const WorkPage = () => {
 				</div>
 			</div>
 			<div className={styles.banner}>
-				<img
+				<video
 					className={styles.banner_image}
-					src={`${work.asset}/1.gif`}
-					alt={work.name}
-					loading="lazy"
+					src={work.banner}
+					autoPlay
+					loop
+					muted
+					playsInline
+					poster="/assets/loader/video-placeholder.webp"
+					preload="metadata"
+					aria-describedby={work.name}
 				/>
 			</div>
 			<div className={styles.main}>

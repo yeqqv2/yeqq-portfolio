@@ -56,6 +56,7 @@ export default function SplashScreen() {
                 loop
                 muted
                 playsInline
+                poster="/assets/loader/video-placeholder.webp"
             />
         </div>
     )

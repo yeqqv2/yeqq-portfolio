@@ -58,11 +58,16 @@ const ProjectsContainer = () => {
                 className={styles.work_img}
                 style={{ backgroundColor: work.color }}
               >
-                <img
-                  src={`${work.asset}/1.gif`}
-                  alt={work.desc}
+                <video
                   className={styles.img}
-                  loading="lazy"
+                  src={work.banner}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  poster="/assets/loader/video-placeholder.webp"
+                  preload="metadata"
+                  aria-describedby={work.name}
                 />
               </div>
               <div className={styles.works}>

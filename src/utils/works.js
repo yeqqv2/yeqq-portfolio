@@ -4,6 +4,7 @@ const works = [
     desc: "a web application built for skynotech smart site systems.",
     link: "/projects/skynotech-smart-site-systems",
     asset: "/assets/images/projects/skynotech",
+    banner: "/assets/videos/skynotech.webm",
     images: [
       { file: "1.webp", isWide: true },
       { file: "2.webp", isWide: false },
@@ -19,6 +20,7 @@ const works = [
     desc: "a corporate website built for skynotech smart site systems.",
     link: "/projects/skynotech-smart-site-systems-website",
     techs: ["next.js", "firebase"],
+    banner: "/assets/videos/skynotech-website.webm",
     asset: "/assets/images/projects/skynotech-website",
     images: [
       { file: "1.webp", isWide: true },
@@ -36,6 +38,7 @@ const works = [
     desc: "a job-search web application developed for the 'balıkesir istihdam ofisi'.",
     link: "/projects/balikesir-istihdam-ofisi",
     asset: "/assets/images/projects/balikesir-istihdam-ofisi",
+    banner: "/assets/videos/balikesir-istihdam-ofisi.webm",
     images: [
       { file: "1.webp", isWide: true },
       { file: "2.webp", isWide: false },
@@ -50,6 +53,7 @@ const works = [
     desc: "corporate website and web application for the 'balıkesir planlama ve kalkınma ajansı'.",
     link: "/projects/bapka-website",
     asset: "/assets/images/projects/bapka-website",
+    banner: "/assets/videos/bapka-website.webm",
     images: [
       { file: "1.webp", isWide: true },
       { file: "2.webp", isWide: false },
@@ -64,6 +68,7 @@ const works = [
     desc: "A dynamic mobile platform for Balıkesir's youth, offering real-time, personalized listings of all city events, concerts, and cultural activities.",
     link: "/projects/balikesir-etkinlik",
     asset: "/assets/images/projects/balikesir-etkinlik",
+    banner: "/assets/videos/balikesir-etkinlik.webm",
     images: [
       { file: "1.webp", isWide: true },
       { file: "2.webp", isWide: false },
@@ -83,6 +88,7 @@ const works = [
     desc: "The digital face of social municipality, providing citizens with easy access to financial aid and transparent spending management.",
     link: "/projects/yakin-kart",
     asset: "/assets/images/projects/yakin-kart",
+    banner: "/assets/videos/yakin-kart.webm",
     images: [
       { file: "1.webp", isWide: true },
       { file: "2.webp", isWide: false },
@@ -99,6 +105,7 @@ const works = [
     desc: "A platform that digitizes anonymous aid. It allows users to pay utility bills for those in need, fostering community solidarity.",
     link: "/projects/askida-fatura",
     asset: "/assets/images/projects/askida-fatura",
+    banner: "/assets/videos/askida-fatura.webm",
     images: [
       { file: "1.webp", isWide: true },
       { file: "2.webp", isWide: false },
@@ -110,6 +117,7 @@ const works = [
     desc: "A dedicated app simplifying the process of rehoming stray animals, ensuring safe and transparent adoption within the community.",
     link: "/projects/can-dostlar",
     asset: "/assets/images/projects/can-dostlar",
+    banner: "/assets/videos/can-dostlar.webm",
     images: [
       { file: "1.webp", isWide: true },
       { file: "2.webp", isWide: false },
@@ -123,6 +131,7 @@ const works = [
     desc: "A fast, reliable mobile guide showing the nearest on-duty pharmacies based on the user's real-time location and navigation support.",
     link: "/projects/balikesir-eczane",
     asset: "/assets/images/projects/balikesir-eczane",
+    banner: "/assets/videos/balikesir-eczane.webm",
     images: [
       { file: "1.webp", isWide: true },
       { file: "2.webp", isWide: false },

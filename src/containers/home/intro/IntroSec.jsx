@@ -21,6 +21,7 @@ const IntroSec = () => {
         loop
         muted
         playsInline
+        poster="/assets/loader/video-placeholder.webp"
       />
       <div className={styles.marquee_div}>
         <div className={styles.marquee_div_content}>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from './style.module.css';
 import works from '../../../utils/works';
 import colors from '../../../utils/colors';
@@ -83,7 +83,7 @@ const WorksHomePage = () => {
 							key={index}
 							onClick={() => {
 								navigate(work.link);
-								window.scrollTo(0, 0); // Yönlendirme sonrası sayfa en üste kaydırılır.
+								window.scrollTo(0, 0);
 							}}
 							onMouseMove={handleMouseMove}
 							onMouseEnter={handleMouseEnter}
@@ -93,11 +93,16 @@ const WorksHomePage = () => {
 								className={styles.work_img}
 								style={{ backgroundColor: work.color }}
 							>
-								<img
-									src={`${work.asset}/1.gif`}
-									alt={work.desc}
+								<video
 									className={styles.img}
-									loading="lazy"
+									src={work.banner}
+									autoPlay
+									loop
+									muted
+									playsInline
+									poster="/assets/loader/video-placeholder.webp"
+									preload="metadata"
+									aria-describedby={work.name}
 								/>
 							</div>
 							<div className={styles.works}>
