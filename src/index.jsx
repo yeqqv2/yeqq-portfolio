@@ -17,7 +17,7 @@ root.render(
 			}}
 			innerStyle={{
 				backgroundColor: 'white',
-				zIndex: 999,
+				zIndex: 99999,
 				mixBlendMode: 'difference'
 			}}
 			clickables={[
@@ -33,7 +33,7 @@ root.render(
 				'button',
 				'.link',
 			]}
-			trailingSpeed={0}
+			trailingSpeed={10}
 			showSystemCursor={false}
 		/>
 		<BrowserRouter>

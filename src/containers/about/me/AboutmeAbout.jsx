@@ -46,6 +46,7 @@ const AboutmeAbout = () => {
 							src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3NmV2OHpzMThld2JzazRhZjVseHR3b3lnMXphOGNiZ2NkeG1xaWhtaCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/maPw2mJhdWboDLRovR/giphy.gif"
 							alt="gif"
 							className={styles.vid}
+							loading="lazy"
 						/>
 					</div>
 				</div>
@@ -64,6 +65,7 @@ const AboutmeAbout = () => {
 							src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWt5a2xzeHZuYWYzMm1ybmRrenJ0a3loZGJ5M21wMWRnNHYxYnoxMCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/YRzQnWzbn4WIxd3ZYx/giphy.gif"
 							alt="gif"
 							className={styles.vid}
+							loading="lazy"
 						/>
 					</div>
 					<div className={`${styles.card} ${styles.card_text}`}>

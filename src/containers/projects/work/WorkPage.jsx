@@ -76,7 +76,12 @@ const WorkPage = () => {
 				</div>
 			</div>
 			<div className={styles.banner}>
-				<img className={styles.banner_image} src={`${work.asset}/1.gif`} alt={work.name} />
+				<img
+					className={styles.banner_image}
+					src={`${work.asset}/1.gif`}
+					alt={work.name}
+					loading="lazy"
+				/>
 			</div>
 			<div className={styles.main}>
 				<div className={styles.brand_images} ref={galleryRef}> {/* Galeri kapsayıcısına ref atandı */}
@@ -90,6 +95,7 @@ const WorkPage = () => {
 								className={styles.galleryImage}
 								src={`${work.asset}/${image.file}`}
 								alt={`${work.name} - Görsel ${index + 1}`}
+								loading="lazy"
 							/>
 						</div>
 					))}

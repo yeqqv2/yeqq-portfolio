@@ -62,6 +62,7 @@ const ProjectsContainer = () => {
                   src={`${work.asset}/1.gif`}
                   alt={work.desc}
                   className={styles.img}
+                  loading="lazy"
                 />
               </div>
               <div className={styles.works}>

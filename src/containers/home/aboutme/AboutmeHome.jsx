@@ -104,36 +104,42 @@ const AboutmeHome = () => {
 				className={styles.svg}
 				src="/assets/svg/html.svg"
 				alt="HTML"
+				loading="lazy"
 			/>
 			<img
 				ref={cssRef}
 				className={styles.svg}
 				src="/assets/svg/css.svg"
 				alt="CSS"
+				loading="lazy"
 			/>
 			<img
 				ref={sassRef}
 				className={styles.svg}
 				src="/assets/svg/sass.svg"
 				alt="SASS"
+				loading="lazy"
 			/>
 			<img
 				ref={jsRef}
 				className={styles.svg}
 				src="/assets/svg/javascript.svg"
 				alt="Javascript"
+				loading="lazy"
 			/>
 			<img
 				ref={reactRef}
 				className={styles.svg}
 				src="/assets/svg/react.svg"
 				alt="React.js"
+				loading="lazy"
 			/>
 			<img
 				ref={vueRef}
 				className={styles.svg}
 				src="/assets/svg/vue.svg"
 				alt="Vue"
+				loading="lazy"
 			/>
 			<footer className={styles.footer}>
 				<a className={styles.contact_link_colored} href="/about-me">

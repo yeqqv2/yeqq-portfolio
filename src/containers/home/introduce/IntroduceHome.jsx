@@ -40,7 +40,14 @@ export const IntroduceHome = () => {
 	return (
 		<main className={`${styles.main} keen-slider`} ref={sliderRef}>
 			{me.map((item, index) => (
-				<img style={{ minWidth: '40vh', objectFit: 'cover' }} key={index} className={`${styles.img} keen-slider__slide`} src={item.img} alt="me" />
+				<img
+					style={{ minWidth: '40vh', objectFit: 'cover' }}
+					key={index}
+					className={`${styles.img} keen-slider__slide`}
+					src={item.img}
+					alt="me"
+					loading="lazy"
+				/>
 			))}
 		</main>
 	);

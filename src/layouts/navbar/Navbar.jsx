@@ -70,6 +70,7 @@ export default function Navbar() {
 						hoverText="go home"
 						onClick={toggleSidebar}
 						icon={GoArrowRight}
+						arialabel="home"
 					/>
 					<AnimatedLink
 						href="/about-me"
@@ -77,6 +78,7 @@ export default function Navbar() {
 						hoverText="info"
 						onClick={toggleSidebar}
 						icon={GoArrowRight}
+						arialabel="aboutme"
 					/>
 
 					<AnimatedLink
@@ -85,6 +87,7 @@ export default function Navbar() {
 						hoverText="my works"
 						onClick={toggleSidebar}
 						icon={GoArrowRight}
+						arialabel="projects"
 					/>
 				</div>
 				<div className={styles.links}>
@@ -95,6 +98,7 @@ export default function Navbar() {
 								className={styles.contact_link_colored_sidebar}
 								href="/contact-me"
 								onClick={toggleSidebar}
+								aria-label="Contact Page"
 							>
 								● get in touch
 							</a>
@@ -108,6 +112,7 @@ export default function Navbar() {
 								target="__blank"
 								href="https://www.instagram.com/1yunusewre"
 								onClick={toggleSidebar}
+								aria-label="My Instagram Profile"
 							>
 								instagram
 							</a>
@@ -117,6 +122,7 @@ export default function Navbar() {
 								target="__blank"
 								href="https://dribbble.com/yeqqv2"
 								onClick={toggleSidebar}
+								aria-label="My Dribbble Profile"
 							>
 								dribbble
 							</a>
@@ -126,6 +132,7 @@ export default function Navbar() {
 								target="__blank"
 								href="https://github.com/yeqqv2"
 								onClick={toggleSidebar}
+								aria-label="My Github Profile"
 							>
 								github
 							</a>
@@ -135,6 +142,7 @@ export default function Navbar() {
 								target="__blank"
 								href="https://tr.linkedin.com/in/yunusemrekorkmaz34"
 								onClick={toggleSidebar}
+								aria-label="My Linkedin Profile"
 							>
 								linkedin
 							</a>

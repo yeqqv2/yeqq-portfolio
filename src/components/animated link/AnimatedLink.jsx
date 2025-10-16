@@ -4,7 +4,7 @@ import React, { useState, useRef, useCallback } from 'react';
 import gsap from 'gsap';
 import styles from './style.module.css';
 
-const AnimatedLink = ({ href, defaultText, hoverText, onClick, icon: IconComponent }) => {
+const AnimatedLink = ({ href, defaultText, hoverText, arialabel, onClick, icon: IconComponent }) => {
     const [textLines, setTextLines] = useState([defaultText]);
 
     // Animasyonun uygulanacağı metin kapsayıcıları
@@ -64,6 +64,7 @@ const AnimatedLink = ({ href, defaultText, hoverText, onClick, icon: IconCompone
             onClick={onClick}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            aria-label={arialabel}
         >
             <span ref={textWrapRef} className={styles.sm_toggle_textWrap} aria-hidden="true">
                 <span ref={textInnerRef} className={styles.sm_toggle_textInner}>

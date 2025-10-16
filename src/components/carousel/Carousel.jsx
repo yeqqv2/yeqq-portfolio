@@ -159,6 +159,7 @@ const Carousel = () => {
                         src={videos[currentIndex].src}
                         className={`${styles.video} ${styles.vid_top}`}
                         alt='top gif'
+                        loading="lazy"
                     />
                     <div className={styles.overlayTop} ref={overlayTopRef}></div>
                 </div>
@@ -177,6 +178,7 @@ const Carousel = () => {
                         src={videos[currentIndex].src}
                         className={`${styles.video} ${styles.vid_bottom}`}
                         alt='top gif'
+                        loading="lazy"
                     />
                     <div className={styles.overlayBottom} ref={overlayBottomRef}></div>
                 </div>
