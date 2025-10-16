@@ -11,14 +11,14 @@
 }
 
 .header {
-  font-size: 1.5em;
+  font-size: 1.25em;
+  font-weight: 300;
 }
 
 .main {
-  height: 30vh;
-  width: 50vw;
-  font-size: 2em;
-  font-weight: 300;
+  width: 60vw;
+  font-size: 3em;
+  font-weight: 200;
 }
 
 .name {
@@ -26,7 +26,9 @@
 }
 
 .svg_name {
-  text-decoration: underline;
+  display: inline-block;
+  font-weight: 100;
+  font-style: italic;
 }
 
 .svg {
@@ -43,6 +45,7 @@
   position: relative;
   color: var(--blue950);
   line-height: 1em;
+  font-size: 1.5em;
 }
 
 .contact_link_colored:hover {

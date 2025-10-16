@@ -37,7 +37,7 @@ const ContactHomePage = () => {
 	];
 
 	// Minimum mesafe, örneğin 50 piksel
-	const minimumDistance = 50;
+	const minimumDistance = 60;
 
 	const handleMouseMove = useCallback(
 		throttle((e) => {
@@ -102,15 +102,15 @@ const ContactHomePage = () => {
 					.to(`.word-${newWord.id}`, {
 						duration: 0.25,
 						opacity: 1,
-						scale: 1.3,
+						scale: 1.25,
 						rotate: Math.floor(Math.random() * 20 - 10),
 						ease: 'expo.out',
 					})
 					.to(`.word-${newWord.id}`, {
-						duration: 0.75,
+						duration: 0.5,
 						scale: 0,
 						ease: 'expo.in',
-						delay: 0.3,
+						delay: 0.25
 					});
 			}, 0);
 		}, 10),

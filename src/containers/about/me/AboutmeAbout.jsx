@@ -78,9 +78,8 @@ const AboutmeAbout = () => {
 								onMouseLeave={handleMouseLeave}
 								className={styles.link}
 							>
-								portfolio.
+								portfolio
 							</a>
-							.
 						</p>
 					</div>
 				</div>

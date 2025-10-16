@@ -70,9 +70,7 @@ const WorksHomePage = () => {
 				</div>
 				<div className={styles.header_desc}>
 					for all web-based projects, I took on the role of frontend developer
-					and UI/UX designer. for any project that didn’t require a backend
-					[NoSQL, one-page, landing page, etc.], I developed them using React or
-					Next.js.
+					and UI/UX designer.
 				</div>
 			</header>
 			<main className={`${styles.main} keen-slider`} ref={sliderRef}>

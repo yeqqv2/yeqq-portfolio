@@ -12,13 +12,14 @@
 .content {
   padding: 40vh 2.5vw 10vh 2.5vw;
   width: 50vw;
-  font-size: 2em;
-  font-weight: 300;
+  font-size: 3em;
+  font-weight: 200;
 }
 
 .link {
-  text-decoration: underline;
-  display: inline-block; /* veya block */
+  display: inline-block;
+  font-weight: 100;
+  font-style: italic;
 }
 
 .customCursor {
