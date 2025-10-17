@@ -17,8 +17,9 @@
 
 .main {
   width: 60vw;
-  font-size: 3em;
+  font-size: 2em;
   font-weight: 200;
+  position: relative;
 }
 
 .name {
@@ -34,10 +35,20 @@
 .svg {
   position: absolute;
   top: 50%;
-  right: -100%;
-  transform: translate(0, -50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 30vw;
 }
+
+/* .cursor_img {
+  position: fixed;
+  transform: translate(-100%, -100%);
+  pointer-events: none;
+  width: 128;
+  height: 128;
+  z-index: 9999;
+  transition: width 0.12s, height 0.12s;
+} */
 
 .contact_link_colored {
   padding: 0.375em 0.5em 0.375em 0.5em;

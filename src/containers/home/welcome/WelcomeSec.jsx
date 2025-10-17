@@ -48,16 +48,16 @@ const WelcomeSec = () => {
 	return (
 		<section className={styles.container}>
 			<div className={styles.content}>
-				hey, it's yunus emre korkmaz, I create aesthetic and easy designs.
-				these are my <a
+				hey, i'm yunus emre korkmaz. i’m a frontend developer who transforms ideas into stunning, human-focused realities.
+				here's more about <a
 					href="/about-me"
 					onMouseMove={handleMouseMove}
 					onMouseEnter={handleMouseEnter}
 					onMouseLeave={handleMouseLeave}
 					className={styles.link}
 				>
-					interestes
-				</a> in life
+					my story
+				</a>
 			</div>
 			<span
 				className={styles.customCursor}

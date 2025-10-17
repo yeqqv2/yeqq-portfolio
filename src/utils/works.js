@@ -1,5 +1,7 @@
 const works = [
   {
+    project_name: "Smart Site Systems",
+    company_name: "Skynotech",
     name: "skynotech smart site systems",
     desc: "a web application built for skynotech smart site systems.",
     link: "/projects/skynotech-smart-site-systems",
@@ -16,6 +18,8 @@ const works = [
     ],
   },
   {
+    project_name: "Website",
+    company_name: "Skynotech",
     name: "skynotech smart site systems website",
     desc: "a corporate website built for skynotech smart site systems.",
     link: "/projects/skynotech-smart-site-systems-website",
@@ -34,6 +38,8 @@ const works = [
     ],
   },
   {
+    project_name: "Balıkesir İstihdam Ofisi",
+    company_name: "Balıkesir Metropolitan Municipality",
     name: "balikesir istihdam ofisi",
     desc: "a job-search web application developed for the 'balıkesir istihdam ofisi'.",
     link: "/projects/balikesir-istihdam-ofisi",
@@ -49,8 +55,10 @@ const works = [
     ],
   },
   {
-    name: "balikesir planlama ve kalkınma ajansı website",
-    desc: "corporate website and web application for the 'balıkesir planlama ve kalkınma ajansı'.",
+    project_name: "BAPKA Official Website",
+    company_name: "Balıkesir Planning and Development Agency",
+    name: "balıkesir planning and development agency website",
+    desc: "corporate website and web application for the BAPKA.",
     link: "/projects/bapka-website",
     asset: "/assets/images/projects/bapka-website",
     banner: "/assets/videos/bapka-website.webm",
@@ -64,6 +72,8 @@ const works = [
     ],
   },
   {
+    project_name: "Balıkesir Events",
+    company_name: "Balıkesir Metropolitan Municipality",
     name: "balıkesir events mobile application",
     desc: "A dynamic mobile platform for Balıkesir's youth, offering real-time, personalized listings of all city events, concerts, and cultural activities.",
     link: "/projects/balikesir-etkinlik",
@@ -84,6 +94,8 @@ const works = [
     ],
   },
   {
+    project_name: "Yakın Kart",
+    company_name: "Balıkesir Metropolitan Municipality",
     name: "yakın kart mobile application",
     desc: "The digital face of social municipality, providing citizens with easy access to financial aid and transparent spending management.",
     link: "/projects/yakin-kart",
@@ -101,6 +113,8 @@ const works = [
     ],
   },
   {
+    project_name: "Askıda Fatura",
+    company_name: "Balıkesir Metropolitan Municipality",
     name: "askıda fatura mobile application",
     desc: "A platform that digitizes anonymous aid. It allows users to pay utility bills for those in need, fostering community solidarity.",
     link: "/projects/askida-fatura",
@@ -113,6 +127,8 @@ const works = [
     ],
   },
   {
+    project_name: "Can Dostlar",
+    company_name: "Balıkesir Metropolitan Municipality",
     name: "candostlar mobile application",
     desc: "A dedicated app simplifying the process of rehoming stray animals, ensuring safe and transparent adoption within the community.",
     link: "/projects/can-dostlar",
@@ -127,6 +143,8 @@ const works = [
     ],
   },
   {
+    project_name: "Balıkesir Eczane",
+    company_name: "Balıkesir Metropolitan Municipality",
     name: "balıkesir eczane mobile application",
     desc: "A fast, reliable mobile guide showing the nearest on-duty pharmacies based on the user's real-time location and navigation support.",
     link: "/projects/balikesir-eczane",

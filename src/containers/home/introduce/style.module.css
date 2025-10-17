@@ -1,12 +1,16 @@
 .main {
-	height: 40vh;
-	display: flex;
-	align-items: center;
-	overflow: hidden;
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 }
 
 .img {
-	height: 40vh;
-	object-fit: cover;
-	object-position: center;
+  min-width: 40vh;
+  object-fit: cover;
+  object-position: center;
+}
+
+.img:nth-child(9) {
+  min-width: 80vh;
 }

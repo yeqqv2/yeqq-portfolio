@@ -1,146 +1,136 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import styles from './style.module.css';
 
 const AboutmeHome = () => {
-	// 1. Span’ler (teknoloji isimleri) için referanslar
-	const htmlNameRef = useRef(null);
-	const cssNameRef = useRef(null);
-	const sassNameRef = useRef(null);
-	const jsNameRef = useRef(null);
-	const reactNameRef = useRef(null);
-	const vueNameRef = useRef(null);
+	// cursor position + hover state
+	const [hoveringLogo, setHoveringLogo] = useState(false);
+	const [logoSrc, setLogoSrc] = useState(null);
 
-	// 2. İlgili SVG’ler için referanslar
-	const htmlRef = useRef(null);
-	const cssRef = useRef(null);
-	const sassRef = useRef(null);
-	const jsRef = useRef(null);
-	const reactRef = useRef(null);
-	const vueRef = useRef(null);
+	const cursorImgRef = useRef(null);
+	const containerRef = useRef(null);
 
-	// 3. Bileşen yüklendiğinde Event Listener’ları tanımla
+	// quickSetter references
+	const posXSetter = useRef(null);
+	const posYSetter = useRef(null);
+
 	useEffect(() => {
-		// Tüm “isim” & “svg” eşleşmelerini dizi şeklinde tutalım
-		const techRefs = [
-			{ nameRef: htmlNameRef, svgRef: htmlRef },
-			{ nameRef: cssNameRef, svgRef: cssRef },
-			{ nameRef: sassNameRef, svgRef: sassRef },
-			{ nameRef: jsNameRef, svgRef: jsRef },
-			{ nameRef: reactNameRef, svgRef: reactRef },
-			{ nameRef: vueNameRef, svgRef: vueRef },
-		];
+		// init: make sure element exists
+		if (!cursorImgRef.current) return;
 
-		techRefs.forEach(({ nameRef, svgRef }) => {
-			if (!nameRef.current || !svgRef.current) return;
-
-			// Hover (mouseenter) olduğunda SVG’yi sağa kaydır
-			const onEnter = () => {
-				gsap.to(svgRef.current, {
-					duration: 0.5,
-					right: 0,
-					ease: 'power2.out',
-				});
-			};
-
-			// Mouse ayrıldığında (mouseleave) SVG’yi geri çek
-			const onLeave = () => {
-				gsap.to(svgRef.current, {
-					duration: 0.5,
-					right: '-100%', // Başlangıç pozisyonunuza geri
-					ease: 'power2.in',
-				});
-			};
-
-			nameRef.current.addEventListener('mouseenter', onEnter);
-			nameRef.current.addEventListener('mouseleave', onLeave);
-
-			// Cleanup: Bileşen unmount olurken event’leri temizle
-			return () => {
-				nameRef.current.removeEventListener('mouseenter', onEnter);
-				nameRef.current.removeEventListener('mouseleave', onLeave);
-			};
+		// Use GSAP to manage transforms (x/y/xPercent/yPercent) so transform is unified.
+		// Set initial transform state: offscreen + centered via xPercent/yPercent
+		gsap.set(cursorImgRef.current, {
+			x: -9999,
+			y: -9999,
+			xPercent: -50,
+			yPercent: -50,
+			scale: 0.6,
+			willChange: 'transform',
+			pointerEvents: 'none',
 		});
+
+		// quickSetter is very cheap and ideal for pointer follow
+		posXSetter.current = gsap.quickSetter(cursorImgRef.current, 'x', 'px');
+		posYSetter.current = gsap.quickSetter(cursorImgRef.current, 'y', 'px');
 	}, []);
 
+	// scale animation when hovering / leaving
+	useEffect(() => {
+		if (!cursorImgRef.current) return;
+		if (hoveringLogo) {
+			gsap.to(cursorImgRef.current, { scale: 1, duration: 0.18, ease: 'power2.out' });
+		} else {
+			gsap.to(cursorImgRef.current, { scale: 0.6, duration: 0.18, ease: 'power2.out' });
+		}
+	}, [hoveringLogo]);
+
+	// pointer move handler uses quickSetter for smooth, cheap updates
+	const handleMouseMove = (e) => {
+		if (posXSetter.current && posYSetter.current) {
+			posXSetter.current(e.clientX);
+			posYSetter.current(e.clientY);
+		} else {
+			// fallback: direct style px (shouldn't be necessary)
+			if (cursorImgRef.current) {
+				cursorImgRef.current.style.left = `${e.clientX}px`;
+				cursorImgRef.current.style.top = `${e.clientY}px`;
+			}
+		}
+	};
+
+	// helpers to set which logo to show
+	const showLogo = (src) => {
+		setLogoSrc(src);
+		setHoveringLogo(true);
+	};
+	const hideLogo = () => {
+		setHoveringLogo(false);
+	};
+
+	// mapping for spans -> logo paths
+	const logos = {
+		html: '/assets/svg/html.svg',
+		css: '/assets/svg/css.svg',
+		sass: '/assets/svg/sass.svg',
+		js: '/assets/svg/javascript.svg',
+		react: '/assets/svg/react.svg',
+		expo: '/assets/svg/expo.svg',
+	};
+
 	return (
-		<div className={styles.container}>
+		<div
+			className={styles.container}
+			ref={containerRef}
+			onMouseMove={handleMouseMove}
+			style={{ cursor: hoveringLogo ? 'none' : 'auto' }}
+		>
 			<header className={styles.header}>[aboutme]</header>
+
 			<main className={styles.main}>
-				as a frontend developer, I view every project I design and code as a
-				piece of art.{' '}
-				<span ref={htmlNameRef} className={`${styles.svg_name} ${styles.html}`}>
-					HTML
-				</span>
-				,{' '}
-				<span ref={cssNameRef} className={`${styles.svg_name} ${styles.css}`}>
-					CSS
-				</span>{' '}
-				&{' '}
-				<span ref={sassNameRef} className={`${styles.svg_name} ${styles.sass}`}>
-					SASS
-				</span>{' '}
-				and{' '}
-				<span ref={jsNameRef} className={`${styles.svg_name} ${styles.js}`}>
-					Javascript
-				</span>{' '}
-				primarily among modern web technologies, and{' '}
+				i architect scalable, human-focused applications using{' '}
 				<span
-					ref={reactNameRef}
+					onMouseEnter={() => showLogo(logos.js)}
+					onMouseLeave={hideLogo}
+					className={`${styles.svg_name} ${styles.js}`}
+				>
+					Javascript
+				</span>
+				, and leverage frameworks like{' '}
+				<span
+					onMouseEnter={() => showLogo(logos.react)}
+					onMouseLeave={hideLogo}
 					className={`${styles.svg_name} ${styles.react}`}
 				>
 					React
 				</span>
-				,{' '}
-				<span ref={vueNameRef} className={`${styles.svg_name} ${styles.vue}`}>
+				{' '}and{' '}
+				<span
+					onMouseEnter={() => showLogo(logos.expo)}
+					onMouseLeave={hideLogo}
+					className={`${styles.svg_name} ${styles.reactnative}`}
+				>
 					React Native (Expo)
-				</span>{' '}
-				are some libraries I use to develop dynamic projects.
+				</span>
+				{' '}to bring exceptional, responsive interfaces to life across all platforms.
 			</main>
 
-			{/* SVG’ler - başlangıçta gizli konumda duracaklar */}
 			<img
-				ref={htmlRef}
-				className={styles.svg}
-				src="/assets/svg/html.svg"
-				alt="HTML"
-				loading="lazy"
+				ref={cursorImgRef}
+				src={logoSrc || logos.js}
+				alt=""
+				aria-hidden="true"
+				style={{
+					position: 'fixed',
+					left: 0,
+					top: 0,
+					width: 256,
+					height: 256,
+					display: hoveringLogo ? 'block' : 'none',
+					zIndex: 9999,
+				}}
 			/>
-			<img
-				ref={cssRef}
-				className={styles.svg}
-				src="/assets/svg/css.svg"
-				alt="CSS"
-				loading="lazy"
-			/>
-			<img
-				ref={sassRef}
-				className={styles.svg}
-				src="/assets/svg/sass.svg"
-				alt="SASS"
-				loading="lazy"
-			/>
-			<img
-				ref={jsRef}
-				className={styles.svg}
-				src="/assets/svg/javascript.svg"
-				alt="Javascript"
-				loading="lazy"
-			/>
-			<img
-				ref={reactRef}
-				className={styles.svg}
-				src="/assets/svg/react.svg"
-				alt="React.js"
-				loading="lazy"
-			/>
-			<img
-				ref={vueRef}
-				className={styles.svg}
-				src="/assets/svg/expo.svg"
-				alt="Expo"
-				loading="lazy"
-			/>
+
 			<footer className={styles.footer}>
 				<a className={styles.contact_link_colored} href="/about-me">
 					● more about me

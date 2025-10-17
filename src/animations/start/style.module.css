@@ -4,13 +4,22 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  clip-path: circle(100% at 50% 50%);
   padding: 20vh 10vw 10vh 10vw;
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  z-index: -2;
+  clip-path: circle(100% at 50% 50%);
 }
 
 .ball {
@@ -19,6 +28,21 @@
   object-fit: cover;
   height: 70vh;
   scale: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  font-size: 5vw;
+  font-weight: 400;
+  color: var(--wb50);
+  width: 90vw;
+  text-align: center;
 }
 
 @media screen and (max-width: 1024px) {

@@ -2,12 +2,6 @@ import { useState } from 'react';
 import styles from './style.module.css';
 import works from '../../../utils/works';
 import colors from '../../../utils/colors';
-import { useKeenSlider } from "keen-slider/react";
-import "keen-slider/keen-slider.min.css";
-import { useNavigate } from 'react-router-dom';
-
-
-const animation = { duration: 15000, easing: (t) => t }
 
 const WorksHomePage = () => {
 	const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -16,8 +10,6 @@ const WorksHomePage = () => {
 		bg: 'var(--main-color500)',
 		color: 'var(--wb950)',
 	});
-
-	const navigate = useNavigate();
 
 	const handleMouseMove = (e) => {
 		setCursorPos({ x: e.clientX, y: e.clientY });
@@ -34,33 +26,7 @@ const WorksHomePage = () => {
 		setHovered(false);
 	};
 
-	const [sliderRef] = useKeenSlider({
-		loopAdditionalSlides: 5,
-		loop: true,
-		mode: "free",
-		drag: true,
-		slides: { perView: 4, spacing: 0 },
-		breakpoints: {
-			'(max-width: 767px)': {
-				slides: { perView: 1, spacing: 0 },
-			},
-			'(min-width: 768px) and (max-width: 1023px)': {
-				slides: { perView: 2, spacing: 0 },
-			},
-			'(min-width: 1024px)': {
-				slides: { perView: 4, spacing: 0 },
-			},
-		},
-		created(s) {
-			s.moveToIdx(5, true, animation)
-		},
-		updated(s) {
-			s.moveToIdx(s.track.details.abs + 5, true, animation)
-		},
-		animationEnded(s) {
-			s.moveToIdx(s.track.details.abs + 5, true, animation)
-		},
-	});
+	const lastThreeWorks = works.slice(-9);
 
 	return (
 		<div className={styles.container}>
@@ -68,21 +34,18 @@ const WorksHomePage = () => {
 				<div className={styles.header_title}>
 					[projects,works]
 				</div>
-				<div className={styles.header_desc}>
+				{/* <div className={styles.header_desc}>
 					for all web-based projects, I took on the role of frontend developer
 					and UI/UX designer.
-				</div>
+				</div> */}
 			</header>
-			<main className={`${styles.main} keen-slider`} ref={sliderRef}>
-				{works.map((work, index) => {
+			<main className={styles.main}>
+				{lastThreeWorks.map((work, index) => {
 					return (
-						<div
-							className={`${styles.main_div} keen-slider__slide`}
+						<a
+							href={work.link}
+							className={styles.main_div}
 							key={index}
-							onClick={() => {
-								navigate(work.link);
-								window.scrollTo(0, 0);
-							}}
 							onMouseMove={handleMouseMove}
 							onMouseEnter={handleMouseEnter}
 							onMouseLeave={handleMouseLeave}
@@ -104,10 +67,10 @@ const WorksHomePage = () => {
 								/>
 							</div>
 							<div className={styles.works}>
-								<div className={styles.work_name}>[{work.name}]</div>
-								<div className={styles.work_desc}>{work.desc}</div>
+								<div className={styles.work_name}>{work.project_name}</div>
+								<div className={styles.work_desc}>{work.company_name}</div>
 							</div>
-						</div>
+						</a>
 					);
 				})}
 			</main>

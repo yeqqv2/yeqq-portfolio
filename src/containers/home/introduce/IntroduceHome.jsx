@@ -25,7 +25,10 @@ export const IntroduceHome = () => {
 		loop: true,
 		mode: "free-snap",
 		drag: true,
-		slides: { perView: "auto", spacing: 10 },
+		slides: {
+			perView: "auto",
+			spacing: 10
+		},
 		created(s) {
 			s.moveToIdx(5, true, animation)
 		},
@@ -41,7 +44,6 @@ export const IntroduceHome = () => {
 		<main className={`${styles.main} keen-slider`} ref={sliderRef}>
 			{me.map((item, index) => (
 				<img
-					style={{ minWidth: '40vh', objectFit: 'cover' }}
 					key={index}
 					className={`${styles.img} keen-slider__slide`}
 					src={item.img}

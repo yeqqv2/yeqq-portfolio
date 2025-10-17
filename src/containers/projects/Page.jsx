@@ -40,7 +40,7 @@ const ProjectsContainer = () => {
           [projects,works]
         </div>
         <div className={styles.header_desc}>
-          i design and build intuitive, high-performance web solutions using modern stacks like React and Next.js, handling both the UI/UX design and the frontend development.
+          as a hybrid developer, i transform ideas into market-ready applications. here you'll find examples of my work, from defining a unified design language to engineering interfaces.
         </div>
       </header>
       <main className={styles.main}>
@@ -71,8 +71,8 @@ const ProjectsContainer = () => {
                 />
               </div>
               <div className={styles.works}>
-                <div className={styles.work_name}>[{work.name}]</div>
-                <div className={styles.work_desc}>{work.desc}</div>
+                <div className={styles.work_name}>{work.project_name}</div>
+                <div className={styles.work_desc}>{work.company_name}</div>
               </div>
             </a>
           );
