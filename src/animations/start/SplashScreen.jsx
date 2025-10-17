@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "./style.module.css";
 import { gsap } from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
@@ -13,30 +13,41 @@ export default function SplashScreen() {
     const contentRef = useRef(null);
     const ballRef = useRef(null);
     const titleRef = useRef(null);
-    const tlRef = useRef(null); // keep timeline so we can kill on unmount
+    const tlRef = useRef(null);
+    const originalOverflow = useRef({ body: "", html: "" });
 
     useEffect(() => {
-        // Guard: only run in browser
+        // run only in browser
         if (typeof window === "undefined") return;
 
-        // Robust session check (try/catch in case storage is restricted)
-        let alreadyRan = false;
+        // if session says ran, hide splash immediately and DO NOT lock scroll
+        let ranBefore = false;
         try {
-            alreadyRan = sessionStorage.getItem("splashRan") === "1";
+            ranBefore = sessionStorage.getItem("splashRan") === "1";
         } catch (e) {
-            alreadyRan = false;
+            ranBefore = false;
         }
-
-        // If it already ran in this tab/session, hide splash immediately and don't run animation
-        if (alreadyRan) {
+        if (ranBefore) {
             if (containerRef.current) containerRef.current.style.display = "none";
             return;
         }
 
-        // Prevent double-creating timeline if effect somehow runs twice
-        if (tlRef.current) return;
+        // Save current overflow values so we can restore them later
+        originalOverflow.current.body = document.body.style.overflow || "";
+        originalOverflow.current.html = document.documentElement.style.overflow || "";
 
-        // Initial setup
+        // Lock scroll on both html and body while splash visible
+        document.body.style.overflow = "hidden";
+        document.documentElement.style.overflow = "hidden";
+
+        // Make sure the container is visible and on top
+        if (containerRef.current) {
+            containerRef.current.style.display = "";
+            // ensure pointer events are allowed for the splash
+            containerRef.current.style.pointerEvents = "auto";
+        }
+
+        // Setup GSAP initial states (null checks for safety)
         if (ballRef.current) {
             gsap.set(ballRef.current, {
                 scale: 0,
@@ -53,14 +64,12 @@ export default function SplashScreen() {
             gsap.set(containerRef.current, {
                 clipPath: "circle(100% at 50% 50%)",
                 filter: "none",
-                display: "", // ensure visible if CSS had it hidden
             });
         }
 
         const tl = gsap.timeline({ defaults: { ease: "hop" } });
         tlRef.current = tl;
 
-        // Build timeline (kept structure from your original animation)
         tl.to(ballRef.current, { scale: 0 })
             .to(contentRef.current, { duration: 0.05 }, "+=1")
             .call(() => {
@@ -110,7 +119,6 @@ export default function SplashScreen() {
                 "+=1"
             )
             .set(titleRef.current, { display: "none" }, "<")
-            // close animation (clipPaths + hide)
             .to(
                 contentRef.current,
                 {
@@ -130,50 +138,53 @@ export default function SplashScreen() {
                 "<"
             )
             .call(() => {
-                // mark session as completed (wrapped in try/catch)
+                // On completion, mark session and restore scroll + hide splash
                 try {
                     sessionStorage.setItem("splashRan", "1");
                 } catch (e) {
-                    // ignore storage failures (private mode, blocked, etc.)
+                    // ignore storage failures
                 }
-            })
-            .set(containerRef.current, { display: "none" });
+                // Restore original overflow
+                document.body.style.overflow = originalOverflow.current.body;
+                document.documentElement.style.overflow = originalOverflow.current.html;
+                if (containerRef.current) containerRef.current.style.display = "none";
+            });
 
-        // Fallback: if GSAP doesn't complete for any reason, hide after a timeout
-        const fallbackMs = 10000; // 10s fallback
-        const fallbackId = setTimeout(() => {
+        // Fallback safety: if timeline never finishes (errors, interrupted...), ensure we restore scrolling
+        const fallback = setTimeout(() => {
             if (tlRef.current) {
                 try {
                     sessionStorage.setItem("splashRan", "1");
                 } catch (e) { }
+                document.body.style.overflow = originalOverflow.current.body;
+                document.documentElement.style.overflow = originalOverflow.current.html;
                 if (containerRef.current) containerRef.current.style.display = "none";
-                // Kill timeline if still alive
-                if (tlRef.current) {
-                    tlRef.current.kill();
-                    tlRef.current = null;
-                }
+                tlRef.current.kill();
+                tlRef.current = null;
             }
-        }, fallbackMs);
+        }, 12000); // 12s fallback
 
-        // When timeline completes, clear fallback timer and cleanup reference
+        // When timeline completes (GSAP callback), clear fallback and release refs
         tl.eventCallback("onComplete", () => {
-            clearTimeout(fallbackId);
+            clearTimeout(fallback);
             tlRef.current = null;
         });
 
-        // Cleanup on unmount
+        // cleanup on unmount (restore scroll if necessary)
         return () => {
-            clearTimeout(fallbackId);
+            clearTimeout(fallback);
             if (tlRef.current) {
                 tlRef.current.kill();
                 tlRef.current = null;
             }
+            // restore overflow to original values in case component unmounts mid-animation
+            document.body.style.overflow = originalOverflow.current.body;
+            document.documentElement.style.overflow = originalOverflow.current.html;
         };
-        // empty deps: run once per mount
     }, []);
 
     return (
-        <div className={styles.container} ref={containerRef}>
+        <div className={styles.container} ref={containerRef} aria-hidden="false">
             <div className={styles.content} ref={contentRef} />
             <div className={styles.title} ref={titleRef}>
                 [ what if it goes wrong? ]

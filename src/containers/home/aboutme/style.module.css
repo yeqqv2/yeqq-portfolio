@@ -64,9 +64,6 @@
   letter-spacing: 0.05em;
 }
 
-@media screen and (max-width: 1024px) {
-}
-
 @media screen and (max-width: 600px) {
   .container {
     padding: 5vh 5vw;
@@ -78,7 +75,11 @@
   }
 
   .main {
-    width: 60vw;
+    width: 90vw;
     font-size: 1.25em;
+  }
+
+  .contact_link_colored {
+    font-size: 1em;
   }
 }
