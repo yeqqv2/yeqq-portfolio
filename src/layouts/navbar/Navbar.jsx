@@ -64,31 +64,49 @@ export default function Navbar() {
 					/>
 				</span>
 				<div className={styles.links}>
-					<AnimatedLink
+					<a href="/" className={styles.link}>
+						<span className={styles.link_icon}>
+							<GoArrowRight />
+						</span>
+						home
+					</a>
+					<a href="/about-me" className={styles.link}>
+						<span className={styles.link_icon}>
+							<GoArrowRight />
+						</span>
+						aboutme
+					</a>
+					<a href="/projects" className={styles.link}>
+						<span className={styles.link_icon}>
+							<GoArrowRight />
+						</span>
+						projects
+					</a>
+					{/* <AnimatedLink
 						href="/"
 						defaultText="home"
 						hoverText="go home"
 						onClick={toggleSidebar}
 						icon={GoArrowRight}
 						arialabel="home"
-					/>
-					<AnimatedLink
+					/> */}
+					{/* <AnimatedLink
 						href="/about-me"
 						defaultText="aboutme"
 						hoverText="info"
 						onClick={toggleSidebar}
 						icon={GoArrowRight}
 						arialabel="aboutme"
-					/>
+					/> */}
 
-					<AnimatedLink
+					{/* <AnimatedLink
 						href="/projects"
 						defaultText="projects"
 						hoverText="my works"
 						onClick={toggleSidebar}
 						icon={GoArrowRight}
 						arialabel="projects"
-					/>
+					/> */}
 				</div>
 				<div className={styles.links}>
 					<div className={styles.contact_link_sec}>

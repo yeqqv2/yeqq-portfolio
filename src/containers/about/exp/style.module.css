@@ -23,7 +23,7 @@
 .desc {
   flex: 7;
   font-size: 2em;
-  font-weight: 300;
+  font-weight: 200;
 }
 
 .main {
@@ -83,22 +83,23 @@
 @media screen and (max-width: 600px) {
   .container {
     position: relative;
-    padding: 5vh 5vw;
+    padding: 5vh 2.5vw;
   }
 
   .header {
     position: relative;
-    width: 90vw;
+    width: 95vw;
     flex-direction: column;
   }
 
   .desc {
     position: relative;
-    width: 90vw;
+    width: 95vw;
+    font-size: 1.5em;
   }
 
   .main {
-    width: 90vw;
+    width: 95vw;
     gap: 5vw;
     justify-content: space-between;
     position: relative;

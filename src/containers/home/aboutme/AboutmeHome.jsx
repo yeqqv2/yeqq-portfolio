@@ -124,8 +124,8 @@ const AboutmeHome = () => {
 					position: 'fixed',
 					left: 0,
 					top: 0,
-					width: 256,
-					height: 256,
+					width: 128,
+					height: 128,
 					display: hoveringLogo ? 'block' : 'none',
 					zIndex: 9999,
 				}}

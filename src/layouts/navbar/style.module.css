@@ -77,12 +77,15 @@
 }
 
 .link {
-  font-size: 3em;
+  font-size: 4em;
+  line-height: 1;
+  letter-spacing: -0.05em;
   transition: 0.5s;
 }
 
 .link_icon {
   width: 0;
+  transition: 0.3s;
 }
 
 .link:hover > .link_icon {

@@ -71,18 +71,17 @@
 .outro {
   position: absolute;
   top: 175vh;
-  height: 120vh;
+  height: 175vh;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 10vh;
-  background-color: var(--wb100);
 }
 
 .outro_text {
   margin-left: 2.5vw;
   width: 40%;
-  font-size: 3em;
+  font-size: 2em;
   font-weight: 200;
   color: var(--wb950);
 }
@@ -113,6 +112,7 @@
     top: 190vh;
   }
   .outro_text {
+    font-size: 1.25em;
     width: 80%;
   }
   .card {

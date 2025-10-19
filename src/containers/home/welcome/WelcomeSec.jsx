@@ -48,7 +48,7 @@ const WelcomeSec = () => {
 	return (
 		<section className={styles.container}>
 			<div className={styles.content}>
-				hey, i'm yunus emre korkmaz. i’m a frontend developer who transforms ideas into stunning, human-focused realities.
+				hey, i'm yunus emre korkmaz, a frontend developer who transforms ideas into stunning, human-focused realities.
 				here's more about <a
 					href="/about-me"
 					onMouseMove={handleMouseMove}
