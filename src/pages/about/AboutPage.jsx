@@ -8,6 +8,8 @@ import AboutIntro from '../../containers/about/about intro/AboutIntro';
 
 import gsap from 'gsap';
 import { throttle } from 'lodash';
+import AboutWhoAmI from '../../containers/about/about who am i/AboutWhoAmI';
+import AboutGallery from '../../containers/about/gallery/AboutGallery';
 
 const AboutPage = () => {
 	const [words, setWords] = useState([]);
@@ -128,6 +130,8 @@ const AboutPage = () => {
 		>
 			<IntroAbout />
 			<AboutIntro />
+			<AboutWhoAmI />
+			{/* <AboutGallery /> */}
 			{/* <AboutmeAbout />
 			<ExpAbout /> */}
 			<div className={styles.sentences}>

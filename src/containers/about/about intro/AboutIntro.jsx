@@ -6,7 +6,7 @@ export default function AboutIntro() {
         <div className={styles.container}>
             <header className={styles.header}>
                 <div className={styles.header_title}>
-                    [who,am,i]
+                    [aboutme]
                 </div>
                 <div className={styles.header_desc}>
                     i combine design and code to build things people love to use.
@@ -16,40 +16,40 @@ export default function AboutIntro() {
                 <a href="/projects" className={styles.card}>
                     <video
                         className={styles.banner}
-                        src={works[4].banner}
+                        src={works[4]?.banner}
                         autoPlay
                         loop
                         muted
                         playsInline
                         poster="/assets/loader/video-placeholder.webp"
                         preload="metadata"
-                        aria-describedby={works[0].name}
+                        aria-describedby={works[4]?.name}
                     />
                 </a>
                 <a href="/projects" className={styles.card}>
                     <video
                         className={styles.banner}
-                        src={works[1].banner}
+                        src={works[1]?.banner}
                         autoPlay
                         loop
                         muted
                         playsInline
                         poster="/assets/loader/video-placeholder.webp"
                         preload="metadata"
-                        aria-describedby={works[0].name}
+                        aria-describedby={works[1]?.name}
                     />
                 </a>
                 <a href="/projects" className={styles.card}>
                     <video
                         className={styles.banner}
-                        src={works[0].banner}
+                        src={works[0]?.banner}
                         autoPlay
                         loop
                         muted
                         playsInline
                         poster="/assets/loader/video-placeholder.webp"
                         preload="metadata"
-                        aria-describedby={works[0].name}
+                        aria-describedby={works[0]?.name}
                     />
                 </a>
             </div>

@@ -19,7 +19,7 @@ import WorkPage from './containers/projects/work/WorkPage';
 function App() {
 	useEffect(() => {
 		const lenis = new Lenis({
-			lerp: 0.7,
+			lerp: 0.5,
 			easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
 			smoothTouch: true,
 			wheelMultiplier: 1.0,

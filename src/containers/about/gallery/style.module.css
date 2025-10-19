@@ -1,0 +1,29 @@
+.container {
+  width: 100vw;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.25em;
+  padding: 0 2.5vw 0 42.5vw;
+}
+
+.image {
+  height: 30vh;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 2.5vw;
+  }
+
+  .image {
+    display: none;
+  }
+
+  .image:nth-child(1) {
+    display: flex;
+    height: 95vw;
+    width: 95vw;
+    aspect-ratio: 1 !important;
+  }
+}
