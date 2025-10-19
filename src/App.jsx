@@ -1,5 +1,6 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Lenis from '@studio-freight/lenis';
 // ================================================
 // STYLES
 // ================================================
@@ -16,6 +17,27 @@ import ContactPage from './containers/contact/Page';
 import WorkPage from './containers/projects/work/WorkPage';
 
 function App() {
+	useEffect(() => {
+		const lenis = new Lenis({
+			lerp: 0.7,
+			easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+			smoothTouch: true,
+			wheelMultiplier: 1.0,
+		});
+
+		function raf(time) {
+			lenis.raf(time);
+			requestAnimationFrame(raf);
+		}
+
+		requestAnimationFrame(raf);
+
+		// Temizleme fonksiyonu
+		return () => {
+			lenis.destroy();
+		};
+	}, []);
+
 	return (
 		<Routes>
 			{/* HOME PAGE */}

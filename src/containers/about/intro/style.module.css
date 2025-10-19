@@ -1,16 +1,14 @@
 .container {
   width: 100vw;
   min-height: 100vh;
-  background-color: var(--wb100);
-  margin-bottom: 200vh;
   position: relative;
-  padding: 50vh 0 10vh 0;
+  padding: 50vh 0 0vh 0;
 }
 
 .h1 {
   width: 100%;
   color: var(--wb950);
-  font-size: 50vw; /* Eğer 50vh istiyorsan burayı 50vh yapabilirsin */
+  font-size: 40vw; /* Eğer 50vh istiyorsan burayı 50vh yapabilirsin */
   font-weight: 400;
   margin: 0;
   will-change: transform, opacity; /* Donanım hızlandırması */
@@ -23,7 +21,6 @@
   width: 500vw;
   height: 100vh;
   will-change: transform;
-  background-color: var(--wb100);
 }
 
 .card {
@@ -32,7 +29,6 @@
   left: 10%;
   width: 300px;
   height: 300px;
-  border-radius: 20px;
   overflow: hidden;
 }
 
@@ -87,40 +83,21 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .container {
-    margin-bottom: 210vh;
-  }
   .wrapper {
-    padding-top: 25vh;
+    padding-top: 75vh;
   }
   .card {
-    top: 50%;
-  }
-  .outro {
-    top: 190vh;
-  }
-  .outro_text {
-    width: 80%;
+    top: 20%;
   }
 }
 
 @media screen and (max-width: 600px) {
-  .container {
-    margin-bottom: 220vh;
-  }
-  .outro {
-    top: 190vh;
-  }
-  .outro_text {
-    font-size: 1.25em;
-    width: 80%;
-  }
   .card {
-    height: 200px;
-    width: 200px;
+    height: 50vw;
+    width: 50vw;
   }
   .img {
-    width: 200px;
-    height: 200px;
+    width: 50vw;
+    height: 50vw;
   }
 }

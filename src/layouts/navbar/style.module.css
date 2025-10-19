@@ -1,7 +1,7 @@
 .container {
   width: 95vw;
   position: fixed;
-  padding: 1vh 2.5vw;
+  padding: 1vh 0;
   top: 2.5vh;
   left: 2.5vw;
   z-index: 9;

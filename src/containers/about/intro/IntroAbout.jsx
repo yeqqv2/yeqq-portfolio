@@ -116,7 +116,7 @@ const IntroAbout = () => {
     return (
         <div className={styles.container} ref={containerRef}>
             <section className={styles.wrapper} ref={wrapperRef}>
-                <h1 ref={h1Ref} className={styles.h1}>[yunusemrekorkmaz]</h1>
+                <h1 ref={h1Ref} className={styles.h1}>[i,am,yunusemrekorkmaz]</h1>
                 {cardsConfig.map((config, index) => (
                     <div className={styles.card} key={index} ref={addToCardsRefs}>
                         <img className={styles.img} src={`/assets/images/me/${index}.webp`} alt="" loading="lazy" />
@@ -124,13 +124,13 @@ const IntroAbout = () => {
                 ))}
             </section>
 
-            <section className={styles.outro}>
+            {/* <section className={styles.outro}>
                 <div className={styles.outro_text}>
                     hey, it's yunus emre korkmaz, I create aesthetic and easy designs.
                     these are my interestes in life
                 </div>
                 <Carousel />
-            </section>
+            </section> */}
         </div>
     );
 };

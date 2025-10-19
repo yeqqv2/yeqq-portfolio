@@ -85,7 +85,7 @@ const WorksHomePage = () => {
 					color: cursorStyles.color,
 				}}
 			>
-				● open
+				● more detail
 			</span>
 		</div>
 	);
