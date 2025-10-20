@@ -15,7 +15,7 @@ const IntroSec = () => {
     <div className={styles.container}>
       <video
         className={styles.vid}
-        src="https://deepmind.google/api/blob/website/media/veo__cover_s0RKXWX.mp4"
+        src="/assets/videos/homepage-video.webm"
         autoPlay
         preload="auto"
         loop

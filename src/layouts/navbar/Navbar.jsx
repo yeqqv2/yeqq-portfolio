@@ -37,17 +37,13 @@ export default function Navbar() {
 		<>
 			<div className={styles.container}>
 				<main className={`${styles.left} ${styles.main}`}>
-					<div className={styles.button_bg}>
-						<MenuButton
-							toggleSidebar={toggleSidebar}
-							isSidebarOpen={isSidebarOpen}
-						/>
-					</div>
+					<MenuButton
+						toggleSidebar={toggleSidebar}
+						isSidebarOpen={isSidebarOpen}
+					/>
 				</main>
 				<a href="/" className={styles.logo}>
-					<div className={styles.button_bg}>
-						[ yeqq ]
-					</div>
+					[ yeqq ]
 				</a>
 				<main className={`${styles.right} ${styles.main}`}>
 					<a className={styles.contact_link_colored} href="/contact-me">

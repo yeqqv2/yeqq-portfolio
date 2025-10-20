@@ -45,14 +45,14 @@
 .main_div:nth-child(2),
 .main_div:nth-child(5),
 .main_div:nth-child(6),
-.main_div:nth-child(8),
-.main_div:nth-child(9) {
+.main_div:nth-child(7),
+.main_div:nth-child(8) {
   width: 25%;
 }
 
 .main_div:nth-child(3),
 .main_div:nth-child(4),
-.main_div:nth-child(7) {
+.main_div:nth-child(9) {
   width: 50%;
 }
 

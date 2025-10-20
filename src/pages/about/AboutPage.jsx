@@ -41,8 +41,7 @@ const AboutPage = () => {
 		styles.style8,
 	];
 
-	// Minimum mesafe, örneğin 50 piksel
-	const minimumDistance = 75;
+	const minimumDistance = 150;
 
 	const handleMouseMove = useCallback(
 		throttle((e) => {
@@ -53,29 +52,24 @@ const AboutPage = () => {
 			let x = e.clientX - rect.left;
 			let y = e.clientY - rect.top;
 
-			// Rastgele küçük titreşim efekti için offset
 			x += Math.random() * 40 - 20;
 			y += Math.random() * 40 - 20;
 
-			// Önceki spawn ile aradaki mesafeyi kontrol et
 			if (lastSpawnRef.current) {
 				const dx = x - lastSpawnRef.current.x;
 				const dy = y - lastSpawnRef.current.y;
 				const distance = Math.hypot(dx, dy);
 				if (distance < minimumDistance) {
-					// Mesafe yeterince büyük değilse yeni kelime oluşturma
 					return;
 				}
 			}
 
-			// Eğer tüm kelimeler gösterildiyse, indeksi sıfırla
 			if (wordIndexRef.current >= sentencesData.length) {
 				wordIndexRef.current = 0;
 			}
 			const word = sentencesData[wordIndexRef.current];
 			wordIndexRef.current += 1;
 
-			// Stili sıralı olarak seç
 			const style = stylesArray[styleIndexRef.current];
 			styleIndexRef.current += 1;
 			if (styleIndexRef.current >= stylesArray.length) {
@@ -90,13 +84,10 @@ const AboutPage = () => {
 				style,
 			};
 
-			// Yeni kelimeyi state'e ekle
 			setWords((prev) => [...prev, newWord]);
 
-			// Yeni spawn edilen konumu kaydet (böylece üst üste binme engellenecek)
 			lastSpawnRef.current = { x, y };
 
-			// GSAP animasyon zinciri
 			setTimeout(() => {
 				const tl = gsap.timeline({
 					onComplete: () => {
@@ -107,7 +98,7 @@ const AboutPage = () => {
 					.to(`.word-${newWord.id}`, {
 						duration: 0.33,
 						opacity: 1,
-						scale: 1.5,
+						scale: 3,
 						rotate: Math.floor(Math.random() * 20 - 10),
 						ease: 'expo.out',
 					})
@@ -131,9 +122,7 @@ const AboutPage = () => {
 			<IntroAbout />
 			<AboutIntro />
 			<AboutWhoAmI />
-			{/* <AboutGallery /> */}
-			{/* <AboutmeAbout />
-			<ExpAbout /> */}
+			<AboutGallery />
 			<div className={styles.sentences}>
 				{words.map((word) => (
 					<span

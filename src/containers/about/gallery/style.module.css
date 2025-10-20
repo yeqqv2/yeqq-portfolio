@@ -1,29 +1,21 @@
 .container {
   width: 100vw;
   display: flex;
-  align-items: flex-start;
+  flex-wrap: wrap;
   gap: 0.25em;
-  padding: 0 2.5vw 0 42.5vw;
+  background-color: var(--wb100);
 }
 
 .image {
-  height: 30vh;
+  width: calc((100vw - 0.5em) / 3);
+
   object-fit: cover;
 }
 
-@media screen and (max-width: 600px) {
-  .container {
-    padding: 2.5vw;
-  }
+.image:nth-last-child(2) {
+  width: calc(((100vw) / 3) * 2);
+}
 
-  .image {
-    display: none;
-  }
-
-  .image:nth-child(1) {
-    display: flex;
-    height: 95vw;
-    width: 95vw;
-    aspect-ratio: 1 !important;
-  }
+.image:nth-last-child(1) {
+  width: calc((100vw) / 3 - 0.25em);
 }
