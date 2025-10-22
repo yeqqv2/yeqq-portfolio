@@ -5,33 +5,33 @@
   width: 100vw;
   height: 100vh;
   z-index: 99999;
-  padding: 20vh 10vw 10vh 10vw;
+  padding: 10vh 10vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--wb950);
+  background-color: black;
 }
 
 .content {
   position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100vh;
+  width: 100vw;
   background-color: var(--wb100);
   z-index: -2;
-  clip-path: circle(100% at 50% 50%);
 }
 
 .ball {
   border-radius: 50%;
   aspect-ratio: 1;
   object-fit: cover;
-  height: 70vh;
+  height: 80vh;
   scale: 0;
   position: relative;
-  z-index: 1;
-  background-color: var(--wb950);
+  z-index: -2;
+  background-color: black;
 }
 
 .title {
@@ -40,7 +40,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: -1;
-  font-size: 40vh;
+  font-size: 20em;
   font-weight: 400;
   color: #fff;
   text-align: center;
@@ -48,17 +48,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  white-space: nowrap;
+  width: 100vw;
 }
 
 .logo {
   position: absolute;
   height: 40vh;
-  width: 40vh;
+  width: 37.5%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
   justify-content: space-between;
+  mix-blend-mode: difference;
+  padding-inline: 10em;
 }
 
 .bracket {
@@ -84,19 +88,19 @@
 }
 
 .vertical_1 {
-  left: 0;
+  left: 10em;
 }
 
 .vertical_2 {
-  left: 4vh;
+  left: 12.25em;
 }
 
 .vertical_3 {
-  right: 4vh;
+  right: 12.25em;
 }
 
 .vertical_4 {
-  right: 0;
+  right: 10em;
 }
 
 .horizontal_1 {
@@ -104,15 +108,15 @@
 }
 
 .horizontal_2 {
-  top: 4vh;
+  top: 2.25em;
 }
 
 .horizontal_3 {
-  bottom: 4vh;
+  bottom: 2.25em;
 }
 
 .horizontal_4 {
-  bottom: 0;
+  bottom: 0em;
 }
 
 @media screen and (max-width: 1024px) {
@@ -123,10 +127,69 @@
   .ball {
     height: 45vh;
   }
+
+  .logo {
+    height: 15em;
+    width: 15em;
+    padding: 0;
+  }
+
+  .title {
+    font-size: 15em;
+  }
+
+  .vertical_1 {
+    left: 0em;
+  }
+
+  .vertical_2 {
+    left: 1.5em;
+  }
+
+  .vertical_3 {
+    right: 1.5em;
+  }
+
+  .vertical_4 {
+    right: 0em;
+  }
+
+  .horizontal_2 {
+    top: 1.5em;
+  }
+
+  .horizontal_3 {
+    bottom: 1.5em;
+  }
 }
 
 @media screen and (max-width: 600px) {
   .ball {
-    height: 40vh;
+    height: 80vw;
+  }
+
+  .logo {
+    height: 10em;
+    width: 10em;
+  }
+
+  .title {
+    font-size: 7.5em;
+  }
+
+  .vertical_2 {
+    left: 1em;
+  }
+
+  .vertical_3 {
+    right: 1em;
+  }
+
+  .horizontal_2 {
+    top: 1em;
+  }
+
+  .horizontal_3 {
+    bottom: 1em;
   }
 }

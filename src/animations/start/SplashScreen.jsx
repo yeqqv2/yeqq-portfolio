@@ -4,7 +4,6 @@ import { gsap } from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import { CustomEase } from "gsap/all";
-import Galaxy from "../galaxy/Galaxy";
 
 gsap.registerPlugin(CustomEase, TextPlugin, MotionPathPlugin);
 CustomEase.create("hop", "0.9, 0, 0.1, 1");
