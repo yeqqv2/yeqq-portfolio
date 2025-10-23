@@ -9,6 +9,8 @@ CustomEase.create("hop", "0.9, 0, 0.1, 1");
 // Parent'tan 'onAnimationComplete' fonksiyonunu prop olarak alıyoruz.
 export default function SplashScreen({ onAnimationComplete }) {
     const containerRef = useRef(null);
+    const ballRef = useRef(null);
+    const titleRef = useRef(null);
 
     // YENİ EFEKT: Arka plan kaydırmasını engellemek için
     useEffect(() => {
@@ -28,15 +30,10 @@ export default function SplashScreen({ onAnimationComplete }) {
             const hLines = gsap.utils.toArray(`.${styles.horizontal}`);
             const brackets = gsap.utils.toArray(`.${styles.bracket}`);
             const logo = `.${styles.logo}`;
-            const titleSelector = `.${styles.title}`;
-            const ball = `.${styles.ball}`;
-            const content = `.${styles.content}`;
-            const titleElement = containerRef.current.querySelector(titleSelector);
 
-            gsap.set(ball, { scale: 0, y: -1000, transformOrigin: "50% 50%" });
-            gsap.set(titleSelector, { scale: 0 });
+            gsap.set(ballRef.current, { scale: 0, y: -1000, transformOrigin: "50% 50%" });
+            gsap.set(titleRef.current, { scale: 0 });
             gsap.set(brackets, { opacity: 0 });
-            gsap.set(content, { scale: 0 });
             gsap.set(containerRef.current, { clipPath: "circle(100% at 50% 50%)" });
 
             const tl = gsap.timeline({
@@ -54,24 +51,21 @@ export default function SplashScreen({ onAnimationComplete }) {
                 ease: 'hop',
                 height: (i, target) => vLines.includes(target) ? '120vh' : '',
                 width: (i, target) => hLines.includes(target) ? '120vw' : '',
-                stagger: 0.05
+                stagger: 0.01
             })
                 .to(brackets, { opacity: 1, duration: 0.3 }, "+=0.5")
-                .to(brackets, { filter: 'drop-shadow(0 0 30px #fff)', duration: 0.3 }, "+=0.5")
-                .to(brackets, { filter: 'drop-shadow(0 0 0px #fff)', duration: 0.3 })
                 .to(logo, { skewX: -15, duration: 0.3 })
                 .to(logo, { skewX: 0, duration: 0.3 }, "<0.3")
                 .to(logo, { width: '67.5%', duration: 0.8 }, "<")
                 .call(() => {
-                    if (titleElement) {
-                        titleElement.textContent = "yeqq";
+                    if (titleRef) {
+                        titleRef.current.textContent = "yeqq";
                     }
                 }, null, "<")
-                .to(titleSelector, { scale: 1 }, "<")
-                .to(content, { scale: 1, duration: 1 })
+                .to(titleRef.current, { scale: 1 }, "<")
                 .to([...vLines, ...hLines], { opacity: 0, duration: 0.5, ease: 'hop' }, "<")
-                .to(ball, { y: 0, scale: 0.1, duration: 0.8 }, "<")
-                .to(ball, { scale: 1, ease: 'bounce', duration: 0.8 })
+                .to(ballRef.current, { y: 0, scale: 0.1, duration: 0.8 }, "<")
+                .to(ballRef.current, { scale: 1, ease: 'bounce', duration: 0.8 })
                 .to(containerRef.current, { clipPath: "circle(0% at 50% 50%)", duration: 1.5 }, "<");
             // .set() ve .call() en sondan kaldırıldı çünkü onComplete kullandık.
 
@@ -82,9 +76,8 @@ export default function SplashScreen({ onAnimationComplete }) {
 
     return (
         <div className={styles.container} ref={containerRef} aria-hidden="true">
-            <div className={styles.content} />
-            <div className={styles.ball} />
-            <div className={styles.title}>
+            <div className={styles.ball} ref={ballRef} />
+            <div className={styles.title} ref={titleRef}>
                 yeqq
             </div>
             <div className={styles.logo}>

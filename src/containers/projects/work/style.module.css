@@ -1,117 +1,124 @@
 .container {
-  padding: 20vh 2.5vw 0 2.5vw;
+  padding: 15vh 2.5vw 10vh 2.5vw;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.5em;
+  gap: 10vh;
 }
 
-.header {
+.section {
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
-}
-
-.title {
-  font-size: 12em;
-  line-height: 0.8;
-  margin-bottom: 10vh;
-}
-
-.banner {
-  margin-top: 10vh;
+  gap: 10vw;
   width: 95vw;
-  aspect-ratio: 16/9;
-  overflow: hidden;
 }
 
-.banner_image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.main {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 5vh;
-}
-
-.main_header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1em;
-  font-size: 2em;
+.section_header {
+  width: 10vw;
+  font-size: 1.25em;
   font-weight: 300;
 }
 
-.header_context {
-  width: 95vw;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+.section_content {
+  flex: 1;
+}
+
+.name {
+  font-size: 6em;
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  color: var(--wb950);
+}
+
+.company_name {
+  font-weight: 200;
+  font-size: 1.5em;
+  margin-top: 0.25em;
 }
 
 .desc {
-  flex: 3;
+  font-size: 3.75em;
   font-weight: 300;
-  font-size: 4em;
+  line-height: 1.1em;
 }
 
-.scroll {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  font-size: 2em;
-  font-weight: 400;
+.role {
+  font-size: 2.25em;
+  font-weight: 200;
 }
 
 .brand_images {
+  flex: 1;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-auto-rows: min-content;
   gap: 0.5em;
 }
 
 .galleryItem {
+  height: 100%;
+  width: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .isWide {
-  grid-column: span 2;
+  grid-column: span 3;
+  overflow: hidden;
 }
 
 .galleryImage {
   width: 100%;
+  height: 100%;
   height: auto;
   object-fit: cover;
 }
 
 @media screen and (max-width: 1024px) {
-  .title {
-    font-size: 8em;
+  .container {
+    gap: 7.5vh;
+  }
+
+  .name {
+    font-size: 4em;
+    margin-bottom: 0.25em;
   }
 
   .desc {
-    font-size: 2.5em;
+    font-size: 2em;
+  }
+
+  .role {
+    font-size: 1.75em;
   }
 }
 
 @media screen and (max-width: 600px) {
   .container {
-    padding: 12.5vh 2.5vw 0 2.5vw;
+    padding: 12.5vh 2.5vw 12.5vh 2.5vw;
+  }
+
+  .section {
+    flex-direction: column;
+    gap: 2em;
+  }
+
+  .section_header {
+    width: 95vw;
+    opacity: 0.5;
   }
 
   .title {
-    font-size: 4em;
+    font-size: 3.75em;
   }
 
   .desc {
     font-size: 1.5em;
+    font-weight: 400;
+  }
+
+  .role {
+    font-weight: 400;
   }
 }

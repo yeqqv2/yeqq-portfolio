@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styles from './style.module.css';
-import works from '../../../utils/works';
+import projects from '../../../utils/projects';
 import colors from '../../../utils/colors';
 
 const WorksHomePage = () => {
@@ -26,7 +26,7 @@ const WorksHomePage = () => {
 		setHovered(false);
 	};
 
-	const lastThreeWorks = works.slice(-9);
+	const lastThreeWorks = projects.slice(-9);
 
 	return (
 		<div className={styles.container}>
@@ -34,10 +34,6 @@ const WorksHomePage = () => {
 				<div className={styles.header_title}>
 					[projects,works]
 				</div>
-				{/* <div className={styles.header_desc}>
-					for all web-based projects, I took on the role of frontend developer
-					and UI/UX designer.
-				</div> */}
 			</header>
 			<main className={styles.main}>
 				{lastThreeWorks.map((work, index) => {

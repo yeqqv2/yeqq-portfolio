@@ -72,16 +72,18 @@
 .vertical {
   height: 0;
   width: 2px;
-  background-color: var(--wb800);
+  background-color: var(--green300);
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  opacity: 0.5;
 }
 
 .horizontal {
   width: 0;
   height: 2px;
-  background-color: var(--wb800);
+  opacity: 0.5;
+  background-color: var(--green300);
   position: absolute;
   left: 50%;
   transform: translateX(-50%);

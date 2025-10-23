@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./style.module.css";
-import works from "../../utils/works";
+import projects from "../../utils/projects";
 import colors from "../../utils/colors";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -44,7 +44,7 @@ const ProjectsContainer = () => {
         </div>
       </header>
       <main className={styles.main}>
-        {works.map((work, index) => {
+        {projects.map((work, index) => {
           return (
             <a
               href={work.link}
