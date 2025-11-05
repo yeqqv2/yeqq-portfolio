@@ -5,7 +5,6 @@
   width: 100vw;
   height: 100vh;
   z-index: 99999;
-  padding: 20vh 10vw 10vh 10vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,17 +45,7 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .container {
-    padding: 10vw;
-  }
-
   .ball {
-    height: 45vh;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .ball {
-    height: 40vh;
+    height: 80vw;
   }
 }

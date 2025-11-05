@@ -68,7 +68,6 @@ export default function SplashScreen() {
             .call(() => {
                 if (titleRef.current) titleRef.current.textContent = "[ who cares? ]";
             })
-            .to(titleRef.current, { rotate: '15deg', duration: 0 })
             .to(containerRef.current, { filter: 'invert(1)', duration: 0.005 })
             .to(containerRef.current, { filter: 'invert(0)', duration: 0.005 })
             .to(containerRef.current, { filter: 'invert(1)', duration: 0.005 })
