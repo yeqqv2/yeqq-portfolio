@@ -34,13 +34,6 @@ const Footer = () => {
 						<a
 							className={styles.link}
 							target="__blank"
-							href="https://dribbble.com/yeqqv2"
-						>
-							dribbble
-						</a>
-						<a
-							className={styles.link}
-							target="__blank"
 							href="https://github.com/yeqqv2"
 						>
 							github

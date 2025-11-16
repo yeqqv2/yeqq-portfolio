@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import styles from './style.module.css';
 import gsap from 'gsap';
-import { throttle } from 'lodash';
+import { throttle } from 'lodash-es';
 
 const ContactHomePage = () => {
 	const [words, setWords] = useState([]);
@@ -98,13 +98,12 @@ const ContactHomePage = () => {
 						setWords((prev) => prev.filter((word) => word.id !== newWord.id));
 					},
 				});
-				tl.set(`.word-${newWord.id}`, { opacity: 0, scale: 0 })
+				tl.set(`.word-${newWord.id}`, { scale: 0 })
 					.to(`.word-${newWord.id}`, {
 						duration: 0.33,
-						opacity: 1,
 						scale: 1.25,
 						rotate: Math.floor(Math.random() * 20 - 10),
-						ease: 'expo.out',
+						ease: 'expo',
 					})
 					.to(`.word-${newWord.id}`, {
 						duration: 0.42,
@@ -125,10 +124,10 @@ const ContactHomePage = () => {
 				onMouseMove={handleMouseMove}
 			>
 				<div className={styles.context_text}>
-					do you have any software idea?
+					got an idea?
 				</div>
 				<div className={styles.contact_me}>
-					let's [<span className={styles.contact}>get in touch</span>]
+					let's talk
 				</div>
 				<div className={styles.sentences}>
 					{words.map((word) => (
@@ -140,10 +139,9 @@ const ContactHomePage = () => {
 								left: word.x,
 								top: word.y,
 								pointerEvents: 'none',
-								opacity: 0,
 							}}
 						>
-							● {word.word}
+							{word.word}
 						</span>
 					))}
 				</div>

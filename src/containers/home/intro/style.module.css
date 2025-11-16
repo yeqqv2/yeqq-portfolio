@@ -7,6 +7,10 @@
   justify-content: center;
   position: relative;
   scroll-snap-align: center;
+
+  /* 1. CSS Değişkenlerini başlat (varsayılan değerler) */
+  --mouse-x-offset: 0px;
+  --mouse-y-offset: 0px;
 }
 
 .vid {
@@ -16,10 +20,14 @@
   border-radius: 50%;
   position: relative;
   z-index: 3;
-  /* filter: hue-rotate(-150deg); */
+  transform: translate(var(--mouse-x-offset), var(--mouse-y-offset));
+  transition: transform 0.2s ease-out;
 }
 
 .marquee_div {
+}
+
+.marquee_div_content {
   width: 100%;
   position: absolute;
   top: 50%;
@@ -27,14 +35,14 @@
   transform: translate(-50%, -50%);
   pointer-events: none;
   overflow: hidden;
-  clip-path: circle(35vh at 50% 50%);
+  clip-path: circle(
+    35vh at calc(50% + var(--mouse-x-offset)) calc(50% + var(--mouse-y-offset))
+  );
   z-index: 3;
-}
-
-.marquee_div_content {
+  transition: clip-path 0.2s ease-out;
   font-size: 20vh;
   white-space: nowrap;
-  font-weight: 500;
+  font-weight: 400;
   color: var(--wb50);
 }
 
@@ -47,7 +55,7 @@
   transform: translate(-50%, -50%);
   font-size: 20vh;
   white-space: nowrap;
-  font-weight: 500;
+  font-weight: 400;
   pointer-events: none;
   overflow: hidden;
   z-index: 2;
@@ -66,7 +74,11 @@
   }
 
   .marquee_div {
-    clip-path: circle(40vw at 50% 50%);
+    /* 4. Media query içindeki clip-path'i de güncelle */
+    clip-path: circle(
+      40vw at calc(50% + var(--mouse-x-offset))
+        calc(50% + var(--mouse-y-offset))
+    );
   }
 
   .marquee_div_content {

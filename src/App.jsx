@@ -1,29 +1,35 @@
+import { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
-// ================================================
-// STYLES
-// ================================================
 import './styles/variables.css';
 import './styles/reset.css';
 import './styles/global.css';
 import './styles/scrollbar.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import HomePage from './pages/home/HomePage';
-import AboutPage from './pages/about/AboutPage';
-import ProjectsPage from './pages/projects/ProjectsPage';
-import ContactPage from './containers/contact/Page';
-import WorkPage from './containers/projects/work/WorkPage';
+import LoadingPage from './components/loading/LoadingPage';
+import PageTransition from './components/page transition/PageTransition';
+
+const HomePage = lazy(() => import('./pages/home/HomePage'));
+const AboutPage = lazy(() => import('./about/AboutPage'));
+const BackstagePage = lazy(() => import('./backstage/BackstagePage'));
+const ProjectsPage = lazy(() => import('./pages/projects/ProjectsPage'));
+const ContactPage = lazy(() => import('./containers/contact/Page'));
+const WorkPage = lazy(() => import('./containers/projects/work/WorkPage'));
 
 function App() {
 	return (
-		<Routes>
-			{/* HOME PAGE */}
-			<Route path="/" element={<HomePage />} />
-			<Route path="/about-me" element={<AboutPage />} />
-			<Route path="/projects" element={<ProjectsPage />} />
-			<Route path="/projects/:name" element={<WorkPage />} />
-			<Route path="/contact-me" element={<ContactPage />} />
-		</Routes>
+		<PageTransition>
+			<Suspense fallback={<LoadingPage />}>
+				<Routes>
+					<Route path="/" element={<HomePage />} />
+					<Route path="/about-me" element={<AboutPage />} />
+					<Route path="/backstage" element={<BackstagePage />} />
+					<Route path="/projects" element={<ProjectsPage />} />
+					<Route path="/projects/:name" element={<WorkPage />} />
+					<Route path="/contact-me" element={<ContactPage />} />
+				</Routes>
+			</Suspense>
+		</PageTransition>
 	);
 }
 

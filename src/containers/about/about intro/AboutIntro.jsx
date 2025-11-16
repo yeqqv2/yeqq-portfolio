@@ -1,58 +1,68 @@
-import styles from "./style.module.css"
-import works from '../../../utils/works';
+import { useEffect, useRef } from 'react';
+import styles from "./style.module.css";
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import SplitType from 'split-type';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const LOOPING_FONTS = [
+    'system-ui',
+    'sans-serif',
+    'serif',
+];
 
 export default function AboutIntro() {
+    const containerRef = useRef(null);
+    const descRef = useRef(null);
+
+    useEffect(() => {
+        let ctx = gsap.context(() => {
+            const split = new SplitType(descRef.current, {
+                types: 'lines, words',
+                tagName: 'span'
+            });
+
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: 'top 75%',
+                    toggleActions: 'play none none none'
+                }
+            });
+
+            tl.from(split.words, {
+                y: '110%',
+                duration: 0.75,
+                ease: 'back.out(1.8)',
+                stagger: 0.05,
+                delay: 0.5,
+            });
+
+            const designWord = split.words.find(word => word.textContent === 'design');
+
+            if (designWord) {
+                const originalFont = getComputedStyle(designWord).fontFamily;
+                const allFonts = [...LOOPING_FONTS, originalFont];
+
+                tl.to(designWord, {
+                    keyframes: allFonts.map(font => ({ fontFamily: font })),
+                    duration: allFonts.length * 0.3,
+                    ease: `steps(${allFonts.length - 1})`,
+                    repeat: -1,
+                }, ">");
+            }
+
+        }, containerRef);
+        return () => ctx.revert();
+
+    }, []);
+
     return (
-        <div className={styles.container}>
-            <header className={styles.header}>
-                <div className={styles.header_title}>
-                    [aboutme]
-                </div>
-                <div className={styles.header_desc}>
-                    i combine design and code to build things people love to use.
-                </div>
-            </header>
-            <div className={styles.content}>
-                <a href="/projects" className={styles.card}>
-                    <video
-                        className={styles.banner}
-                        src={works[4]?.banner}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        poster="/assets/loader/video-placeholder.webp"
-                        preload="metadata"
-                        aria-describedby={works[4]?.name}
-                    />
-                </a>
-                <a href="/projects" className={styles.card}>
-                    <video
-                        className={styles.banner}
-                        src={works[1]?.banner}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        poster="/assets/loader/video-placeholder.webp"
-                        preload="metadata"
-                        aria-describedby={works[1]?.name}
-                    />
-                </a>
-                <a href="/projects" className={styles.card}>
-                    <video
-                        className={styles.banner}
-                        src={works[0]?.banner}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        poster="/assets/loader/video-placeholder.webp"
-                        preload="metadata"
-                        aria-describedby={works[0]?.name}
-                    />
-                </a>
+        <div className={styles.container} ref={containerRef}>
+            <div className={styles.header_title} ref={descRef}>
+                merging design thinking with frontend engineering.
             </div>
         </div>
-    )
+    );
 }

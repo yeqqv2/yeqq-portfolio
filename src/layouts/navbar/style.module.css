@@ -1,10 +1,10 @@
 .container {
-  width: 95vw;
+  width: 98vw;
   position: fixed;
-  padding: 0vh 0;
-  top: 2.5vh;
-  left: 2.5vw;
-  z-index: 9;
+  padding: 1vh 0;
+  top: 0vh;
+  left: 1vw;
+  z-index: 1001;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -16,9 +16,13 @@
   mix-blend-mode: difference;
   position: relative;
   height: 100%;
-  font-size: 2em;
+  font-size: 1.5em;
   user-select: none;
-  font-weight: 500;
+  font-weight: 400;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .button_bg {
@@ -30,12 +34,10 @@
   line-height: 1;
 }
 
-.main {
-  height: calc(2vh + 2em);
+.menu_item {
   flex: 1;
   display: flex;
   align-items: center;
-  gap: 1em;
 }
 
 .left {
@@ -59,14 +61,14 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 5vh;
-  z-index: 99;
+  z-index: 1002;
   overflow: hidden;
 }
 
 .close {
   position: absolute;
-  top: 3.5vh;
-  right: 2.5vw;
+  top: 1vh;
+  right: 1vw;
 }
 
 .links {
@@ -103,11 +105,12 @@
   padding: 0.375em 0.5em 0.375em 0.5em;
   font-weight: 300;
   letter-spacing: 0.025em;
-  background-color: var(--orange600);
-  color: var(--orange50);
+  background-color: var(--green300);
+  color: var(--green950);
   border-radius: 0.25em;
   position: relative;
   line-height: 1em;
+  letter-spacing: -0.025em;
   z-index: 999;
 }
 

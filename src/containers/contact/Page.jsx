@@ -102,14 +102,6 @@ const ContactPage = () => {
 						<a
 							className={styles.contact_link}
 							target="__blank"
-							href="https://dribbble.com/yeqqv2"
-						>
-							dribbble
-						</a>
-						,
-						<a
-							className={styles.contact_link}
-							target="__blank"
 							href="https://github.com/yeqqv2"
 						>
 							github

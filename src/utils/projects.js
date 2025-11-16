@@ -26,7 +26,7 @@ const works = [
     ],
     link: "/projects/skynotech-smart-site-systems",
     asset: "/assets/images/projects/skynotech",
-    banner: "/assets/videos/skynotech.webm",
+    banner: "1.webp",
     type: "professional",
     images: [
       { file: "1.webp", isWide: true },
@@ -56,7 +56,7 @@ const works = [
       },
     ],
     link: "/projects/skynotech-smart-site-systems-website",
-    banner: "/assets/videos/skynotech-website.webm",
+    banner: "1.webp",
     asset: "/assets/images/projects/skynotech-website",
     type: "professional",
     images: [
@@ -101,48 +101,13 @@ const works = [
     ],
     link: "/projects/balikesir-istihdam-ofisi",
     asset: "/assets/images/projects/balikesir-istihdam-ofisi",
-    banner: "/assets/videos/balikesir-istihdam-ofisi.webm",
+    banner: "1.jpg",
     type: "professional",
     images: [
       { file: "1.webp", isWide: true },
       { file: "2.webp", isWide: false },
       { file: "3.webp", isWide: false },
       { file: "4.webp", isWide: false },
-    ],
-  },
-  {
-    project_name: "bapka official website",
-    company_name: "balıkesir planning and development agency",
-    role: "frontend developer & ui/ux designer",
-    name: "balıkesir planning and development agency website",
-    desc: "corporate website and web application for the BAPKA.",
-    achievements: [
-      {
-        number: "+37%",
-        title: "Monthly SEO Traffic Growth",
-        desc: "Implemented SEO optimizations on BAPKA (City Information Portal), achieving 37% monthly growth[cite: 34].",
-      },
-      {
-        number: "+600",
-        title: "Organic Users Gained in First Month",
-        desc: "Achieved 600+ organic users in the first month through SEO implementation[cite: 34].",
-      },
-      {
-        number: "1",
-        title: "City Information Portal Development",
-        desc: "Full development of the corporate website and web application for BAPKA.",
-      },
-    ],
-    link: "/projects/bapka-website",
-    asset: "/assets/images/projects/bapka-website",
-    banner: "/assets/videos/bapka-website.webm",
-    type: "professional",
-    images: [
-      { file: "1.webp", isWide: true },
-      { file: "2.webp", isWide: false },
-      { file: "3.webp", isWide: false },
-      { file: "4.webp", isWide: false },
-      { file: "6.webp", isWide: true },
     ],
   },
   {
@@ -171,7 +136,7 @@ const works = [
     ],
     link: "/projects/balikesir-etkinlik",
     asset: "/assets/images/projects/balikesir-etkinlik",
-    banner: "/assets/videos/balikesir-etkinlik.webm",
+    banner: "1.gif",
     type: "professional",
     images: [
       { file: "1.webp", isWide: true },
@@ -184,6 +149,42 @@ const works = [
       { file: "3.webp", isWide: false },
     ],
   },
+  {
+    project_name: "bapka official website",
+    company_name: "balıkesir planning and development agency",
+    role: "frontend developer & ui/ux designer",
+    name: "balıkesir planning and development agency website",
+    desc: "corporate website and web application for the BAPKA.",
+    achievements: [
+      {
+        number: "+37%",
+        title: "Monthly SEO Traffic Growth",
+        desc: "Implemented SEO optimizations on BAPKA (City Information Portal), achieving 37% monthly growth[cite: 34].",
+      },
+      {
+        number: "+600",
+        title: "Organic Users Gained in First Month",
+        desc: "Achieved 600+ organic users in the first month through SEO implementation[cite: 34].",
+      },
+      {
+        number: "1",
+        title: "City Information Portal Development",
+        desc: "Full development of the corporate website and web application for BAPKA.",
+      },
+    ],
+    link: "/projects/bapka-website",
+    asset: "/assets/images/projects/bapka-website",
+    banner: "1.jpg",
+    type: "professional",
+    images: [
+      { file: "1.webp", isWide: true },
+      { file: "2.webp", isWide: false },
+      { file: "3.webp", isWide: false },
+      { file: "4.webp", isWide: false },
+      { file: "6.webp", isWide: true },
+    ],
+  },
+
   {
     project_name: "yakın kart",
     company_name: "balıkesir metropolitan municipality",
@@ -210,7 +211,7 @@ const works = [
     ],
     link: "/projects/yakin-kart",
     asset: "/assets/images/projects/yakin-kart",
-    banner: "/assets/videos/yakin-kart.webm",
+    banner: "1.jpg",
     type: "professional",
     images: [
       { file: "1.webp", isWide: true },

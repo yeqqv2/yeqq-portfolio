@@ -4,7 +4,7 @@ import { TextPlugin } from 'gsap/TextPlugin';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import styles from './style.module.css';
 import NeumorphismButton from '../../tools/neumorphism button/NeumorphismButton';
-import { CustomEase } from "gsap/all";
+import { CustomEase } from "gsap/CustomEase";
 
 gsap.registerPlugin(CustomEase);
 CustomEase.create("hop", "0.9, 0, 0.1, 1");

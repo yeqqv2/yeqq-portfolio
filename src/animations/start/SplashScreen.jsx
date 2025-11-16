@@ -3,7 +3,7 @@ import styles from "./style.module.css";
 import { gsap } from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
-import { CustomEase } from "gsap/all";
+import { CustomEase } from "gsap/CustomEase";
 
 gsap.registerPlugin(CustomEase, TextPlugin, MotionPathPlugin);
 CustomEase.create("hop", "0.9, 0, 0.1, 1");
@@ -118,6 +118,7 @@ export default function SplashScreen() {
             .to(containerRef.current, { filter: 'invert(0)', duration: 0.005 })
             .to(containerRef.current, { filter: 'invert(1)', duration: 0.005 })
             .to(containerRef.current, { filter: 'invert(0)', duration: 0.005 })
+            .to(containerRef.current, { filter: 'invert(1)', duration: 0.005 })
             .to(contentRef.current, { duration: 0.05 }, "+=0.75")
             .call(() => {
                 if (titleRef.current) titleRef.current.textContent = "[ you ]";
@@ -232,6 +233,8 @@ export default function SplashScreen() {
                 src="/assets/earth/8.webp"
                 alt="earth"
                 aria-hidden="true"
+                loading="lazy"
+                decoding="async"
             />
         </div>
     );

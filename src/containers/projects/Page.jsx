@@ -4,7 +4,7 @@ import projects from "../../utils/projects";
 import colors from "../../utils/colors";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { CustomEase } from "gsap/all";
+import { CustomEase } from "gsap/CustomEase";
 
 gsap.registerPlugin(CustomEase);
 CustomEase.create("hop", "0.9, 0, 0.1, 1");

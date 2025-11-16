@@ -3,7 +3,7 @@ import styles from './style.module.css';
 import MenuButton from '../../tools/menu/MenuButton';
 import gsap from 'gsap';
 import { GoArrowRight } from 'react-icons/go';
-import AnimatedLink from '../../components/animated link/AnimatedLink';
+// import AnimatedLink from '../../components/animated link/AnimatedLink';
 
 export default function Navbar() {
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -36,7 +36,7 @@ export default function Navbar() {
 	return (
 		<>
 			<div className={styles.container}>
-				<main className={`${styles.left} ${styles.main}`}>
+				<main className={`${styles.menu_item} ${styles.left}`}>
 					<MenuButton
 						toggleSidebar={toggleSidebar}
 						isSidebarOpen={isSidebarOpen}
@@ -45,7 +45,20 @@ export default function Navbar() {
 				<a href="/" className={styles.logo}>
 					[ yeqq ]
 				</a>
-				<main className={`${styles.right} ${styles.main}`}>
+				{/* <section className={styles.nav_links}>
+					<a href="/" className={styles.nav_link}>
+						home
+					</a>
+					,
+					<a href="/about-me" className={styles.nav_link}>
+						aboutme
+					</a>
+					,
+					<a href="/projects" className={styles.nav_link}>
+						projects
+					</a>
+				</section> */}
+				<main className={`${styles.right} ${styles.menu_item}`}>
 					<a className={styles.contact_link_colored} href="/contact-me">
 						● contact with me
 					</a>
@@ -129,16 +142,6 @@ export default function Navbar() {
 								aria-label="My Instagram Profile"
 							>
 								instagram
-							</a>
-							,
-							<a
-								className={styles.contact_link}
-								target="__blank"
-								href="https://dribbble.com/yeqqv2"
-								onClick={toggleSidebar}
-								aria-label="My Dribbble Profile"
-							>
-								dribbble
 							</a>
 							,
 							<a

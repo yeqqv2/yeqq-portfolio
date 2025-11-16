@@ -33,7 +33,7 @@ root.render(
 				'.link',
 			]}
 			trailingSpeed={10}
-			showSystemCursor={false}
+			showSystemCursor={true}
 		/>
 		<BrowserRouter
 			future={

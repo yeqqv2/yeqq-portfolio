@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--wb100);
+  background-color: var(--wb50);
 }
 
 .header {
@@ -37,8 +37,8 @@
   position: relative;
   z-index: -1;
   width: 100vw;
-  background-color: var(--wb100);
-  box-shadow: 0 0 5vh 40vh var(--wb100);
+  background-color: var(--wb50);
+  box-shadow: 0 0 5vh 40vh var(--wb50);
   padding: 2.5vw 2.5vw 2.5vw 42.5vw;
   display: flex;
   align-items: center;
