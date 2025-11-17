@@ -9,7 +9,7 @@ const cards = [
         instruction: 'Draw a puzzle piece',
         title: 'Product Mind',
         description: 'Worked across public platforms, startups, and freelance projects — handling both design and development.',
-        color: '#80ed99',
+        color: '#1cd2f4',
         emoji: '🧩'
     },
     {
@@ -18,7 +18,7 @@ const cards = [
         instruction: 'Draw a pen inside the box',
         title: 'Hybrid Approach',
         description: 'Bridging UI decisions with frontend architecture.',
-        color: '#ffdd1b',
+        color: '#ff9b0a',
         emoji: '✏️'
     },
     {
@@ -27,7 +27,7 @@ const cards = [
         instruction: 'Draw a checkmark',
         title: 'Outcome Focused',
         description: 'Creating experiences that feel intentional, accessible, and thoughtfully engineered.',
-        color: '#63e8fd',
+        color: '#4bdd6d',
         emoji: '✓'
     }
 ];
