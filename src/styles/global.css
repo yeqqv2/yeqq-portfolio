@@ -20,6 +20,7 @@ body {
   width: 100vw;
   overflow-x: hidden;
   font-family: "Outfit", system-ui, sans-serif !important;
+  font-display: block;
 }
 
 .img {

@@ -233,7 +233,7 @@ export default function SplashScreen() {
                 src="/assets/earth/8.webp"
                 alt="earth"
                 aria-hidden="true"
-                loading="lazy"
+                loading="eager"
                 decoding="async"
             />
         </div>

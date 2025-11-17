@@ -116,8 +116,11 @@ const WelcomeSec = () => {
 				<img
 					ref={imgRef}
 					className={styles.img}
-					src="/public/assets/images/me/3.webp"
-					alt=""
+					src="/assets/images/me/3.webp"
+					alt="Yunus Emre Korkmaz"
+					aria-hidden="true"
+					loading="lazy"
+					decoding="async"
 				/>
 			</div>
 

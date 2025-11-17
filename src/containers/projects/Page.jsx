@@ -207,6 +207,9 @@ const ProjectsContainer = () => {
                   className={styles.img}
                   src={`${work.asset}/${work.banner}`}
                   alt={work.name}
+                  aria-hidden="true"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className={styles.works}>

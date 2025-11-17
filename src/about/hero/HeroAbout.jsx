@@ -147,6 +147,9 @@ export default function HeroAbout() {
                                         src={src}
                                         alt={`work-${idx + 1}`}
                                         className={styles.work_img}
+                                        aria-hidden="true"
+                                        loading="lazy"
+                                        decoding="async"
                                     />
                                 </div>
                             ))}

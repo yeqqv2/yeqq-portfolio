@@ -81,8 +81,23 @@ export default function SplashScreen({ onAnimationComplete }) {
                 yeqq
             </div>
             <div className={styles.logo}>
-                <img className={`${styles.bracket} ${styles.leftBracket}`} src="/left-bracket.svg" alt="left-bracket" />
-                <img className={`${styles.bracket} ${styles.rightBracket}`} src="/right-bracket.svg" alt="right-bracket" />
+                <img
+                    className={`${styles.bracket} ${styles.leftBracket}`}
+                    src="/left-bracket.svg"
+                    alt="left-bracket"
+                    aria-hidden="true"
+                    loading="lazy"
+                    decoding="async"
+                />
+                <img
+                    className={`${styles.bracket}
+                     ${styles.rightBracket}`}
+                    src="/right-bracket.svg"
+                    alt="right-bracket"
+                    aria-hidden="true"
+                    loading="lazy"
+                    decoding="async"
+                />
 
                 <div className={`${styles.vertical} ${styles.vertical_1}`} />
                 <div className={`${styles.vertical} ${styles.vertical_2}`} />

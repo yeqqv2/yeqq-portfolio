@@ -137,6 +137,9 @@ const WorksHomePage = () => {
 									src={`${work.asset}/${work.banner}`}
 									alt={work.name}
 									className={styles.img}
+									aria-hidden="true"
+									loading="lazy"
+									decoding="async"
 								/>
 							</div>
 

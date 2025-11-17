@@ -1,18 +1,18 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import styles from './style.module.css';
 import IntroSec from '../../containers/home/intro/IntroSec';
 import WelcomeSec from './../../containers/home/welcome/WelcomeSec';
-import AboutmeHome from '../../containers/home/aboutme/AboutmeHome';
-import WorksHomePage from '../../containers/home/works/Works';
-import ContactHomePage from '../../containers/home/contact/ContactHomePage';
-// import BackstageHomePage from './../../containers/home/backstage/BackstageHomePage';
-import SplashScreen from './../../animations/start/SplashScreen';
+import LoadingPage from '../../components/loading/LoadingPage';
+const AboutmeHome = lazy(() => import('../../containers/home/aboutme/AboutmeHome'));
+const WorksHomePage = lazy(() => import('../../containers/home/works/Works'));
+const ContactHomePage = lazy(() => import('../../containers/home/contact/ContactHomePage'));
+const SplashScreen = lazy(() => import('./../../animations/start/SplashScreen'));
+
 
 const HomePage = () => {
 	const [isAnimationPlayed, setIsAnimationPlayed] = useState(() => {
 		if (typeof window !== 'undefined') {
-			const hasPlayed = sessionStorage.getItem('animationPlayed');
-			return hasPlayed === 'true';
+			return sessionStorage.getItem('animationPlayed') === 'true';
 		}
 		return false;
 	});
@@ -27,17 +27,18 @@ const HomePage = () => {
 
 	return (
 		<div className={styles.container}>
-			{!isAnimationPlayed ? (
-				<SplashScreen onAnimationComplete={handleAnimationComplete} />
-			) : (
-				null
+			{!isAnimationPlayed && (
+				<Suspense fallback={null}>
+					<SplashScreen onAnimationComplete={handleAnimationComplete} />
+				</Suspense>
 			)}
 			<IntroSec />
 			<WelcomeSec />
-			<AboutmeHome />
-			<WorksHomePage />
-			<ContactHomePage />
-			{/* <BackstageHomePage /> */}
+			<Suspense fallback={<LoadingPage />} >
+				<AboutmeHome />
+				<WorksHomePage />
+				<ContactHomePage />
+			</Suspense>
 		</div>
 	);
 };

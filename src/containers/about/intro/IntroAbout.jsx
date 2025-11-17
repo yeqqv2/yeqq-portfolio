@@ -102,7 +102,14 @@ const IntroAbout = () => {
                 <h1 ref={h1Ref} className={styles.h1}>[i,am,yunusemrekorkmaz]</h1>
                 {cardsConfig.map((config, index) => (
                     <div className={styles.card} key={index} ref={addToCardsRefs}>
-                        <img className={styles.img} src={`/assets/images/me/${index}.webp`} alt="" loading="lazy" />
+                        <img
+                            className={styles.img}
+                            src={`/assets/images/me/${index}.webp`}
+                            alt="yunus emre korkmaz"
+                            aria-hidden="true"
+                            loading="lazy"
+                            decoding="async"
+                        />
                     </div>
                 ))}
             </section>

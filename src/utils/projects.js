@@ -28,7 +28,7 @@ const works = [
     ],
     link: "/projects/skynotech-smart-site-systems",
     asset: "/assets/images/projects/skynotech",
-    banner: "1.jpg",
+    banner: "banner.webp",
     type: "professional",
     tags: ["startup", "webapp", "uiux", "dashboard"],
     images: [
@@ -62,7 +62,7 @@ const works = [
       },
     ],
     link: "/projects/skynotech-smart-site-systems-website",
-    banner: "1.jpg",
+    banner: "banner.webp",
     asset: "/assets/images/projects/skynotech-website",
     type: "professional",
     tags: ["startup", "webapp", "uiux"],
@@ -108,7 +108,7 @@ const works = [
     ],
     link: "/projects/balikesir-istihdam-ofisi",
     asset: "/assets/images/projects/balikesir-istihdam-ofisi",
-    banner: "1.jpg",
+    banner: "banner.webp",
     type: "professional",
     tags: ["municipal", "webapp", "uiux"],
     images: [
@@ -148,7 +148,7 @@ const works = [
     ],
     link: "/projects/balikesir-etkinlik",
     asset: "/assets/images/projects/balikesir-etkinlik",
-    banner: "1.jpg",
+    banner: "banner.webp",
     type: "professional",
     tags: ["municipal", "mobile", "uiux"],
     images: [
@@ -193,7 +193,7 @@ const works = [
     ],
     link: "/projects/yakin-kart",
     asset: "/assets/images/projects/yakin-kart",
-    banner: "1.jpg",
+    banner: "banner.webp",
     type: "professional",
     tags: ["municipal", "mobile", "uiux"],
     images: [
@@ -228,7 +228,7 @@ const works = [
     ],
     link: "/projects/bapka-website",
     asset: "/assets/images/projects/bapka-website",
-    banner: "1.jpg",
+    banner: "banner.webp",
     type: "professional",
     tags: ["municipal", "webapp", "uiux"],
     images: [
@@ -265,7 +265,7 @@ const works = [
     ],
     link: "/projects/askida-fatura",
     asset: "/assets/images/projects/askida-fatura",
-    banner: "1.jpg",
+    banner: "banner.webp",
     type: "professional",
     tags: ["municipal", "mobile", "uiux"],
     images: [
@@ -300,7 +300,7 @@ const works = [
     ],
     link: "/projects/can-dostlar",
     asset: "/assets/images/projects/can-dostlar",
-    banner: "1.jpg",
+    banner: "banner.webp",
     type: "professional",
     tags: ["municipal", "mobile", "uiux"],
     images: [
@@ -335,7 +335,7 @@ const works = [
     ],
     link: "/projects/balikesir-eczane",
     asset: "/assets/images/projects/balikesir-eczane",
-    banner: "1.jpg",
+    banner: "banner.webp",
     type: "professional",
     tags: ["municipal", "mobile", "uiux"],
     images: [

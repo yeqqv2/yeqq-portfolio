@@ -89,6 +89,9 @@ export default function WorkSinglePage() {
 					className={styles.hero_image}
 					src={`${work.asset}/${work.banner}`}
 					alt={work.name || work.project_name}
+					aria-hidden="true"
+					loading="lazy"
+					decoding="async"
 				/>
 				<div className={styles.hero_context}>
 					<div className={styles.hero_header}>
@@ -168,7 +171,13 @@ export default function WorkSinglePage() {
 							className={`${styles.galleryItem} ${img.isWide ? styles.wide : ""}`}
 							ref={(el) => (galleryRefs.current[i] = el)}
 						>
-							<img src={`${work.asset}/${img.file}`} alt={img.alt || ""} />
+							<img
+								src={`${work.asset}/${img.file}`}
+								alt={img.alt || ""}
+								aria-hidden="true"
+								loading="lazy"
+								decoding="async"
+							/>
 						</div>
 					))}
 				</section>

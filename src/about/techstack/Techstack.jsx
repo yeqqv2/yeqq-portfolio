@@ -102,7 +102,13 @@ export default function Techstack() {
                         onMouseEnter={() => handleMouseEnter(tech.name)}
                         onMouseLeave={handleMouseLeave}
                     >
-                        <img src={tech.asset} alt={tech.name} />
+                        <img
+                            src={tech.asset}
+                            alt={tech.name}
+                            aria-hidden="true"
+                            loading="lazy"
+                            decoding="async"
+                        />
                     </div>
                 ))}
             </header>

@@ -77,12 +77,18 @@ export default function WhatIDo() {
                     alt="yunus emre korkmaz"
                     className={styles.image_1}
                     ref={(el) => (imageRefs.current[0] = el)}
+                    aria-hidden="true"
+                    loading="lazy"
+                    decoding="async"
                 />
                 <img
                     src="/assets/images/me/13.webp"
                     alt="yunus emre korkmaz"
                     className={styles.image_2}
                     ref={(el) => (imageRefs.current[1] = el)}
+                    aria-hidden="true"
+                    loading="lazy"
+                    decoding="async"
                 />
             </div>
             <div className={styles.content}>
@@ -128,12 +134,18 @@ export default function WhatIDo() {
                     alt="yunus emre korkmaz"
                     className={styles.image_3}
                     ref={(el) => (imageRefs.current[2] = el)}
+                    aria-hidden="true"
+                    loading="lazy"
+                    decoding="async"
                 />
                 <img
                     src="/assets/images/me/4.webp"
                     alt="yunus emre korkmaz"
                     className={styles.image_4}
                     ref={(el) => (imageRefs.current[3] = el)}
+                    aria-hidden="true"
+                    loading="lazy"
+                    decoding="async"
                 />
             </div>
         </div>

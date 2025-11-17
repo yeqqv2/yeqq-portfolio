@@ -48,7 +48,9 @@ export const IntroduceHome = () => {
 					className={`${styles.img} keen-slider__slide`}
 					src={item.img}
 					alt="me"
+					aria-hidden="true"
 					loading="lazy"
+					decoding="async"
 				/>
 			))}
 		</main>
