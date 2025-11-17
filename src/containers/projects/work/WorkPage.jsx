@@ -50,7 +50,7 @@ export default function WorkSinglePage() {
 
 				gsap.fromTo(
 					el,
-					{ clipPath: "inset(50% 50% 50% 50%)" },
+					{ clipPath: "inset(100% 0% 0% 0%)" },
 					{
 						clipPath: "inset(0% 0% 0% 0%)",
 						duration: 1.5,

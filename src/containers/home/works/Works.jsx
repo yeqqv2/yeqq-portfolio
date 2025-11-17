@@ -94,7 +94,7 @@ const WorksHomePage = () => {
 					gsap.fromTo(
 						img,
 						{
-							clipPath: "inset(50% 50% 50% 50%)",
+							clipPath: "inset(100% 0% 0% 0%)",
 						},
 						{
 							clipPath: "inset(0% 0% 0% 0%)",

@@ -31,7 +31,6 @@ const filters = [
 const ProjectsContainer = () => {
   const [activeFilter, setActiveFilter] = useState("all");
 
-  // headerTitleRef / headerDescRef ve hasAnimated kaldırıldı; AnimatedSplit kendi animasyonunu yönetir.
   const workRefs = useRef([]);
   const cursorRef = useRef(null);
   const scrollTriggersRef = useRef([]);
@@ -75,7 +74,7 @@ const ProjectsContainer = () => {
     cursorTextRef.current = cursorWords[newWordIndex];
 
     if (cursorRef.current) {
-      const textNode = cursorRef.current.childNodes[1]; // "● " dan sonraki text node
+      const textNode = cursorRef.current.childNodes[1];
       if (textNode) {
         textNode.textContent = cursorTextRef.current;
       }
@@ -103,7 +102,6 @@ const ProjectsContainer = () => {
       ? projects
       : projects.filter((project) => project.tags?.includes(activeFilter));
 
-  // Project cards animation - filter değiştiğinde yeniden animate et
   useEffect(() => {
     // Önceki scroll trigger'ları temizle
     scrollTriggersRef.current.forEach(trigger => trigger.kill());
@@ -116,15 +114,20 @@ const ProjectsContainer = () => {
           gsap.fromTo(
             img,
             {
-              clipPath: "inset(50% 50% 50% 50%)",
+              clipPath: "inset(100% 0% 0% 0%)",
+              y: 0,
             },
             {
               clipPath: "inset(0% 0% 0% 0%)",
-              duration: 1.5,
-              ease: "power3.out",
+              y: 0,
+              duration: 1.2,
+              ease: "hop",
+              delay: (index) * 0.1,
               scrollTrigger: {
                 trigger: work,
-                start: "top 85%",
+                start: "top 70%",
+                end: "top 40%",
+                toggleActions: "play none none none",
                 onEnter: (self) => {
                   scrollTriggersRef.current.push(self);
                 },
