@@ -1,0 +1,171 @@
+.container {
+  width: 100vw;
+  padding: 10vh 1vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5vw;
+}
+
+.header {
+  width: 25vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.title {
+  font-size: 0.875em;
+  font-weight: 300;
+  opacity: 0.5;
+  text-align: center;
+}
+
+.subtitle {
+  line-height: 1.2;
+  font-weight: 300;
+  text-align: center;
+}
+
+.cardsGrid {
+  width: 60vw;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5em;
+}
+
+.card {
+  position: relative;
+  flex: 1;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5em;
+  padding: 2em;
+}
+
+.cardContent {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: center;
+  gap: 0.5em;
+  opacity: 0;
+  padding: 2em;
+  border-radius: 0.5em;
+  border: 1px solid var(--wb950);
+}
+
+.cardTitle {
+  font-size: 1.25em;
+  font-weight: 400;
+}
+
+.cardDescription {
+  font-size: 1em;
+  font-weight: 300;
+  width: 100%;
+  flex: 1;
+  text-align: start;
+}
+
+.resetButton {
+  padding: 0.375em 0.5em 0.375em 0.5em;
+  background-color: var(--wb950);
+  border-radius: 0.25em;
+  color: var(--wb50);
+  line-height: 1em;
+  white-space: nowrap;
+  font-size: 1em;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.resetButton:hover {
+  scale: 1.025;
+}
+
+.curtain {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 10;
+}
+
+.curtainInner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1em;
+}
+
+.instructionHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25em;
+  padding: 2em;
+}
+
+.discoveryNumber {
+  font-size: 0.875em;
+  font-weight: 300;
+  color: var(--wb950);
+  opacity: 0.5;
+}
+
+.instruction {
+  font-size: 1em;
+  font-weight: 300;
+}
+
+.canvas {
+  width: 100%;
+  flex: 1;
+  aspect-ratio: 1;
+  background-color: var(--wb50);
+  background-image: linear-gradient(
+      rgba(0, 0, 0, 0.05) 0.125em,
+      transparent 0.125em
+    ),
+    linear-gradient(to right, rgba(0, 0, 0, 0.025) 0.125em, var(--wb50) 0.125em);
+  background-size: 5em 5em;
+  box-shadow: inset 0 0 2em 2em var(--wb50);
+}
+
+.canvasRevealed {
+  cursor: default;
+}
+
+.hint {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 12px;
+  margin-top: 16px;
+  font-style: italic;
+}
+
+.footer {
+  margin-top: 80px;
+  text-align: center;
+  max-width: 600px;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.quote {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+  line-height: 1.8;
+  font-style: italic;
+}
