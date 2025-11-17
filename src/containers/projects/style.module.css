@@ -4,27 +4,78 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 20vh 0 10vh 0;
-  gap: 20vh;
+  gap: 10vh;
 }
+
+/* ========================================== */
+/* HEADER */
+/* ========================================== */
 
 .header {
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
-  gap: 5vh;
-  padding-inline: 2.5vw;
+  gap: 5vw;
+  padding-inline: 1vw;
+  width: 51vw;
 }
 
 .header_title {
-  font-size: 1.25em;
-  font-weight: 300;
-  justify-content: flex-end !important;
+  font-size: 1em;
+  font-weight: 400;
+  overflow: visible;
 }
 
 .header_desc {
-  font-size: 2em;
+  font-size: 1em;
   font-weight: 200;
+  line-height: 1.2;
+  overflow: visible;
+  width: 100%;
+  display: inline-block;
 }
+
+.header_title > div,
+.header_desc > div {
+  overflow: hidden;
+  display: block;
+}
+
+.header_title > div > div,
+.header_desc > div > div {
+  display: inline-block;
+}
+
+/* ========================================== */
+/* FILTER */
+/* ========================================== */
+
+.filter_container {
+  padding-inline: 1vw;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.filter_btn {
+  padding: 0.375em 0.5em 0.375em 0.5em;
+  border-radius: 0.25em;
+  position: relative;
+  color: var(--wb950);
+  line-height: 1em;
+  font-size: 1em;
+  opacity: 0.5;
+  font-weight: 200;
+  transition: 0.3s;
+}
+
+.active {
+  transition: 0.3s;
+  opacity: 1;
+}
+
+/* ========================================== */
+/* MAIN */
+/* ========================================== */
 
 .main {
   width: 100vw;
@@ -80,7 +131,7 @@
 
 .img {
   width: 100%;
-  height: 80vh;
+  height: 60vh;
   object-position: center;
   object-fit: cover;
   user-select: none;
@@ -99,7 +150,7 @@
   color: var(--blue950);
   line-height: 1em;
   white-space: nowrap;
-  font-size: 1.25em;
+  font-size: 1em;
 }
 
 @media screen and (max-width: 600px) {

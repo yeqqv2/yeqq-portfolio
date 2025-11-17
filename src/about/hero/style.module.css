@@ -1,0 +1,126 @@
+.container {
+  height: auto;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5vh;
+  position: relative;
+}
+
+/* ================================== */
+/* HEADER */
+/* ================================== */
+
+.header {
+  height: 100vh;
+  width: 100vw;
+  padding: 10vh 1vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 5vh;
+}
+
+.title {
+  color: var(--wb950);
+  font-size: 7.5em;
+  font-weight: 500;
+  text-align: start;
+  user-select: none;
+  width: 100%;
+  height: 100%;
+}
+
+.title > span {
+  height: 1.1em;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  overflow-x: visible;
+  overflow-y: hidden;
+}
+
+.title > span:nth-child(2) {
+  color: var(--wb200);
+  font-weight: 500;
+}
+
+/* .desc now contains both the text and the image row */
+.desc {
+  width: 98vw;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between; /* space-between as requested */
+  font-size: 1em;
+  font-weight: 300;
+}
+
+/* wrapper to keep text + images grouped and controllable */
+.text_and_imgs {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between; /* ensures text left and images row right */
+  gap: 1em; /* overall gap between text block and gallery */
+}
+
+/* textual content (SplitType targets this) */
+.content_desc_text {
+  flex: 0 0 auto;
+  /* ensure the text block doesn't shrink too small */
+  min-width: 220px;
+}
+
+.content_desc_text > span {
+  overflow: hidden;
+  height: 1.1em;
+}
+
+/* Work images container inside same desc block:
+   space-between between items, gap: 1em as requested */
+.work_container {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5em;
+  overflow: hidden;
+}
+
+/* each image has its own wrapper */
+.work_item {
+  height: 10em;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* the img itself */
+.work_img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  -webkit-clip-path: inset(100% 0% 0% 0%);
+  clip-path: inset(100% 0% 0% 0%);
+  will-change: clip-path, transform, opacity;
+}
+
+/* responsive */
+@media screen and (max-width: 1024px) {
+  .title {
+    font-size: 2.75em;
+  }
+  .work_item {
+    height: 8em;
+  }
+  .text_and_imgs {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1em;
+  }
+  .work_container {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

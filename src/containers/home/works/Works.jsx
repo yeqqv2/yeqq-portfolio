@@ -1,11 +1,12 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CustomEase } from "gsap/CustomEase";
 import styles from './style.module.css';
 import projects from '../../../utils/projects';
 import colors from '../../../utils/colors';
 
-gsap.registerPlugin(CustomEase);
+gsap.registerPlugin(CustomEase, ScrollTrigger);
 CustomEase.create("hop", "0, 0, 0.1, 1");
 
 const cursorWords = [
@@ -18,14 +19,16 @@ const cursorWords = [
 ];
 
 const WorksHomePage = () => {
-	const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-	const [cursorStyles, setCursorStyles] = useState({
-		bg: 'var(--main-color500)',
-		color: 'var(--wb950)',
-	});
 	const [cursorText, setCursorText] = useState("see more");
 	const [lastColorIndex, setLastColorIndex] = useState(null);
 	const [lastWordIndex, setLastWordIndex] = useState(null);
+
+	const cursorRef = useRef(null);
+	const workRefs = useRef([]);
+	const cursorStylesRef = useRef({
+		bg: 'var(--main-color500)',
+		color: 'var(--wb950)',
+	});
 
 	const getRandomIndexExcept = (length, except) => {
 		let newIndex = Math.floor(Math.random() * length);
@@ -35,10 +38,11 @@ const WorksHomePage = () => {
 		return newIndex;
 	};
 
-	const cursorRef = useRef(null);
-
 	const handleMouseMove = (e) => {
-		setCursorPos({ x: e.clientX, y: e.clientY });
+		if (cursorRef.current) {
+			cursorRef.current.style.left = e.clientX + 'px';
+			cursorRef.current.style.top = e.clientY + 'px';
+		}
 	};
 
 	const handleMouseEnter = () => {
@@ -47,10 +51,11 @@ const WorksHomePage = () => {
 		const newColor = colors[newColorIndex];
 		setLastColorIndex(newColorIndex);
 
-		setCursorStyles({
-			bg: newColor.bg,
-			color: newColor.color,
-		});
+		// Cursor rengini doğrudan güncelle
+		if (cursorRef.current) {
+			cursorRef.current.style.backgroundColor = newColor.bg;
+			cursorRef.current.style.color = newColor.color;
+		}
 
 		// --- WORD ---
 		const newWordIndex = getRandomIndexExcept(cursorWords.length, lastWordIndex);
@@ -64,8 +69,6 @@ const WorksHomePage = () => {
 			duration: 0.25,
 			ease: "hop",
 		});
-
-		setHovered(true);
 	};
 
 	const handleMouseLeave = () => {
@@ -75,7 +78,6 @@ const WorksHomePage = () => {
 			duration: 0.25,
 			ease: "hop",
 		});
-		setHovered(false);
 	};
 
 	const handleTouchStart = (e) => {
@@ -83,6 +85,35 @@ const WorksHomePage = () => {
 		gsap.fromTo(el, { scale: 0.97 }, { scale: 1, duration: 0.3, ease: "power3.out" });
 	};
 
+	// Card animasyonları
+	useEffect(() => {
+		workRefs.current.forEach((work) => {
+			if (work) {
+				const img = work.querySelector(`.${styles.work_img}`);
+				if (img) {
+					gsap.fromTo(
+						img,
+						{
+							clipPath: "inset(50% 50% 50% 50%)",
+						},
+						{
+							clipPath: "inset(0% 0% 0% 0%)",
+							duration: 1.5,
+							ease: "power3.out",
+							scrollTrigger: {
+								trigger: work,
+								start: "top 85%",
+							},
+						}
+					);
+				}
+			}
+		});
+
+		return () => {
+			ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+		};
+	}, []);
 
 	const lastThreeWorks = projects.slice(0, 6);
 
@@ -95,6 +126,7 @@ const WorksHomePage = () => {
 							href={work.link}
 							className={styles.main_div}
 							key={index}
+							ref={(el) => (workRefs.current[index] = el)}
 							onMouseMove={handleMouseMove}
 							onMouseEnter={handleMouseEnter}
 							onMouseLeave={handleMouseLeave}
@@ -106,17 +138,6 @@ const WorksHomePage = () => {
 									alt={work.name}
 									className={styles.img}
 								/>
-								{/* <video
-									className={styles.img}
-									src={work.banner}
-									autoPlay
-									loop
-									muted
-									playsInline
-									poster="/assets/loader/video-placeholder.webp"
-									preload="metadata"
-									aria-describedby={work.name}
-								/> */}
 							</div>
 
 							<div className={styles.works}>
@@ -132,11 +153,12 @@ const WorksHomePage = () => {
 				ref={cursorRef}
 				className={styles.customCursor}
 				style={{
-					left: cursorPos.x,
-					top: cursorPos.y,
-					backgroundColor: cursorStyles.bg,
-					color: cursorStyles.color,
+					left: 0,
+					top: 0,
+					backgroundColor: cursorStylesRef.current.bg,
+					color: cursorStylesRef.current.color,
 					opacity: 0,
+					transform: 'translate(-50%, -50%)',
 				}}
 			>
 				● {cursorText}

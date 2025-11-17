@@ -18,18 +18,16 @@ const WorkPage = lazy(() => import('./containers/projects/work/WorkPage'));
 
 function App() {
 	return (
-		<PageTransition>
-			<Suspense fallback={<LoadingPage />}>
-				<Routes>
-					<Route path="/" element={<HomePage />} />
-					<Route path="/about-me" element={<AboutPage />} />
-					<Route path="/backstage" element={<BackstagePage />} />
-					<Route path="/projects" element={<ProjectsPage />} />
-					<Route path="/projects/:name" element={<WorkPage />} />
-					<Route path="/contact-me" element={<ContactPage />} />
-				</Routes>
-			</Suspense>
-		</PageTransition>
+		<Suspense fallback={<LoadingPage />}>
+			<Routes>
+				<Route path="/" element={<HomePage />} />
+				<Route path="/about-me" element={<AboutPage />} />
+				<Route path="/backstage" element={<BackstagePage />} />
+				<Route path="/projects" element={<ProjectsPage />} />
+				<Route path="/projects/:slug" element={<WorkPage />} />
+				<Route path="/contact-me" element={<ContactPage />} />
+			</Routes>
+		</Suspense>
 	);
 }
 

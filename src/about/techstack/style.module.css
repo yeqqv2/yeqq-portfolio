@@ -1,0 +1,42 @@
+.container {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10vh 1vw;
+}
+
+.header {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1vw;
+}
+
+.icon {
+  aspect-ratio: 1;
+  width: 4vw;
+  padding: 1vw;
+  border-radius: 1vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px) brightness(0.985);
+}
+
+.customCursor {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  padding: 0.375em 0.5em 0.375em 0.5em;
+  background-color: var(--wb950);
+  border-radius: 0.25em;
+  color: var(--wb50);
+  line-height: 1em;
+  white-space: nowrap;
+  font-size: 1em;
+}
