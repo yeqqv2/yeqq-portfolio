@@ -7,11 +7,10 @@ import './styles/scrollbar.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import LoadingPage from './components/loading/LoadingPage';
-import PageTransition from './components/page transition/PageTransition';
 
 const HomePage = lazy(() => import('./pages/home/HomePage'));
 const AboutPage = lazy(() => import('./about/AboutPage'));
-const BackstagePage = lazy(() => import('./backstage/BackstagePage'));
+// const BackstagePage = lazy(() => import('./backstage/BackstagePage'));
 const ProjectsPage = lazy(() => import('./pages/projects/ProjectsPage'));
 const ContactPage = lazy(() => import('./containers/contact/Page'));
 const WorkPage = lazy(() => import('./containers/projects/work/WorkPage'));
@@ -22,7 +21,7 @@ function App() {
 			<Routes>
 				<Route path="/" element={<HomePage />} />
 				<Route path="/about-me" element={<AboutPage />} />
-				<Route path="/backstage" element={<BackstagePage />} />
+				{/* <Route path="/backstage" element={<BackstagePage />} /> */}
 				<Route path="/projects" element={<ProjectsPage />} />
 				<Route path="/projects/:slug" element={<WorkPage />} />
 				<Route path="/contact-me" element={<ContactPage />} />

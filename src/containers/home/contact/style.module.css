@@ -3,7 +3,7 @@
 .container {
   position: relative;
   width: 100vw;
-  padding: 1.5vw;
+  padding: 1vw;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,7 +11,7 @@
 
 .context {
   border: 1px solid var(--wb950);
-  width: 100%;
+  width: 98vw;
   height: 80vh;
   display: flex;
   flex-direction: column;
@@ -111,8 +111,8 @@
 
 @media screen and (max-width: 1024px) {
   .context {
+    height: 30vh;
     gap: 0.5em;
-    border: none;
   }
 
   .context_text {
@@ -122,5 +122,16 @@
 
   .contact_me {
     font-size: 1.25em;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .context_text {
+    font-size: 1.25em;
+    text-align: center;
+  }
+
+  .contact_me {
+    font-size: 1.15em;
   }
 }

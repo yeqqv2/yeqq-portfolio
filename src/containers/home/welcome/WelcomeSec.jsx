@@ -3,14 +3,14 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TextPlugin } from "gsap/TextPlugin";
 import { CustomEase } from "gsap/CustomEase";
-import SplitType from "split-type";
 import styles from "./style.module.css";
 import colors from "../../../utils/colors";
+import AnimatedSplit from "../../../components/animated split/AnimatedSplit";
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin, CustomEase);
 
 // custom ease
-CustomEase.create("hop", "0, 0, 0.1, 1");
+CustomEase.create("hop", "0.9, 0, 0.1, 1");
 
 const WelcomeSec = () => {
 	const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -21,8 +21,6 @@ const WelcomeSec = () => {
 
 	const cursorRef = useRef(null);
 	const imgRef = useRef(null);
-	const firstTextRef = useRef(null);
-	const secondTextRef = useRef(null);
 
 	/* --------------------------
 		CURSOR LOGIC
@@ -70,58 +68,29 @@ const WelcomeSec = () => {
 			{
 				clipPath: "inset(0% 0% 0% 0%)",
 				duration: 1.2,
-				ease: "power3.out",
+				ease: "hop",
 				scrollTrigger: {
 					trigger: imgRef.current,
-					start: "top 40%",
+					start: "top 80%",
 				},
 			}
 		);
-
-		// TEXT ANIMATIONS — WORDS
-		const firstSplit = new SplitType(firstTextRef.current, {
-			types: "words",
-		});
-
-		const secondSplit = new SplitType(secondTextRef.current, {
-			types: "words",
-		});
-
-		gsap.from(firstSplit.words, {
-			y: "110%",
-			rotationZ: 10,
-			opacity: 0,
-			duration: 0.5,
-			ease: "power1.out",
-			stagger: 0.05,
-			scrollTrigger: {
-				trigger: firstTextRef.current,
-				start: "top 50%",
-			},
-		});
-
-		gsap.from(secondSplit.words, {
-			y: "110%",
-			rotationZ: 10,
-			opacity: 0,
-			duration: 0.5,
-			ease: "power1.out",
-			stagger: 0.05,
-			scrollTrigger: {
-				trigger: secondTextRef.current,
-				start: "top 50%",
-			},
-		});
 	}, []);
 
 
 	return (
 		<section className={styles.container}>
 			<div className={styles.content}>
-				<div className={styles.content_text} ref={firstTextRef} data-animate>
-					hey, i'm
-				</div>
-
+				<AnimatedSplit
+					text={
+						"[hey, i'm]"
+					}
+					className={styles.content_text}
+					tagName="div"
+					stagger={0.03}
+					duration={1.5}
+					start="top 80%"
+				/>
 				<a
 					href="/about-me"
 					onMouseMove={handleMouseMove}
@@ -130,7 +99,16 @@ const WelcomeSec = () => {
 					className={styles.link}
 					data-animate
 				>
-					[yunus emre korkmaz]
+					<AnimatedSplit
+						text={
+							"[yunus emre korkmaz]"
+						}
+						tagName="span"
+						stagger={0.03}
+						duration={1.5}
+						start="top 80%"
+					/>
+
 				</a>
 			</div>
 
@@ -144,10 +122,16 @@ const WelcomeSec = () => {
 			</div>
 
 			<div className={styles.content}>
-				<div ref={secondTextRef} className={styles.link} data-animate>
-					I <strong>design</strong> and <strong>build</strong> modern,
-					accessible, and high performance digital arts.
-				</div>
+				<AnimatedSplit
+					text={
+						"I design and build modern, accessible, and high performance digital arts."
+					}
+					className={styles.link}
+					tagName="div"
+					stagger={0.03}
+					duration={1.5}
+					start="top 80%"
+				/>
 			</div>
 
 			<span

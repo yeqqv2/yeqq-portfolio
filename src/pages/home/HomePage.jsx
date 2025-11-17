@@ -5,7 +5,7 @@ import WelcomeSec from './../../containers/home/welcome/WelcomeSec';
 import AboutmeHome from '../../containers/home/aboutme/AboutmeHome';
 import WorksHomePage from '../../containers/home/works/Works';
 import ContactHomePage from '../../containers/home/contact/ContactHomePage';
-import BackstageHomePage from './../../containers/home/backstage/BackstageHomePage';
+// import BackstageHomePage from './../../containers/home/backstage/BackstageHomePage';
 import SplashScreen from './../../animations/start/SplashScreen';
 
 const HomePage = () => {
@@ -37,7 +37,7 @@ const HomePage = () => {
 			<AboutmeHome />
 			<WorksHomePage />
 			<ContactHomePage />
-			<BackstageHomePage />
+			{/* <BackstageHomePage /> */}
 		</div>
 	);
 };

@@ -7,8 +7,6 @@
   justify-content: center;
   position: relative;
   scroll-snap-align: center;
-
-  /* 1. CSS Değişkenlerini başlat (varsayılan değerler) */
   --mouse-x-offset: 0px;
   --mouse-y-offset: 0px;
 }
@@ -22,9 +20,6 @@
   z-index: 3;
   transform: translate(var(--mouse-x-offset), var(--mouse-y-offset));
   transition: transform 0.2s ease-out;
-}
-
-.marquee_div {
 }
 
 .marquee_div_content {
@@ -73,15 +68,11 @@
     width: auto;
   }
 
-  .marquee_div {
-    /* 4. Media query içindeki clip-path'i de güncelle */
+  .marquee_div_content {
     clip-path: circle(
       40vw at calc(50% + var(--mouse-x-offset))
         calc(50% + var(--mouse-y-offset))
     );
-  }
-
-  .marquee_div_content {
     font-size: 12.5em;
   }
 

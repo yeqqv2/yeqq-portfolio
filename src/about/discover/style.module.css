@@ -44,7 +44,6 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 0.5em;
-  padding: 2em;
 }
 
 .cardContent {
@@ -56,7 +55,8 @@
   text-align: center;
   gap: 0.5em;
   opacity: 0;
-  padding: 2em;
+  padding: 1.5em;
+  margin: 1.5em;
   border-radius: 0.5em;
   border: 1px solid var(--wb950);
 }
@@ -112,7 +112,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 0.25em;
-  padding: 2em;
+  padding: 1.5em;
 }
 
 .discoveryNumber {
@@ -168,4 +168,66 @@
   font-size: 14px;
   line-height: 1.8;
   font-style: italic;
+}
+
+@media screen and (max-width: 1024px) {
+  .container {
+    align-items: center;
+    gap: 10vh;
+  }
+
+  .header {
+    width: 40vw;
+  }
+
+  .cardsGrid {
+    width: 98vw;
+  }
+
+  .cardContent {
+    margin: 0;
+    border: none;
+  }
+
+  .curtainInner {
+    align-items: center;
+  }
+
+  .instructionHeader {
+    padding: 0;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    align-items: flex-start;
+  }
+
+  .header {
+    width: 75vw;
+    align-items: flex-start;
+  }
+
+  .title,
+  .subtitle {
+    text-align: start;
+  }
+
+  .cardsGrid {
+    display: grid;
+    grid-template-columns: repeat(1, fr);
+    gap: 5vh;
+  }
+
+  .card {
+    width: 98vw;
+    aspect-ratio: 1;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+}
+
+@media screen and (max-width: 600px) {
 }

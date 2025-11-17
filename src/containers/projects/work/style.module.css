@@ -175,3 +175,74 @@
   transition: 0.3s;
   background-color: var(--green300);
 }
+
+@media screen and (max-width: 1024px) {
+  .hero_image {
+    width: 30vw;
+  }
+
+  .title {
+    font-size: 5em;
+  }
+
+  .facts {
+    flex-wrap: wrap;
+  }
+
+  .fact {
+    width: 45%;
+  }
+
+  .overview,
+  .achievements,
+  .conclusion,
+  .next,
+  .gallery {
+    margin-left: 35vw;
+  }
+
+  .next {
+    width: 63vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .hero {
+    flex-direction: column;
+  }
+
+  .hero_image {
+    width: 98vw;
+  }
+
+  .title {
+    font-size: 3.75em;
+  }
+
+  .subtitle {
+    width: 100%;
+  }
+
+  .overview,
+  .achievements,
+  .conclusion,
+  .next,
+  .gallery {
+    margin-left: 0;
+  }
+
+  .achievements_list {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .galleryItem,
+  .overview,
+  .conclusion {
+    width: 100%;
+  }
+
+  .next {
+    width: 98vw;
+  }
+}

@@ -23,9 +23,9 @@ export default function HeroAbout() {
     const scrollTriggersRef = useRef([]);
 
     const workImages = [
-        "/assets/images/projects/balikesir-etkinlik/1.jpg",
-        "/assets/images/projects/skynotech/1.jpg",
-        "/assets/images/projects/yakin-kart/1.jpg",
+        "/assets/art/6.webp",
+        "/assets/art/12.webp",
+        "/assets/art/18.webp",
     ];
 
     useEffect(() => {
@@ -44,7 +44,7 @@ export default function HeroAbout() {
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: headerRef.current,
-                    start: "top 75%",
+                    start: "top 100%",
                     toggleActions: "play none none none",
                 },
             });
@@ -68,15 +68,11 @@ export default function HeroAbout() {
                 "<0.3"
             );
 
-
-            // ————— Per-image clip-path reveal (snippet-style) —————
-            // Loop through wrappers and create individual ScrollTriggers (like the snippet you provided)
             workRefs.current.forEach((work, index) => {
                 if (!work) return;
                 const img = work.querySelector(`.${styles.work_img}`);
                 if (!img) return;
 
-                // ensure starting state (hidden from bottom)
                 gsap.set(img, { clipPath: "inset(100% 0% 0% 0%)" });
 
                 const st = gsap.fromTo(
@@ -85,11 +81,11 @@ export default function HeroAbout() {
                     {
                         clipPath: "inset(0% 0% 0% 0%)",
                         duration: 1.5,
-                        ease: "power3.out",
-                        delay: index * 0.15, // stagger-like delay per index on enter
+                        ease: "hop",
+                        delay: index * 0.15,
                         scrollTrigger: {
                             trigger: work,
-                            start: "top 85%",
+                            start: "top 100%",
                             onEnter: (self) => {
                                 scrollTriggersRef.current.push(self);
                             },
@@ -100,10 +96,9 @@ export default function HeroAbout() {
                 // optional: animate wrapper for slight translate/fade to emphasize entrance
                 gsap.fromTo(
                     work,
-                    { y: 20, opacity: 0 },
+                    { y: 20 },
                     {
                         y: 0,
-                        opacity: 1,
                         duration: 0.8,
                         ease: "power2.out",
                         delay: index * 0.12,

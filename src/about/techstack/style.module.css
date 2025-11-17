@@ -39,3 +39,23 @@
   white-space: nowrap;
   font-size: 1em;
 }
+
+@media screen and (max-width: 1024px) {
+  .header {
+    width: 75%;
+  }
+
+  .icon {
+    width: 6vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header {
+    gap: 2.5vw;
+  }
+
+  .icon {
+    width: 7.5vw;
+  }
+}

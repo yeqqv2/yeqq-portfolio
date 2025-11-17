@@ -125,8 +125,8 @@ const ProjectsContainer = () => {
               delay: (index) * 0.1,
               scrollTrigger: {
                 trigger: work,
-                start: "top 70%",
-                end: "top 40%",
+                start: "top 80%",
+                end: "top 50%",
                 toggleActions: "play none none none",
                 onEnter: (self) => {
                   scrollTriggersRef.current.push(self);

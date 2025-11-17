@@ -1,6 +1,6 @@
 .container {
   width: 100vw;
-  padding: 20vh 1.5vw;
+  padding: 10vh 1vw;
   position: relative;
   display: flex;
   justify-content: space-evenly;
@@ -52,14 +52,25 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .content {
-    width: 90vw;
+  .container {
+    padding: 10vh 1vw;
   }
 }
 
 @media screen and (max-width: 600px) {
+  .container {
+    padding: 0vh 1vw;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10vh;
+  }
+
+  .slide_image_container {
+    width: 75vw;
+  }
+
   .content {
-    width: 90vw;
-    font-size: 1.5em;
+    align-items: center;
+    text-align: center;
   }
 }

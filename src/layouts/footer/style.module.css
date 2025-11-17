@@ -1,7 +1,7 @@
 .container {
   width: 100vw;
   background-color: var(--wb50);
-  padding: 10vh 10vw;
+  padding: 10vh 1vw;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -11,7 +11,7 @@
 }
 
 .content {
-  width: 80vw;
+  width: 98vw;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -21,6 +21,12 @@
 .logo {
   flex: 1;
   font-size: 2em;
+}
+
+.links_container {
+  display: flex;
+  align-items: flex-start;
+  gap: 4em;
 }
 
 .links {
@@ -62,7 +68,7 @@
   }
 
   .content {
-    width: 90vw;
+    width: 98vw;
     flex-direction: column;
   }
 }

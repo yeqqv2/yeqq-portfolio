@@ -53,6 +53,7 @@
   padding-inline: 1vw;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.5em;
 }
 
@@ -66,6 +67,7 @@
   opacity: 0.5;
   font-weight: 200;
   transition: 0.3s;
+  white-space: nowrap;
 }
 
 .active {
@@ -157,6 +159,34 @@
   overflow: hidden;
 }
 
+@media screen and (max-width: 1024px) {
+  .container {
+    padding: 10vh 0 5vh 0;
+    gap: 5vh;
+  }
+
+  .header {
+    width: 95vw;
+    flex-direction: column;
+  }
+
+  .header {
+    font-size: 1em;
+  }
+
+  .header_title {
+    font-size: 1em;
+  }
+
+  .header_desc {
+    font-size: 1.15em;
+  }
+
+  .work {
+    width: 50vw !important;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .container {
     padding: 15vh 2.5vw 5vh 2.5vw;
@@ -181,7 +211,11 @@
     font-size: 1.15em;
   }
 
+  .filter_container {
+    width: 100vw;
+  }
+
   .work {
-    width: 100% !important;
+    width: 100vw !important;
   }
 }

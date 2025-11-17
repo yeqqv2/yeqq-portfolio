@@ -56,7 +56,41 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .title {
-    font-size: 2.75em;
+  .container {
+    padding: 10vh 1vw;
+  }
+
+  .image_1,
+  .image_2,
+  .image_3,
+  .image_4 {
+    height: 10em;
+  }
+
+  .image_1,
+  .image_4 {
+    height: 12.5em;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    flex-direction: column;
+    gap: 10vh;
+  }
+
+  .image_container {
+    width: 98vw;
+    gap: 1vw;
+  }
+
+  .image_1,
+  .image_2,
+  .image_3,
+  .image_4 {
+    width: 48.5vw;
+    aspect-ratio: 9/16;
+    object-fit: cover;
+    height: auto;
   }
 }

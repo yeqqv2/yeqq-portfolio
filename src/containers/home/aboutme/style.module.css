@@ -18,24 +18,6 @@
   width: 20em;
 }
 
-.name {
-  color: var(--orange600);
-}
-
-.svg_name {
-  display: inline-block;
-  font-weight: 100;
-  font-style: italic;
-}
-
-.svg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 60vw;
-}
-
 .contact_link_colored {
   padding: 0.375em 0.5em 0.375em 0.5em;
   border-radius: 0.25em;
@@ -52,9 +34,15 @@
   opacity: 1;
 }
 
+@media screen and (max-width: 1024px) {
+  .container {
+    gap: 5vh;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .container {
-    padding: 5vh 5vw;
+    padding: 20vh 5vw;
     gap: 5vh;
   }
 
@@ -63,8 +51,8 @@
   }
 
   .main {
-    width: 90vw;
-    font-size: 1.25em;
+    width: 75vw;
+    font-size: 1em;
   }
 
   .contact_link_colored {

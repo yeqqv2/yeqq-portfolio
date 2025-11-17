@@ -110,7 +110,7 @@ const ContactPage = () => {
 						<a
 							className={styles.contact_link}
 							target="__blank"
-							href="https://tr.linkedin.com/in/yunusemrekorkmaz34"
+							href="https://tr.linkedin.com/in/yeqq"
 						>
 							linkedin
 						</a>

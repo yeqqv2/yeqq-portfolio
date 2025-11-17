@@ -30,7 +30,21 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .title {
-    font-size: 2.75em;
+  .desc {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header {
+    text-align: start;
+  }
+
+  .context {
+    justify-content: flex-start;
+  }
+
+  .desc {
+    width: 75%;
   }
 }

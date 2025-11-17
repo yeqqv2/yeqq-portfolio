@@ -157,7 +157,7 @@ export default function Navbar() {
 							<a
 								className={styles.contact_link}
 								target="__blank"
-								href="https://tr.linkedin.com/in/yunusemrekorkmaz34"
+								href="https://tr.linkedin.com/in/yeqq"
 								onClick={toggleSidebar}
 								aria-label="My Linkedin Profile"
 							>
