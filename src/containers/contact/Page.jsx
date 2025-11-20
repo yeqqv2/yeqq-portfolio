@@ -63,7 +63,7 @@ const ContactPage = () => {
 								className={styles.input}
 								name="subject"
 								type="text"
-								placeholder="web uygulaması, mobil uygulama"
+								placeholder="web app, mobile app, UI/UX design"
 							/>
 						</div>
 						<div className={styles.textarea_group}>
