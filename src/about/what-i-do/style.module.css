@@ -82,15 +82,16 @@
   .image_container {
     width: 98vw;
     gap: 1vw;
+    justify-content: center;
   }
 
   .image_1,
   .image_2,
   .image_3,
   .image_4 {
-    width: 48.5vw;
-    aspect-ratio: 9/16;
-    object-fit: cover;
+    width: 35vw;
+    aspect-ratio: auto;
+    object-fit: contain;
     height: auto;
   }
 }

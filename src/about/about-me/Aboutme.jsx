@@ -10,7 +10,8 @@ export default function Aboutme() {
                     text={
                         "[who am i]"
                     }
-                    tagName="div"
+                    className={styles.header_title}
+                    tagName="span"
                     stagger={0.03}
                     duration={1.5}
                     start="top 80%"
@@ -19,10 +20,10 @@ export default function Aboutme() {
             <div className={styles.context}>
                 <AnimatedSplit
                     text={
-                        "i'm yunus emre korkmaz — a hybrid frontend developer & UI/UX designer with over 2.5 years of experience creating scalable, accessible, and visually refined digital products."
+                        "i'm yunus emre korkmaz — a hybrid frontend developer & UI/UX designer with experience creating scalable, accessible, and visually refined digital products."
                     }
                     className={styles.desc}
-                    tagName="div"
+                    tagName="span"
                     stagger={0.03}
                     duration={1.5}
                     start="top 80%"
@@ -34,7 +35,7 @@ export default function Aboutme() {
                         "My work blends engineering precision with design sensitivity, allowing me to build interfaces that are not only functional, but intuitive and enjoyable to use."
                     }
                     className={styles.desc}
-                    tagName="div"
+                    tagName="span"
                     stagger={0.03}
                     duration={1.5}
                     start="top 80%"

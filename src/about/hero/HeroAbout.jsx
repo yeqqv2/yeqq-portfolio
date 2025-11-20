@@ -23,9 +23,9 @@ export default function HeroAbout() {
     const scrollTriggersRef = useRef([]);
 
     const workImages = [
-        "/assets/art/6.webp",
-        "/assets/art/12.webp",
-        "/assets/art/18.webp",
+        "/assets/art/9.webp",
+        "/assets/art/10.webp",
+        "/assets/art/11.webp",
     ];
 
     useEffect(() => {

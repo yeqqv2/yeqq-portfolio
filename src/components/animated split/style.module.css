@@ -1,14 +1,18 @@
 /* Temel wrapper: dışarıdan className ile birlikte kullanılacak */
 .animatedText {
   display: block;
-  /* Görsel taşmaları kontrol etmek isterseniz burada ayarlayabilirsiniz */
-  /* overflow: visible; */
   line-height: 1.2;
+  white-space: initial;
 }
 
-/* SplitType tagName olarak "div" yarattığımız için her satır/kelime div içinde olur.
+/* SplitType tagName olarak "span" yarattığımız için her satır/kelime div içinde olur.
    Bu div'leri gizlemek ve kelime animasyonunu düzgün göstermek için aşağıdaki kurallar uygundur. */
-.animatedText > div {
+.animatedText > span,
+.animatedText > span > span,
+.animatedText > div,
+.animatedText > div > div,
+.animatedText > div > span,
+.animatedText > span > div {
   display: inline-block;
   overflow: hidden; /* kelime animasyonu için maskeler */
   vertical-align: middle;

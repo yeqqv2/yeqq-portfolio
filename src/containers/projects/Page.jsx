@@ -155,7 +155,7 @@ const ProjectsContainer = () => {
         <AnimatedSplit
           text="[works]"
           className={styles.header_title}
-          tagName="div"
+          tagName="span"
           stagger={0.05}
           duration={1.5}
           start="top 80%"
@@ -167,7 +167,7 @@ const ProjectsContainer = () => {
             "from municipal platforms to startup products, each project focuses on clean UI, accessibility, and meaningful interaction."
           }
           className={styles.header_desc}
-          tagName="div"
+          tagName="span"
           stagger={0.03}
           duration={1.5}
           start="top 80%"
@@ -182,7 +182,14 @@ const ProjectsContainer = () => {
               }`}
             onClick={() => handleFilterClick(filter.id)}
           >
-            • {filter.label}
+            <AnimatedSplit
+              text={`• ${filter.label}`}
+              tagName="span"
+              stagger={0.05}
+              duration={1.5}
+              start="top 80%"
+            />
+
           </button>
         ))}
       </section>

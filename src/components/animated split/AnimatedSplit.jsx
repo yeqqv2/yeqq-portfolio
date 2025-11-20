@@ -10,7 +10,7 @@ import styles from "./style.module.css";
  * - text: string (opsiyonel). children varsa children kullanılır.
  * - children: JSX | string (opsiyonel)
  * - className: dışarıdan verilen stil sınıfı (opsiyonel)
- * - tagName: wrapper için HTML tag (default: "div")
+ * - tagName: wrapper için HTML tag (default: "span")
  * - types: SplitType için types (default: "lines, words")
  * - stagger: kelime stagger değeri (default: 0.05)
  * - duration: animasyon süresi (default: 1.5)
@@ -24,7 +24,7 @@ const AnimatedSplit = ({
     text,
     children,
     className = "",
-    tagName = "div",
+    tagName = "span",
     types = "lines, words",
     stagger = 0.05,
     duration = 1.5,
@@ -56,16 +56,22 @@ const AnimatedSplit = ({
         gsap.set(split.words, { y: "110%" });
 
         // Animasyon (ScrollTrigger ile)
-        tween = gsap.to(split.words, {
-            y: "0%",
-            duration,
-            ease,
-            stagger,
-            scrollTrigger: {
-                trigger: elRef.current,
-                start,
+        tween = gsap.fromTo(
+            split.words,
+            {
+                y: "110%",
             },
-        });
+            {
+                y: "0%",
+                duration,
+                ease,
+                stagger,
+                scrollTrigger: {
+                    trigger: elRef.current,
+                    start,
+                },
+            }
+        );
 
         return () => {
             // Tween / ScrollTrigger temizliği

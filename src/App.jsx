@@ -7,12 +7,12 @@ import { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import SmoothScroll from './components/SmoothScroll/index';
 import LoadingPage from './components/loading/LoadingPage';
-import HomePage from './pages/home/HomePage';
+import HomePage from './home/HomePage';
 
 const AboutPage = lazy(() => import('./about/AboutPage'));
-const ProjectsPage = lazy(() => import('./pages/projects/ProjectsPage'));
-const ContactPage = lazy(() => import('./containers/contact/Page'));
-const WorkPage = lazy(() => import('./containers/projects/work/WorkPage'));
+const ProjectsPage = lazy(() => import('./projects/ProjectsPage'));
+const WorkPage = lazy(() => import('./project/WorkPage'));
+const ContactPage = lazy(() => import('./contact/ContactPage'));
 
 function App() {
 	return (

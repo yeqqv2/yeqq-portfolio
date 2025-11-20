@@ -61,7 +61,8 @@ const Footer = () => {
 			</div>
 			<hr />
 			<footer className={styles.footer}>
-				created by yunus emre korkmaz © 2025
+				designed & built by yunus emre korkmaz
+				© 2025
 			</footer>
 		</div>
 	);

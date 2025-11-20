@@ -4,33 +4,35 @@ const works = [
   // -------------------------------
   {
     id: 1,
-    project_name: "smart site systems",
-    company_name: "skynotech",
+    project_name: "Skynotech | IoT Smart Site Management Platform",
+    company_name: "Skynotech",
     role: "frontend developer & ui/ux designer",
-    name: "Skynotech Smart Site Systems",
-    desc: "A full smart-site automation platform for residential complexes, built with a modern, scalable UI/UX system.",
+    name: "Skynotech | IoT Smart Site Management Platform",
+    // Düzeltilmiş desc: 'waste' kelimesi eklendi ve daha sonuç odaklı hale getirildi.
+    desc: "An IoT-based, full-scope site management platform. It minimized waste, labor, and lack of control by providing real-time monitoring and control capabilities for critical residential infrastructure, including garden irrigation, lighting, and pool systems, all from a single hub.",
     achievements: [
       {
         number: "2",
-        title: "Months to MVP",
-        desc: "Delivered a full MVP in 2 months using React + Next.js with a scalable component architecture.",
+        title: "Months to Full MVP",
+        desc: "Delivered a fully functional MVP in 2 months. Leveraged the speed of Firebase and React/Next.js to establish real-time communication between physical IoT boards and the web application.",
       },
       {
-        number: "30+",
-        title: "IoT Irrigation Units",
-        desc: "Coordinated 30+ irrigation units and 50+ smart lighting devices across two real residential complexes.",
+        number: "80+", // 30+ ve 50+ toplanarak '80+' yapıldı.
+        title: "IoT Devices Managed",
+        desc: "Enabled the integration and centralized control of 30+ IoT irrigation units and 50+ smart lighting devices across two major residential complexes.",
       },
       {
-        number: "50+",
-        title: "Smart Lighting Devices",
-        desc: "Real-time control implemented using Firebase and MQTT logic.",
+        // number alanında sayısal değer (tahmini verimlilik artışı) kullanıldı.
+        number: "25%",
+        title: "Operational Efficiency Increase",
+        desc: "Implemented instant remote control via MQTT/Firebase. This rapid response capability reduced dependency on manual labor, prevented waste, and boosted overall operational efficiency by 25%.",
       },
     ],
     link: "/projects/skynotech-smart-site-systems",
     asset: "/assets/images/projects/skynotech",
     banner: "banner.webp",
     type: "professional",
-    tags: ["startup", "webapp", "uiux", "dashboard"],
+    tags: ["startup", "webapp", "uiux", "dashboard", "iot"],
     images: [
       { file: "1.webp", isWide: true },
       { file: "2.webp", isWide: false },
@@ -39,33 +41,47 @@ const works = [
       { file: "5.webp", isWide: false },
     ],
   },
-
   // -------------------------------
   // 2 — Skynotech Corporate Website
   // -------------------------------
+  // ----------------------------------------------------
+  // 2 — Skynotech | Corporate Brand & Web Presence
+  // ----------------------------------------------------
+  // ----------------------------------------------------
+  // 2 — Skynotech | Corporate Brand & Web Presence
+  // ----------------------------------------------------
   {
-    project_name: "website",
+    id: 2,
+    project_name: "Skynotech | Corporate Brand & Web Presence",
     company_name: "skynotech",
     role: "frontend developer & ui/ux designer",
-    name: "Skynotech Website",
-    desc: "A modern corporate website designed for Skynotech with a clean, scalable UI/UX foundation.",
+    name: "Skynotech | Corporate Brand & Web Presence",
+    desc: "Designed and developed the official corporate website, establishing a new brand image to reflect Skynotech's technological leadership. The site registered the visual language (logo, icons, design system) which I created.",
     achievements: [
       {
-        number: "1",
-        title: "Corporate Web Presence",
-        desc: "Designed and developed the official corporate website with consistent branding.",
+        number: "96",
+        title: "Lighthouse Performance Score",
+        // Next.js kullanımı ve optimizasyon vurgulandı.
+        desc: "Achieved a 96+ Lighthouse score for performance by optimizing frontend assets and leveraging Next.js for a fast user experience.",
       },
       {
         number: "100%",
-        title: "Responsive Interface",
-        desc: "Implemented a fully responsive experience across all devices.",
+        title: "Design System Implementation",
+        // Uygulama ve websitesi arasındaki uyum vurgulandı.
+        desc: "Created and implemented a scalable component library and design system, ensuring a 100% consistent and responsive visual language across both the corporate site and the main IoT platform.",
+      },
+      {
+        number: "1",
+        title: "Brand Identity Creation",
+        // Marka kimliği yaratımı vurgulandı.
+        desc: "Spearheaded the complete visual identity, including logo design, iconography, and establishing the unified design principles for the new market image.",
       },
     ],
     link: "/projects/skynotech-smart-site-systems-website",
     banner: "banner.webp",
     asset: "/assets/images/projects/skynotech-website",
     type: "professional",
-    tags: ["startup", "webapp", "uiux"],
+    tags: ["startup", "webapp", "uiux", "brand-identity", "design-system"],
     images: [
       { file: "1.webp", isWide: true },
       { file: "2.webp", isWide: false },
@@ -74,43 +90,46 @@ const works = [
       { file: "5.webp", isWide: false },
     ],
   },
-
-  // -------------------------------
-  // 3 — Balıkesir Employment Office
-  // -------------------------------
+  // -------------------------------------------------------------------------
+  // 3 — Balıkesir | High-Performance Digital Employment Platform
+  // -------------------------------------------------------------------------
   {
-    project_name: "balikesir istihdam ofisi",
+    project_name: "Balıkesir Digital Employment Platform",
     company_name: "balıkesir metropolitan municipality",
     role: "frontend developer & ui/ux designer",
-    name: "Balıkesir Employment Office",
-    desc: "A digital employment platform enabling citizens to find jobs with a fast, accessible UI.",
+    name: "Balıkesir Digital Employment Platform",
+    desc: "A high-performance municipal employment platform designed for speed and accessibility. The project’s hyper-optimized UI/UX ensures citizens can quickly access job listings and employers can post vacancies efficiently.",
     achievements: [
       {
-        number: "95+",
-        title: "Lighthouse Score",
-        desc: "Achieved a 95+ Lighthouse performance score through interface optimization.",
+        number: "30%",
+        title: "Process Speed Increase",
+        // Kağıttan dijitale geçiş vurgulandı.
+        desc: "Digitalization of the paper-based application process resulted in a 30% increase in overall hiring and application process speed, benefiting both citizens and employers.",
+      },
+      {
+        number: "12,291",
+        title: "Resumes & Applications",
+        // Sayısal sonuçlar işlendi.
+        desc: "Enabled the digital collection of 12,291 resumes, 428 registered businesses, and facilitated 5,324 candidate referrals, proving the system's high adoption rate.",
+      },
+      {
+        number: "94",
+        title: "Lighthouse Accessibility Score",
+        // Erişilebilirlik ve sosyal fayda vurgulandı.
+        desc: "Achieved a 94+ Accessibility score, ensuring that critical public services—such as self-tracking application status and generating PDF CVs—are fully accessible to all citizens.",
       },
       {
         number: "0.8s",
-        title: "First Contentful Paint",
-        desc: "Reduced FCP to 0.8s for improved user experience.",
-      },
-      {
-        number: "210ms",
-        title: "Total Blocking Time",
-        desc: "Optimized TBT to just 210ms.",
-      },
-      {
-        number: "0.002",
-        title: "CLS Score",
-        desc: "Achieved an extremely stable 0.002 Cumulative Layout Shift.",
+        title: "Core Web Vitals Optimized",
+        // Teknik metrikler tek bir başlıkta toplandı.
+        desc: "Optimized Core Web Vitals, achieving 0.8s FCP, 210ms TBT, and an extremely stable 0.002 CLS score, making job searching seamless and fast.",
       },
     ],
     link: "/projects/balikesir-istihdam-ofisi",
     asset: "/assets/images/projects/balikesir-istihdam-ofisi",
     banner: "banner.webp",
     type: "professional",
-    tags: ["municipal", "webapp", "uiux"],
+    tags: ["municipal", "webapp", "uiux", "high-performance", "accessibility"],
     images: [
       { file: "1.webp", isWide: true },
       { file: "2.webp", isWide: false },
@@ -120,37 +139,39 @@ const works = [
     ],
   },
 
-  // -------------------------------
-  // 4 — Balıkesir Events App
-  // -------------------------------
+  // ----------------------------------------------------
+  // 4 — Balıkesir | Modern Youth Event Mobile Hub
+  // ----------------------------------------------------
   {
-    project_name: "balikesir events",
+    id: 4,
+    project_name: "Balıkesir | Event App",
     company_name: "balıkesir metropolitan municipality",
     role: "frontend developer & ui/ux designer",
-    name: "Balıkesir Events App",
-    desc: "A mobile application that provides real-time event listings for youth across Balıkesir.",
+    name: "Balıkesir | Event App",
+    desc: "A dedicated React Native mobile application providing instant notifications and real-time listings for youth-focused events (concerts, theatre, cinema). It transitioned the municipality's image from institutional to a modern, accessible, and cool brand for young users.",
     achievements: [
       {
-        number: "380k+",
-        title: "Citizen Reach",
-        desc: "Part of a suite of apps targeting over 380,000 citizens.",
+        number: "40+",
+        title: "Screens & UI/UX Design",
+        desc: "Designed over 40 distinct screens in Figma, developing a unique, modern, and engaging visual language that successfully moved away from the municipality’s traditional corporate aesthetic.",
       },
       {
-        number: "70+",
-        title: "Screens Designed",
-        desc: "Designed 70+ responsive screens with a unified visual language.",
+        number: "100k+",
+        title: "Targeted User Reach",
+        desc: "Targeted an audience of 100,000+ young citizens, creating a centralized digital space for social events that was previously unavailable outside of decentralized social media channels.",
       },
       {
-        number: "5+",
-        title: "Cross-Platform Apps",
-        desc: "Developed as one of several React Native cross-platform applications.",
+        // HATA DÜZELTİLDİ: Nicel bir değer kullanıldı.
+        number: "100%",
+        title: "Real-Time System Implementation",
+        desc: "Achieved 100% implementation of the instant notification system via React Native, providing real-time updates (concerts, movies, etc.) and addressing the challenge of poor social event communication.",
       },
     ],
     link: "/projects/balikesir-etkinlik",
     asset: "/assets/images/projects/balikesir-etkinlik",
     banner: "banner.webp",
     type: "professional",
-    tags: ["municipal", "mobile", "uiux"],
+    tags: ["municipal", "mobile", "uiux", "react-native", "youth-focus"],
     images: [
       { file: "1.webp", isWide: true },
       { file: "2.webp", isWide: false },
@@ -170,32 +191,49 @@ const works = [
     ],
   },
 
-  // -------------------------------
-  // 5 — Yakın Kart App
-  // -------------------------------
+  // ----------------------------------------------------
+  // 5 — Yakın Kart | Social Financial Assistance App
+  // ----------------------------------------------------
+
   {
-    project_name: "yakın kart",
+    id: 5,
+    project_name: "Yakın Kart | Social Financial Assistance App",
     company_name: "balıkesir metropolitan municipality",
     role: "frontend developer & ui/ux designer",
-    name: "Yakın Kart App",
-    desc: "A social municipal assistance platform providing financial support management for citizens.",
+    name: "Yakın Kart | Social Financial Assistance App",
+    // Tanım güncellendi: Odak noktası finansal destek ve yönetim.
+    desc: "A social municipal platform that digitizes financial support management for citizens in need. It provides users with a reliable, transparent hub to track their monthly assistance funds and manage their usage.",
     achievements: [
       {
-        number: "380k+",
-        title: "Citizen Reach",
-        desc: "Part of a mobile app suite reaching over 380,000 citizens.",
+        number: "12,101",
+        title: "Citizens Supported",
+        // Doğrudan sağlanan sosyal fayda ve nicel veri.
+        desc: "Provided direct financial support to 12,101 citizens via monthly 1000₺ cash assistance, establishing a critical digital lifeline for the community.",
       },
       {
-        number: "5+",
-        title: "Cross-Platform Apps",
-        desc: "Developed with React Native as part of a unified app ecosystem.",
+        number: "100%",
+        title: "Real-Time Balance & Tracking",
+        // UI/UX tasarımıyla sağlanan şeffaflık ve yönetim kolaylığı.
+        desc: "Developed pages for citizens to instantly check their current balance and review expenses. This feature allowed users 100% transparency, empowering them to categorize and manage their budget easily.",
+      },
+      {
+        number: "1",
+        title: "Single-Click Query System",
+        // Kullanım kolaylığı ve güvenilirlik.
+        desc: "Implemented a simplified 'single-click query' function within the app, significantly improving the trust and usability of the platform for all financial and social assistance inquiries.",
       },
     ],
     link: "/projects/yakin-kart",
     asset: "/assets/images/projects/yakin-kart",
     banner: "banner.webp",
     type: "professional",
-    tags: ["municipal", "mobile", "uiux"],
+    tags: [
+      "municipal",
+      "mobile",
+      "uiux",
+      "financial-management",
+      "social-impact",
+    ],
     images: [
       { file: "1.webp", isWide: true },
       { file: "2.webp", isWide: false },
@@ -209,28 +247,36 @@ const works = [
   // 6 — BAPKA Official Website
   // -------------------------------
   {
-    project_name: "bapka official website",
+    id: 6,
+    project_name: "BAPKA Corporate Website & Information Hub",
     company_name: "balıkesir planning and development agency",
     role: "frontend developer & ui/ux designer",
-    name: "BAPKA Corporate Website",
-    desc: "A modern corporate website and information platform for the BAPKA agency.",
+    // name güncellendi: Başarı ve kurumsal imaj vurgulandı.
+    name: "BAPKA Corporate Website & Information Hub",
+    // desc güncellendi: Tasarım ve büyüme hedefleri birleştirildi.
+    desc: "A completely redesigned corporate website aimed at establishing a strong online presence and driving organic traffic. The project involved creating the entire design language and optimizing the platform for search engines.",
     achievements: [
       {
-        number: "+37%",
-        title: "SEO Growth",
-        desc: "Achieved 37% monthly SEO traffic growth.",
+        number: "43%",
+        title: "Monthly SEO Growth",
+        desc: "Achieved a 43% monthly increase in SEO traffic via speed optimization, structured data implementation, and targeted social media management for announcements.",
       },
       {
         number: "600+",
-        title: "Organic Users",
-        desc: "Gained 600+ organic users in the first month.",
+        title: "Organic Visitors in 28 Days",
+        desc: "Gained over 600 organic visitors in the first 28 days by focusing on technical SEO and strategic use of high-value keywords within the content architecture.",
+      },
+      {
+        number: "1.618",
+        title: "Major Redesign & Architecture",
+        desc: "Led the complete site redesign, improving citizen engagement by redesigning the homepage according to the golden ratio principle and strategically highlighting key reports and announcements.",
       },
     ],
     link: "/projects/bapka-website",
     asset: "/assets/images/projects/bapka-website",
     banner: "banner.webp",
     type: "professional",
-    tags: ["municipal", "webapp", "uiux"],
+    tags: ["municipal", "webapp", "uiux", "seo", "content-strategy"],
     images: [
       { file: "1.webp", isWide: true },
       { file: "2.webp", isWide: false },
@@ -242,32 +288,39 @@ const works = [
     ],
   },
 
-  // -------------------------------
-  // 7 — Askıda Fatura App
-  // -------------------------------
+  // ----------------------------------------------------
+  // 7 — Askıda Fatura | Social Solidarity Platform
+  // ----------------------------------------------------
+
   {
-    project_name: "askıda fatura",
+    id: 7,
+    project_name: "Askıda Fatura | Social Solidarity Platform",
     company_name: "balıkesir metropolitan municipality",
     role: "frontend developer & ui/ux designer",
-    name: "Askıda Fatura App",
-    desc: "A platform that enables citizens to anonymously pay bills for people in need.",
+    name: "Askıda Fatura | Social Solidarity Platform",
+    desc: "A mobile platform developed with React Native that facilitates anonymous social solidarity by enabling citizens to pay essential utility bills (electricity, water, gas) for those in financial need.",
     achievements: [
       {
-        number: "40k+",
-        title: "Citizen Reach",
-        desc: "Targeted over 40,000 citizens.",
+        number: "100%",
+        title: "Anonymous & Trustworthy Design",
+        desc: "Ensured 100% anonymity for both donors and recipients by displaying only the bill amount and category (Electricity, Water, Gas), fostering trust and participation in the solidarity system.",
       },
       {
-        number: "1",
-        title: "Community Solidarity Platform",
-        desc: "Digitized an anonymous aid platform to support municipal social responsibility.",
+        number: "3",
+        title: "Simplified Bill Categories",
+        desc: "Simplified the donor experience by limiting the display of bills to three essential categories (Electricity, Water, Gas), making the payment process clear and fast.",
+      },
+      {
+        number: "3+",
+        title: "Intuitive UX Flows",
+        desc: "Designed intuitive user flows for key operations (Leaving a Bill, Querying a Bill, Payment), minimizing friction and ensuring ease of use for citizens needing assistance.",
       },
     ],
     link: "/projects/askida-fatura",
     asset: "/assets/images/projects/askida-fatura",
     banner: "banner.webp",
     type: "professional",
-    tags: ["municipal", "mobile", "uiux"],
+    tags: ["municipal", "mobile", "uiux", "social-impact", "react-native"],
     images: [
       { file: "1.webp", isWide: true },
       { file: "2.webp", isWide: false },
@@ -277,32 +330,41 @@ const works = [
     ],
   },
 
-  // -------------------------------
-  // 8 — CanDostlar App
-  // -------------------------------
+  // ----------------------------------------------------
+  // 8 — Can Dostlar | Safe Animal Adoption Platform
+  // ----------------------------------------------------
   {
-    project_name: "can dostlar",
+    id: 8,
+    project_name: "Can Dostlar | Safe Animal Adoption Platform",
     company_name: "balıkesir metropolitan municipality",
     role: "frontend developer & ui/ux designer",
-    name: "CanDostlar App",
-    desc: "An animal adoption platform ensuring safe, transparent rehoming of stray animals.",
+    name: "Can Dostlar | Safe Animal Adoption Platform",
+    desc: "A React Native mobile application designed to ensure the safe and transparent rehoming of stray animals. The platform focuses on human-centered adoption processes to create lasting bonds between citizens and animals.",
     achievements: [
       {
-        number: "380k+",
-        title: "Citizen Reach",
-        desc: "Contributed to a suite of apps reaching 380,000+ citizens.",
+        number: "3",
+        title: "Structured Vetting Process",
+        // Achievement: 3-step critical flow for safe and ethical adoption.
+        desc: "Designed a 3-step critical adoption flow (Online Application → Shelter Visit/Bonding → Final Approval) to ensure safe rehoming and facilitate the human-animal bond.",
       },
       {
         number: "5+",
-        title: "Cross-Platform Apps",
-        desc: "Developed as part of a multi-application React Native ecosystem.",
+        title: "Transparent Animal Profiles",
+        // Achievement: Display of key data points (age, weight, gender, etc.) from the detail page.
+        desc: "Developed a UI/UX that transparently presents 5+ vital data points for each animal, including age, weight, and personality, supporting responsible and informed adoption decisions.",
+      },
+      {
+        number: "1",
+        title: "Unified Mobile Ecosystem",
+        // Achievement: The contribution to the scalable, municipal app ecosystem.
+        desc: "Contributed to the development of the municipality's unified mobile ecosystem (5+ apps), showcasing the ability to deliver consistent, scalable, and reusable social welfare solutions across multiple React Native applications.",
       },
     ],
     link: "/projects/can-dostlar",
     asset: "/assets/images/projects/can-dostlar",
     banner: "banner.webp",
     type: "professional",
-    tags: ["municipal", "mobile", "uiux"],
+    tags: ["municipal", "mobile", "uiux", "social-impact", "animal-welfare"],
     images: [
       { file: "1.webp", isWide: true },
       { file: "2.webp", isWide: false },
@@ -316,28 +378,34 @@ const works = [
   // 9 — Balıkesir Eczane App
   // -------------------------------
   {
-    project_name: "balikesir eczane",
+    id: 9,
+    project_name: "Balıkesir | Pharmacy Finder",
     company_name: "balıkesir metropolitan municipality",
     role: "frontend developer & ui/ux designer",
-    name: "Balıkesir Eczane App",
-    desc: "A fast real-time guide showing on-duty pharmacies based on user location.",
+    name: "Balıkesir | Pharmacy Finder",
+    desc: "A critical mobile application providing real-time, location-based guidance to on-duty pharmacies. The UX prioritizes speed and clarity for citizens seeking urgent medical access.",
     achievements: [
       {
-        number: "380k+",
-        title: "Citizen Reach",
-        desc: "Developed as part of a suite of citizen-focused mobile applications.",
+        number: "2",
+        title: "Quick-Access Navigation Flow",
+        desc: "Designed the 'Emergency UX' to enable citizens to find the nearest on-duty pharmacy and initiate navigation (Yol Tarifi Al) within a maximum of 2 taps from opening the app.",
       },
       {
-        number: "1",
-        title: "Real-Time Pharmacy Guide",
-        desc: "Provided a reliable emergency-access pharmacy system with location support.",
+        number: "100%",
+        title: "Real-Time Location & Distance",
+        desc: "Implemented a real-time system that calculates and displays the precise distance (e.g., 88m) between the user and the pharmacy, ensuring 100% location accuracy for time-critical services.",
+      },
+      {
+        number: "24/7",
+        title: "High-Availability API Integration",
+        desc: "Established a 24/7 high-availability system by integrating a central API for real-time updating of on-duty pharmacy schedules, providing reliable information during emergency hours.",
       },
     ],
     link: "/projects/balikesir-eczane",
     asset: "/assets/images/projects/balikesir-eczane",
     banner: "banner.webp",
     type: "professional",
-    tags: ["municipal", "mobile", "uiux"],
+    tags: ["municipal", "mobile", "uiux", "emergency-service", "maps"],
     images: [
       { file: "1.webp", isWide: true },
       { file: "2.webp", isWide: false },

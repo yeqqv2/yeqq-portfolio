@@ -3,12 +3,9 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 
-// 1. Kritik Olmayan Bileşenleri Asenkron Yükleme (Code Splitting/Lazy Loading)
 const Navbar = lazy(() => import('./layouts/navbar/Navbar'));
 const Footer = lazy(() => import('./layouts/footer/Footer'));
 
-// 2. Performansın En Büyük Düşmanı: AnimatedCursor
-// Büyük 3. taraf kütüphaneleri lazy yapmak TBT'yi ciddi ölçüde düşürür.
 const AnimatedCursor = lazy(() => import('react-animated-cursor'));
 
 
@@ -22,26 +19,19 @@ root.render(
 				v7_relativeSplatPath: true,
 			}}
 		>
-			{/* ⚡️ OPTİMİZASYON: Navbar'ı Suspense ile sarmalayın */}
 			<Suspense fallback={null}>
 				<Navbar />
 			</Suspense>
-
-			{/* Ana uygulama hemen yüklenmeye devam ediyor */}
 			<App />
-
-			{/* ⚡️ OPTİMİZASYON: Footer'ı Suspense ile sarmalayın */}
 			<Suspense fallback={null}>
 				<Footer />
 			</Suspense>
-
-			{/* AnimatedCursor doğru sarmalanmış. */}
 			<Suspense fallback={null}>
 				<AnimatedCursor
 					innerSize={10}
 					innerScale={1}
 					outerStyle={{
-						display: 'none',
+						display: 'flex',
 					}}
 					innerStyle={{
 						backgroundColor: 'rgba(0,0,0)',
@@ -64,7 +54,6 @@ root.render(
 					showSystemCursor={true}
 				/>
 			</Suspense>
-
 		</BrowserRouter>
 	</React.StrictMode>
 );

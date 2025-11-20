@@ -73,7 +73,7 @@ export default function WhatIDo() {
         <div className={styles.container} ref={containerRef}>
             <div className={styles.image_container}>
                 <img
-                    src="/assets/images/me/11.webp"
+                    src="/assets/images/me/12.webp"
                     alt="yunus emre korkmaz"
                     className={styles.image_1}
                     ref={(el) => (imageRefs.current[0] = el)}
@@ -82,7 +82,7 @@ export default function WhatIDo() {
                     decoding="async"
                 />
                 <img
-                    src="/assets/images/me/13.webp"
+                    src="/assets/images/me/5.webp"
                     alt="yunus emre korkmaz"
                     className={styles.image_2}
                     ref={(el) => (imageRefs.current[1] = el)}
@@ -97,7 +97,7 @@ export default function WhatIDo() {
                         text={
                             "[what i do]"
                         }
-                        tagName="div"
+                        tagName="span"
                         stagger={0.03}
                         duration={1.5}
                         start="top 80%"
@@ -106,10 +106,10 @@ export default function WhatIDo() {
                 <div className={styles.context}>
                     <AnimatedSplit
                         text={
-                            "I design and develop complete web and mobile interfaces using React, Next.js, TypeScript, and modern UI/UX practices."
+                            "I design and build digital interfaces with structure, intention, and expression."
                         }
                         className={styles.desc}
-                        tagName="div"
+                        tagName="span"
                         stagger={0.03}
                         duration={1.5}
                         start="top 80%"
@@ -118,10 +118,10 @@ export default function WhatIDo() {
                 <div className={styles.context}>
                     <AnimatedSplit
                         text={
-                            "I care deeply about clarity, consistency, and human-centered design."
+                            "my work focuses on clarity, usability, and a strong visual identity."
                         }
                         className={styles.desc}
-                        tagName="div"
+                        tagName="span"
                         stagger={0.03}
                         duration={1.5}
                         start="top 80%"
@@ -130,7 +130,7 @@ export default function WhatIDo() {
             </div>
             <div className={styles.image_container}>
                 <img
-                    src="/assets/images/me/2.webp"
+                    src="/assets/images/me/3.webp"
                     alt="yunus emre korkmaz"
                     className={styles.image_3}
                     ref={(el) => (imageRefs.current[2] = el)}
@@ -139,7 +139,7 @@ export default function WhatIDo() {
                     decoding="async"
                 />
                 <img
-                    src="/assets/images/me/4.webp"
+                    src="/assets/images/me/11.webp"
                     alt="yunus emre korkmaz"
                     className={styles.image_4}
                     ref={(el) => (imageRefs.current[3] = el)}

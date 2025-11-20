@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import styles from './style.module.css';
+import AnimatedSplit from '../../components/animated split/AnimatedSplit';
 
 const cards = [
     {
@@ -394,12 +395,22 @@ const Card = ({ card, index }) => {
     return (
         <div className={styles.card}>
             <div ref={contentRef} className={styles.cardContent}>
-                <h3 className={styles.cardTitle}>
-                    {card.title}
-                </h3>
-                <p className={styles.cardDescription}>
-                    {card.description}
-                </p>
+                <AnimatedSplit
+                    text={card.title}
+                    className={styles.cardTitle}
+                    tagName="span"
+                    stagger={0.03}
+                    duration={1.5}
+                    start="top 80%"
+                />
+                <AnimatedSplit
+                    text={card.description}
+                    className={styles.cardDescription}
+                    tagName="span"
+                    stagger={0.03}
+                    duration={1.5}
+                    start="top 80%"
+                />
                 <button onClick={resetCard} className={styles.resetButton}>
                     ● wanna draw again?
                 </button>
@@ -408,12 +419,22 @@ const Card = ({ card, index }) => {
             <div ref={curtainRef} className={styles.curtain}>
                 <div className={styles.curtainInner}>
                     <div className={styles.instructionHeader}>
-                        <p className={styles.discoveryNumber}>
-                            Discovery #{index + 1}
-                        </p>
-                        <p className={styles.instruction}>
-                            {card.instruction}
-                        </p>
+                        <AnimatedSplit
+                            text={`Discovery #${index + 1}`}
+                            className={styles.discoveryNumber}
+                            tagName="span"
+                            stagger={0.03}
+                            duration={1.5}
+                            start="top 80%"
+                        />
+                        <AnimatedSplit
+                            text={card.instruction}
+                            className={styles.instruction}
+                            tagName="span"
+                            stagger={0.03}
+                            duration={1.5}
+                            start="top 80%"
+                        />
                     </div>
 
                     <canvas
@@ -437,12 +458,26 @@ export default function DiscoverMe() {
     return (
         <div className={styles.container}>
             <div className={styles.header}>
-                <h1 className={styles.title}>
-                    [discover me]
-                </h1>
-                <p className={styles.subtitle}>
-                    express yourself freely. draw the shapes below to uncover how i work and what drives my creative process.
-                </p>
+                <AnimatedSplit
+                    text={
+                        "[discover me]"
+                    }
+                    className={styles.title}
+                    tagName="span"
+                    stagger={0.03}
+                    duration={1.5}
+                    start="top 80%"
+                />
+                <AnimatedSplit
+                    text={
+                        "express yourself freely. draw the shapes below to uncover how i work and what drives my creative process."
+                    }
+                    className={styles.subtitle}
+                    tagName="span"
+                    stagger={0.03}
+                    duration={1.5}
+                    start="top 80%"
+                />
             </div>
 
             <div className={styles.cardsGrid}>

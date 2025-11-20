@@ -62,7 +62,7 @@ export default function SplashScreen({ onAnimationComplete }) {
                 .to(artCards, { scale: 1, duration: .33, ease: "hop" }, "+=0.33")
                 .to(containerRef.current, {
                     clipPath: "circle(0% at 50% 50%)",
-                    duration: 0.5,
+                    duration: 1,
                     ease: "superSmooth"
                 }, "<")
                 .to(containerRef.current, {
