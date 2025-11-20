@@ -4,6 +4,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SplitType from 'split-type';
 import CustomEase from 'gsap/CustomEase';
+import AnimatedSplit from '../../components/animated split/AnimatedSplit';
 
 gsap.registerPlugin(ScrollTrigger, CustomEase);
 CustomEase.create("hop", "0.9, 0, 0.1, 1");
@@ -122,10 +123,14 @@ export default function HeroAbout() {
     return (
         <div className={styles.container} ref={containerRef}>
             <header className={styles.header} ref={headerRef}>
-                <div className={styles.title} ref={titleRef}>
-                    merging design thinking with frontend engineering.
-                </div>
-
+                <AnimatedSplit
+                    text="merging design thinking with frontend engineering."
+                    className={styles.title}
+                    tagName="span"
+                    stagger={0.03}
+                    duration={1.5}
+                    start="top 80%"
+                />
                 <div className={styles.desc} ref={descRef}>
                     <div className={styles.text_and_imgs}>
                         <div ref={contentDescRef} className={styles.content_desc_text}>

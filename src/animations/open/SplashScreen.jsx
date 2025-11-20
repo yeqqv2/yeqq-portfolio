@@ -4,8 +4,8 @@ import { gsap } from "gsap";
 import { CustomEase } from "gsap/CustomEase";
 
 gsap.registerPlugin(CustomEase);
-CustomEase.create("hop", "0.9, 0, 0.1, 1");
-CustomEase.create("superSmooth", "0.15, 0.85, 0.25, 1");
+CustomEase.create("butter", "0.25, 0.1, 0.25, 1");
+CustomEase.create("butterSlow", "0.14, 0.11, 0.11, 1");
 
 export default function SplashScreen({ onAnimationComplete }) {
     const containerRef = useRef(null);
@@ -42,34 +42,59 @@ export default function SplashScreen({ onAnimationComplete }) {
             const q = gsap.utils.selector(containerRef);
             const artCards = q(`.${styles.artCard}`);
 
-            gsap.set(containerRef.current, { clipPath: "circle(100% at 50% 50%)" });
+            gsap.set(containerRef.current, {
+                clipPath: "circle(100% at 50% 50%)"
+            });
 
             gsap.set(artCards, {
-                x: 0, y: 0, scale: 0.25, zIndex: (i) => i + 1,
-                rotateZ: (i) => i * 2, borderRadius: '0%',
-                clipPath: "polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)"
+                x: 0,
+                y: 0,
+                scale: 0.25,
+                rotateZ: (i) => i * 2,
+                borderRadius: "0%",
+                clipPath: "polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)",
+                transformOrigin: "50% 50%"
             });
 
             const tl = gsap.timeline({
-                defaults: { ease: "hop" },
+                defaults: { ease: "butter" },
                 onComplete: cleanupAndClose
             });
             tlRef.current = tl;
 
-            tl.to(artCards, { clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", scale: 0.25, duration: 0.5, stagger: 0.3, ease: "hop" })
-                .to(artCards, { rotateZ: 0, duration: 1, ease: "hop" }, "+=0.25")
-                .to(artCards, { borderRadius: '50%', duration: 0.25, ease: "none" }, ">-0.25")
-                .to(artCards, { scale: 1, duration: .33, ease: "hop" }, "+=0.33")
-                .to(containerRef.current, {
-                    clipPath: "circle(0% at 50% 50%)",
-                    duration: 1,
-                    ease: "superSmooth"
-                }, "<")
-                .to(containerRef.current, {
-                    delay: 0.25,
-                }, ">")
+            // 1) KARTLARIN SOFT AÇILMASI (clipPath reveal)
+            tl.to(artCards, {
+                clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+                duration: .66,
+                stagger: .5
+            });
 
+            // 2) ROTATION YUMUŞAKÇA SIFIRLANIR
+            tl.to(artCards, {
+                rotateZ: 0,
+                duration: 1.2,
+                ease: "butterSlow"
+            }, "-=0.9");
+
+            tl.to(artCards, {
+                borderRadius: "40vw",
+                duration: 0.65,
+                ease: "butterSlow"
+            }, "-=0.7");
+
+            tl.to(artCards, {
+                scale: 1,
+                duration: 1.45,
+                ease: "butterSlow"
+            }, "-=0.9");
+
+            tl.to(containerRef.current, {
+                clipPath: "circle(0% at 50% 50%)",
+                duration: 1.6,
+                ease: "butterSlow"
+            }, "-=0.65");
         }, containerRef);
+
 
         return () => {
             ctx.revert();

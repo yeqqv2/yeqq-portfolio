@@ -7,29 +7,28 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function SmoothScroll({ children }) {
     useEffect(() => {
-        // const lenis = new Lenis({
-        //     // ÖNEMLİ AYARLAR BURADA:
-        //     duration: 2.0, // Standart 1.2'dir. 2.0 yaparak çok daha "uzun" ve "yumuşak" bir kayma sağlarız.
-        //     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential easing (tok duruş)
-        //     direction: 'vertical',
-        //     gestureDirection: 'vertical',
-        //     smooth: true,
-        //     mouseMultiplier: 1, // Mouse tekerleği hassasiyeti (1 standarttır, artırırsan çok hızlı akar)
-        //     smoothTouch: false, // Mobilde native bırakmak genelde UX için daha iyidir
-        //     touchMultiplier: 2,
-        // });
-
         const lenis = new Lenis({
-            duration: 2.8,                       // daha yavaş, daha sinematik
-            easing: (t) => 1 - Math.pow(1 - t, 5), // ultra smooth buttery quartic+
-            smooth: true,
+            duration: 2.4,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             direction: 'vertical',
             gestureDirection: 'vertical',
-            mouseMultiplier: 0.55,              // mouse scroll daha ağırlıklı
-            lerp: 0.06,                         // butter effect
-            smoothTouch: true,                  // mobile/tablet butter mode
-            touchMultiplier: 1.4,               // mobile hız dengesi
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: true,
+            touchMultiplier: 1.4,
         });
+
+        // const lenis = new Lenis({
+        //     duration: 2.8,
+        //     easing: (t) => 1 - Math.pow(1 - t, 5),
+        //     smooth: true,
+        //     direction: 'vertical',
+        //     gestureDirection: 'vertical',
+        //     mouseMultiplier: 0.55,
+        //     lerp: 0.06,
+        //     smoothTouch: true,
+        //     touchMultiplier: 1.4,
+        // });
 
 
         lenis.on('scroll', ScrollTrigger.update);

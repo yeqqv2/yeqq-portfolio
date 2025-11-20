@@ -4,8 +4,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CustomEase } from "gsap/CustomEase";
 import styles from "./style.module.css";
-import projects from "../../../utils/projects";
-import AnimatedSplit from './../../../components/animated split/AnimatedSplit';
+import projects from "../utils/projects";
+import AnimatedSplit from "../components/animated split/AnimatedSplit";
 
 gsap.registerPlugin(CustomEase, ScrollTrigger);
 CustomEase.create("hop", "0, 0, 0.1, 1");

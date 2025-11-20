@@ -1,7 +1,7 @@
-import './styles/variables.css'; // Kullanıcı isteği: Dokunulmadı
-import './styles/reset.css';     // Kullanıcı isteği: Dokunulmadı
-import './styles/global.css';    // Kullanıcı isteği: Dokunulmadı
-import './styles/scrollbar.css'; // Kullanıcı isteği: Dokunulmadı
+import './styles/variables.css';
+import './styles/reset.css';
+import './styles/global.css';
+import './styles/scrollbar.css';
 
 import { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';

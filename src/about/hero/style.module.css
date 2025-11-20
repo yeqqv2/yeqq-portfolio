@@ -34,11 +34,8 @@
 }
 
 .title > span {
-  height: 1.1em;
-  line-height: 1;
+  line-height: 1.15;
   letter-spacing: -0.05em;
-  overflow-x: visible;
-  overflow-y: hidden;
 }
 
 .title > span:nth-child(2) {
@@ -74,7 +71,7 @@
 
 .content_desc_text > span {
   overflow: hidden;
-  height: 1.1em;
+  height: 1.15em;
 }
 
 /* Work images container inside same desc block:

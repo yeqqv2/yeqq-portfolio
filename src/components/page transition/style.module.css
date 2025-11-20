@@ -1,0 +1,10 @@
+.transitionCircle {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  backdrop-filter: blur(16px) brightness(0.985) contrast(1.5);
+  pointer-events: none;
+  clip-path: circle(0% at 50% 50%);
+  display: none;
+  will-change: clip-path;
+}
