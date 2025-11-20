@@ -1,21 +1,21 @@
 .container {
   width: 100vw;
   background-color: var(--wb50);
-  padding: 10vh 1vw;
+  padding: 10vh 10vw;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 5vh;
+  gap: 10vh;
   position: relative;
   border-top: 1px solid var(--wb200);
 }
 
 .content {
-  width: 98vw;
+  width: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 4em;
+  gap: 10vh;
 }
 
 .logo {
@@ -26,12 +26,11 @@
 .links_container {
   display: flex;
   align-items: flex-start;
-  gap: 4em;
+  gap: 5vw;
 }
 
 .links {
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
   gap: 2em;
 }
@@ -43,18 +42,16 @@
   gap: 1em;
 }
 
-.link {
-  font-weight: 300;
-  color: var(--wb400);
+.links_header {
+  font-size: 0.875em;
+  font-weight: 200;
+  opacity: 0.5;
+  width: 4em;
 }
 
-.contact_link_colored {
-  padding: 0.375em 0.5em 0.375em 0.5em;
-  background-color: var(--blue400);
-  border-radius: 0.25em;
-  position: relative;
-  color: var(--blue950);
-  line-height: 1em;
+.link {
+  font-weight: 300;
+  letter-spacing: -0.025em;
 }
 
 .footer {
@@ -70,5 +67,9 @@
   .content {
     width: 98vw;
     flex-direction: column;
+  }
+
+  .links_container {
+    flex-wrap: wrap;
   }
 }
