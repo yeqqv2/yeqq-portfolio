@@ -211,11 +211,22 @@ const ProjectsContainer = () => {
                 style={{ backgroundColor: work.color }}
               >
                 <img
-                  className={styles.img}
-                  src={`${work.asset}/${work.banner}`}
+                  src={`${work.asset}/optimized/${work.banner.replace('.webp', '-800.webp')}`}
+                  srcSet={`
+                   ${work.asset}/optimized/${work.banner.replace('.webp', '-400.webp')} 400w,
+                   ${work.asset}/optimized/${work.banner.replace('.webp', '-800.webp')} 800w,
+                   ${work.asset}/optimized/${work.banner.replace('.webp', '-1200.webp')} 1200w,
+                   ${work.asset}/optimized/${work.banner.replace('.webp', '-1600.webp')} 1600w
+                 `}
+                  sizes="(max-width: 768px) 100vw, 
+                        (max-width: 1200px) 50vw,
+                        33vw"
                   alt={work.name}
-                  aria-hidden="true"
-                  loading="lazy"
+                  className={styles.img}
+                  width="800"
+                  height="450"
+                  fetchpriority={index === 0 ? "high" : "auto"}
+                  loading={index === 0 ? "eager" : "lazy"}
                   decoding="async"
                 />
               </div>

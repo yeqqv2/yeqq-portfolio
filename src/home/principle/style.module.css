@@ -23,3 +23,15 @@
   font-weight: 300;
   opacity: 0.85;
 }
+
+@media screen and (max-width: 1024px) {
+  .container {
+    width: 50vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    width: 98vw;
+  }
+}

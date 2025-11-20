@@ -15,47 +15,58 @@ const IntroSec = () => {
   const containerRef = useRef(null);
   const videoRef = useRef(null);
 
-  // Mouse Move Efekti (Senin kodun - korundu)
+  /* ------------------------------------------
+     OPTIMIZED MOUSE TRACKING (RAF THROTTLED)
+  -------------------------------------------*/
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    const handleMouseMove = (e) => {
+    let rafId = null;
+
+    const updateMouse = (e) => {
       const centerX = window.innerWidth / 2;
       const centerY = window.innerHeight / 2;
       const strength = 0.05;
+
       const offsetX = (e.clientX - centerX) * strength;
       const offsetY = (e.clientY - centerY) * strength;
-      container.style.setProperty('--mouse-x-offset', `${offsetX}px`);
-      container.style.setProperty('--mouse-y-offset', `${offsetY}px`);
+
+      container.style.setProperty("--mouse-x-offset", `${offsetX}px`);
+      container.style.setProperty("--mouse-y-offset", `${offsetY}px`);
+
+      rafId = null;
     };
 
-    const handleMouseLeave = () => {
-      container.style.setProperty('--mouse-x-offset', '0px');
-      container.style.setProperty('--mouse-y-offset', '0px');
+    const handleMouseMove = (e) => {
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(() => updateMouse(e));
     };
 
-    container.addEventListener('mousemove', handleMouseMove);
-    container.addEventListener('mouseleave', handleMouseLeave);
+    const resetOffsets = () => {
+      container.style.setProperty("--mouse-x-offset", "0px");
+      container.style.setProperty("--mouse-y-offset", "0px");
+    };
+
+    container.addEventListener("mousemove", handleMouseMove);
+    container.addEventListener("mouseleave", resetOffsets);
 
     return () => {
-      container.removeEventListener('mousemove', handleMouseMove);
-      container.removeEventListener('mouseleave', handleMouseLeave);
+      container.removeEventListener("mousemove", handleMouseMove);
+      container.removeEventListener("mouseleave", resetOffsets);
+      if (rafId) cancelAnimationFrame(rafId);
     };
   }, []);
 
-  // Video Loop (Senin kodun - korundu)
+  /* ------------------------------------------
+     OPTIMIZED VIDEO LOOP (MORE PERFORMANT)
+  -------------------------------------------*/
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    const handleEnded = () => {
-      video.currentTime = 0;
-      video.play();
-    };
-    video.addEventListener('ended', handleEnded);
-    return () => {
-      video.removeEventListener('ended', handleEnded);
-    };
+
+    // Daha performanslı → event gerekmez
+    video.loop = true;
   }, []);
 
   return (
@@ -64,11 +75,11 @@ const IntroSec = () => {
         ref={videoRef}
         className={styles.vid}
         src="/assets/videos/homepage-video.webm"
-        // src="https://storage.googleapis.com/gweb-tveo-website.appspot.com/uploads/video/generations/a06010cf-7a61-4fad-b7a3-58993de17dc3.mp4"
-        // src="https://storage.googleapis.com/gweb-tveo-website.appspot.com/uploads/video/generations/3425996247_250515_REmlgy5kDh86i2KTZI7U.mp4"
         autoPlay
         muted
         playsInline
+        preload="metadata"
+        fetchpriority="high"
         poster="/assets/loader/video-placeholder.webp"
       />
 

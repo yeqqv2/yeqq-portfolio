@@ -144,6 +144,7 @@ const ContactHomePage = () => {
 								left: word.x,
 								top: word.y,
 								pointerEvents: 'none',
+								zIndex: 9999
 							}}
 						>
 							{word.word}

@@ -41,14 +41,13 @@
 
 .customCursor {
   position: fixed;
-  border-radius: 50%;
   pointer-events: none;
-  transform: translate(-50%, -50%);
   z-index: 999;
-  padding: 0.375em 0.5em 0.375em 0.5em;
+  padding: 0.375em 0.5em;
   border-radius: 0.25em;
   line-height: 1em;
   white-space: nowrap;
+  transform: translate3d(-50%, -50%, 0); /* sadece başlangıç offset */
 }
 
 @media screen and (max-width: 1024px) {
