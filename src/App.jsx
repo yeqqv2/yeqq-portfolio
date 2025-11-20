@@ -5,6 +5,7 @@ import './styles/scrollbar.css'; // Kullanıcı isteği: Dokunulmadı
 
 import { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import SmoothScroll from './components/SmoothScroll/index';
 import LoadingPage from './components/loading/LoadingPage';
 import HomePage from './pages/home/HomePage';
 
@@ -15,41 +16,43 @@ const WorkPage = lazy(() => import('./containers/projects/work/WorkPage'));
 
 function App() {
 	return (
-		<Routes>
-			<Route path="/" element={<HomePage />} />
-			<Route
-				path="/about-me"
-				element={
-					<Suspense fallback={<LoadingPage />}>
-						<AboutPage />
-					</Suspense>
-				}
-			/>
-			<Route
-				path="/projects"
-				element={
-					<Suspense fallback={<LoadingPage />}>
-						<ProjectsPage />
-					</Suspense>
-				}
-			/>
-			<Route
-				path="/projects/:slug"
-				element={
-					<Suspense fallback={<LoadingPage />}>
-						<WorkPage />
-					</Suspense>
-				}
-			/>
-			<Route
-				path="/contact-me"
-				element={
-					<Suspense fallback={<LoadingPage />}>
-						<ContactPage />
-					</Suspense>
-				}
-			/>
-		</Routes>
+		<SmoothScroll>
+			<Routes>
+				<Route path="/" element={<HomePage />} />
+				<Route
+					path="/about-me"
+					element={
+						<Suspense fallback={<LoadingPage />}>
+							<AboutPage />
+						</Suspense>
+					}
+				/>
+				<Route
+					path="/projects"
+					element={
+						<Suspense fallback={<LoadingPage />}>
+							<ProjectsPage />
+						</Suspense>
+					}
+				/>
+				<Route
+					path="/projects/:slug"
+					element={
+						<Suspense fallback={<LoadingPage />}>
+							<WorkPage />
+						</Suspense>
+					}
+				/>
+				<Route
+					path="/contact-me"
+					element={
+						<Suspense fallback={<LoadingPage />}>
+							<ContactPage />
+						</Suspense>
+					}
+				/>
+			</Routes>
+		</SmoothScroll>
 	);
 }
 

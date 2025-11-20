@@ -7,17 +7,17 @@ const cards = [
         id: 1,
         shape: 'puzzle',
         instruction: 'Draw a puzzle piece',
-        title: 'Product Mind',
-        description: 'Worked across public platforms, startups, and freelance projects — handling both design and development.',
-        color: '#1cd2f4',
+        title: 'The Big Picture',
+        description: "I don't just fit pieces together; I solve the whole puzzle. Bridging the gap between user needs, business goals, and technical reality.",
+        color: '#1be7ff',
         emoji: '🧩'
     },
     {
         id: 2,
         shape: 'pen',
         instruction: 'Draw a pen inside the box',
-        title: 'Hybrid Approach',
-        description: 'Bridging UI decisions with frontend architecture.',
+        title: 'Design Engineering',
+        description: 'Writing code with a designer’s eye. I translate creative concepts into pixel-perfect interfaces without losing clarity in translation.',
         color: '#ff9b0a',
         emoji: '✏️'
     },
@@ -25,9 +25,9 @@ const cards = [
         id: 3,
         shape: 'check',
         instruction: 'Draw a checkmark',
-        title: 'Outcome Focused',
-        description: 'Creating experiences that feel intentional, accessible, and thoughtfully engineered.',
-        color: '#4bdd6d',
+        title: 'Shipped & Solid',
+        description: 'It’s not done until it feels right. Building accessible, performant, and polished experiences that users can trust.',
+        color: '#89fc00',
         emoji: '✓'
     }
 ];
@@ -225,16 +225,31 @@ const Card = ({ card, index }) => {
         }
     };
 
+    // MOBİL DÜZELTME: Hem Mouse hem Touch koordinatlarını al
     const getMousePos = (e, canvas) => {
         const rect = canvas.getBoundingClientRect();
-        const touch = e.touches ? e.touches[0] : e;
+        let clientX, clientY;
+
+        if (e.touches && e.touches.length > 0) {
+            // Dokunmatik ekran
+            clientX = e.touches[0].clientX;
+            clientY = e.touches[0].clientY;
+        } else {
+            // Mouse
+            clientX = e.clientX;
+            clientY = e.clientY;
+        }
+
         return {
-            x: touch.clientX - rect.left,
-            y: touch.clientY - rect.top
+            x: clientX - rect.left,
+            y: clientY - rect.top
         };
     };
 
     const startDrawing = (e) => {
+        // MOBİL DÜZELTME: Scrollu engelle
+        if (e.cancelable && e.type.startsWith('touch')) e.preventDefault();
+
         if (isRevealed) return;
         setIsDrawing(true);
         const pos = getMousePos(e, canvasRef.current);
@@ -243,7 +258,9 @@ const Card = ({ card, index }) => {
 
     const draw = (e) => {
         if (!isDrawing || isRevealed) return;
-        e.preventDefault();
+
+        // MOBİL DÜZELTME: Scrollu engelle
+        if (e.cancelable && e.type.startsWith('touch')) e.preventDefault();
 
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');

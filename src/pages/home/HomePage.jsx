@@ -3,10 +3,10 @@ import styles from './style.module.css';
 import IntroSec from '../../containers/home/intro/IntroSec';
 import WelcomeSec from './../../containers/home/welcome/WelcomeSec';
 import LoadingPage from '../../components/loading/LoadingPage';
+import SplashScreen from '../../animations/open/SplashScreen';
 const AboutmeHome = lazy(() => import('../../containers/home/aboutme/AboutmeHome'));
 const WorksHomePage = lazy(() => import('../../containers/home/works/Works'));
 const ContactHomePage = lazy(() => import('../../containers/home/contact/ContactHomePage'));
-const SplashScreen = lazy(() => import('./../../animations/start/SplashScreen'));
 
 
 const HomePage = () => {
@@ -33,8 +33,8 @@ const HomePage = () => {
 				</Suspense>
 			)}
 			<IntroSec />
-			<WelcomeSec />
 			<Suspense fallback={<LoadingPage />} >
+				<WelcomeSec />
 				<AboutmeHome />
 				<WorksHomePage />
 				<ContactHomePage />

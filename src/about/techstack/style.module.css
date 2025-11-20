@@ -24,13 +24,14 @@
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(4px) brightness(0.985);
+  cursor: none;
 }
 
 .customCursor {
   position: fixed;
   pointer-events: none;
   transform: translate(-50%, -50%);
-  z-index: 999;
+  z-index: 9999;
   padding: 0.375em 0.5em 0.375em 0.5em;
   background-color: var(--wb950);
   border-radius: 0.25em;

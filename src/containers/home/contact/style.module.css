@@ -10,14 +10,20 @@
 }
 
 .context {
-  border: 1px solid var(--wb950);
   width: 98vw;
   height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.context_div {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0.5em;
+  padding: 5vw;
 }
 
 .context_text {

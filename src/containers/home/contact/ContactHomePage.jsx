@@ -117,18 +117,20 @@ const ContactHomePage = () => {
 	);
 
 	return (
-		<a href="/contact-me" className={styles.container}>
+		<div className={styles.container}>
 			<div
 				className={styles.context}
 				ref={contextRef}
 				onMouseMove={handleMouseMove}
 			>
-				<div className={styles.context_text}>
-					got an idea?
-				</div>
-				<div className={styles.contact_me}>
-					let's talk
-				</div>
+				<a href="/contact-me" className={styles.context_div}>
+					<div className={styles.context_text}>
+						got an idea?
+					</div>
+					<div className={styles.contact_me}>
+						● let's talk
+					</div>
+				</a>
 				<div className={styles.sentences}>
 					{words.map((word) => (
 						<span
@@ -146,7 +148,7 @@ const ContactHomePage = () => {
 					))}
 				</div>
 			</div>
-		</a>
+		</div>
 	);
 };
 

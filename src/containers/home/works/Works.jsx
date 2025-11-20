@@ -87,33 +87,28 @@ const WorksHomePage = () => {
 
 	// Card animasyonları
 	useEffect(() => {
-		workRefs.current.forEach((work) => {
-			if (work) {
-				const img = work.querySelector(`.${styles.work_img}`);
-				if (img) {
-					gsap.fromTo(
-						img,
-						{
-							clipPath: "inset(100% 0% 0% 0%)",
-						},
-						{
-							clipPath: "inset(0% 0% 0% 0%)",
-							duration: 1.5,
-							ease: "power3.out",
-							scrollTrigger: {
-								trigger: work,
-								start: "top 85%",
-							},
-						}
-					);
-				}
-			}
-		});
+		const items = workRefs.current.filter(Boolean);
 
-		return () => {
-			ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-		};
+		gsap.fromTo(
+			items.map(work => work.querySelector(`.${styles.work_img}`)),
+			{
+				clipPath: "inset(100% 0% 0% 0%)",
+			},
+			{
+				clipPath: "inset(0% 0% 0% 0%)",
+				duration: 1.3,
+				ease: "power3.out",
+				stagger: 0.15, // ⭐ SIRAYLA GELME
+				scrollTrigger: {
+					trigger: items[0],
+					start: "top 85%",
+				},
+			}
+		);
+
+		return () => ScrollTrigger.getAll().forEach(t => t.kill());
 	}, []);
+
 
 	const lastThreeWorks = projects.slice(0, 6);
 

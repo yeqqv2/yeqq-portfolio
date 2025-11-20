@@ -139,6 +139,7 @@
     linear-gradient(to right, rgba(0, 0, 0, 0.025) 0.125em, var(--wb50) 0.125em);
   background-size: 5em 5em;
   box-shadow: inset 0 0 2em 2em var(--wb50);
+  touch-action: none;
 }
 
 .canvasRevealed {
@@ -200,18 +201,8 @@
 }
 
 @media screen and (max-width: 600px) {
-  .container {
-    align-items: flex-start;
-  }
-
   .header {
     width: 75vw;
-    align-items: flex-start;
-  }
-
-  .title,
-  .subtitle {
-    text-align: start;
   }
 
   .cardsGrid {
@@ -224,10 +215,4 @@
     width: 98vw;
     aspect-ratio: 1;
   }
-}
-
-@media screen and (max-width: 1024px) {
-}
-
-@media screen and (max-width: 600px) {
 }
