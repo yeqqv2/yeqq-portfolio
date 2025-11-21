@@ -14,7 +14,7 @@ export default function SplashScreen({ onAnimationComplete }) {
     const originalOverflow = useRef({ body: "", html: "" });
 
     const artImages = useMemo(() => {
-        return Array.from({ length: 8 }, (_, i) => `/assets/art/${i + 1}.webp`);
+        return Array.from({ length: 8 }, (_, i) => `/assets/modern-art/${i + 1}.webp`);
     }, []);
 
     useEffect(() => {

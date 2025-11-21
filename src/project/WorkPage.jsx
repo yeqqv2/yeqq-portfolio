@@ -87,7 +87,7 @@ export default function WorkSinglePage() {
 			<section className={styles.hero}>
 				<img
 					className={styles.hero_image}
-					src={`${work.asset}/${work.banner}`}
+					src={`${work.asset}/banner.webp`}
 					alt={work.name || work.project_name}
 					aria-hidden="true"
 					loading="lazy"

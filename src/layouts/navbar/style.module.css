@@ -151,6 +151,7 @@
   }
 
   .sidebar {
+    height: 100svh;
     width: 100vw;
     padding: 20vh 10vw 10vh 10vw;
   }

@@ -129,12 +129,12 @@ const WorksHomePage = () => {
 						>
 							<div className={styles.work_img}>
 								<img
-									src={`${work.asset}/optimized/${work.banner.replace('.webp', '-800.webp')}`}
+									src={`/assets/banners/${work.banner}-800.webp`}
 									srcSet={`
-    ${work.asset}/optimized/${work.banner.replace('.webp', '-400.webp')} 400w,
-    ${work.asset}/optimized/${work.banner.replace('.webp', '-800.webp')} 800w,
-    ${work.asset}/optimized/${work.banner.replace('.webp', '-1200.webp')} 1200w,
-    ${work.asset}/optimized/${work.banner.replace('.webp', '-1600.webp')} 1600w
+    /assets/banners/${work.banner}-400.webp 400w,
+    /assets/banners/${work.banner}-800.webp 800w,
+    /assets/banners/${work.banner}-1200.webp 1200w,
+    /assets/banners/${work.banner}-1600.webp 1600w
   `}
 									sizes="(max-width: 768px) 100vw, 
          (max-width: 1200px) 50vw,
@@ -147,6 +147,7 @@ const WorksHomePage = () => {
 									loading={index === 0 ? "eager" : "lazy"}
 									decoding="async"
 								/>
+
 
 
 							</div>

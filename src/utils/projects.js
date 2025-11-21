@@ -29,8 +29,8 @@ const works = [
       },
     ],
     link: "/projects/skynotech-smart-site-systems",
-    asset: "/assets/images/projects/skynotech",
-    banner: "banner.webp",
+    asset: "/assets/projects/skynotech",
+    banner: "skynotech",
     type: "professional",
     tags: ["startup", "webapp", "uiux", "dashboard", "iot"],
     images: [
@@ -41,12 +41,7 @@ const works = [
       { file: "5.webp", isWide: false },
     ],
   },
-  // -------------------------------
-  // 2 — Skynotech Corporate Website
-  // -------------------------------
-  // ----------------------------------------------------
-  // 2 — Skynotech | Corporate Brand & Web Presence
-  // ----------------------------------------------------
+
   // ----------------------------------------------------
   // 2 — Skynotech | Corporate Brand & Web Presence
   // ----------------------------------------------------
@@ -78,8 +73,8 @@ const works = [
       },
     ],
     link: "/projects/skynotech-smart-site-systems-website",
-    banner: "banner.webp",
-    asset: "/assets/images/projects/skynotech-website",
+    banner: "skynotech-website",
+    asset: "/assets/projects/skynotech-website",
     type: "professional",
     tags: ["startup", "webapp", "uiux", "brand-identity", "design-system"],
     images: [
@@ -90,6 +85,7 @@ const works = [
       { file: "5.webp", isWide: false },
     ],
   },
+
   // -------------------------------------------------------------------------
   // 3 — Balıkesir | High-Performance Digital Employment Platform
   // -------------------------------------------------------------------------
@@ -126,8 +122,8 @@ const works = [
       },
     ],
     link: "/projects/balikesir-istihdam-ofisi",
-    asset: "/assets/images/projects/balikesir-istihdam-ofisi",
-    banner: "banner.webp",
+    asset: "/assets/projects/balikesir-istihdam-ofisi",
+    banner: "balikesir-istihdam-ofisi",
     type: "professional",
     tags: ["municipal", "webapp", "uiux", "high-performance", "accessibility"],
     images: [
@@ -168,8 +164,8 @@ const works = [
       },
     ],
     link: "/projects/balikesir-etkinlik",
-    asset: "/assets/images/projects/balikesir-etkinlik",
-    banner: "banner.webp",
+    asset: "/assets/projects/balikesir-etkinlik",
+    banner: "balikesir-etkinlik",
     type: "professional",
     tags: ["municipal", "mobile", "uiux", "react-native", "youth-focus"],
     images: [
@@ -224,8 +220,8 @@ const works = [
       },
     ],
     link: "/projects/yakin-kart",
-    asset: "/assets/images/projects/yakin-kart",
-    banner: "banner.webp",
+    asset: "/assets/projects/yakin-kart",
+    banner: "yakin-kart",
     type: "professional",
     tags: [
       "municipal",
@@ -273,8 +269,8 @@ const works = [
       },
     ],
     link: "/projects/bapka-website",
-    asset: "/assets/images/projects/bapka-website",
-    banner: "banner.webp",
+    asset: "/assets/projects/bapka-website",
+    banner: "bapka",
     type: "professional",
     tags: ["municipal", "webapp", "uiux", "seo", "content-strategy"],
     images: [
@@ -317,8 +313,8 @@ const works = [
       },
     ],
     link: "/projects/askida-fatura",
-    asset: "/assets/images/projects/askida-fatura",
-    banner: "banner.webp",
+    asset: "/assets/projects/askida-fatura",
+    banner: "askida-fatura",
     type: "professional",
     tags: ["municipal", "mobile", "uiux", "social-impact", "react-native"],
     images: [
@@ -361,8 +357,8 @@ const works = [
       },
     ],
     link: "/projects/can-dostlar",
-    asset: "/assets/images/projects/can-dostlar",
-    banner: "banner.webp",
+    asset: "/assets/projects/can-dostlar",
+    banner: "can-dostlar",
     type: "professional",
     tags: ["municipal", "mobile", "uiux", "social-impact", "animal-welfare"],
     images: [
@@ -402,8 +398,8 @@ const works = [
       },
     ],
     link: "/projects/balikesir-eczane",
-    asset: "/assets/images/projects/balikesir-eczane",
-    banner: "banner.webp",
+    asset: "/assets/projects/balikesir-eczane",
+    banner: "balikesir-eczane",
     type: "professional",
     tags: ["municipal", "mobile", "uiux", "emergency-service", "maps"],
     images: [

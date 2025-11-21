@@ -27,6 +27,10 @@
   cursor: none;
 }
 
+.icon > img {
+  object-fit: contain !important;
+}
+
 .customCursor {
   position: fixed;
   pointer-events: none;

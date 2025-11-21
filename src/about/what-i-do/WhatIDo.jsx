@@ -73,7 +73,7 @@ export default function WhatIDo() {
         <div className={styles.container} ref={containerRef}>
             <div className={styles.image_container}>
                 <img
-                    src="/assets/images/me/12.webp"
+                    src="/assets/yunus-emre-korkmaz/12.webp"
                     alt="yunus emre korkmaz"
                     className={styles.image_1}
                     ref={(el) => (imageRefs.current[0] = el)}
@@ -82,7 +82,7 @@ export default function WhatIDo() {
                     decoding="async"
                 />
                 <img
-                    src="/assets/images/me/5.webp"
+                    src="/assets/yunus-emre-korkmaz/5.webp"
                     alt="yunus emre korkmaz"
                     className={styles.image_2}
                     ref={(el) => (imageRefs.current[1] = el)}
@@ -130,7 +130,7 @@ export default function WhatIDo() {
             </div>
             <div className={styles.image_container}>
                 <img
-                    src="/assets/images/me/3.webp"
+                    src="/assets/yunus-emre-korkmaz/3.webp"
                     alt="yunus emre korkmaz"
                     className={styles.image_3}
                     ref={(el) => (imageRefs.current[2] = el)}
@@ -139,7 +139,7 @@ export default function WhatIDo() {
                     decoding="async"
                 />
                 <img
-                    src="/assets/images/me/11.webp"
+                    src="/assets/yunus-emre-korkmaz/11.webp"
                     alt="yunus emre korkmaz"
                     className={styles.image_4}
                     ref={(el) => (imageRefs.current[3] = el)}
