@@ -82,7 +82,7 @@ const WorksHomePage = () => {
 
 	const handleTouchStart = (e) => {
 		const el = e.currentTarget;
-		gsap.fromTo(el, { scale: 0.97 }, { scale: 1, duration: 0.3, ease: "power3.out" });
+		gsap.fromTo(el, { scale: 0.97 }, { scale: 1, duration: 0.3, ease: "hop" });
 	};
 
 	// Card animasyonları
@@ -97,7 +97,7 @@ const WorksHomePage = () => {
 			{
 				clipPath: "inset(0% 0% 0% 0%)",
 				duration: 1.3,
-				ease: "power3.out",
+				ease: "hop",
 				stagger: 0.15, // ⭐ SIRAYLA GELME
 				scrollTrigger: {
 					trigger: items[0],

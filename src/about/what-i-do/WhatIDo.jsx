@@ -48,7 +48,7 @@ export default function WhatIDo() {
                 // Ek fade ve transform animasyonu
                 gsap.fromTo(
                     img,
-                    { y: 0, },
+                    { y: 16, },
                     {
                         y: 0,
                         duration: 0.8,
@@ -118,7 +118,7 @@ export default function WhatIDo() {
                 <div className={styles.context}>
                     <AnimatedSplit
                         text={
-                            "my work focuses on clarity, usability, and a strong visual identity."
+                            "my work focuses on clarity, usability, and motion-led visual identity."
                         }
                         className={styles.desc}
                         tagName="span"

@@ -1,7 +1,12 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
+import CustomEase from 'gsap/CustomEase';
 import styles from './style.module.css';
 import AnimatedSplit from '../../components/animated split/AnimatedSplit';
+
+
+gsap.registerPlugin(CustomEase);
+CustomEase.create("hop", "0.9, 0, 0.1, 1");
 
 const cards = [
     {
@@ -357,7 +362,7 @@ const Card = ({ card, index }) => {
         gsap.to(curtainRef.current, {
             y: '-100%',
             duration: 1.2,
-            ease: 'power3.inOut',
+            ease: 'hop',
             onComplete: () => {
                 // keep curtain hidden so content is visible
                 curtainRef.current.style.display = 'none';
@@ -366,7 +371,7 @@ const Card = ({ card, index }) => {
 
         gsap.fromTo(contentRef.current,
             { opacity: 0, y: 20 },
-            { opacity: 1, y: 0, duration: 0.8, delay: 0.4, ease: 'power2.out' }
+            { opacity: 1, y: 0, duration: 0.8, delay: 0.4, ease: 'hop' }
         );
     };
 

@@ -2,8 +2,12 @@ import React, { useState, useRef, useEffect } from 'react';
 import styles from './style.module.css';
 import MenuButton from '../../tools/menu/MenuButton';
 import gsap from 'gsap';
+import CustomEase from 'gsap/CustomEase';
 import { GoArrowRight } from 'react-icons/go';
 // import AnimatedLink from '../../components/animated link/AnimatedLink';
+
+gsap.registerPlugin(CustomEase);
+CustomEase.create("hop", "0.9, 0, 0.1, 1");
 
 export default function Navbar() {
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -14,17 +18,28 @@ export default function Navbar() {
 	}, []);
 
 	useEffect(() => {
+		document.body.style.overflow = isSidebarOpen ? "hidden" : "";
+		return () => (document.body.style.overflow = "");
+	}, [isSidebarOpen]);
+
+	useEffect(() => {
+		const onKey = (e) => e.key === "Escape" && setIsSidebarOpen(false);
+		window.addEventListener("keydown", onKey);
+		return () => window.removeEventListener("keydown", onKey);
+	}, []);
+
+	useEffect(() => {
 		if (isSidebarOpen) {
 			gsap.to(sidebarRef.current, {
 				x: '0%',
 				duration: 0.5,
-				ease: 'power3.out',
+				ease: 'hop',
 			});
 		} else {
 			gsap.to(sidebarRef.current, {
 				x: '-100%',
 				duration: 0.5,
-				ease: 'power3.in',
+				ease: 'hop',
 			});
 		}
 	}, [isSidebarOpen]);

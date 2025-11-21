@@ -32,13 +32,13 @@ export default function Aboutme() {
             <div className={styles.context}>
                 <AnimatedSplit
                     text={
-                        "My work blends engineering precision with design sensitivity, allowing me to build interfaces that are not only functional, but intuitive and enjoyable to use."
+                        "I obsess over micro-interactions and clarity, so products feel effortless from first click to last scroll."
                     }
                     className={styles.desc}
                     tagName="span"
                     stagger={0.03}
                     duration={1.5}
-                    start="top 80%"
+                    start="top 70%"
                 />
             </div>
         </div>

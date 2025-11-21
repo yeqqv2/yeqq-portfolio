@@ -12,7 +12,6 @@ CustomEase.create("hop", "0.9, 0, 0.1, 1");
 export default function HeroAbout() {
     const containerRef = useRef(null);
     const headerRef = useRef(null);
-    const titleRef = useRef(null);
     const descRef = useRef(null);
     const contentDescRef = useRef(null);
 
@@ -31,12 +30,6 @@ export default function HeroAbout() {
 
     useEffect(() => {
         let ctx = gsap.context(() => {
-            // Split text for title/desc (apply to contentDescRef for textual split)
-            const titleSplit = new SplitType(titleRef.current, {
-                types: "lines, words",
-                tagName: "span",
-            });
-
             const descSplit = new SplitType(contentDescRef.current, {
                 types: "lines, words",
                 tagName: "span",
@@ -48,14 +41,6 @@ export default function HeroAbout() {
                     start: "top 100%",
                     toggleActions: "play none none none",
                 },
-            });
-
-            tl.from(titleSplit.words, {
-                y: "110%",
-                duration: 0.75,
-                ease: "hop",
-                stagger: 0.05,
-                delay: 0.5,
             });
 
             tl.from(
@@ -101,7 +86,7 @@ export default function HeroAbout() {
                     {
                         y: 0,
                         duration: 0.8,
-                        ease: "power2.out",
+                        ease: "hop",
                         delay: index * 0.12,
                         scrollTrigger: {
                             trigger: work,
