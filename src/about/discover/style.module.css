@@ -213,6 +213,11 @@
 
   .card {
     width: 98vw;
+  }
+
+  .canvas {
     aspect-ratio: 1;
+    width: 98vw;
+    height: 98vw;
   }
 }
