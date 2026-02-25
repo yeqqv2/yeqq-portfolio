@@ -17,6 +17,7 @@
 
 .icon {
   aspect-ratio: 1;
+  height: 4vw;
   width: 4vw;
   padding: 1vw;
   border-radius: 1vw;
