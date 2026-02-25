@@ -98,20 +98,25 @@ const ContactHomePage = () => {
 						setWords((prev) => prev.filter((word) => word.id !== newWord.id));
 					},
 				});
-				tl.set(`.word-${newWord.id}`, { scale: 0 })
+				tl.set(`.word-${newWord.id}`, {
+					scale: 0,
+					force3D: true // Safari için kritik
+				})
 					.to(`.word-${newWord.id}`, {
 						duration: 0.33,
 						scale: 1.25,
 						rotate: Math.floor(Math.random() * 20 - 10),
 						ease: 'expo',
+						force3D: true
 					})
 					.to(`.word-${newWord.id}`, {
 						duration: 0.42,
 						scale: 0,
 						ease: 'expo.in',
-						delay: 0.25
+						delay: 0.25,
+						force3D: true
 					});
-			}, 0);
+			}, 10);
 		}, 10),
 		[]
 	);
@@ -143,8 +148,10 @@ const ContactHomePage = () => {
 								position: 'absolute',
 								left: word.x,
 								top: word.y,
+								display: 'inline-block', // Bunu ekle
 								pointerEvents: 'none',
-								zIndex: 9999
+								zIndex: 9999,
+								willChange: 'transform', // Safari'ye GPU hazırlığı yaptırır
 							}}
 						>
 							{word.word}

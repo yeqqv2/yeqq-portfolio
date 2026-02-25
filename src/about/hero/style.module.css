@@ -85,6 +85,7 @@
 
 /* each image has its own wrapper */
 .work_item {
+  aspect-ratio: 3/4;
   height: 10em;
   overflow: hidden;
   display: flex;

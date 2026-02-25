@@ -31,7 +31,7 @@ root.render(
 					innerSize={10}
 					innerScale={1}
 					outerStyle={{
-						display: 'flex',
+						display: 'none',
 					}}
 					innerStyle={{
 						backgroundColor: 'rgba(0,0,0)',
@@ -50,7 +50,7 @@ root.render(
 						'button',
 						'.link',
 					]}
-					trailingSpeed={10}
+					trailingSpeed={0}
 					showSystemCursor={true}
 				/>
 			</Suspense>
