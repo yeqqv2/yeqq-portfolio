@@ -1,11 +1,18 @@
 import styles from "./style.module.css";
+// 1. Hook'u import et
+import { useTranslation } from 'react-i18next';
 
 export default function SuccessBox() {
+    // 2. t fonksiyonunu al
+    const { t } = useTranslation();
+
     return (
         <div className={styles.box}>
-            <div className={styles.title}>● message sent</div>
+            <div className={styles.title}>
+                {t('successBox.title')}
+            </div>
             <div className={styles.text}>
-                thank you — I’ll get back to you as soon as possible.
+                {t('successBox.text')}
             </div>
         </div>
     );

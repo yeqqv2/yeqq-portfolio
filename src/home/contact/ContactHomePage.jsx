@@ -3,27 +3,17 @@ import { useState, useRef, useCallback } from 'react';
 import styles from './style.module.css';
 import gsap from 'gsap';
 import { throttle } from 'lodash-es';
+import { useTranslation } from 'react-i18next';
 
 const ContactHomePage = () => {
+	const { t } = useTranslation();
 	const [words, setWords] = useState([]);
 	const contextRef = useRef(null);
 	const wordIndexRef = useRef(0); // Mevcut kelime indeksini takip eder
 	const styleIndexRef = useRef(0); // Mevcut stil indeksini takip eder
 	const lastSpawnRef = useRef(null); // Son spawn koordinatlarını saklar
 
-	const sentencesData = [
-		'if you want',
-		'develop',
-		'a software',
-		'this is',
-		'your place',
-		'do you have',
-		'an idea?',
-		'your dream',
-		'make it happen!',
-		'start',
-		'your project!',
-	];
+	const sentencesData = t('contactHome.sentences', { returnObjects: true });
 
 	const stylesArray = [
 		styles.style1,
@@ -36,8 +26,7 @@ const ContactHomePage = () => {
 		styles.style8,
 	];
 
-	// Minimum mesafe, örneğin 50 piksel
-	const minimumDistance = 60;
+	const minimumDistance = 50;
 
 	const handleMouseMove = useCallback(
 		throttle((e) => {
@@ -48,29 +37,24 @@ const ContactHomePage = () => {
 			let x = e.clientX - rect.left;
 			let y = e.clientY - rect.top;
 
-			// Rastgele küçük titreşim efekti için offset
 			x += Math.random() * 4 - 2;
 			y += Math.random() * 4 - 2;
 
-			// Önceki spawn ile aradaki mesafeyi kontrol et
 			if (lastSpawnRef.current) {
 				const dx = x - lastSpawnRef.current.x;
 				const dy = y - lastSpawnRef.current.y;
 				const distance = Math.hypot(dx, dy);
 				if (distance < minimumDistance) {
-					// Mesafe yeterince büyük değilse yeni kelime oluşturma
 					return;
 				}
 			}
 
-			// Eğer tüm kelimeler gösterildiyse, indeksi sıfırla
 			if (wordIndexRef.current >= sentencesData.length) {
 				wordIndexRef.current = 0;
 			}
 			const word = sentencesData[wordIndexRef.current];
 			wordIndexRef.current += 1;
 
-			// Stili sıralı olarak seç
 			const style = stylesArray[styleIndexRef.current];
 			styleIndexRef.current += 1;
 			if (styleIndexRef.current >= stylesArray.length) {
@@ -85,13 +69,10 @@ const ContactHomePage = () => {
 				style,
 			};
 
-			// Yeni kelimeyi state'e ekle
 			setWords((prev) => [...prev, newWord]);
-
-			// Yeni spawn edilen konumu kaydet (böylece üst üste binme engellenecek)
+			
 			lastSpawnRef.current = { x, y };
 
-			// GSAP animasyon zinciri
 			setTimeout(() => {
 				const tl = gsap.timeline({
 					onComplete: () => {
@@ -105,8 +86,8 @@ const ContactHomePage = () => {
 					.to(`.word-${newWord.id}`, {
 						duration: 0.33,
 						scale: 1.25,
-						rotate: Math.floor(Math.random() * 20 - 10),
 						ease: 'expo',
+						rotate: Math.floor(Math.random() * 20 - 10),
 						force3D: true
 					})
 					.to(`.word-${newWord.id}`, {
@@ -118,7 +99,7 @@ const ContactHomePage = () => {
 					});
 			}, 10);
 		}, 10),
-		[]
+		[sentencesData]
 	);
 
 	return (
@@ -131,13 +112,13 @@ const ContactHomePage = () => {
 				<div className={styles.context_div}>
 					<div className={styles.context_header}>
 						<div className={styles.context_text}>
-							let’s build something meaningful.
+							{t('contactHome.header')}
 						</div>
 						<div className={styles.contact_me}>
-							I’m open to collaborations, freelance work and product-focused projects.
+							{t('contactHome.subtext')}
 						</div>
 					</div>
-					<a href="/contact-me" className={styles.contact_link_colored}>● get in touch</a>
+					<a href="/contact-me" className={styles.contact_link_colored}>{t('contactHome.link')}</a>
 				</div>
 				<div className={styles.sentences}>
 					{words.map((word) => (

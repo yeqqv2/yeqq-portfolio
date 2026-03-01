@@ -1,0 +1,146 @@
+{
+  "nav": {
+    "home": "home",
+    "about": "aboutme",
+    "projects": "projects",
+    "contact": "get in touch",
+    "contact_btn": "● contact with me",
+    "connect": "[connect]",
+    "contact_header": "[contact]"
+  },
+  "footer": {
+    "links_header": "[links]",
+    "connect_header": "[connect]",
+    "contact_header": "[contact]",
+    "home": "home",
+    "about": "aboutme",
+    "projects": "projects",
+    "contact_btn": "get in touch",
+    "signature": "designed & built by yunus emre korkmaz"
+  },
+  "intro": {
+    "marqueeText": "minimalism, ui/ux design, perfectionism, refined aesthetics,"
+  },
+  "welcome": {
+    "greeting": "[hey, i'm]",
+    "name": "[yunus emre korkmaz]",
+    "description": "I design and build modern, intentional and motion-driven digital experiences.",
+    "cursor": "● who is this?"
+  },
+  "aboutHome": {
+    "mainText": "I merge design clarity with engineering precision to craft thoughtful digital products.",
+    "link": "● my story"
+  },
+  "worksHome": {
+    "cursorWords": [
+      "see more",
+      "case view",
+      "view details",
+      "open project",
+      "quick peek",
+      "discover more"
+    ]
+  },
+  "principles": {
+    "title": "[principles]",
+    "list": [
+      "clarity over complexity",
+      "motion with purpose",
+      "design informs engineering",
+      "consistency creates trust",
+      "details matter, but flow matters more"
+    ]
+  },
+  "contactHome": {
+    "header": "let’s build something meaningful.",
+    "subtext": "I’m open to collaborations, freelance work and product-focused projects.",
+    "link": "● get in touch",
+    "sentences": [
+      "if you want",
+      "develop",
+      "a software",
+      "this is",
+      "your place",
+      "do you have",
+      "an idea?",
+      "your dream",
+      "make it happen!",
+      "start",
+      "your project!"
+    ]
+  },
+  "heroAbout": {
+    "title": "merging design thinking with frontend engineering.",
+    "content_text": "obsessively crafted.\nengineered with intent."
+  },
+  "aboutmePage": {
+    "title": "[who am i]",
+    "bio_1": "i'm yunus emre korkmaz — a hybrid frontend developer & UI/UX designer with experience creating scalable, accessible, and visually refined digital products.",
+    "bio_2": "I obsess over micro-interactions and clarity, so products feel effortless from first click to last scroll."
+  },
+  "whatIDo": {
+    "title": "[what i do]",
+    "desc_1": "i design and build digital interfaces with structure, intention, and expression.",
+    "desc_2": "my work focuses on clarity, usability, and motion-led visual identity."
+  },
+  "discover": {
+    "title": "[discover me]",
+    "subtitle": "express yourself freely. draw the shapes below to uncover how i work and what drives my creative process.",
+    "discovery": "discovery",
+    "reset": "● wanna draw again?",
+    "cards": [
+      {
+        "instruction": "draw a puzzle piece",
+        "title": "the big picture",
+        "description": "i don't just fit pieces together; i solve the whole puzzle. bridging the gap between user needs, business goals, and technical reality."
+      },
+      {
+        "instruction": "draw a pen inside the box",
+        "title": "design engineering",
+        "description": "writing code with a designer’s eye. i translate creative concepts into pixel-perfect interfaces without losing clarity in translation."
+      },
+      {
+        "instruction": "draw a checkmark",
+        "title": "shipped & solid",
+        "description": "it’s not done until it feels right. building accessible, performant, and polished experiences that users can trust."
+      }
+    ]
+  },
+  "contactPage": {
+    "header": "[online meeting,message me]",
+    "sidebar_title": "please contact me to set up an online meeting or ask any questions you have.",
+    "footer_contact": "[contact]",
+    "footer_connect": "[connect]"
+  },
+  "contactForm": {
+    "labels": {
+      "fullname": "name,surname",
+      "company": "company",
+      "email": "email",
+      "phone": "phone",
+      "subject": "subject",
+      "message": "message"
+    },
+    "placeholders": {
+      "fullname": "yunus emre korkmaz",
+      "company": "apple computer, inc.",
+      "email": "example@example.com",
+      "phone": "+90 555 555 55 55",
+      "subject": "web app, mobile app, UI/UX design",
+      "message": "describe whatever you want."
+    },
+    "button": {
+      "idle": "● let's get started",
+      "loading": "● sending"
+    },
+    "errors": {
+      "required": "This field is required.",
+      "emailInvalid": "Please enter a valid email address.",
+      "phoneIncomplete": "Phone number is incomplete or invalid."
+    }
+  },
+  "successBox": {
+    "title": "● message sent",
+    "text": "thank you — I’ll get back to you as soon as possible."
+  }
+}

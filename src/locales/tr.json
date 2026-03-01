@@ -1,0 +1,146 @@
+{
+    "nav": {
+    "home": "ana sayfa",
+    "about": "hakkımda",
+    "projects": "projeler",
+    "contact": "iletişime geç",
+    "contact_btn": "● benimle iletişime geç",
+    "connect": "[bağlan]",
+    "contact_header": "[iletişim]"
+  },
+  "footer": {
+    "links_header": "[bağlantılar]",
+    "connect_header": "[bağlan]",
+    "contact_header": "[iletişim]",
+    "home": "ana sayfa",
+    "about": "hakkımda",
+    "projects": "projeler",
+    "contact_btn": "iletişime geç",
+    "signature": "yunus emre korkmaz tarafından tasarlandı ve geliştirildi"
+  },
+  "intro": {
+    "marqueeText": "minimalizm, ui/ux tasarım, mükemmelliyetçilik, rafine estetik,"
+  },
+  "welcome": {
+    "greeting": "[selam, ben]",
+    "name": "[yunus emre korkmaz]",
+    "description": "Modern, amaç odaklı ve hareket temelli dijital deneyimler tasarlıyor ve geliştiriyorum.",
+    "cursor": "● bu da kim?"
+  },
+  "aboutHome": {
+    "mainText": "Tasarım netliğini mühendislik hassasiyetiyle birleştirerek özenle tasarlanmış dijital ürünler yaratıyorum.",
+    "link": "● benim hikayem"
+  },
+  "worksHome": {
+    "cursorWords": [
+      "daha fazla",
+      "incele",
+      "detayları gör",
+      "projeyi aç",
+      "göz at",
+      "keşfet"
+    ]
+  },
+  "principles": {
+    "title": "[prensipler]",
+    "list": [
+      "karmaşıklık yerine netlik",
+      "amaçlı hareket",
+      "tasarım mühendisliği besler",
+      "tutarlılık güven yaratır",
+      "detaylar önemlidir ama akış daha önemlidir"
+    ]
+  },
+  "contactHome": {
+    "header": "birlikte anlamlı bir şeyler inşa edelim.",
+    "subtext": "İş birliklerine, freelance çalışmalara ve ürün odaklı projelere açığım.",
+    "link": "● iletişime geç",
+    "sentences": [
+      "eğer istersen",
+      "geliştirebiliriz",
+      "bir yazılım",
+      "burası",
+      "senin yerin",
+      "bir fikrin",
+      "mi var?",
+      "hayalini",
+      "gerçeğe dönüştür!",
+      "başla",
+      "projene!"
+    ]
+  },
+  "heroAbout": {
+    "title": "tasarım odaklı düşünceyi ön uç mühendisliği ile birleştirme.",
+    "content_text": "takıntılı üretim.\namaçlı bir şekilde tasarım."
+  },
+  "aboutmePage": {
+    "title": "[ben kimim]",
+    "bio_1": "ben yunus emre korkmaz — ölçeklenebilir, erişilebilir ve görsel olarak rafine dijital ürünler yaratma deneyimine sahip, hem ön uç geliştirici hem de UI/UX tasarımcısıyım.",
+    "bio_2": "mikro etkileşimlere ve netliğe takıntılıyım, bu yüzden ürünlerim ilk tıklamadan son kaydırmaya kadar zahmetsizce kullanılabiliyor."
+  },
+  "whatIDo": {
+    "title": "[ne yapıyorum]",
+    "desc_1": "yapı, amaç ve ifade içeren dijital arayüzler tasarlıyor ve geliştiriyorum.",
+    "desc_2": "çalışmalarım netlik, kullanılabilirlik ve hareket odaklı görsel kimlik üzerine odaklanmaktadır."
+  },
+  "discover": {
+    "title": "[beni keşfet]",
+    "subtitle": "kendini özgürce ifade et. nasıl çalıştığımı ve yaratıcı sürecimi neyin yönlendirdiğini keşfetmek için aşağıdaki şekilleri çiz.",
+    "discovery": "keşfet",
+    "reset": "● tekrar çizmek ister misin?",
+    "cards": [
+      {
+        "instruction": "bir yapboz parçası çiz",
+        "title": "büyük resim",
+        "description": "ben sadece parçaları bir araya getirmekle kalmıyorum; tüm bulmacayı çözüyorum. kullanıcı ihtiyaçları, iş hedefleri ve teknik gerçeklik arasındaki boşluğu dolduruyorum."
+      },
+      {
+        "instruction": "bir kalem çiz",
+        "title": "tasarım mühendisliği",
+        "description": "tasarımcı gözüyle kod yazmak. yaratıcı konseptleri, çeviride netliği kaybetmeden piksel mükemmelliğinde arayüzlere dönüştürüyorum."
+      },
+      {
+        "instruction": "bir onay işareti çiz",
+        "title": "teslim edildi & sapasağlam",
+        "description": "doğru hissettirene kadar bitmiş sayılmaz. kullanıcıların güvenebileceği erişilebilir, performanslı ve kusursuz deneyimler oluşturma hedefiyle."
+      }
+    ]
+  },
+  "contactPage": {
+    "header": "[online görüşme,bana yazın]",
+    "sidebar_title": "online bir görüşme ayarlamak veya sorularınızı sormak için lütfen benimle iletişime geçin.",
+    "footer_contact": "[iletişim]",
+    "footer_connect": "[bağlan]"
+  },
+  "contactForm": {
+    "labels": {
+      "fullname": "ad, soyad",
+      "company": "şirket",
+      "email": "e-posta",
+      "phone": "telefon",
+      "subject": "konu",
+      "message": "mesaj"
+    },
+    "placeholders": {
+      "fullname": "yunus emre korkmaz",
+      "company": "apple computer, inc.",
+      "email": "ornek@mail.com",
+      "phone": "+90 555 555 55 55",
+      "subject": "web uygulaması, mobil uygulama, UI/UX tasarım",
+      "message": "istediğiniz her şeyi yazın."
+    },
+    "button": {
+      "idle": "● haydi başlayalım",
+      "loading": "● gönderiliyor"
+    },
+    "errors": {
+      "required": "Bu alan zorunludur.",
+      "emailInvalid": "Geçerli bir e-posta adresi giriniz.",
+      "phoneIncomplete": "Telefon numarası eksik veya hatalı."
+    }
+  },
+  "successBox": {
+    "title": "● mesaj gönderildi",
+    "text": "teşekkürler — en kısa sürede size geri dönüş yapacağım."
+  }
+}

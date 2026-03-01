@@ -1,10 +1,13 @@
 import { useRef, useEffect } from 'react';
 import styles from "./style.module.css";
 import Marquee from "react-double-marquee";
+import { useTranslation } from 'react-i18next';
 
 const IntroSec = () => {
+  const { t } = useTranslation();
+
   const marqueeProps = {
-    children: "MINIMALISM, UI/UX DESIGN, DIGITAL ART,",
+    children: t('intro.marqueeText'),
     speed: 0.25,
     direction: "left",
     childMargin: 15,
@@ -85,10 +88,10 @@ const IntroSec = () => {
 
       <div className={styles.marquee_div}>
         <div className={styles.marquee_div_content}>
-          <Marquee {...marqueeProps} />
+          <Marquee key={t('intro.marqueeText')} {...marqueeProps} />
         </div>
         <div className={styles.marquee_div_2}>
-          <Marquee {...marqueeProps} />
+          <Marquee key={t('intro.marqueeText')} {...marqueeProps} />
         </div>
       </div>
     </div>

@@ -6,6 +6,7 @@ import { CustomEase } from "gsap/CustomEase";
 import styles from "./style.module.css";
 import colors from "../../utils/colors";
 import AnimatedSplit from "../../components/animated split/AnimatedSplit";
+import { useTranslation } from 'react-i18next';
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin, CustomEase);
 
@@ -13,6 +14,7 @@ gsap.registerPlugin(ScrollTrigger, TextPlugin, CustomEase);
 CustomEase.create("hop", "0.9, 0, 0.1, 1");
 
 const WelcomeSec = () => {
+	const { t } = useTranslation();
 	const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
 	const [cursorStyles, setCursorStyles] = useState({
 		bg: "var(--main-color500)",
@@ -82,9 +84,8 @@ const WelcomeSec = () => {
 		<section className={styles.container}>
 			<div className={styles.content}>
 				<AnimatedSplit
-					text={
-						"[hey, i'm]"
-					}
+					key={t('welcome.greeting')} // Dil değişince animasyonu yeniden tetikler
+                    text={t('welcome.greeting')}
 					className={styles.content_text}
 					tagName="span"
 					stagger={0.03}
@@ -100,9 +101,8 @@ const WelcomeSec = () => {
 					data-animate
 				>
 					<AnimatedSplit
-						text={
-							"[yunus emre korkmaz]"
-						}
+						key={t('welcome.name')}
+                        text={t('welcome.name')}
 						tagName="span"
 						stagger={0.03}
 						duration={1.5}
@@ -126,9 +126,8 @@ const WelcomeSec = () => {
 
 			<div className={styles.content}>
 				<AnimatedSplit
-					text={
-						"I design and build modern, intentional and motion-driven digital experiences."
-					}
+					key={t('welcome.description')}
+                    text={t('welcome.description')}
 					className={styles.link}
 					tagName="span"
 					stagger={0.03}
@@ -148,7 +147,7 @@ const WelcomeSec = () => {
 					opacity: 0,
 				}}
 			>
-				● who is this?
+				{t('welcome.cursor')}
 			</span>
 		</section>
 	);

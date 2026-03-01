@@ -5,23 +5,18 @@ import { CustomEase } from "gsap/CustomEase";
 import styles from './style.module.css';
 import colors from '../../utils/colors';
 import projects from '../../utils/projects';
+import { useTranslation } from 'react-i18next';
 
 gsap.registerPlugin(CustomEase, ScrollTrigger);
 CustomEase.create("hop", "0, 0, 0.1, 1");
 
-const cursorWords = [
-	"see more",
-	"case view",
-	"view details",
-	"open project",
-	"quick peek",
-	"discover more"
-];
-
 const WorksHomePage = () => {
+	const { t } = useTranslation();
 	const [cursorText, setCursorText] = useState("see more");
 	const [lastColorIndex, setLastColorIndex] = useState(null);
 	const [lastWordIndex, setLastWordIndex] = useState(null);
+
+	const cursorWords = t('worksHome.cursorWords', { returnObjects: true });
 
 	const cursorRef = useRef(null);
 	const workRefs = useRef([]);

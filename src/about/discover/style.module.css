@@ -32,7 +32,7 @@
   width: 60vw;
   display: flex;
   align-items: flex-start;
-  gap: 0.5em;
+  gap: 1.5vw;
 }
 
 .card {
@@ -128,17 +128,15 @@
 }
 
 .canvas {
-  width: 100%;
-  height: auto;
-  flex: 1;
+  height: 19vw;
+  width: 19vw;
   aspect-ratio: 1;
-  background-color: var(--wb50);
   background-image: linear-gradient(
       rgba(0, 0, 0, 0.05) 0.125em,
       transparent 0.125em
     ),
     linear-gradient(to right, rgba(0, 0, 0, 0.025) 0.125em, var(--wb50) 0.125em);
-  background-size: 5em 5em;
+  background-size: 4vw 4vw;
   box-shadow: inset 0 0 2em 2em var(--wb50);
   touch-action: none;
 }

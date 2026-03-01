@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CustomEase } from "gsap/CustomEase";
 import SplitType from "split-type";
 import styles from "./style.module.css";
+import { useTranslation } from "react-i18next";
 
 gsap.registerPlugin(ScrollTrigger, CustomEase);
 
@@ -11,6 +12,7 @@ gsap.registerPlugin(ScrollTrigger, CustomEase);
 CustomEase.create("hop", "0, 0, 0.1, 1");
 
 const AboutmeHome = () => {
+	const { t, i18n } = useTranslation();
 	const textRef = useRef(null);
 	const footerRef = useRef(null);
 
@@ -58,12 +60,12 @@ const AboutmeHome = () => {
 	return (
 		<div className={styles.container}>
 			<main ref={textRef} className={styles.main} data-animate>
-				I merge design clarity with engineering precision to craft thoughtful digital products.
+				{t('aboutHome.mainText')}
 			</main>
 
 			<footer ref={footerRef} className={styles.footer}>
 				<a className={styles.contact_link_colored} href="/about-me">
-					● my story
+					{t('aboutHome.link')}
 				</a>
 			</footer>
 		</div>

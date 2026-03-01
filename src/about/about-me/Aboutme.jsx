@@ -1,15 +1,19 @@
 import styles from "./style.module.css";
 import AnimatedSplit from './../../components/animated split/AnimatedSplit';
-
+// 1. Hook'u import et
+import { useTranslation } from 'react-i18next';
 
 export default function Aboutme() {
+    // 2. t fonksiyonunu al
+    const { t } = useTranslation();
+
     return (
         <div className={styles.container}>
             <header className={styles.header}>
                 <AnimatedSplit
-                    text={
-                        "[who am i]"
-                    }
+                    // 3. Dil değiştiğinde animasyonu tetiklemek için key ekle
+                    key={t('aboutmePage.title')}
+                    text={t('aboutmePage.title')}
                     className={styles.header_title}
                     tagName="span"
                     stagger={0.03}
@@ -19,9 +23,8 @@ export default function Aboutme() {
             </header>
             <div className={styles.context}>
                 <AnimatedSplit
-                    text={
-                        "i'm yunus emre korkmaz — a hybrid frontend developer & UI/UX designer with experience creating scalable, accessible, and visually refined digital products."
-                    }
+                    key={t('aboutmePage.bio_1')}
+                    text={t('aboutmePage.bio_1')}
                     className={styles.desc}
                     tagName="span"
                     stagger={0.03}
@@ -31,9 +34,8 @@ export default function Aboutme() {
             </div>
             <div className={styles.context}>
                 <AnimatedSplit
-                    text={
-                        "I obsess over micro-interactions and clarity, so products feel effortless from first click to last scroll."
-                    }
+                    key={t('aboutmePage.bio_2')}
+                    text={t('aboutmePage.bio_2')}
                     className={styles.desc}
                     tagName="span"
                     stagger={0.03}

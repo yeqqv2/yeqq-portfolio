@@ -1,152 +1,157 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 import styles from "./style.module.css";
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import SplitType from 'split-type';
-import CustomEase from 'gsap/CustomEase';
-import AnimatedSplit from '../../components/animated split/AnimatedSplit';
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import SplitType from "split-type";
+import CustomEase from "gsap/CustomEase";
+import AnimatedSplit from "../../components/animated split/AnimatedSplit";
+import { useTranslation } from "react-i18next";
 
 gsap.registerPlugin(ScrollTrigger, CustomEase);
 CustomEase.create("hop", "0.9, 0, 0.1, 1");
 
 export default function HeroAbout() {
-    const containerRef = useRef(null);
-    const headerRef = useRef(null);
-    const descRef = useRef(null);
-    const contentDescRef = useRef(null);
+  const { t, i18n } = useTranslation();
+  const containerRef = useRef(null);
+  const headerRef = useRef(null);
+  const descRef = useRef(null);
+  const contentDescRef = useRef(null);
 
-    // refs for the work item wrappers
-    const workRefs = useRef([]);
-    // do NOT reset workRefs.current = [] here — we use callback refs below
+  // refs for the work item wrappers
+  const workRefs = useRef([]);
+  // do NOT reset workRefs.current = [] here — we use callback refs below
 
-    // collect ScrollTrigger instances (optional, for manual cleanup/debug)
-    const scrollTriggersRef = useRef([]);
+  // collect ScrollTrigger instances (optional, for manual cleanup/debug)
+  const scrollTriggersRef = useRef([]);
 
-    const workImages = [
-        "/assets/modern-art/9.webp",
-        "/assets/modern-art/10.webp",
-        "/assets/modern-art/11.webp",
-    ];
+  const workImages = [
+    "/assets/modern-art/9.webp",
+    "/assets/modern-art/10.webp",
+    "/assets/modern-art/11.webp",
+  ];
 
-    useEffect(() => {
-        let ctx = gsap.context(() => {
-            const descSplit = new SplitType(contentDescRef.current, {
-                types: "lines, words",
-                tagName: "span",
-            });
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      const descSplit = new SplitType(contentDescRef.current, {
+        types: "lines, words",
+        tagName: "span",
+      });
 
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: headerRef.current,
-                    start: "top 100%",
-                    toggleActions: "play none none none",
-                },
-            });
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: headerRef.current,
+          start: "top 100%",
+          toggleActions: "play none none none",
+        },
+      });
 
-            tl.from(
-                descSplit.words,
-                {
-                    y: "110%",
-                    duration: 0.75,
-                    ease: "hop",
-                    stagger: 0.05,
-                },
-                "<0.3"
-            );
+      tl.from(
+        descSplit.words,
+        {
+          y: "110%",
+          duration: 0.75,
+          ease: "hop",
+          stagger: 0.05,
+        },
+        "<0.3",
+      );
 
-            workRefs.current.forEach((work, index) => {
-                if (!work) return;
-                const img = work.querySelector(`.${styles.work_img}`);
-                if (!img) return;
+      workRefs.current.forEach((work, index) => {
+        if (!work) return;
+        const img = work.querySelector(`.${styles.work_img}`);
+        if (!img) return;
 
-                gsap.set(img, { clipPath: "inset(100% 0% 0% 0%)" });
+        gsap.set(img, { clipPath: "inset(100% 0% 0% 0%)" });
 
-                const st = gsap.fromTo(
-                    img,
-                    { clipPath: "inset(100% 0% 0% 0%)" },
-                    {
-                        clipPath: "inset(0% 0% 0% 0%)",
-                        duration: 1.5,
-                        ease: "hop",
-                        delay: index * 0.15,
-                        scrollTrigger: {
-                            trigger: work,
-                            start: "top 100%",
-                            onEnter: (self) => {
-                                scrollTriggersRef.current.push(self);
-                            },
-                        },
-                    }
-                );
+        const st = gsap.fromTo(
+          img,
+          { clipPath: "inset(100% 0% 0% 0%)" },
+          {
+            clipPath: "inset(0% 0% 0% 0%)",
+            duration: 1.5,
+            ease: "hop",
+            delay: index * 0.15,
+            scrollTrigger: {
+              trigger: work,
+              start: "top 100%",
+              onEnter: (self) => {
+                scrollTriggersRef.current.push(self);
+              },
+            },
+          },
+        );
 
-                // optional: animate wrapper for slight translate/fade to emphasize entrance
-                gsap.fromTo(
-                    work,
-                    { y: 20 },
-                    {
-                        y: 0,
-                        duration: 0.8,
-                        ease: "hop",
-                        delay: index * 0.12,
-                        scrollTrigger: {
-                            trigger: work,
-                            start: "top 85%",
-                        },
-                    }
-                );
-            });
-        }, containerRef);
+        // optional: animate wrapper for slight translate/fade to emphasize entrance
+        gsap.fromTo(
+          work,
+          { y: 20 },
+          {
+            y: 0,
+            duration: 0.8,
+            ease: "hop",
+            delay: index * 0.12,
+            scrollTrigger: {
+              trigger: work,
+              start: "top 85%",
+            },
+          },
+        );
+      });
+    }, containerRef);
 
-        return () => {
-            // revert gsap.context (kills animations created in context)
-            ctx.revert();
-            // clear stored triggers references
-            scrollTriggersRef.current = [];
-        };
-    }, []);
+    return () => {
+      // revert gsap.context (kills animations created in context)
+      ctx.revert();
+      // clear stored triggers references
+      scrollTriggersRef.current = [];
+    };
+  }, []);
 
-    return (
-        <div className={styles.container} ref={containerRef}>
-            <header className={styles.header} ref={headerRef}>
-                <AnimatedSplit
-                    text="merging design thinking with frontend engineering."
-                    className={styles.title}
-                    tagName="span"
-                    stagger={0.03}
-                    duration={1.5}
-                    start="top 80%"
-                />
-                <div className={styles.desc} ref={descRef}>
-                    <div className={styles.text_and_imgs}>
-                        <div ref={contentDescRef} className={styles.content_desc_text}>
-                            obsessively crafted.
-                            <br />
-                            engineered with intent.
-                        </div>
+  return (
+    <div className={styles.container} ref={containerRef}>
+      <header className={styles.header} ref={headerRef}>
+        <AnimatedSplit
+          key={t("heroAbout.title")}
+          text={t("heroAbout.title")}
+          className={styles.title}
+          tagName="span"
+          stagger={0.03}
+          duration={1.5}
+          start="top 80%"
+        />
+        <div className={styles.desc} ref={descRef}>
+          <div className={styles.text_and_imgs}>
+            <div
+              ref={contentDescRef}
+              className={styles.content_desc_text}
+              style={{ whiteSpace: "pre-line" }}
+            >
+              {t("heroAbout.content_text")}
+            </div>
 
-                        <div className={styles.work_container}>
-                            {workImages.map((src, idx) => (
-                                <div
-                                    key={idx}
-                                    className={styles.work_item}
-                                    ref={(el) => {
-                                        workRefs.current[idx] = el;
-                                    }}
-                                >
-                                    <img
-                                        src={src}
-                                        alt={`work-${idx + 1}`}
-                                        className={styles.work_img}
-                                        aria-hidden="true"
-                                        loading="lazy"
-                                        decoding="async"
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+            <div className={styles.work_container}>
+              {workImages.map((src, idx) => (
+                <div
+                  key={idx}
+                  className={styles.work_item}
+                  ref={(el) => {
+                    workRefs.current[idx] = el;
+                  }}
+                >
+                  <img
+                    src={src}
+                    alt={`work-${idx + 1}`}
+                    className={styles.work_img}
+                    aria-hidden="true"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
-            </header>
+              ))}
+            </div>
+          </div>
         </div>
-    );
+      </header>
+    </div>
+  );
 }

@@ -46,6 +46,7 @@
 
 .right {
   justify-content: flex-end;
+  gap: 1em;
 }
 
 .sidebar {
@@ -83,6 +84,7 @@
   line-height: 1;
   letter-spacing: -0.05em;
   transition: 0.5s;
+  white-space: nowrap;
 }
 
 .link_icon {
@@ -101,7 +103,7 @@
   gap: 1em;
 }
 
-.contact_link_colored {
+.contact_link_colored, .language_button {
   padding: 0.375em 0.5em 0.375em 0.5em;
   font-weight: 300;
   letter-spacing: 0.025em;
@@ -119,7 +121,7 @@
   background-color: var(--blue400);
   border-radius: 0.25em;
   position: relative;
-  color: var(--wb50);
+  color: var(--wb950);
   line-height: 1em;
   font-weight: 300;
   letter-spacing: 0.025em;
@@ -146,7 +148,7 @@
     left: 5vw;
   }
 
-  .right {
+  .contact_link_colored{
     display: none;
   }
 

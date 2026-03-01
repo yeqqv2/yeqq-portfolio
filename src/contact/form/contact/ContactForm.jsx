@@ -1,120 +1,200 @@
 import { useState } from "react";
 import styles from "./style.module.css";
+import { useTranslation } from "react-i18next";
+
+function formatPhone(value) {
+  let digits = value.replace(/\D/g, "");
+  if (digits.startsWith("90")) digits = digits.slice(2);
+  if (digits.startsWith("0")) digits = digits.slice(1);
+
+  digits = digits.slice(0, 10);
+
+  let result = "+90 ";
+
+  if (digits.length <= 3) {
+    result += digits;
+  } else if (digits.length <= 6) {
+    result += `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+  } else if (digits.length <= 8) {
+    result += `(${digits.slice(0, 3)}) ${digits.slice(3, 6)} ${digits.slice(6)}`;
+  } else {
+    result += `(${digits.slice(0, 3)}) ${digits.slice(3, 6)} ${digits.slice(6, 8)} ${digits.slice(8)}`;
+  }
+
+  return result;
+}
+
+function validateEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
 
 export default function ContactForm({ onSuccess, onError }) {
+  const { t } = useTranslation();
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
 
-    const [loading, setLoading] = useState(false);
+  // Telefon değişimi
+  const handlePhoneChange = (e) => {
+    const formatted = formatPhone(e.target.value);
+    setPhone(formatted);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setLoading(true);
+    if (formatted.length > 0 && formatted.length < 17) {
+      setPhoneError(
+        t("contactForm.errors.phoneIncomplete") || "Telefon numarası eksik.",
+      );
+    } else {
+      setPhoneError("");
+    }
+  };
 
-        const formData = new FormData(e.target);
+  // Email değişimi
+  const handleEmailChange = (e) => {
+    const val = e.target.value;
+    setEmail(val);
 
-        try {
-            // Formspree POST
-            const res = await fetch("https://formspree.io/f/mvglyqek", {
-                method: "POST",
-                body: formData,
-                headers: {
-                    Accept: "application/json",
-                },
-            });
+    if (val.length > 0 && !validateEmail(val)) {
+      setEmailError(
+        t("contactForm.errors.emailInvalid") || "Geçerli bir e-posta giriniz.",
+      );
+    } else {
+      setEmailError("");
+    }
+  };
 
-            const data = await res.json();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitted(true);
 
-            if (data.ok) {
-                setLoading(false);
-                onSuccess();
-            } else {
-                setLoading(false);
-                onError();
-            }
-        } catch (err) {
-            setLoading(false);
-            onError();
-        }
-    };
+    const phoneDigits = phone.replace(/\D/g, "").slice(2);
+    const isPhoneValid = phone === "" || phoneDigits.length === 10;
+    const isEmailValid = validateEmail(email);
 
-    return (
-        <form onSubmit={handleSubmit} className={styles.form}>
-            <div className={styles.input_group}>
-                <label className={styles.label} htmlFor="name">
-                    name,surname
-                </label>
-                <input
-                    className={styles.input}
-                    name="fullname"
-                    type="text"
-                    placeholder="yunus emre korkmaz"
-                    required
-                />
-            </div>
+    if (!isEmailValid || !isPhoneValid) return;
 
-            <div className={styles.input_group}>
-                <label className={styles.label} htmlFor="company">
-                    company
-                </label>
-                <input
-                    className={styles.input}
-                    name="company"
-                    type="text"
-                    placeholder="apple computer, inc."
-                />
-            </div>
+    setLoading(true);
+    const formData = new FormData(e.target);
 
-            <div className={styles.input_group}>
-                <label className={styles.label} htmlFor="email">
-                    email
-                </label>
-                <input
-                    className={styles.input}
-                    name="email"
-                    type="email"
-                    placeholder="example@example.com"
-                    required
-                />
-            </div>
+    try {
+      const res = await fetch("https://formspree.io/f/mvglyqek", {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+      const data = await res.json();
+      if (data.ok) {
+        setLoading(false);
+        onSuccess();
+      } else {
+        setLoading(false);
+        onError();
+      }
+    } catch (err) {
+      setLoading(false);
+      onError();
+    }
+  };
 
-            <div className={styles.input_group}>
-                <label className={styles.label} htmlFor="tel">
-                    phone
-                </label>
-                <input
-                    className={styles.input}
-                    name="phone"
-                    type="tel"
-                    placeholder="+90 555 555 55 55"
-                />
-            </div>
+  return (
+    <form onSubmit={handleSubmit} className={styles.form}>
+      {/* Ad Soyad */}
+      <div className={styles.input_group}>
+        <label className={styles.label} htmlFor="name">
+          {t("contactForm.labels.fullname")}
+        </label>
+        <input
+          className={styles.input}
+          name="fullname"
+          type="text"
+          placeholder={t("contactForm.placeholders.fullname")}
+          required
+        />
+      </div>
 
-            <div className={styles.input_group}>
-                <label className={styles.label} htmlFor="subject">
-                    subject
-                </label>
-                <input
-                    className={styles.input}
-                    name="subject"
-                    type="text"
-                    placeholder="web app, mobile app, UI/UX design"
-                />
-            </div>
+      {/* Şirket */}
+      <div className={styles.input_group}>
+        <label className={styles.label} htmlFor="company">
+          {t("contactForm.labels.company")}
+        </label>
+        <input
+          className={styles.input}
+          name="company"
+          type="text"
+          placeholder={t("contactForm.placeholders.company")}
+        />
+      </div>
 
-            <div className={styles.textarea_group}>
-                <label className={styles.label} htmlFor="message">
-                    message
-                </label>
-                <textarea
-                    className={styles.textarea}
-                    name="message"
-                    placeholder="describe whatever you want."
-                    required
-                />
-            </div>
+      {/* Email */}
+      <div className={styles.input_group}>
+        <label className={styles.label} htmlFor="email">
+          {t("contactForm.labels.email")}
+        </label>
+        <input
+          className={`${styles.input} ${emailError ? styles.input_error : ""}`}
+          name="email"
+          type="email"
+          placeholder={t("contactForm.placeholders.email")}
+          value={email}
+          onChange={handleEmailChange}
+          required
+        />
+        {submitted && emailError && (
+          <span className={styles.error_message}>{emailError}</span>
+        )}
+      </div>
 
-            <button disabled={loading} type="submit" className={styles.button}>
-                {loading ? "● sending" : "● let's get started"}
-            </button>
-        </form>
-    );
+      {/* Telefon */}
+      <div className={styles.input_group}>
+        <label className={styles.label} htmlFor="tel">
+          {t("contactForm.labels.phone")}
+        </label>
+        <input
+          className={`${styles.input} ${phoneError ? styles.input_error : ""}`}
+          name="phone"
+          type="tel"
+          placeholder="+90 (5__) ___ __ __"
+          value={phone}
+          onChange={handlePhoneChange}
+        />
+        {submitted && phoneError && (
+          <span className={styles.error_message}>{phoneError}</span>
+        )}
+      </div>
+
+      {/* Konu */}
+      <div className={styles.input_group}>
+        <label className={styles.label} htmlFor="subject">
+          {t("contactForm.labels.subject")}
+        </label>
+        <input
+          className={styles.input}
+          name="subject"
+          type="text"
+          placeholder={t("contactForm.placeholders.subject")}
+        />
+      </div>
+
+      {/* Mesaj */}
+      <div className={styles.textarea_group}>
+        <label className={styles.label} htmlFor="message">
+          {t("contactForm.labels.message")}
+        </label>
+        <textarea
+          className={styles.textarea}
+          name="message"
+          placeholder={t("contactForm.placeholders.message")}
+          required
+        />
+      </div>
+
+      <button disabled={loading} type="submit" className={styles.button}>
+        {loading
+          ? t("contactForm.button.loading")
+          : t("contactForm.button.idle")}
+      </button>
+    </form>
+  );
 }

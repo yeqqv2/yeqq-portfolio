@@ -4,31 +4,32 @@ import AnimatedSplit from './../../components/animated split/AnimatedSplit';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import CustomEase from 'gsap/CustomEase';
+// 1. Hook'u import et
+import { useTranslation } from 'react-i18next';
 
 gsap.registerPlugin(ScrollTrigger, CustomEase);
 CustomEase.create("hop", "0.9, 0, 0.1, 1");
 
 export default function WhatIDo() {
+    // 2. t fonksiyonunu al
+    const { t } = useTranslation();
     const containerRef = useRef(null);
     const imageRefs = useRef([]);
 
     useEffect(() => {
         let ctx = gsap.context(() => {
-            // Ortadan dışarı doğru sıralama: [image_2, image_1, image_3, image_4]
             const orderedImages = [
-                imageRefs.current[1], // image_2 (sol üst)
-                imageRefs.current[0], // image_1 (sol alt)
-                imageRefs.current[2], // image_3 (sağ üst)
-                imageRefs.current[3], // image_4 (sağ alt)
+                imageRefs.current[1], 
+                imageRefs.current[0], 
+                imageRefs.current[2], 
+                imageRefs.current[3], 
             ];
 
             orderedImages.forEach((img, index) => {
                 if (!img) return;
 
-                // Başlangıç durumu
                 gsap.set(img, { clipPath: "inset(50% 50% 50% 50%)" });
 
-                // Clip-path animasyonu
                 gsap.fromTo(
                     img,
                     { clipPath: "inset(50% 50% 50% 50%)" },
@@ -45,10 +46,9 @@ export default function WhatIDo() {
                     }
                 );
 
-                // Ek fade ve transform animasyonu
                 gsap.fromTo(
                     img,
-                    { y: 16, },
+                    { y: 16 },
                     {
                         y: 0,
                         duration: 0.8,
@@ -94,9 +94,9 @@ export default function WhatIDo() {
             <div className={styles.content}>
                 <header className={styles.header}>
                     <AnimatedSplit
-                        text={
-                            "[what i do]"
-                        }
+                        // 3. Key ekleyerek dil değişimini takip et
+                        key={t('whatIDo.title')}
+                        text={t('whatIDo.title')}
                         tagName="span"
                         stagger={0.03}
                         duration={1.5}
@@ -105,9 +105,8 @@ export default function WhatIDo() {
                 </header>
                 <div className={styles.context}>
                     <AnimatedSplit
-                        text={
-                            "I design and build digital interfaces with structure, intention, and expression."
-                        }
+                        key={t('whatIDo.desc_1')}
+                        text={t('whatIDo.desc_1')}
                         className={styles.desc}
                         tagName="span"
                         stagger={0.03}
@@ -117,9 +116,8 @@ export default function WhatIDo() {
                 </div>
                 <div className={styles.context}>
                     <AnimatedSplit
-                        text={
-                            "my work focuses on clarity, usability, and motion-led visual identity."
-                        }
+                        key={t('whatIDo.desc_2')}
+                        text={t('whatIDo.desc_2')}
                         className={styles.desc}
                         tagName="span"
                         stagger={0.03}
