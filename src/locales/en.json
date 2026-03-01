@@ -106,6 +106,21 @@
       }
     ]
   },
+  "workSingle": {
+    "not_found": "project not found",
+    "back_to_works": "● back to works",
+    "labels": {
+      "company": "[company]",
+      "role": "[role]",
+      "type": "[type]",
+      "tech": "[tech]",
+      "overview": "[overview]",
+      "achievements": "[achievements]",
+      "conclusion": "[conclusion]",
+      "next_project": "next project ●"
+    },
+    "default_conclusion": "this project allowed me to combine clean ui principles, fast development practices and modern motion design—while solving real-world problems for real users."
+  },
   "contactPage": {
     "header": "[online meeting,message me]",
     "sidebar_title": "please contact me to set up an online meeting or ask any questions you have.",

@@ -286,7 +286,6 @@ export default function WorkSinglePage() {
 				</section>
 			)}
 
-			{/* CONCLUSION */}
 			<section className={styles.conclusion}>
 				<AnimatedSplit
 					className={styles.sectionTitle}
@@ -308,7 +307,6 @@ export default function WorkSinglePage() {
 				/>
 			</section>
 
-			{/* CTA / navigation */}
 			<footer className={styles.next}>
 				<a href="/projects" className={styles.button}>
 					<AnimatedSplit
@@ -319,8 +317,6 @@ export default function WorkSinglePage() {
 						start="top 80%"
 					/>
 				</a>
-
-				{/* Next project link — uses computed nextProject, falls back to /projects */}
 				<a href={nextProject?.link || "/projects"}>
 					<AnimatedSplit
 						text={`${nextProject?.project_name} ●` || "next project"}

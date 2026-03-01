@@ -106,6 +106,21 @@
       }
     ]
   },
+  "workSingle": {
+    "not_found": "Proje bulunamadı",
+    "back_to_works": "← işlere geri dön",
+    "labels": {
+      "company": "[şirket]",
+      "role": "[rol]",
+      "type": "[tür]",
+      "tech": "[teknoloji]",
+      "overview": "[genel bakış]",
+      "achievements": "[başarılar]",
+      "conclusion": "[sonuç]",
+      "next_project": "sıradaki proje ●"
+    },
+    "default_conclusion": "bu proje, temiz kullanıcı arabirimi ilkelerini, hızlı geliştirme uygulamalarını ve modern hareket tasarımını birleştirirken gerçek kullanıcılar için gerçek dünya sorunlarını çözmeme olanak tanıdı."
+  },
   "contactPage": {
     "header": "[online görüşme,bana yazın]",
     "sidebar_title": "online bir görüşme ayarlamak veya sorularınızı sormak için lütfen benimle iletişime geçin.",
