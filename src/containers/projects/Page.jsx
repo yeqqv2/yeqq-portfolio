@@ -1,42 +1,42 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "./style.module.css";
-import projects from "../../utils/projects";
 import colors from "../../utils/colors";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CustomEase } from "gsap/CustomEase";
-import AnimatedSplit from './../../components/animated split/AnimatedSplit';
+import AnimatedSplit from "./../../components/animated split/AnimatedSplit";
+import { useTranslation } from "react-i18next";
+// 1. Yeni importlar
+import { useProjects } from "../../context/ProjectContext";
+import { storageBaseUrl } from "../../utils/supabase";
 
 gsap.registerPlugin(CustomEase, ScrollTrigger);
 CustomEase.create("hop", "0.9, 0, 0.1, 1");
 
-const cursorWords = [
-  "see more",
-  "case view",
-  "view details",
-  "open project",
-  "quick peek",
-  "discover more"
-];
-
-const filters = [
-  { id: "all", label: "All" },
-  { id: "municipal", label: "Municipal" },
-  { id: "startup", label: "Startup" },
-  { id: "dashboard", label: "Dashboard / Admin" },
-  { id: "uiux", label: "UI/UX" },
-  { id: "webapp", label: "Web Apps" },
-];
-
 const ProjectsContainer = () => {
+  const { t, i18n } = useTranslation();
   const [activeFilter, setActiveFilter] = useState("all");
+
+  // 2. Context'ten verileri al
+  const { projects, loading } = useProjects();
+
+  const filters = [
+    { id: "all", label: t("projects.filters.all") },
+    { id: "municipal", label: t("projects.filters.municipal") },
+    { id: "startup", label: t("projects.filters.startup") },
+    { id: "dashboard", label: t("projects.filters.dashboard") },
+    { id: "uiux", label: t("projects.filters.uiux") },
+    { id: "webapp", label: t("projects.filters.webapp") },
+  ];
+
+  const cursorWords = t("projects.cursor", { returnObjects: true });
 
   const workRefs = useRef([]);
   const cursorRef = useRef(null);
   const scrollTriggersRef = useRef([]);
   const cursorStylesRef = useRef({
-    bg: 'var(--main-color500)',
-    color: 'var(--wb950)',
+    bg: "var(--main-color500)",
+    color: "var(--wb950)",
   });
   const cursorTextRef = useRef("see more");
   const lastColorIndexRef = useRef(null);
@@ -52,13 +52,12 @@ const ProjectsContainer = () => {
 
   const handleMouseMove = (e) => {
     if (cursorRef.current) {
-      cursorRef.current.style.left = e.clientX + 'px';
-      cursorRef.current.style.top = e.clientY + 'px';
+      cursorRef.current.style.left = e.clientX + "px";
+      cursorRef.current.style.top = e.clientY + "px";
     }
   };
 
   const handleMouseEnter = () => {
-    // --- COLOR ---
     const newColorIndex = getRandomIndexExcept(colors.length, lastColorIndexRef.current);
     const newColor = colors[newColorIndex];
     lastColorIndexRef.current = newColorIndex;
@@ -68,7 +67,6 @@ const ProjectsContainer = () => {
       cursorRef.current.style.color = newColor.color;
     }
 
-    // --- WORD ---
     const newWordIndex = getRandomIndexExcept(cursorWords.length, lastWordIndexRef.current);
     lastWordIndexRef.current = newWordIndex;
     cursorTextRef.current = cursorWords[newWordIndex];
@@ -80,7 +78,6 @@ const ProjectsContainer = () => {
       }
     }
 
-    // --- ANIMATION ---
     gsap.to(cursorRef.current, {
       scale: 1,
       duration: 0.25,
@@ -96,15 +93,17 @@ const ProjectsContainer = () => {
     });
   };
 
-  // Filter projects based on category
+  // 3. Filtreleme mantığını Supabase verilerine göre güncelle
   const filteredProjects =
     activeFilter === "all"
       ? projects
       : projects.filter((project) => project.tags?.includes(activeFilter));
 
   useEffect(() => {
-    // Önceki scroll trigger'ları temizle
-    scrollTriggersRef.current.forEach(trigger => trigger.kill());
+    // Veriler henüz yüklenmediyse animasyonu çalıştırma
+    if (loading) return;
+
+    scrollTriggersRef.current.forEach((trigger) => trigger.kill());
     scrollTriggersRef.current = [];
 
     workRefs.current.forEach((work, index) => {
@@ -113,16 +112,13 @@ const ProjectsContainer = () => {
         if (img) {
           gsap.fromTo(
             img,
-            {
-              clipPath: "inset(100% 0% 0% 0%)",
-              y: 0,
-            },
+            { clipPath: "inset(100% 0% 0% 0%)", y: 0 },
             {
               clipPath: "inset(0% 0% 0% 0%)",
               y: 0,
               duration: 1.2,
               ease: "hop",
-              delay: (index) * 0.1,
+              delay: index * 0.1,
               scrollTrigger: {
                 trigger: work,
                 start: "top 80%",
@@ -132,45 +128,46 @@ const ProjectsContainer = () => {
                   scrollTriggersRef.current.push(self);
                 },
               },
-            }
+            },
           );
         }
       }
     });
 
     return () => {
-      // Component unmount olduğunda temizle
-      scrollTriggersRef.current.forEach(trigger => trigger.kill());
+      scrollTriggersRef.current.forEach((trigger) => trigger.kill());
       scrollTriggersRef.current = [];
     };
-  }, [filteredProjects]);
+  }, [filteredProjects, loading]); // loading'i dependency olarak ekledik
 
   const handleFilterClick = (filterId) => {
     setActiveFilter(filterId);
   };
 
+  // 4. Yükleme ekranı (isteğe bağlı, şimdilik null)
+  if (loading) return null;
+
   return (
     <div className={styles.container}>
       <header className={styles.header}>
         <AnimatedSplit
-          text="[works]"
+          key={`title-${i18n.language}`}
+          text={t("projects.header_title")}
           className={styles.header_title}
           tagName="span"
           stagger={0.05}
           duration={1.5}
-          start="top 80%"
+          start="top 90%"
         />
 
         <AnimatedSplit
-          text={
-            "a selection of professional projects i've designed and developed over the past years. " +
-            "from municipal platforms to startup products, each project focuses on clean UI, accessibility, and meaningful interaction."
-          }
+          key={`desc-${i18n.language}`}
+          text={t("projects.header_desc")}
           className={styles.header_desc}
           tagName="span"
           stagger={0.03}
           duration={1.5}
-          start="top 80%"
+          start="top 90%"
         />
       </header>
 
@@ -178,18 +175,19 @@ const ProjectsContainer = () => {
         {filters.map((filter) => (
           <button
             key={filter.id}
-            className={`${styles.filter_btn} ${activeFilter === filter.id ? styles.active : ""
-              }`}
+            className={`${styles.filter_btn} ${
+              activeFilter === filter.id ? styles.active : ""
+            }`}
             onClick={() => handleFilterClick(filter.id)}
           >
             <AnimatedSplit
+              key={`${filter.id}-${i18n.language}`}
               text={`• ${filter.label}`}
               tagName="span"
-              stagger={0.05}
+              stagger={0.025}
               duration={1.5}
-              start="top 80%"
+              start="top 90%"
             />
-
           </button>
         ))}
       </section>
@@ -198,33 +196,20 @@ const ProjectsContainer = () => {
         {filteredProjects.map((work, index) => {
           return (
             <a
-              href={work.link}
+              href={`/projects/${work.slug}`} // link yerine slug
               className={styles.work}
-              key={`${work.project_name}-${index}`}
+              key={work.id} // Daha güvenli bir key
               ref={(el) => (workRefs.current[index] = el)}
               onMouseMove={handleMouseMove}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <div
-                className={styles.work_img}
-                style={{ backgroundColor: work.color }}
-              >
+              <div className={styles.work_img}>
                 <img
-                  src={`/assets/banners/${work.banner}-800.webp`}
-                  srcSet={`
-                   /assets/banners/${work.banner}-400.webp 400w,
-                   /assets/banners/${work.banner}-800.webp 800w,
-                   /assets/banners/${work.banner}-1200.webp 1200w,
-                   /assets/banners/${work.banner}-1600.webp 1600w
-                 `}
-                  sizes="(max-width: 768px) 100vw, 
-                        (max-width: 1200px) 50vw,
-                        33vw"
-                  alt={work.name}
+                  // 5. Supabase Storage URL ve Banner yolu
+                  src={`${storageBaseUrl}${work.banner_url}`}
+                  alt={work.project_name}
                   className={styles.img}
-                  width="800"
-                  height="450"
                   fetchpriority={index === 0 ? "high" : "auto"}
                   loading={index === 0 ? "eager" : "lazy"}
                   decoding="async"
@@ -247,7 +232,7 @@ const ProjectsContainer = () => {
           top: 0,
           backgroundColor: cursorStylesRef.current.bg,
           color: cursorStylesRef.current.color,
-          transform: 'translate(-50%, -50%) scale(0)',
+          transform: "translate(-50%, -50%) scale(0)",
         }}
       >
         ● {cursorTextRef.current}

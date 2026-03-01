@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import styles from "./style.module.css";
-import AnimatedSplit from './../../components/animated split/AnimatedSplit';
+import AnimatedSplit from '../../../components/animated split/AnimatedSplit';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import CustomEase from 'gsap/CustomEase';

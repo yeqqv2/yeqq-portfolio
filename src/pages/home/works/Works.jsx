@@ -3,16 +3,21 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CustomEase } from "gsap/CustomEase";
 import styles from "./style.module.css";
-import colors from "../../utils/colors";
-import projects from "../../utils/projects";
+import colors from "../../../utils/colors";
 import { useTranslation } from "react-i18next";
+// 1. Yeni importlarımız
+import { useProjects } from "../../../context/ProjectContext"; 
+import { storageBaseUrl } from "../../../utils/supabase"; 
 
 gsap.registerPlugin(CustomEase, ScrollTrigger);
 CustomEase.create("hop", "0, 0, 0.1, 1");
 
 const WorksHomePage = () => {
-  const { t } = useTranslation();
-  const [cursorText, setCursorText] = useState("see more");
+  const { t, i18n } = useTranslation();
+  // 2. Supabase'den verileri çek
+  const { projects, loading } = useProjects();
+
+  const [cursorText, setCursorText] = useState("");
   const [lastColorIndex, setLastColorIndex] = useState(null);
   const [lastWordIndex, setLastWordIndex] = useState(null);
 
@@ -24,6 +29,12 @@ const WorksHomePage = () => {
     bg: "var(--main-color500)",
     color: "var(--wb950)",
   });
+
+  useEffect(() => {
+    if (cursorWords && cursorWords.length > 0) {
+      setCursorText(cursorWords[0]);
+    }
+  }, [i18n.language]);
 
   const getRandomIndexExcept = (length, except) => {
     let newIndex = Math.floor(Math.random() * length);
@@ -41,18 +52,15 @@ const WorksHomePage = () => {
   };
 
   const handleMouseEnter = () => {
-    // --- COLOR ---
     const newColorIndex = getRandomIndexExcept(colors.length, lastColorIndex);
     const newColor = colors[newColorIndex];
     setLastColorIndex(newColorIndex);
 
-    // Cursor rengini doğrudan güncelle
     if (cursorRef.current) {
       cursorRef.current.style.backgroundColor = newColor.bg;
       cursorRef.current.style.color = newColor.color;
     }
 
-    // --- WORD ---
     const newWordIndex = getRandomIndexExcept(
       cursorWords.length,
       lastWordIndex,
@@ -60,7 +68,6 @@ const WorksHomePage = () => {
     setLastWordIndex(newWordIndex);
     setCursorText(cursorWords[newWordIndex]);
 
-    // --- ANIMATION ---
     gsap.to(cursorRef.current, {
       scale: 1,
       opacity: 1,
@@ -84,7 +91,10 @@ const WorksHomePage = () => {
   };
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
+    // Sadece projeler yüklendikten sonra animasyonları kur
+    if (loading || projects.length === 0) return;
+
+    let ctx = gsap.context(() => {
       const items = workRefs.current.filter(Boolean);
 
       items.forEach((work, i) => {
@@ -108,9 +118,13 @@ const WorksHomePage = () => {
       });
     });
 
-    return () => ctx.revert(); // ✅ useEffect'in return'ü
-  }, []);
+    return () => ctx.revert();
+  }, [i18n.language, projects, loading]);
 
+  // 3. Yükleniyorsa boş döndür (veya bir loader koyabilirsin)
+  if (loading) return null;
+
+  // Son eklenen 6 projeyi al
   const lastThreeWorks = projects.slice(0, 6);
 
   return (
@@ -119,9 +133,9 @@ const WorksHomePage = () => {
         {lastThreeWorks.map((work, index) => {
           return (
             <a
-              href={work.link}
+              href={`/projects/${work.slug}`} // Artık link değil, slug kullanıyoruz
               className={styles.main_div}
-              key={index}
+              key={work.id} // Index yerine benzersiz veritabanı ID'si
               ref={(el) => (workRefs.current[index] = el)}
               onMouseMove={handleMouseMove}
               onMouseEnter={handleMouseEnter}
@@ -130,20 +144,10 @@ const WorksHomePage = () => {
             >
               <div className={styles.work_img}>
                 <img
-                  src={`/assets/banners/${work.banner}-800.webp`}
-                  srcSet={`
-    /assets/banners/${work.banner}-400.webp 400w,
-    /assets/banners/${work.banner}-800.webp 800w,
-    /assets/banners/${work.banner}-1200.webp 1200w,
-    /assets/banners/${work.banner}-1600.webp 1600w
-  `}
-                  sizes="(max-width: 768px) 100vw, 
-         (max-width: 1200px) 50vw,
-         33vw"
-                  alt={work.name}
+                  // 4. Supabase Storage URL'sini kullanarak resmi çekiyoruz
+                  src={`${storageBaseUrl}${work.banner_url}`}
+                  alt={work.project_name}
                   className={styles.img}
-                  width="800"
-                  height="450"
                   fetchpriority={index === 0 ? "high" : "auto"}
                   loading={index === 0 ? "eager" : "lazy"}
                   decoding="async"

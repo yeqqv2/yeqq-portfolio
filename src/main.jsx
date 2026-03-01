@@ -1,44 +1,46 @@
 import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, useLocation } from "react-router-dom"; // useLocation eklendi
 import "./i18n";
+import { ProjectProvider } from "./context/ProjectContext";
 
 const Navbar = lazy(() => import("./layouts/navbar/Navbar"));
 const Footer = lazy(() => import("./layouts/footer/Footer"));
-
 const AnimatedCursor = lazy(() => import("react-animated-cursor"));
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+// URL'i dinleyip Navbar/Footer'ı gizleyecek yeni sarmalayıcı bileşen
+const AppLayout = ({ children }) => {
+  const location = useLocation();
+  // URL "/admin" ile başlıyorsa true döner
+  const isAdminRoute = location.pathname.startsWith("/admin");
 
-root.render(
-  <React.StrictMode>
-    <BrowserRouter
-      future={{
-        v7_startTransition: true,
-        v7_relativeSplatPath: true,
-      }}
-    >
-      <Suspense fallback={null}>
-        <Navbar />
-      </Suspense>
-      <Suspense fallback={null}>
-      <App />
-      </Suspense>
-      <Suspense fallback={null}>
-        <Footer />
-      </Suspense>
+  return (
+    <>
+      {/* Admin sayfasında değilsek Navbar'ı göster */}
+      {!isAdminRoute && (
+        <Suspense fallback={null}>
+          <Navbar />
+        </Suspense>
+      )}
+
+      {/* Ana Uygulama (App.jsx) */}
+      <Suspense fallback={null}>{children}</Suspense>
+
+      {/* Admin sayfasında değilsek Footer'ı göster */}
+      {!isAdminRoute && (
+        <Suspense fallback={null}>
+          <Footer />
+        </Suspense>
+      )}
+
+      {/* Özel imleci admin panelinde de açık bıraktım, istersen bunu da !isAdminRoute içine alabilirsin */}
       <Suspense fallback={null}>
         <AnimatedCursor
           innerSize={10}
           innerScale={1}
-          outerStyle={{
-            display: "none",
-          }}
-          innerStyle={{
-            backgroundColor: "rgba(0,0,0)",
-            zIndex: 999,
-          }}
+          outerStyle={{ display: "none" }}
+          innerStyle={{ backgroundColor: "rgba(0,0,0)", zIndex: 999 }}
           clickables={[
             "a",
             'input[type="text"]',
@@ -56,6 +58,26 @@ root.render(
           showSystemCursor={true}
         />
       </Suspense>
-    </BrowserRouter>
+    </>
+  );
+};
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(
+  <React.StrictMode>
+    <ProjectProvider>
+      <BrowserRouter
+        future={{
+          v7_startTransition: true,
+          v7_relativeSplatPath: true,
+        }}
+      >
+        {/* Tüm yapıyı oluşturduğumuz AppLayout içine alıyoruz */}
+        <AppLayout>
+          <App />
+        </AppLayout>
+      </BrowserRouter>
+    </ProjectProvider>
   </React.StrictMode>,
 );

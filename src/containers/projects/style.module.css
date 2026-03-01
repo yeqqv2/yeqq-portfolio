@@ -81,30 +81,26 @@
 
 .main {
   width: 100vw;
-  display: flex;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 0;
+  row-gap: 10vh;
 }
 
 .work {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 10vh;
-  width: 25%;
+  width: 100%;
+  height: auto;
 }
 
-.work:nth-child(3),
-.work:nth-child(4),
-.work:nth-child(9),
-.work:nth-child(10),
-.work:nth-child(15),
-.work:nth-child(16),
-.work:nth-child(21),
-.work:nth-child(22),
-.work:nth-child(27),
-.work:nth-child(28) {
-  width: 50%;
+.work:nth-child(6n + 3) {
+  grid-column: span 2;
+}
+
+.work:nth-child(6n + 4) {
+  grid-column: span 2;
 }
 
 .works {
@@ -129,19 +125,17 @@
 
 .work_img {
   width: 100%;
-}
-
-.work_img img {
-  will-change: clip-path;
+  height: 50vh;
 }
 
 .img {
+  height: 100%;
   width: 100%;
-  height: auto;
   object-fit: cover;
   object-position: center;
   user-select: none;
   overflow: hidden;
+  will-change: clip-path;
 }
 
 .customCursor {

@@ -1,4 +1,4 @@
-import ProjectsContainer from './../containers/projects/Page';
+import ProjectsContainer from '../../containers/projects/Page';
 import ContactHomePage from '../home/contact/ContactHomePage';
 import styles from "./style.module.css";
 

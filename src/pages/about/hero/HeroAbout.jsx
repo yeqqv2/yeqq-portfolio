@@ -4,7 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitType from "split-type";
 import CustomEase from "gsap/CustomEase";
-import AnimatedSplit from "../../components/animated split/AnimatedSplit";
+import AnimatedSplit from "../../../components/animated split/AnimatedSplit";
 import { useTranslation } from "react-i18next";
 
 gsap.registerPlugin(ScrollTrigger, CustomEase);

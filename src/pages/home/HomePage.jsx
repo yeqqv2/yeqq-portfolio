@@ -1,7 +1,7 @@
 // Home Page
 import { useState, lazy, Suspense } from 'react';
 // OPENING
-import SplashScreen from './../animations/open/SplashScreen';
+import SplashScreen from '../../animations/open/SplashScreen';
 // COMPONENTS
 import IntroSec from './intro/IntroSec';
 import WelcomeSec from './welcome/WelcomeSec';
@@ -11,7 +11,7 @@ const Works = lazy(() => import('./works/Works'));
 const Principles = lazy(() => import('./principle/PrinciplesSection'));
 const Contact = lazy(() => import('./contact/ContactHomePage'));
 // LOADING
-import LoadingPage from '../components/loading/LoadingPage';
+import LoadingPage from '../../components/loading/LoadingPage';
 // MODULE CSS
 import styles from './style.module.css';
 

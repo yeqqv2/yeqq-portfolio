@@ -106,9 +106,26 @@
       }
     ]
   },
+  "projects": {
+    "header_title": "[işler]",
+    "header_desc": "Geçtiğimiz yıllarda tasarladığım ve geliştirdiğim profesyonel projelerden bir seçki. Belediye platformlarından startup ürünlerine kadar her proje temiz arayüz, erişilebilirlik ve anlamlı etkileşime odaklanır.",
+    "filters": {
+      "all": "Hepsi",
+      "municipal": "Belediye",
+      "startup": "Girişim",
+      "dashboard": "Panel / Admin",
+      "uiux": "UI/UX",
+      "webapp": "Web Uygulamaları"
+    },
+    "cursor": [
+      "incele",
+      "detaylara bak",
+      "projeyi aç",
+      "hızlıca göz at",
+      "daha fazlası"
+    ]
+  },
   "workSingle": {
-    "not_found": "Proje bulunamadı",
-    "back_to_works": "← işlere geri dön",
     "labels": {
       "company": "[şirket]",
       "role": "[rol]",
@@ -117,9 +134,18 @@
       "overview": "[genel bakış]",
       "achievements": "[başarılar]",
       "conclusion": "[sonuç]",
-      "next_project": "sıradaki proje ●"
+      "back": "● işlere geri dön",
+      "not_found": "Proje bulunamadı",
+      "back_link": "← işlere geri dön",
+      "next_project": "sıradaki proje"
     },
-    "default_conclusion": "bu proje, temiz kullanıcı arabirimi ilkelerini, hızlı geliştirme uygulamalarını ve modern hareket tasarımını birleştirirken gerçek kullanıcılar için gerçek dünya sorunlarını çözmeme olanak tanıdı."
+    "defaults": {
+      "role": "UI/UX Tasarımcısı & Geliştirici",
+      "type": "Web Uygulaması",
+      "tech": "React, JavaScript, Figma",
+      "overview": "Gerçek kullanıcılar için tasarlanmış modern, ölçeklenebilir ve erişilebilir arayüzler.",
+      "conclusion": "Bu proje, gerçek kullanıcılar için gerçek dünya sorunlarını çözerken temiz kullanıcı arayüzü ilkelerini, hızlı geliştirme pratiklerini ve modern hareket tasarımını birleştirmemi sağladı."
+    }
   },
   "contactPage": {
     "header": "[online görüşme,bana yazın]",

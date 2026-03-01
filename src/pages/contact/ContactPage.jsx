@@ -1,11 +1,9 @@
-import AnimatedSplit from '../components/animated split/AnimatedSplit';
+import AnimatedSplit from '../../components/animated split/AnimatedSplit';
 import styles from './style.module.css';
 import FormContainer from './form/FormContainer';
-// 1. Hook'u import et
 import { useTranslation } from 'react-i18next';
 
 const ContactPage = () => {
-    // 2. t fonksiyonunu al
     const { t } = useTranslation();
 
     return (
@@ -32,8 +30,6 @@ const ContactPage = () => {
                 />
 
                 <div className={styles.content}>
-                    {/* FormContainer içine de t() prop olarak geçilebilir 
-                        veya formun içinde useTranslation kullanılabilir. */}
                     <FormContainer />
                 </div>
             </div>

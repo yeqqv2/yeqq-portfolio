@@ -106,9 +106,26 @@
       }
     ]
   },
+  "projects": {
+    "header_title": "[works]",
+    "header_desc": "a selection of professional projects i've designed and developed over the past years. from municipal platforms to startup products, each project focuses on clean UI, accessibility, and meaningful interaction.",
+    "filters": {
+      "all": "All",
+      "municipal": "Municipal",
+      "startup": "Startup",
+      "dashboard": "Dashboard / Admin",
+      "uiux": "UI/UX",
+      "webapp": "Web Apps"
+    },
+    "cursor": [
+      "see more",
+      "view details",
+      "open project",
+      "quick peek",
+      "discover more"
+    ]
+  },
   "workSingle": {
-    "not_found": "project not found",
-    "back_to_works": "● back to works",
     "labels": {
       "company": "[company]",
       "role": "[role]",
@@ -117,9 +134,18 @@
       "overview": "[overview]",
       "achievements": "[achievements]",
       "conclusion": "[conclusion]",
-      "next_project": "next project ●"
+      "back": "● back to works",
+      "not_found": "Project not found",
+      "back_link": "← back to works",
+      "next_project": "next project"
     },
-    "default_conclusion": "this project allowed me to combine clean ui principles, fast development practices and modern motion design—while solving real-world problems for real users."
+    "defaults": {
+      "role": "UI/UX Designer & Developer",
+      "type": "Web Application",
+      "tech": "React, JavaScript, Figma",
+      "overview": "Modern, scalable and accessible interfaces designed for real users.",
+      "conclusion": "this project allowed me to combine clean ui principles, fast development practices and modern motion design—while solving real-world problems for real users."
+    }
   },
   "contactPage": {
     "header": "[online meeting,message me]",

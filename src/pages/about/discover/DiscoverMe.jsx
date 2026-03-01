@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import CustomEase from 'gsap/CustomEase';
 import styles from './style.module.css';
-import AnimatedSplit from '../../components/animated split/AnimatedSplit';
+import AnimatedSplit from '../../../components/animated split/AnimatedSplit';
 import { useTranslation } from 'react-i18next';
 
 gsap.registerPlugin(CustomEase);

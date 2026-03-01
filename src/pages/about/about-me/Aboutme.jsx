@@ -1,5 +1,5 @@
 import styles from "./style.module.css";
-import AnimatedSplit from './../../components/animated split/AnimatedSplit';
+import AnimatedSplit from "../../../components/animated split/AnimatedSplit";
 // 1. Hook'u import et
 import { useTranslation } from 'react-i18next';
 
