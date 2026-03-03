@@ -136,7 +136,7 @@
       transparent 0.125em
     ),
     linear-gradient(to right, rgba(0, 0, 0, 0.025) 0.125em, var(--wb50) 0.125em);
-  background-size: 4vw 4vw;
+  background-size: 10vh 10vh;
   box-shadow: inset 0 0 2em 2em var(--wb50);
   touch-action: none;
 }

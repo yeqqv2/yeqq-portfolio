@@ -71,7 +71,8 @@
   },
   "heroAbout": {
     "title": "tasarım odaklı düşünceyi ön uç mühendisliği ile birleştirme.",
-    "content_text": "takıntılı üretim.\namaçlı bir şekilde tasarım."
+    "content_text_1": "takıntılı üretim.",
+    "content_text_2": "amaçlı bir şekilde tasarım."
   },
   "aboutmePage": {
     "title": "[ben kimim]",

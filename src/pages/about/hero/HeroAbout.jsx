@@ -121,12 +121,25 @@ export default function HeroAbout() {
         />
         <div className={styles.desc} ref={descRef}>
           <div className={styles.text_and_imgs}>
-            <div
-              ref={contentDescRef}
-              className={styles.content_desc_text}
-              style={{ whiteSpace: "pre-line" }}
-            >
-              {t("heroAbout.content_text")}
+            <div className={styles.content_desc_text}>
+              <AnimatedSplit
+                key={t("heroAbout.content_text_1")}
+                text={t("heroAbout.content_text_1")}
+                className={styles.content_desc_text_p}
+                tagName="span"
+                stagger={0.03}
+                duration={1.5}
+                start="top 100%"
+              />
+              <AnimatedSplit
+                key={t("heroAbout.content_text_2")}
+                text={t("heroAbout.content_text_2")}
+                className={styles.content_desc_text_p}
+                tagName="span"
+                stagger={0.03}
+                duration={1.5}
+                start="top 100%"
+              />
             </div>
 
             <div className={styles.work_container}>

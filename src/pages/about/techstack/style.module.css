@@ -53,6 +53,7 @@
 
   .icon {
     width: 6vw;
+    height: 6vw;
   }
 }
 
@@ -63,5 +64,6 @@
 
   .icon {
     width: 7.5vw;
+    height: 7.5vw;
   }
 }

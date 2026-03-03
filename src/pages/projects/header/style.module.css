@@ -1,0 +1,61 @@
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: 5vw;
+  padding-inline: 1vw;
+  width: 51vw;
+}
+
+.header_title {
+  font-size: 1em;
+  font-weight: 400;
+  overflow: visible;
+}
+
+.header_desc {
+  font-size: 1em;
+  font-weight: 200;
+  line-height: 1.2;
+  overflow: visible;
+  width: 100%;
+  display: inline-block;
+}
+
+.header_title > div,
+.header_desc > div {
+  overflow: hidden;
+  display: block;
+}
+
+.header_title > div > div,
+.header_desc > div > div {
+  display: inline-block;
+}
+
+@media screen and (max-width: 1024px) {
+  .header {
+    width: 95vw;
+    flex-direction: column;
+    font-size: 1em;
+  }
+  .header_title {
+    font-size: 1em;
+  }
+  .header_desc {
+    font-size: 1.15em;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header {
+    width: 95vw;
+    flex-direction: column;
+    font-size: 1em;
+  }
+  .header_title {
+    font-size: 1em;
+  }
+  .header_desc {
+    font-size: 1.15em;
+  }
+}

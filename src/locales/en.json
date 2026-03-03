@@ -71,7 +71,8 @@
   },
   "heroAbout": {
     "title": "merging design thinking with frontend engineering.",
-    "content_text": "obsessively crafted.\nengineered with intent."
+    "content_text_1": "obsessively crafted.",
+    "content_text_2": "engineered with intent."
   },
   "aboutmePage": {
     "title": "[who am i]",
