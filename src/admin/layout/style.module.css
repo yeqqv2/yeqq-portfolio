@@ -1,0 +1,88 @@
+.container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100vw;
+  height: 100vh;
+  padding: 3em;
+  gap: 3em;
+  /* 1. SİHİR: Padding'in 100vh'yi taşırmasını engeller */
+  box-sizing: border-box;
+  /* 2. SİHİR: Tüm sayfanın (body) kaymasını kesin olarak durdurur */
+  overflow: hidden;
+}
+
+.sidebar {
+  height: 100%;
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 5vh;
+  border-right: 1px solid var(--wb100);
+}
+
+.logo {
+  flex: 1;
+}
+
+.nav {
+  flex: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5em;
+}
+
+.link {
+  padding: 0.375em 0.5em 0.375em 0.5em;
+  border-radius: 0.25em;
+  position: relative;
+  color: var(--wb600);
+  line-height: 1em;
+  transition: 0.3s background;
+  cursor: pointer;
+}
+
+.link::before {
+  content: "";
+  transition: 0.3s;
+}
+
+.link:hover {
+  background-color: var(--wb200);
+  color: var(--wb950);
+}
+
+.link:hover::before,
+.active::before {
+  content: "●";
+  margin-right: 0.75em;
+}
+
+.logout_button {
+  padding: 0.375em 0.5em 0.375em 0.5em;
+  border-radius: 0.25em;
+  position: relative;
+  color: var(--red50);
+  background-color: var(--red500);
+  line-height: 1em;
+  cursor: pointer;
+  border: none;
+}
+
+.logout_button::before {
+  content: "●";
+  margin-right: 0.75em;
+}
+
+.content {
+  flex: 1;
+  height: 100%;
+  /* 3. SİHİR: Flexbox'ın "içerik uzarsa ben de uzarım" inadını kırar, scroll'u zorunlu kılar! */
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 1em;
+}

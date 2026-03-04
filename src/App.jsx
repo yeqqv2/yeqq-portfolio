@@ -12,8 +12,12 @@ import HomePage from "./pages/home/HomePage";
 const AboutPage = lazy(() => import("./pages/about/AboutPage"));
 const ProjectsPage = lazy(() => import("./pages/projects/ProjectsPage"));
 const WorkPage = lazy(() => import("./pages/project/WorkPage"));
-const LoginPage = lazy(() => import("./admin/login/LoginPage"));
 const ContactPage = lazy(() => import("./pages/contact/ContactPage"));
+import AdminLayout from "./admin/layout/AdminLayout";
+import LoginPage from "./admin/login/LoginPage";
+import AdminDashboard from "./admin/dashboard/AdminDashboard";
+import AdminProjectsList from "./admin/projects/AdminProjectsList";
+import ProjectCreate from "./admin/project/ProjectCreate";
 
 function App() {
   return (
@@ -52,14 +56,11 @@ function App() {
             </Suspense>
           }
         />
-        <Route
-          path="/admin"
-          element={
-            <Suspense fallback={<LoadingPage />}>
-              <LoginPage />
-            </Suspense>
-          }
-        />
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<AdminDashboard />} />
+          <Route path="projects" element={<AdminProjectsList />} />
+          <Route path="projects/create" element={<ProjectCreate />} />
+        </Route>
       </Routes>
     </SmoothScroll>
   );

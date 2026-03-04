@@ -50,13 +50,15 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .work {
-    width: 50vw !important;
+  .work,
+  .work:nth-child(n) {
+    grid-column: span 1;
   }
 }
 
 @media screen and (max-width: 600px) {
-  .work {
-    width: 100vw !important;
+  .work,
+  .work:nth-child(n) {
+    grid-column: span 1;
   }
 }

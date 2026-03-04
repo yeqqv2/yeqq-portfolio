@@ -1,9 +1,9 @@
 import { useRef, useEffect } from "react";
+import styles from "./style.module.css";
 import { storageBaseUrl } from "../../utils/supabase";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CustomEase } from "gsap/CustomEase";
-import styles from "./style.module.css";
 
 gsap.registerPlugin(CustomEase, ScrollTrigger);
 CustomEase.create("hop", "0.9, 0, 0.1, 1");
@@ -11,6 +11,8 @@ CustomEase.create("hop", "0.9, 0, 0.1, 1");
 const ProjectCard = ({
   work,
   index,
+  className, // Dışarıdan özel CSS sınıfı alabilmesi için eklendi
+  onTouchStart, // Ana sayfadaki dokunmatik animasyon için eklendi
   onMouseMove,
   onMouseEnter,
   onMouseLeave,
@@ -45,11 +47,12 @@ const ProjectCard = ({
   return (
     <a
       href={`/projects/${work.slug}`}
-      className={styles.work}
+      className={className || styles.work} // Dışarıdan class gelmezse varsayılanı kullanır
       ref={cardRef}
       onMouseMove={onMouseMove}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      onTouchStart={onTouchStart} // Yeni eklenen event
     >
       <div className={styles.work_img} ref={imgRef}>
         <img

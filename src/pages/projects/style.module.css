@@ -39,6 +39,10 @@
     padding: 10vh 0 5vh 0;
     gap: 5vh;
   }
+
+  .main {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -46,5 +50,9 @@
     padding: 15vh 2.5vw 5vh 2.5vw;
     gap: 15vh;
     align-items: center;
+  }
+
+  .main {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
