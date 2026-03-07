@@ -1,5 +1,5 @@
 .container {
-  width: 100vw;
+  width: 100%; /* 100vw yerine 100% kullanıldı */
   padding: 10vh 1vw;
   position: relative;
   display: flex;
@@ -17,7 +17,7 @@
   width: 100%;
   object-fit: cover;
   clip-path: inset(50% 50% 50% 50%);
-  transition: clip-path 0.3s ease-out;
+  /* transition: clip-path 0.3s ease-out; SİLİNDİ: GSAP çakışmasını önlemek için */
 }
 
 .content {
@@ -49,6 +49,10 @@
   letter-spacing: -0.025em;
   font-weight: 300;
   white-space: nowrap;
+  transform: translate(
+    -50%,
+    -50%
+  ); /* İmlecin ucunu tam ortaya hizalamak için eklendi */
 }
 
 @media screen and (max-width: 1024px) {

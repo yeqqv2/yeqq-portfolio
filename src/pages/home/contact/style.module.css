@@ -114,17 +114,6 @@
   color: var(--wb50);
 }
 
-.contact_link_colored {
-  padding: 0.375em 0.5em 0.375em 0.5em;
-  border-radius: 0.25em;
-  position: relative;
-  background-color: var(--red500);
-  color: var(--wb50);
-  line-height: 1em;
-  font-size: 1em;
-  font-weight: 300;
-}
-
 @media screen and (max-width: 1024px) {
   .context {
     gap: 0.5em;

@@ -1,10 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./style.module.css";
-import MenuButton from "../../tools/menu/MenuButton";
+import MenuButton from "../../ui/menu/MenuButton";
 import gsap from "gsap";
 import CustomEase from "gsap/CustomEase";
 import { GoArrowRight } from "react-icons/go";
 import { useTranslation } from "react-i18next";
+import PrimerLink from "../../ui/link/PrimerLink";
+import PrimerButton from "../../ui/button/PrimerButton";
 
 gsap.registerPlugin(CustomEase);
 CustomEase.create("hop", "0.9, 0, 0.1, 1");
@@ -83,12 +85,18 @@ export default function Navbar() {
 					</a>
 				</section> */}
         <main className={`${styles.right} ${styles.menu_item}`}>
-          <a className={styles.contact_link_colored} href="/contact-me">
-            {t("nav.contact_btn")}
-          </a>
-          <button className={styles.language_button} onClick={toggleLanguage}>
-            {i18n.language.split("-")[0]}
-          </button>
+          <PrimerLink
+            href="/contact-me"
+            buttonText={t("nav.contact_btn")}
+            backgroundColor="var(--green300)"
+            color="var(--green800)"
+          />
+          <PrimerButton
+            onClick={toggleLanguage}
+            buttonText={i18n.language.split("-")[0]}
+            backgroundColor="var(--green300)"
+            color="var(--green800)"
+          />
         </main>
       </div>
       {/* SIDEBAR */}
@@ -104,37 +112,44 @@ export default function Navbar() {
             <span className={styles.link_icon}>
               <GoArrowRight />
             </span>
-            {t('nav.home')}
+            {t("nav.home")}
           </a>
           <a href="/about-me" className={styles.link}>
             <span className={styles.link_icon}>
               <GoArrowRight />
             </span>
-            {t('nav.about')}
+            {t("nav.about")}
+          </a>
+          <a href="/manifest" className={styles.link}>
+            <span className={styles.link_icon}>
+              <GoArrowRight />
+            </span>
+            {t("nav.manifest")}
           </a>
           <a href="/projects" className={styles.link}>
             <span className={styles.link_icon}>
               <GoArrowRight />
             </span>
-            {t('nav.projects')}
+            {t("nav.projects")}
           </a>
         </div>
         <div className={styles.links}>
           <div className={styles.contact_link_sec}>
-            <div className={styles.contact_link_header}>{t('nav.contact_header')}</div>
+            <div className={styles.contact_link_header}>
+              {t("nav.contact_header")}
+            </div>
             <div className={styles.contact_links}>
-              <a
-                className={styles.contact_link_colored_sidebar}
+              <PrimerLink
                 href="/contact-me"
+                buttonText={t("nav.contact")}
+                backgroundColor="var(--blue400)"
+                color="var(--blue50)"
                 onClick={toggleSidebar}
-                aria-label="Contact Page"
-              >
-               ● {t('nav.contact')}
-              </a>
+              />
             </div>
           </div>
           <div className={styles.contact_link_sec}>
-            <div className={styles.contact_link_header}>{t('nav.connect')}</div>
+            <div className={styles.contact_link_header}>{t("nav.connect")}</div>
             <div className={styles.contact_links}>
               <a
                 className={styles.contact_link}

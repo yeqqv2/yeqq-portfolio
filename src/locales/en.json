@@ -2,9 +2,10 @@
   "nav": {
     "home": "home",
     "about": "aboutme",
+    "manifest": "manifest",
     "projects": "projects",
     "contact": "get in touch",
-    "contact_btn": "● contact with me",
+    "contact_btn": "contact with me",
     "connect": "[connect]",
     "contact_header": "[contact]"
   },
@@ -14,6 +15,7 @@
     "contact_header": "[contact]",
     "home": "home",
     "about": "aboutme",
+    "manifest": "manifest",
     "projects": "projects",
     "contact_btn": "get in touch",
     "signature": "designed & built by yunus emre korkmaz"
@@ -29,7 +31,7 @@
   },
   "aboutHome": {
     "mainText": "I merge design clarity with engineering precision to craft thoughtful digital products.",
-    "link": "● my story"
+    "link": "my story"
   },
   "worksHome": {
     "cursorWords": [
@@ -51,10 +53,29 @@
       "details matter, but flow matters more"
     ]
   },
+  "manifest": {
+    "title": "[ mental architecture ]",
+    "desc": "interfaces are not made of pixels, but of rational decisions and controlled chaos. I don't just write code here; I ruthlessly annihilate possibilities, forcing the system into a single absolute reality. This is the cost of order.",
+    "topics": {
+      "aesthetic": {
+        "label": "aesthetics",
+        "text": "beauty is not decoration; it is the ruthless amputation of excess. The void is the most strategic architecture left for the system to breathe. Only the necessary survives."
+      },
+      "entropy": {
+        "label": "entropy",
+        "text": "flawless order defies the nature of the universe. To sustain an interface is to relentlessly inject rational energy into a structure that constantly tends toward decay."
+      },
+      "rationality": {
+        "label": "rationality",
+        "text": "every rational decision is the murder of infinite other possibilities. Making a choice is not freedom; it is the art of constraining the system and condemning it to a single outcome."
+      }
+    },
+    "button": "inspect mental architecture"
+  },
   "contactHome": {
     "header": "let’s build something meaningful.",
     "subtext": "I’m open to collaborations, freelance work and product-focused projects.",
-    "link": "● get in touch",
+    "link": "get in touch",
     "sentences": [
       "if you want",
       "develop",
@@ -146,6 +167,66 @@
       "tech": "React, JavaScript, Figma",
       "overview": "Modern, scalable and accessible interfaces designed for real users.",
       "conclusion": "this project allowed me to combine clean ui principles, fast development practices and modern motion design—while solving real-world problems for real users."
+    }
+  },
+  "manifesto": {
+    "white_on_white": {
+      "question": "what does ‘white on white’ mean?",
+      "footer": "in design, light is the father of form. Hiding shadows is easy; mastering light requires craft. Pure white is a screen's highest energy state. I do not hide the energy; I harness it through architecture."
+    },
+    "dichotomy": {
+      "left_title": "[ left brain ]",
+      "left_annotation_title": "rational hemisphere",
+      "left_annotation_desc": "Calculations, boundaries, and architecture. As flawless as a component's lifecycle, an enemy of entropy. It rejects emotion, accepting only data. Karl Friston's Free Energy Principle operates here: No surprises, no errors.",
+      "right_title": "[ right brain ]",
+      "right_annotation_title": "emotional hemisphere",
+      "right_annotation_desc": "The deep isolation in Balıkesir. The raw anger following a lost hand on the chessboard. The irregular motivation that moves the body pointlessly every day. Flawed, unpredictable, but undeniably human.",
+      "card_rational": "system Log",
+      "card_emotional": "feeling board",
+      "action_btn": "execute"
+    },
+    "cost_of_order": {
+      "btn_label": "apply energy",
+      "title": "[ the entropy of mind ]",
+      "desc": "Karl Friston was right. The mind is a machine that constantly expends energy to minimize surprise and entropy. Just like the systems I build. Order is not natural. Order is a paid-for effort. A flawless code architecture or a rational decision is a temporary war waged against the natural chaos of the universe. The moment you cut the energy, the system returns to its natural state."
+    },
+    "observer": {
+      "title": "[ the observer's tyranny ]",
+      "desc": "the system holds all errors and all truths simultaneously until I observe it. reality is a heap of possibilities pruned by the attention of a rational observer. i don't write code; i force probabilities into a single rational output.",
+      "lines": [
+        "reality is merely an assumption.",
+        "code decays when unwatched.",
+        "rationality is a dictatorship.",
+        "attention is the purest form of energy."
+      ]
+    },
+    "choice": {
+      "title": "[ the gravity of 'yes' ]",
+      "desc": "rationality is not freedom; it is a form of constraint. to choose one path is to annihilate all others. choice is a rational mass; it requires effort to carry.",
+      "button": "make a decision"
+    },
+    "asymmetry": {
+      "title": "[ the asymmetry of loss ]",
+      "desc": "daniel kahneman was right. the mind is programmed for the trauma of loss rather than the thrill of gain. building a new structure takes time; destroying it forces the entire system to face gravity. losing is not the opposite of gaining, but its mutation.",
+      "build": "[ + build ]",
+      "destruct": "[ - destruct ]",
+      "concepts": [
+        "rationality",
+        "architecture",
+        "the void",
+        "entropy",
+        "mass",
+        "isolation",
+        "aesthetics",
+        "system",
+        "time"
+      ]
+    },
+    "protocol": {
+      "title": "[ protocol_00: handshake ]",
+      "desc": "You have seen the architecture of my mind and the price I pay to build a system. Order is not natural; it can only be sustained by ruthless rationality. If your project requires this level of gravity and structural effort, open the communication channel. Otherwise, you may exit the system.",
+      "connect": "initiate contact",
+      "exit": "exit system"
     }
   },
   "contactPage": {

@@ -16,11 +16,7 @@ const IntroSec = () => {
   };
 
   const containerRef = useRef(null);
-  const videoRef = useRef(null);
 
-  /* ------------------------------------------
-     OPTIMIZED MOUSE TRACKING (RAF THROTTLED)
-  -------------------------------------------*/
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -61,24 +57,13 @@ const IntroSec = () => {
     };
   }, []);
 
-  /* ------------------------------------------
-     OPTIMIZED VIDEO LOOP (MORE PERFORMANT)
-  -------------------------------------------*/
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    // Daha performanslı → event gerekmez
-    video.loop = true;
-  }, []);
-
   return (
     <div className={styles.container} ref={containerRef}>
       <video
-        ref={videoRef}
         className={styles.vid}
         src="/assets/videos/homepage-video.webm"
         autoPlay
+        loop
         muted
         playsInline
         preload="metadata"

@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react";
 import styles from "./style.module.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import SplitType from "split-type";
 import CustomEase from "gsap/CustomEase";
 import AnimatedSplit from "../../../components/animated split/AnimatedSplit";
 import { useTranslation } from "react-i18next";
@@ -14,15 +13,6 @@ export default function HeroAbout() {
   const { t, i18n } = useTranslation();
   const containerRef = useRef(null);
   const headerRef = useRef(null);
-  const descRef = useRef(null);
-  const contentDescRef = useRef(null);
-
-  // refs for the work item wrappers
-  const workRefs = useRef([]);
-  // do NOT reset workRefs.current = [] here — we use callback refs below
-
-  // collect ScrollTrigger instances (optional, for manual cleanup/debug)
-  const scrollTriggersRef = useRef([]);
 
   const workImages = [
     "/assets/modern-art/9.webp",
@@ -32,38 +22,16 @@ export default function HeroAbout() {
 
   useEffect(() => {
     let ctx = gsap.context(() => {
-      const descSplit = new SplitType(contentDescRef.current, {
-        types: "lines, words",
-        tagName: "span",
-      });
+      // Callback ref'ler yerine, context içindeki class'ları doğrudan, güvenli bir şekilde seçiyoruz
+      const workItems = gsap.utils.toArray(`.${styles.work_item}`);
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: headerRef.current,
-          start: "top 100%",
-          toggleActions: "play none none none",
-        },
-      });
-
-      tl.from(
-        descSplit.words,
-        {
-          y: "110%",
-          duration: 0.75,
-          ease: "hop",
-          stagger: 0.05,
-        },
-        "<0.3",
-      );
-
-      workRefs.current.forEach((work, index) => {
-        if (!work) return;
+      workItems.forEach((work, index) => {
         const img = work.querySelector(`.${styles.work_img}`);
         if (!img) return;
 
         gsap.set(img, { clipPath: "inset(100% 0% 0% 0%)" });
 
-        const st = gsap.fromTo(
+        gsap.fromTo(
           img,
           { clipPath: "inset(100% 0% 0% 0%)" },
           {
@@ -74,14 +42,11 @@ export default function HeroAbout() {
             scrollTrigger: {
               trigger: work,
               start: "top 100%",
-              onEnter: (self) => {
-                scrollTriggersRef.current.push(self);
-              },
+              // Manuel trigger takibine gerek yok, ctx.revert() hallediyor
             },
           },
         );
 
-        // optional: animate wrapper for slight translate/fade to emphasize entrance
         gsap.fromTo(
           work,
           { y: 20 },
@@ -99,19 +64,14 @@ export default function HeroAbout() {
       });
     }, containerRef);
 
-    return () => {
-      // revert gsap.context (kills animations created in context)
-      ctx.revert();
-      // clear stored triggers references
-      scrollTriggersRef.current = [];
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
     <div className={styles.container} ref={containerRef}>
       <header className={styles.header} ref={headerRef}>
         <AnimatedSplit
-          key={t("heroAbout.title")}
+          key={`${i18n.language}-hero-title`}
           text={t("heroAbout.title")}
           className={styles.title}
           tagName="span"
@@ -119,11 +79,12 @@ export default function HeroAbout() {
           duration={1.5}
           start="top 80%"
         />
-        <div className={styles.desc} ref={descRef}>
+        <div className={styles.desc}>
           <div className={styles.text_and_imgs}>
             <div className={styles.content_desc_text}>
+              {/* SplitType hayaleti silindi, metinleri AnimatedSplit sorunsuzca çözer */}
               <AnimatedSplit
-                key={t("heroAbout.content_text_1")}
+                key={`${i18n.language}-hero-desc-1`}
                 text={t("heroAbout.content_text_1")}
                 className={styles.content_desc_text_p}
                 tagName="span"
@@ -132,7 +93,7 @@ export default function HeroAbout() {
                 start="top 100%"
               />
               <AnimatedSplit
-                key={t("heroAbout.content_text_2")}
+                key={`${i18n.language}-hero-desc-2`}
                 text={t("heroAbout.content_text_2")}
                 className={styles.content_desc_text_p}
                 tagName="span"
@@ -144,19 +105,13 @@ export default function HeroAbout() {
 
             <div className={styles.work_container}>
               {workImages.map((src, idx) => (
-                <div
-                  key={idx}
-                  className={styles.work_item}
-                  ref={(el) => {
-                    workRefs.current[idx] = el;
-                  }}
-                >
+                <div key={idx} className={styles.work_item}>
                   <img
                     src={src}
                     alt={`work-${idx + 1}`}
                     className={styles.work_img}
                     aria-hidden="true"
-                    loading="lazy"
+                    loading={idx === 0 ? "eager" : "lazy"} // Optimizasyon
                     decoding="async"
                   />
                 </div>

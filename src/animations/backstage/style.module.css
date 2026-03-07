@@ -1,0 +1,81 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: none;
+  gap: 10vw;
+}
+
+.mirror_wrapper {
+  height: 48vh;
+  aspect-ratio: 9/16;
+  pointer-events: auto;
+  clip-path: inset(0%, 100%, 0%, 0%);
+}
+
+.ui_layer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5em;
+}
+
+.title {
+  font-size: 2em;
+  letter-spacing: -0.05em;
+}
+
+.desc {
+  font-weight: 300;
+  font-size: 0.875em;
+}
+
+.main_input {
+  background: transparent;
+  border: none;
+  color: var(--wb950);
+  font-size: 1em;
+  font-weight: 300;
+  outline: none;
+  width: 25vw;
+  pointer-events: auto;
+}
+
+.actions {
+  display: flex;
+  gap: 1em;
+}
+
+.main_btn,
+.sub_btn {
+  padding: 0.375em 0.5em 0.375em 0.5em;
+  border-radius: 0.25em;
+  position: relative;
+  color: var(--wb950);
+  line-height: 1em;
+  font-size: 1em;
+  opacity: 0.5;
+  font-weight: 300;
+  transition: 0.3s background;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.main_btn:hover,
+.sub_btn:hover {
+  opacity: 1;
+}
+
+.main_btn:hover {
+  background-color: var(--red500);
+  color: var(--wb50);
+}
+
+.sub_btn:hover {
+  background-color: var(--orange600);
+  color: var(--wb50);
+}

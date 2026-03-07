@@ -1,10 +1,11 @@
 {
-    "nav": {
+  "nav": {
     "home": "ana sayfa",
     "about": "hakkımda",
+    "manifest": "manifesto",
     "projects": "projeler",
     "contact": "iletişime geç",
-    "contact_btn": "● benimle iletişime geç",
+    "contact_btn": "benimle iletişime geç",
     "connect": "[bağlan]",
     "contact_header": "[iletişim]"
   },
@@ -14,6 +15,7 @@
     "contact_header": "[iletişim]",
     "home": "ana sayfa",
     "about": "hakkımda",
+    "manifest": "manifesto",
     "projects": "projeler",
     "contact_btn": "iletişime geç",
     "signature": "yunus emre korkmaz tarafından tasarlandı ve geliştirildi"
@@ -29,7 +31,7 @@
   },
   "aboutHome": {
     "mainText": "Tasarım netliğini mühendislik hassasiyetiyle birleştirerek özenle tasarlanmış dijital ürünler yaratıyorum.",
-    "link": "● benim hikayem"
+    "link": "benim hikayem"
   },
   "worksHome": {
     "cursorWords": [
@@ -51,10 +53,29 @@
       "detaylar önemlidir ama akış daha önemlidir"
     ]
   },
+  "manifest": {
+    "title": "[ zihinsel_mimari ]",
+    "desc": "arayüzler piksellerden değil, rasyonel kararlardan ve kontrol altına alınmış kaostan oluşur. Burada sadece kod yazmıyorum; olasılıkları acımasızca imha ederek sistemi tek bir mutlak gerçekliğe zorluyorum. Bu, düzenin bedelidir.",
+    "topics": {
+      "aesthetic": {
+        "label": "estetik",
+        "text": "güzellik bir süsleme değil, fazlalıkların acımasızca kesilip atılmasıdır. Boşluk, sistemin nefes alması için bırakılan en stratejik mimaridir. Sadece gerekli olan hayatta kalır."
+      },
+      "entropy": {
+        "label": "entropi",
+        "text": "kusursuz bir düzen evrenin doğasına aykırıdır. Bir arayüzü ayakta tutmak, sürekli olarak bozulmaya (bit rot) eğilimli bir yapıya durmaksızın rasyonel enerji enjekte etmektir."
+      },
+      "rationality": {
+        "label": "rasyonalite",
+        "text": "her rasyonel karar, diğer sonsuz olasılığın öldürülmesidir. Karar vermek özgürlük değil, sistemi kısıtlayarak onu tek bir ihtimale mahkum etme sanatıdır."
+      }
+    },
+    "button": "zihinsel mimariyi incele"
+  },
   "contactHome": {
     "header": "birlikte anlamlı bir şeyler inşa edelim.",
     "subtext": "İş birliklerine, freelance çalışmalara ve ürün odaklı projelere açığım.",
-    "link": "● iletişime geç",
+    "link": "iletişime geç",
     "sentences": [
       "eğer istersen",
       "geliştirebiliriz",
@@ -146,6 +167,66 @@
       "tech": "React, JavaScript, Figma",
       "overview": "Gerçek kullanıcılar için tasarlanmış modern, ölçeklenebilir ve erişilebilir arayüzler.",
       "conclusion": "Bu proje, gerçek kullanıcılar için gerçek dünya sorunlarını çözerken temiz kullanıcı arayüzü ilkelerini, hızlı geliştirme pratiklerini ve modern hareket tasarımını birleştirmemi sağladı."
+    }
+  },
+  "manifesto": {
+    "white_on_white": {
+      "question": "‘beyaz üstüne beyaz’ ne anlama gelir?",
+      "footer": "Tasarımda ışık, formun babasıdır. Gölgeleri saklamak kolaydır, ışığı yönetmek ise ustalık ister. Saf beyaz, bir ekranın en yüksek enerji seviyesidir. Ben enerjiyi saklamıyorum, onu mimariyle dizginliyorum."
+    },
+    "dichotomy": {
+      "left_title": "[ sol beyin ]",
+      "left_annotation_title": "rasyonel yarımküre",
+      "left_annotation_desc": "Hesaplar, sınırlar ve mimari. Bir bileşenin yaşam döngüsü kadar kusursuz, entropiye düşman. Duyguyu reddeder, sadece veriyi kabul eder. Karl Friston'ın Serbest Enerji İlkesi burada çalışır: Sürpriz yok, hata yok.",
+      "right_title": "[ sağ beyin ]",
+      "right_annotation_title": "duygusal yarımküre",
+      "right_annotation_desc": "Balıkesir'deki derin izolasyon. Satranç tahtasında kaybedilen bir elden sonra gelen o ham öfke. Her gün bedenini anlamsızca harekete geçiren düzensiz motivasyon. Kusurlu, tahmin edilemez ama bir o kadar da insani.",
+      "card_rational": "sistem Günlüğü",
+      "card_emotional": "his Panosu",
+      "action_btn": "çalıştır"
+    },
+    "cost_of_order": {
+      "btn_label": "enerji uygula",
+      "title": "[ zihnin entropisi ]",
+      "desc": "Karl Friston haklıydı. Zihin, sürprizi ve entropiyi en aza indirmek için sürekli enerji harcayan bir makinedir. Tıpkı yazdığım sistemler gibi. Düzen doğal değildir. Düzen, bedeli ödenmiş bir efordur. Kusursuz bir kod mimarisi veya rasyonel bir karar, evrenin doğal kaosuna karşı açılmış geçici bir savaştır. Enerjiyi kestiğin an, sistem doğal haline döner."
+    },
+    "observer": {
+      "title": "[ gözlemcinin tiranlığı ]",
+      "desc": "sistem, ben ona bakmadığım sürece tüm hataları ve tüm doğruları aynı anda barındırır. gerçeklik, rasyonel bir gözlemcinin dikkatiyle budanmış bir olasılıklar yığınıdır. ben kod yazmıyorum; ben ihtimalleri tek bir rasyonel çıktıya zorluyorum.",
+      "lines": [
+        "gerçeklik sadece bir varsayımdır.",
+        "kod, bakmadığında bozulur.",
+        "rasyonalite bir diktatörlüktür.",
+        "dikkat, enerjinin en saf formudur."
+      ]
+    },
+    "choice": {
+      "title": "[ evet'in yerçekimi ]",
+      "desc": "rasyonellik, özgürlük değil bir kısıtlama biçimidir. bir yolu seçmek, diğer tüm yolları imha etmektir. seçim, rasyonel bir kütledir; taşınması efor ister.",
+      "button": "bir karar ver"
+    },
+    "asymmetry": {
+      "title": "[ kayıp asimetrisi ]",
+      "desc": "daniel kahneman haklıydı. zihin, kazanımın hazzından çok kaybın travmasına programlanmıştır. bir mimaride yeni bir yapı inşa etmek sadece zaman alır; var olanı yıkmak ise tüm sistemin yerçekimiyle yüzleşmesidir. kaybetmek, kazanmanın zıttı değil, mutasyonudur.",
+      "build": "[ + inşa et ]",
+      "destruct": "[ - imha et ]",
+      "concepts": [
+        "rasyonalite",
+        "mimari",
+        "boşluk",
+        "entropi",
+        "kütle",
+        "izolasyon",
+        "estetik",
+        "sistem",
+        "zaman"
+      ]
+    },
+    "protocol": {
+      "title": "[ protocol_00: tokalaşma ]",
+      "desc": "Zihnimin mimarisini ve bir sistemi inşa ederken ödediğim bedelleri gördünüz. Düzen doğal değildir; sadece acımasız bir rasyonalite ile ayakta tutulabilir. Eğer projeniz bu seviyede bir ciddiyet ve yapısal efor gerektiriyorsa, iletişim kanalını açın. Aksi takdirde, sistemi terk edebilirsiniz.",
+      "connect": "bağlantı kur",
+      "exit": "sistemi terk et"
     }
   },
   "contactPage": {

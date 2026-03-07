@@ -78,11 +78,7 @@
 }
 
 .content {
-  flex: 1;
-  height: 100%;
-  /* 3. SİHİR: Flexbox'ın "içerik uzarsa ben de uzarım" inadını kırar, scroll'u zorunlu kılar! */
-  min-height: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding-right: 1em;
+  width: calc(80vw - 9em);
+  height: calc(100vh - 6em);
+  overflow: hidden;
 }

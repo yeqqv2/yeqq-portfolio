@@ -1,0 +1,118 @@
+.container {
+  position: relative;
+  width: 100vw;
+  height: 80vh;
+  background-color: var(--wb50);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.particle_system {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  z-index: 1;
+}
+
+.dot {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: var(--wb950);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  will-change: transform, opacity;
+}
+
+/* ARAYÜZ VE MANİFESTO KATMANI */
+.ui_layer {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 3rem;
+  padding: 10vw;
+}
+
+.energy_btn {
+  padding: 0.375em 0.5em 0.375em 0.5em;
+  border-radius: 0.25em;
+  position: relative;
+  line-height: 1em;
+  font-size: 1em;
+  font-weight: 300;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  background-color: var(--wb950);
+  color: var(--wb50);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9;
+  cursor: pointer;
+  user-select: none;
+}
+
+.energy_btn::before {
+  content: "●";
+}
+
+/* Enerji butonuna basılırken butonun verdiği tepki */
+.energy_btn:active {
+  background-color: var(--wb950);
+  color: var(--wb50);
+}
+
+.manifesto_block {
+  width: 20vw;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1em;
+}
+
+.manifesto_block h4 {
+  font-size: 1.25em;
+  font-weight: 400;
+  color: var(--wb950);
+}
+
+.manifesto_block p {
+  font-size: 0.925em;
+  line-height: 1.2;
+  font-weight: 300;
+  color: var(--wb600);
+}
+
+@media screen and (max-width: 1024px) {
+  .container {
+    height: 100vh;
+  }
+
+  .manifesto_block {
+    width: 50vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .ui_layer{
+    padding: 10vh 5vw;
+    justify-content: flex-start;
+  }
+
+  .manifesto_block {
+    width: 80vw;
+  }
+}

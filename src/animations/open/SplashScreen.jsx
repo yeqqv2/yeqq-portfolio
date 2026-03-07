@@ -9,8 +9,6 @@ CustomEase.create("butterSlow", "0.14, 0.11, 0.11, 1");
 
 export default function SplashScreen({ onAnimationComplete }) {
     const containerRef = useRef(null);
-    const imagesContainerRef = useRef(null);
-    const tlRef = useRef(null);
     const originalOverflow = useRef({ body: "", html: "" });
 
     const artImages = useMemo(() => {
@@ -28,10 +26,6 @@ export default function SplashScreen({ onAnimationComplete }) {
         const cleanupAndClose = () => {
             document.body.style.overflow = originalOverflow.current.body;
             document.documentElement.style.overflow = originalOverflow.current.html;
-
-            if (containerRef.current) {
-                containerRef.current.style.display = "none";
-            }
 
             if (onAnimationComplete) {
                 onAnimationComplete();
@@ -60,41 +54,37 @@ export default function SplashScreen({ onAnimationComplete }) {
                 defaults: { ease: "butter" },
                 onComplete: cleanupAndClose
             });
-            tlRef.current = tl;
 
-            // 1) KARTLARIN SOFT AÇILMASI (clipPath reveal)
             tl.to(artCards, {
                 clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-                duration: .66,
-                stagger: .5
+                duration: 0.4,
+                stagger: 0.2
             });
 
-            // 2) ROTATION YUMUŞAKÇA SIFIRLANIR
             tl.to(artCards, {
                 rotateZ: 0,
-                duration: 1.2,
+                duration: 0.6,
                 ease: "butterSlow"
-            }, "-=0.9");
+            }, "-=0.2");
 
             tl.to(artCards, {
                 borderRadius: "40vw",
-                duration: 0.65,
+                duration: 0.4,
                 ease: "butterSlow"
-            }, "-=0.7");
+            }, "-=0.4");
 
             tl.to(artCards, {
                 scale: 1,
-                duration: 1.45,
+                duration: 0.8,
                 ease: "butterSlow"
-            }, "-=0.9");
+            }, "-=0.4");
 
             tl.to(containerRef.current, {
                 clipPath: "circle(0% at 50% 50%)",
-                duration: 1.6,
+                duration: 0.8,
                 ease: "butterSlow"
-            }, "-=0.65");
+            }, "-=0.3");
         }, containerRef);
-
 
         return () => {
             ctx.revert();
@@ -106,7 +96,7 @@ export default function SplashScreen({ onAnimationComplete }) {
 
     return (
         <div className={styles.container} ref={containerRef}>
-            <div className={styles.cardsWrapper} ref={imagesContainerRef}>
+            <div className={styles.cardsWrapper}>
                 {artImages.map((src, index) => (
                     <img key={index} className={styles.artCard} src={src} alt={`art-${index}`} loading="eager" />
                 ))}

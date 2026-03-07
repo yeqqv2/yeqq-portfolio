@@ -24,18 +24,15 @@ const AppLayout = ({ children }) => {
         </Suspense>
       )}
 
-      {/* Ana Uygulama (App.jsx) */}
       <Suspense fallback={null}>{children}</Suspense>
 
-      {/* Admin sayfasında değilsek Footer'ı göster */}
       {!isAdminRoute && (
         <Suspense fallback={null}>
           <Footer />
         </Suspense>
       )}
 
-      {/* Özel imleci admin panelinde de açık bıraktım, istersen bunu da !isAdminRoute içine alabilirsin */}
-      <Suspense fallback={null}>
+      {/* <Suspense fallback={null}>
         <AnimatedCursor
           innerSize={10}
           innerScale={1}
@@ -57,7 +54,7 @@ const AppLayout = ({ children }) => {
           trailingSpeed={0}
           showSystemCursor={true}
         />
-      </Suspense>
+      </Suspense> */}
     </>
   );
 };
@@ -73,7 +70,6 @@ root.render(
           v7_relativeSplatPath: true,
         }}
       >
-        {/* Tüm yapıyı oluşturduğumuz AppLayout içine alıyoruz */}
         <AppLayout>
           <App />
         </AppLayout>

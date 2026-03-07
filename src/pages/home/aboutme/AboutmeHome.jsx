@@ -5,71 +5,84 @@ import { CustomEase } from "gsap/CustomEase";
 import SplitType from "split-type";
 import styles from "./style.module.css";
 import { useTranslation } from "react-i18next";
+import PrimerLink from "../../../ui/link/PrimerLink";
 
 gsap.registerPlugin(ScrollTrigger, CustomEase);
-
-// Custom ease
 CustomEase.create("hop", "0, 0, 0.1, 1");
 
 const AboutmeHome = () => {
-	const { t, i18n } = useTranslation();
-	const textRef = useRef(null);
-	const footerRef = useRef(null);
+  const { t, i18n } = useTranslation();
+  const textRef = useRef(null);
+  const footerRef = useRef(null);
 
-	useEffect(() => {
-		const split = new SplitType(textRef.current, {
-			types: "lines, words, chars",
-			tagName: "span",
-		});
+  useEffect(() => {
+    if (!textRef.current) return;
 
-		// TEXT SCRUB ANIMATION
-		gsap.from(split.chars, {
-			opacity: 0.15,
-			duration: 0.0001,
-			ease: "hop",
-			stagger: 0.025,
-			fontWeight: 100,
-			scrollTrigger: {
-				trigger: textRef.current,
-				start: "top 70%",
-				end: "top 40%",
-				scrub: true,
-			},
-		});
+    let split;
+    let ctx = gsap.context(() => {
+      split = new SplitType(textRef.current, {
+        types: "lines, words, chars",
+        tagName: "span",
+      });
 
-		gsap.fromTo(
-			footerRef.current,
-			{
-				opacity: 0,
-				scale: 0,
-			},
-			{
-				opacity: 1,
-				scale: 1,
-				duration: 0.4,
-				ease: "hop",
-				scrollTrigger: {
-					trigger: textRef.current,
-					start: "top 40%",
-					scrub: false,
-				},
-			}
-		);
-	}, []);
+      gsap.from(split.chars, {
+        opacity: 0.15,
+        duration: 0.0001,
+        ease: "hop",
+        stagger: 0.025,
+        fontWeight: 100,
+        scrollTrigger: {
+          trigger: textRef.current,
+          start: "top 70%",
+          end: "top 40%",
+          scrub: true,
+        },
+      });
 
-	return (
-		<div className={styles.container}>
-			<main ref={textRef} className={styles.main} data-animate>
-				{t('aboutHome.mainText')}
-			</main>
+      gsap.fromTo(
+        footerRef.current,
+        { opacity: 0, scale: 0 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.4,
+          ease: "hop",
+          scrollTrigger: {
+            trigger: textRef.current,
+            start: "top 40%",
+            scrub: false,
+          },
+        },
+      );
+    }, textRef);
 
-			<footer ref={footerRef} className={styles.footer}>
-				<a className={styles.contact_link_colored} href="/about-me">
-					{t('aboutHome.link')}
-				</a>
-			</footer>
-		</div>
-	);
+    return () => {
+      ctx.revert();
+      if (split) split.revert();
+    };
+  }, [t]);
+
+  return (
+    <div className={styles.container}>
+      <main
+        key={i18n.language}
+        ref={textRef}
+        className={styles.main}
+        data-animate
+      >
+        {t("aboutHome.mainText")}
+      </main>
+
+      <footer ref={footerRef} className={styles.footer}>
+        <PrimerLink
+          href="/about-me"
+          buttonText={t("aboutHome.link")}
+          backgroundColor="var(--main-color300)"
+          color="var(--main-color900)"
+        />
+      </footer>
+    </div>
+  );
 };
 
 export default AboutmeHome;

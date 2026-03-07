@@ -1,50 +1,43 @@
-import { useEffect } from 'react';
-import Lenis from '@studio-freight/lenis';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import Lenis from "@studio-freight/lenis";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function SmoothScroll({ children }) {
-    useEffect(() => {
-        const lenis = new Lenis({
-            duration: 2.4,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            direction: 'vertical',
-            gestureDirection: 'vertical',
-            smooth: true,
-            mouseMultiplier: 1,
-            smoothTouch: true,
-            touchMultiplier: 1.4,
-        });
+  const location = useLocation();
+  const isAdmin = location.pathname.startsWith("/admin");
 
-        // const lenis = new Lenis({
-        //     duration: 2.8,
-        //     easing: (t) => 1 - Math.pow(1 - t, 5),
-        //     smooth: true,
-        //     direction: 'vertical',
-        //     gestureDirection: 'vertical',
-        //     mouseMultiplier: 0.55,
-        //     lerp: 0.06,
-        //     smoothTouch: true,
-        //     touchMultiplier: 1.4,
-        // });
+  useEffect(() => {
+    if (isAdmin) return;
 
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: "vertical",
+      gestureDirection: "vertical",
+      smooth: true,
+      mouseMultiplier: 1,
+      smoothTouch: true, 
+      touchMultiplier: 1.4,
+    });
 
-        lenis.on('scroll', ScrollTrigger.update);
+    lenis.on("scroll", ScrollTrigger.update);
 
-        gsap.ticker.add((time) => {
-            lenis.raf(time * 1000);
-        });
+    const update = (time) => {
+      lenis.raf(time * 1000);
+    };
 
-        // Animasyonlarda titremeyi önlemek için lagSmoothing'i kapatıyoruz
-        gsap.ticker.lagSmoothing(0);
+    gsap.ticker.add(update);
+    gsap.ticker.lagSmoothing(0);
 
-        return () => {
-            gsap.ticker.remove(lenis.raf);
-            lenis.destroy();
-        };
-    }, []);
+    return () => {
+      gsap.ticker.remove(update);
+      lenis.destroy();
+    };
+  }, [isAdmin]);
 
-    return <>{children}</>;
+  return <>{children}</>;
 }

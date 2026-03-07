@@ -22,6 +22,9 @@ const Footer = () => {
                             <a className={styles.link} href="/about-me">
                                 {t('footer.about')}
                             </a>
+                            <a className={styles.link} href="/manifest">
+                                {t('footer.manifest')}
+                            </a>
                             <a className={styles.link} href="/projects">
                                 {t('footer.projects')}
                             </a>

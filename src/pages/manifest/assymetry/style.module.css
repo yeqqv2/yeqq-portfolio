@@ -1,0 +1,105 @@
+.container {
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: var(--wb50);
+  padding: 5vw;
+}
+
+.interaction_zone {
+  display: flex;
+  align-items: flex-end;
+  gap: 5em;
+  width: 50vw;
+  justify-content: center;
+}
+
+.tower {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  width: 20em;
+  min-height: 25em;
+  border-bottom: 2px solid var(--wb950);
+  padding-bottom: 2px;
+  transform-origin: bottom;
+}
+
+.block_wrapper {
+  width: 100%;
+  margin: 2px 0;
+  overflow: hidden;
+  transform-origin: bottom;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+}
+
+.action_btn {
+  background: transparent;
+  border: none;
+  font-family: var(--font-mono);
+  font-size: 1em;
+  color: var(--wb950);
+  cursor: pointer;
+  text-align: left;
+  transition: opacity 0.3s ease;
+}
+
+.action_btn:hover {
+  opacity: 0.5;
+}
+
+.annotation {
+  position: absolute;
+  top: 5vh;
+  left: 5vw;
+  width: 20vw;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1em;
+}
+
+.annotation h4 {
+  font-size: 1.25em;
+  font-weight: 400;
+  color: var(--wb950);
+}
+
+.annotation p {
+  font-size: 0.925em;
+  line-height: 1.2;
+  font-weight: 300;
+  color: var(--wb600);
+}
+
+@media screen and (max-width: 1024px) {
+  .container {
+    padding: 20vh 1vw 30vh 1vw;
+  }
+
+  .interaction_zone {
+    width: 98vw;
+    flex-direction: column;
+    align-items: center;
+    gap: 0em;
+  }
+
+  .controls{
+    flex-direction: row;
+    gap: 4em;
+  }
+
+  .annotation {
+    top: 80%;
+    width: 80vw;
+  }
+}

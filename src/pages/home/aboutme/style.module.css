@@ -1,5 +1,5 @@
 .container {
-  width: 100vw;
+  width: 100%; /* 100vw yerine 100% - YATAY SCROLL BUG'I ÖNLENDİ */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,22 +18,6 @@
   width: 20em;
 }
 
-.contact_link_colored {
-  padding: 0.375em 0.5em 0.375em 0.5em;
-  border-radius: 0.25em;
-  position: relative;
-  color: var(--wb950);
-  line-height: 1em;
-  font-size: 1em;
-  opacity: 0.5;
-  font-weight: 300;
-}
-
-.contact_link_colored:hover {
-  background-color: var(--main-color300);
-  opacity: 1;
-}
-
 @media screen and (max-width: 1024px) {
   .container {
     gap: 5vh;
@@ -46,16 +30,10 @@
     gap: 5vh;
   }
 
-  .header {
-    font-size: 1em;
-  }
+  /* .header silindi (çünkü kullanılmıyordu) */
 
   .main {
     width: 75vw;
-    font-size: 1em;
-  }
-
-  .contact_link_colored {
     font-size: 1em;
   }
 }

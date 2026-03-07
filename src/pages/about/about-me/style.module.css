@@ -1,6 +1,6 @@
 .container {
   height: auto;
-  width: 100vw;
+  width: 100%; /* Düzeltildi: Yatay scroll bug'ına son */
   padding: 10vh 1vw;
   display: flex;
   flex-direction: column;

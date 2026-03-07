@@ -1,0 +1,95 @@
+.container {
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: var(--wb50);
+  padding: 5vw;
+  overflow: hidden;
+}
+
+/* Çizgilerin tüm sayfaya yayılması için alanı kaplamasını sağlıyoruz */
+.entropy_field {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+/* Dağınık çizgiler */
+.stray_shape {
+  position: absolute;
+  width: .125em;
+  height: 3em;
+  background-color: var(--wb950);
+  transform-origin: center;
+  opacity: .25;
+}
+
+/* Ortadaki Çizgi */
+.decision_core {
+  position: absolute;
+  width: .125em;
+  height: 3em; /* Başlangıçta diğerleri gibi sadece bir çizgi */
+  background-color: var(
+    --wb500
+  ); /* Başlangıç rengi (siyaha dönüşeceği için gri veya vurgu rengi başlatıyoruz) */
+  transform: rotate(
+    45deg
+  ); /* Sıfıra dönerken hareketin anlaşılması için başlangıç açısı veriyoruz */
+  transform-origin: center;
+  z-index: 10;
+}
+
+.decision_btn {
+  position: absolute;
+  bottom: 10vh;
+  background: transparent;
+  border: none;
+  color: var(--wb950);
+  font-size: 1em;
+  font-family: var(--font-mono);
+  cursor: pointer;
+  z-index: 20;
+}
+
+.annotation {
+  position: absolute;
+  top: 5vh;
+  left: 5vw;
+  width: 20vw;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1em;
+  z-index: 10;
+}
+
+.annotation h4 {
+  font-size: 1.25em;
+  font-weight: 400;
+  color: var(--wb950);
+}
+
+.annotation p {
+  font-size: 0.925em;
+  line-height: 1.2;
+  font-weight: 300;
+  color: var(--wb600);
+}
+
+@media screen and (max-width: 1024px) {
+  .container {
+    padding: 20vh 1vw 50vh 1vw;
+  }
+  .annotation {
+    top: 70%;
+    width: 80vw;
+  }
+}

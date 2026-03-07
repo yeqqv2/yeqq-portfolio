@@ -1,0 +1,101 @@
+.container {
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: var(--wb50);
+  padding: 5vw;
+}
+
+.quantum_field {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10em;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+}
+
+.quantum_item {
+  position: relative;
+  cursor: crosshair;
+  filter: blur(12px);
+  transform: scale(0.9);
+  transition:
+    filter 1.2s ease,
+    transform 1.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+.quantum_item:hover {
+  opacity: 1;
+  filter: blur(0px);
+  transform: scale(1.05);
+  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.tag_morph {
+  font-size: 0.8em;
+  color: var(--wb950);
+  opacity: 0.5;
+  letter-spacing: 0.2em;
+}
+
+.hidden_truth {
+  font-size: 1.2em;
+  font-weight: 300;
+  color: var(--wb950);
+  text-align: center;
+  max-width: 250px;
+  line-height: 1.4;
+  pointer-events: none;
+}
+
+.annotation {
+  position: absolute;
+  top: 5vh;
+  bottom: 0;
+  left: 5vw;
+  width: 20vw;
+  min-width: 250px;
+  padding-right: 1.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1em;
+}
+
+.annotation h4 {
+  font-size: 1.25em;
+  font-weight: 400;
+  color: var(--wb950);
+}
+
+.annotation p {
+  font-size: 0.925em;
+  line-height: 1.2;
+  font-weight: 300;
+  color: var(--wb600);
+}
+
+@media screen and (max-width: 1024px) {
+  
+  .container{
+    padding: 20vh 1vw 50vh 1vw;
+  }
+  
+  .quantum_field{
+    width: 98vw;
+  }  
+
+  .annotation{
+    top: 80%;
+    bottom: 0;
+    width: 80vw;
+  }
+}

@@ -102,10 +102,11 @@ export default function ContactForm({ onSuccess, onError }) {
     <form onSubmit={handleSubmit} className={styles.form}>
       {/* Ad Soyad */}
       <div className={styles.input_group}>
-        <label className={styles.label} htmlFor="name">
+        <label className={styles.label} htmlFor="fullname">
           {t("contactForm.labels.fullname")}
         </label>
         <input
+          id="fullname" /* EKLENDİ */
           className={styles.input}
           name="fullname"
           type="text"
@@ -120,6 +121,7 @@ export default function ContactForm({ onSuccess, onError }) {
           {t("contactForm.labels.company")}
         </label>
         <input
+          id="company" /* EKLENDİ */
           className={styles.input}
           name="company"
           type="text"
@@ -133,6 +135,7 @@ export default function ContactForm({ onSuccess, onError }) {
           {t("contactForm.labels.email")}
         </label>
         <input
+          id="email" /* EKLENDİ */
           className={`${styles.input} ${emailError ? styles.input_error : ""}`}
           name="email"
           type="email"
@@ -148,10 +151,11 @@ export default function ContactForm({ onSuccess, onError }) {
 
       {/* Telefon */}
       <div className={styles.input_group}>
-        <label className={styles.label} htmlFor="tel">
+        <label className={styles.label} htmlFor="phone">
           {t("contactForm.labels.phone")}
         </label>
         <input
+          id="phone" /* EKLENDİ */
           className={`${styles.input} ${phoneError ? styles.input_error : ""}`}
           name="phone"
           type="tel"
@@ -170,6 +174,7 @@ export default function ContactForm({ onSuccess, onError }) {
           {t("contactForm.labels.subject")}
         </label>
         <input
+          id="subject" /* EKLENDİ */
           className={styles.input}
           name="subject"
           type="text"
@@ -183,6 +188,7 @@ export default function ContactForm({ onSuccess, onError }) {
           {t("contactForm.labels.message")}
         </label>
         <textarea
+          id="message" /* EKLENDİ */
           className={styles.textarea}
           name="message"
           placeholder={t("contactForm.placeholders.message")}

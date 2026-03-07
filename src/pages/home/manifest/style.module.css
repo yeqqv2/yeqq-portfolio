@@ -1,0 +1,114 @@
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--wb50);
+  padding: 10vh 1vw;
+}
+
+.context {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10vw;
+  width: 100%;
+  padding: 20vh;
+  border: 1px solid var(--wb950);
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5vh;
+}
+
+.title {
+  font-family: var(--font-mono);
+  font-size: 0.925em;
+  font-weight: 300;
+  color: var(--wb950);
+  letter-spacing: -0.02em;
+}
+
+.desc {
+  font-size: 2em;
+  font-weight: 300;
+  color: var(--wb600);
+}
+
+.content_secondary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2em;
+  padding-left: 3vw;
+}
+
+.radio_group {
+  display: flex;
+  gap: 1.5em;
+  flex-wrap: wrap;
+}
+
+.hidden_radio {
+  display: none;
+}
+
+.radio_label {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.375em 0.5em 0.375em 0.5em;
+  border-radius: 0.25em;
+  font-size: 1em;
+  font-weight: 300;
+  line-height: 1.2em;
+  white-space: nowrap;
+  letter-spacing: -0.025em;
+  transition: 0.3s background;
+}
+
+.active_label {
+  font-weight: 500;
+}
+
+.active_label::before {
+  content: "●";
+  line-height: 1;
+  transition: 0.3s;
+}
+
+.link_desc {
+  font-size: 1em;
+  line-height: 1.2;
+  font-weight: 300;
+  color: var(--wb800);
+  min-height: 120px;
+}
+
+.action_wrapper {
+  margin-top: auto;
+}
+
+/* --- MOBİL KURALLARI --- */
+@media screen and (max-width: 1024px) {
+  .context {
+    flex-direction: column;
+    gap: 20vh;
+    padding: 20vw 5vw;
+  }
+
+  .content{
+    gap: 1em;
+  }
+
+  .desc{
+    font-size: 1.25em;
+  }
+}

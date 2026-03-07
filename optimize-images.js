@@ -35,7 +35,6 @@ async function optimizeImage(inputPath, outputDir, baseName) {
 
 function processDirectory(dirPath) {
   if (!fs.existsSync(dirPath)) {
-    console.log(`❌ Dizin bulunamadı: ${dirPath}`);
     return;
   }
 
@@ -64,17 +63,12 @@ function processDirectory(dirPath) {
     const baseName = path.parse(file).name;
     const optimizedDir = path.join(dirPath, "optimized");
 
-    console.log(`🖼 Optimize ediliyor → ${fullPath}`);
     optimizeImage(fullPath, optimizedDir, baseName);
   }
 }
 
-console.log("🚀 Görsel optimizasyon başlıyor...\n");
-
 TARGET_DIRS.forEach((target) => {
   const dirPath = path.join(BASE_DIR, target);
-  console.log(`📁 Tarama: ${dirPath}`);
   processDirectory(dirPath);
 });
 
-console.log("\n🎉 Tüm görseller optimize edildi!");

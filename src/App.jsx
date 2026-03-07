@@ -10,6 +10,7 @@ import LoadingPage from "./components/loading/LoadingPage";
 import HomePage from "./pages/home/HomePage";
 
 const AboutPage = lazy(() => import("./pages/about/AboutPage"));
+const ManifestPage = lazy(() => import("./pages/manifest/ManifestPage"));
 const ProjectsPage = lazy(() => import("./pages/projects/ProjectsPage"));
 const WorkPage = lazy(() => import("./pages/project/WorkPage"));
 const ContactPage = lazy(() => import("./pages/contact/ContactPage"));
@@ -29,6 +30,14 @@ function App() {
           element={
             <Suspense fallback={<LoadingPage />}>
               <AboutPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/manifest"
+          element={
+            <Suspense fallback={<LoadingPage />}>
+              <ManifestPage />
             </Suspense>
           }
         />
