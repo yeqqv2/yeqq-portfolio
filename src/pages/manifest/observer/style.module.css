@@ -7,6 +7,7 @@
   position: relative;
   background-color: var(--wb50);
   padding: 5vw;
+  user-select: none;
 }
 
 .quantum_field {
@@ -74,6 +75,7 @@
   font-size: 1.25em;
   font-weight: 400;
   color: var(--wb950);
+  user-select: none;
 }
 
 .annotation p {
@@ -81,6 +83,7 @@
   line-height: 1.2;
   font-weight: 300;
   color: var(--wb600);
+  user-select: none;
 }
 
 @media screen and (max-width: 1024px) {
