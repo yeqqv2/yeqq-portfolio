@@ -5,7 +5,7 @@ import "./styles/scrollbar.css";
 
 import { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
-import SmoothScroll from "./components/SmoothScroll/index";
+import SmoothScroll from "./components/smooth scroll/index";
 import LoadingPage from "./components/loading/LoadingPage";
 import HomePage from "./pages/home/HomePage";
 

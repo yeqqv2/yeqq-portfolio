@@ -1,15 +1,14 @@
-import { useState, lazy, Suspense } from "react";
+import { useState, useEffect } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger"; // GSAP eklendi
 import SplashScreen from "../../animations/open/SplashScreen";
 import IntroSec from "./intro/IntroSec";
 import WelcomeSec from "./welcome/WelcomeSec";
-import LoadingPage from "../../components/loading/LoadingPage";
+import AboutmeHome from "./aboutme/AboutmeHome";
+import Works from "./works/Works";
+import PrinciplesSection from "./principle/PrinciplesSection";
+import ManifestHomePage from "./manifest/ManifestHomePage";
+import ContactHomePage from "./contact/ContactHomePage";
 import styles from "./style.module.css";
-
-const About = lazy(() => import("./aboutme/AboutmeHome"));
-const Works = lazy(() => import("./works/Works"));
-const Principles = lazy(() => import("./principle/PrinciplesSection"));
-const Manifest = lazy(() => import("./manifest/ManifestHomePage"));
-const Contact = lazy(() => import("./contact/ContactHomePage"));
 
 const HomePage = () => {
   const [isAnimationPlayed, setIsAnimationPlayed] = useState(() => {
@@ -26,6 +25,32 @@ const HomePage = () => {
     }
   };
 
+  // KUSURSUZ ÖLÇÜM MOTORU (Bunu ekliyorsun)
+  useEffect(() => {
+    // 1. İhtimal: Sayfadaki her şey (resimler vb.) yüklendiğinde ölçümleri tazele
+    const handleLoad = () => {
+      ScrollTrigger.refresh();
+    };
+
+    // Eğer window zaten yüklendiyse direkt çalıştır, yüklenmediyse event dinle
+    if (document.readyState === "complete") {
+      handleLoad();
+    } else {
+      window.addEventListener("load", handleLoad);
+    }
+
+    // 2. İhtimal: React'in DOM'u render etmesi bazen load'dan sonra da sürebilir.
+    // Garanti olsun diye 500ms sonra bir refresh daha çakıyoruz.
+    const timeout = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500);
+
+    return () => {
+      window.removeEventListener("load", handleLoad);
+      clearTimeout(timeout);
+    };
+  }, []); // Sadece sayfa açıldığında 1 kez çalışır
+
   return (
     <div className={styles.container}>
       {!isAnimationPlayed && (
@@ -33,13 +58,11 @@ const HomePage = () => {
       )}
       <IntroSec />
       <WelcomeSec />
-      <Suspense fallback={<LoadingPage />}>
-        <About />
-        <Works />
-        <Principles />
-        <Manifest />
-        <Contact />
-      </Suspense>
+      <AboutmeHome />
+      <Works />
+      <PrinciplesSection />
+      <ManifestHomePage />
+      <ContactHomePage />
     </div>
   );
 };

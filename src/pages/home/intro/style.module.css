@@ -12,15 +12,14 @@
 }
 
 .vid {
-  height: 70vh;
-  width: 70vh;
+  height: 50vh;
+  width: 50vh;
   aspect-ratio: 1;
   object-fit: cover;
-  border-radius: 50%;
+  border-radius: 0; /* Keskin köşeler */
   position: relative;
   z-index: 3;
   transform: translate(var(--mouse-x-offset), var(--mouse-y-offset));
-  transition: transform 0.2s ease-out;
 }
 
 .marquee_div_content {
@@ -31,14 +30,21 @@
   transform: translate(-50%, -50%);
   pointer-events: none;
   overflow: hidden;
-  clip-path: circle(
-    35vh at calc(50% + var(--mouse-x-offset)) calc(50% + var(--mouse-y-offset))
+  /* Kare maske matematiği: 
+    Videonun yüksekliği 70vh, yarısı 35vh.
+    inset(top right bottom left)
+  */
+  clip-path: inset(
+    calc(50% - 25vh + var(--mouse-y-offset)) 
+    calc(50% - 25vh - var(--mouse-x-offset)) 
+    calc(50% - 25vh - var(--mouse-y-offset)) 
+    calc(50% - 25vh + var(--mouse-x-offset))
   );
   z-index: 3;
   transition: clip-path 0.2s ease-out;
-  font-size: 15vw;
+  font-size: 10vw;
   white-space: nowrap;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -1vw;
   color: var(--wb50);
 }
@@ -50,9 +56,9 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 15vw;
+  font-size: 10vw;
   white-space: nowrap;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -1vw;
   pointer-events: none;
   overflow: hidden;
@@ -67,14 +73,18 @@
   }
 
   .vid {
-    height: 80vw;
-    width: 80vw;
+    height: 50vw;
+    width: 50vw;
+    border-radius: 0;
   }
 
   .marquee_div_content {
-    clip-path: circle(
-      40vw at calc(50% + var(--mouse-x-offset))
-        calc(50% + var(--mouse-y-offset))
+    /* Mobil kare maske: Video 80vw, yarısı 40vw */
+    clip-path: inset(
+      calc(50% - 25vw + var(--mouse-y-offset)) 
+      calc(50% - 25vw - var(--mouse-x-offset)) 
+      calc(50% - 25vw - var(--mouse-y-offset)) 
+      calc(50% - 25vw + var(--mouse-x-offset))
     );
     font-size: 25vw;
   }
@@ -86,10 +96,10 @@
 
 @media screen and (max-width: 600px) {
   .marquee_div_content {
-    font-size: 25vw;
+    font-size: 15vw;
   }
 
   .marquee_div_2 {
-    font-size: 25vw;
+    font-size: 15vw;
   }
 }

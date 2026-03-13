@@ -54,11 +54,9 @@
   align-items: flex-start;
   text-align: center;
   gap: 0.5em;
-  opacity: 0;
   padding: 1.5em;
   margin: 1.5em;
-  border-radius: 0.5em;
-  border: 1px solid var(--wb950);
+  clip-path: inset(50% 50% 50% 50%);
 }
 
 .cardTitle {
@@ -97,6 +95,7 @@
   flex-direction: column;
   align-items: flex-start;
   z-index: 10;
+  overflow: hidden;
 }
 
 .curtainInner {
@@ -131,10 +130,8 @@
   height: 19vw;
   width: 19vw;
   aspect-ratio: 1;
-  background-image: linear-gradient(
-      rgba(0, 0, 0, 0.05) 0.125em,
-      transparent 0.125em
-    ),
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.05) 0.125em, transparent 0.125em),
     linear-gradient(to right, rgba(0, 0, 0, 0.025) 0.125em, var(--wb50) 0.125em);
   background-size: 10vh 10vh;
   box-shadow: inset 0 0 2em 2em var(--wb50);

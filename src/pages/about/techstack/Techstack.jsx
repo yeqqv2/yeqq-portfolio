@@ -33,12 +33,10 @@ export default function Techstack() {
   const iconRefs = useRef([]);
   const cursorRef = useRef(null);
 
-  // GSAP quickTo referansları (Yüksek performanslı mouse takibi için)
   const xTo = useRef(null);
   const yTo = useRef(null);
 
   useEffect(() => {
-    // Cursor için quickTo tanımlamaları (Sadece x ve y ekseninde GPU bazlı hareket)
     xTo.current = gsap.quickTo(cursorRef.current, "x", {
       duration: 0.1,
       ease: "power3",
@@ -49,7 +47,6 @@ export default function Techstack() {
     });
 
     let ctx = gsap.context(() => {
-      // 18 AYRI SCROLLTRIGGER YERİNE, TEK SCROLLTRIGGER VE STAGGER KULLANIMI
       gsap.fromTo(
         iconRefs.current,
         { scale: 0 },
@@ -57,9 +54,9 @@ export default function Techstack() {
           scale: 1,
           duration: 0.75,
           ease: "hop",
-          stagger: 0.05, // Elemanları sırayla 0.05sn arayla anime eder
+          stagger: 0.05,
           scrollTrigger: {
-            trigger: containerRef.current, // Tetikleyici tüm container
+            trigger: containerRef.current,
             start: "top 85%",
             toggleActions: "play none none none",
           },
@@ -70,44 +67,75 @@ export default function Techstack() {
     return () => ctx.revert();
   }, []);
 
-  const handleMouseMove = (e) => {
-    // left ve top yerine xTo ve yTo kullanarak layout thrashing engellendi
+  // Global mouse takibi (Cursor için)
+  const handleMouseMoveGlobal = (e) => {
     if (xTo.current && yTo.current) {
       xTo.current(e.clientX);
       yTo.current(e.clientY);
     }
   };
 
+  // --- MANYETİK FİZİK (YENİ EKLENEN KISIM) ---
+  const handleMouseMoveIcon = (e, index) => {
+    const icon = iconRefs.current[index];
+    if (!icon) return;
+
+    // İkonun merkezini bul
+    const rect = icon.getBoundingClientRect();
+    const iconCenterX = rect.left + rect.width / 2;
+    const iconCenterY = rect.top + rect.height / 2;
+
+    // Farenin merkeze olan uzaklığını hesapla
+    const distanceX = e.clientX - iconCenterX;
+    const distanceY = e.clientY - iconCenterY;
+
+    // İkonu fareye doğru hafifçe çek (0.3 çarpanı manyetizma gücüdür)
+    gsap.to(icon, {
+      x: distanceX * 0.3,
+      y: distanceY * 0.3,
+      duration: 0.4,
+      ease: "power2.out",
+    });
+  };
+
   const handleMouseEnter = (techName) => {
     if (cursorRef.current) {
       cursorRef.current.textContent = `● ${techName}`;
     }
-    gsap.to(cursorRef.current, {
-      scale: 1,
-      duration: 0.25,
-      ease: "hop",
-    });
+    gsap.to(cursorRef.current, { scale: 1, duration: 0.25, ease: "hop" });
   };
 
-  const handleMouseLeave = () => {
-    gsap.to(cursorRef.current, {
-      scale: 0,
-      duration: 0.25,
-      ease: "hop",
+  const handleMouseLeaveIcon = (index) => {
+    const icon = iconRefs.current[index];
+    if (!icon) return;
+
+    // Fare çıkınca logoyu bir yay gibi (elastic) eski konumuna fırlat
+    gsap.to(icon, {
+      x: 0,
+      y: 0,
+      duration: 0.8,
+      ease: "elastic.out(1, 0.3)", // Yeqq tarzı titreyerek yerine oturma
     });
+
+    // Cursor'ı gizle
+    gsap.to(cursorRef.current, { scale: 0, duration: 0.25, ease: "hop" });
   };
 
   return (
-    <div className={styles.container} ref={containerRef}>
+    <div
+      className={styles.container}
+      ref={containerRef}
+      onMouseMove={handleMouseMoveGlobal}
+    >
       <header className={styles.header}>
         {techs.map((tech, index) => (
           <div
             key={tech.id}
             className={styles.icon}
             ref={(el) => (iconRefs.current[index] = el)}
-            onMouseMove={handleMouseMove}
+            onMouseMove={(e) => handleMouseMoveIcon(e, index)}
             onMouseEnter={() => handleMouseEnter(tech.name)}
-            onMouseLeave={handleMouseLeave}
+            onMouseLeave={() => handleMouseLeaveIcon(index)}
           >
             <img
               src={tech.asset}
@@ -123,11 +151,7 @@ export default function Techstack() {
       <span
         ref={cursorRef}
         className={styles.customCursor}
-        style={{
-          top: 0,
-          left: 0,
-          transform: "translate(-50%, -50%) scale(0)", // Animasyonlar transform üzerinde birleşir
-        }}
+        style={{ top: 0, left: 0, transform: "translate(-50%, -50%) scale(0)" }}
       >
         ●
       </span>

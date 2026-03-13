@@ -15,9 +15,9 @@ export default function HeroAbout() {
   const headerRef = useRef(null);
 
   const workImages = [
-    "/assets/modern-art/9.webp",
-    "/assets/modern-art/10.webp",
-    "/assets/modern-art/11.webp",
+    "/assets/yunus-emre-korkmaz/1.webp",
+    "/assets/yunus-emre-korkmaz/15.webp",
+    "/assets/yunus-emre-korkmaz/13.webp",
   ];
 
   useEffect(() => {
