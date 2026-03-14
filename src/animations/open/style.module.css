@@ -28,15 +28,16 @@
 
 .artCard {
   position: absolute;
-  height: 70vh;
-  width: 70vh;
+  height: 50vh;
+  width: 50vh;
   object-fit: cover;
   object-position: center;
 }
 
 @media screen and (max-width: 1024px) {
   .artCard {
-    width: 80vw;
-    height: 80vw;
+    width: 50vw;
+    height: 50vw;
   }
 }
+

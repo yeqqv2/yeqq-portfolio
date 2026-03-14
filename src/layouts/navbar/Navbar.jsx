@@ -14,10 +14,22 @@ CustomEase.create("hop", "0.9, 0, 0.1, 1");
 export default function Navbar() {
   const { t, i18n } = useTranslation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   const sidebarRef = useRef(null);
+  const layersRef = useRef([]);
+
+  const layerColors = [
+    "var(--red500)",
+    "var(--pink300)",
+    "var(--purple400)",
+    "var(--orange600)",
+    "var(--main-color500)",
+    "var(--blue300)",
+  ];
 
   useEffect(() => {
     gsap.set(sidebarRef.current, { x: "-100%" });
+    gsap.set(layersRef.current, { x: "-100%" });
   }, []);
 
   useEffect(() => {
@@ -31,19 +43,47 @@ export default function Navbar() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  // KUSURSUZ KOREOGRAFİ (TIMELINE)
   useEffect(() => {
+    // Çakışmaları önlemek için çalışan animasyonları temizle
+    gsap.killTweensOf([sidebarRef.current, ...layersRef.current]);
+
+    const tl = gsap.timeline();
+
     if (isSidebarOpen) {
-      gsap.to(sidebarRef.current, {
+      // 1. Önce renkli katmanlar iskambil gibi dizilerek açılır
+      tl.to(layersRef.current, {
         x: "0%",
         duration: 0.5,
         ease: "hop",
-      });
+        stagger: 0.05,
+      }).to(
+        sidebarRef.current,
+        {
+          x: "0%",
+          duration: 0.6,
+          ease: "hop",
+        },
+        "-=0.4",
+      );
     } else {
-      gsap.to(sidebarRef.current, {
+      // 1. Kapanırken önce asıl sidebar içeriği çekilir
+      tl.to(sidebarRef.current, {
         x: "-100%",
         duration: 0.5,
         ease: "hop",
-      });
+      })
+        // 2. Ardından arkadaki renkli katmanlar ters sırayla toplanır
+        .to(
+          layersRef.current.slice().reverse(),
+          {
+            x: "-100%",
+            duration: 0.5,
+            ease: "hop",
+            stagger: 0.04,
+          },
+          "-=0.4",
+        );
     }
   }, [isSidebarOpen]);
 
@@ -71,19 +111,6 @@ export default function Navbar() {
         <a href="/" className={styles.logo}>
           [ yeqq ]
         </a>
-        {/* <section className={styles.nav_links}>
-					<a href="/" className={styles.nav_link}>
-						home
-					</a>
-					,
-					<a href="/about-me" className={styles.nav_link}>
-						aboutme
-					</a>
-					,
-					<a href="/projects" className={styles.nav_link}>
-						projects
-					</a>
-				</section> */}
         <main className={`${styles.right} ${styles.menu_item}`}>
           <PrimerLink
             href="/contact-me"
@@ -99,7 +126,20 @@ export default function Navbar() {
           />
         </main>
       </div>
-      {/* SIDEBAR */}
+
+      {/* ARKAPLAN KATMANLARI (Yeni Eklendi) */}
+      <div className={styles.layersContainer}>
+        {layerColors.map((color, index) => (
+          <div
+            key={index}
+            ref={(el) => (layersRef.current[index] = el)}
+            className={styles.layer}
+            style={{ backgroundColor: color }}
+          />
+        ))}
+      </div>
+
+      {/* SIDEBAR (Ana İçerik) */}
       <section ref={sidebarRef} className={styles.sidebar}>
         <span className={styles.close}>
           <MenuButton
@@ -114,6 +154,7 @@ export default function Navbar() {
             </span>
             {t("nav.home")}
           </a>
+          {/* Diğer linkler aynen kalıyor */}
           <a href="/about-me" className={styles.link}>
             <span className={styles.link_icon}>
               <GoArrowRight />
@@ -134,6 +175,7 @@ export default function Navbar() {
           </a>
         </div>
         <div className={styles.links}>
+          {/* İletişim blokların aynen kalıyor... */}
           <div className={styles.contact_link_sec}>
             <div className={styles.contact_link_header}>
               {t("nav.contact_header")}
@@ -156,7 +198,6 @@ export default function Navbar() {
                 target="__blank"
                 href="https://www.instagram.com/1yunusewre"
                 onClick={toggleSidebar}
-                aria-label="My Instagram Profile"
               >
                 instagram
               </a>
@@ -166,7 +207,6 @@ export default function Navbar() {
                 target="__blank"
                 href="https://github.com/yeqqv2"
                 onClick={toggleSidebar}
-                aria-label="My Github Profile"
               >
                 github
               </a>
@@ -176,7 +216,6 @@ export default function Navbar() {
                 target="__blank"
                 href="https://tr.linkedin.com/in/yeqq"
                 onClick={toggleSidebar}
-                aria-label="My Linkedin Profile"
               >
                 linkedin
               </a>
