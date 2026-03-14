@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import gsap from "gsap";
-import colors from "../utils/colors"; // Yolunu kendi klasör yapına göre ayarla
+import colors from "@/utils/colors";
 
 export const useProjectCursor = (cursorWords) => {
   const cursorRef = useRef(null);
@@ -12,6 +12,18 @@ export const useProjectCursor = (cursorWords) => {
   const lastColorIndexRef = useRef(null);
   const lastWordIndexRef = useRef(null);
 
+  // GSAP quickSetter'ları burada tutacağız
+  const setters = useRef({ x: null, y: null });
+
+  // Motoru başlatan fonksiyon (Sadece ilk fare hareketinde 1 kez çalışacak)
+  const initSetters = () => {
+    if (cursorRef.current && (!setters.current.x || !setters.current.y)) {
+      gsap.set(cursorRef.current, { xPercent: -50, yPercent: -50 });
+      setters.current.x = gsap.quickSetter(cursorRef.current, "x", "px");
+      setters.current.y = gsap.quickSetter(cursorRef.current, "y", "px");
+    }
+  };
+
   const getRandomIndexExcept = (length, except) => {
     let newIndex = Math.floor(Math.random() * length);
     while (newIndex === except) {
@@ -21,13 +33,16 @@ export const useProjectCursor = (cursorWords) => {
   };
 
   const handleMouseMove = (e) => {
-    if (cursorRef.current) {
-      cursorRef.current.style.left = e.clientX + "px";
-      cursorRef.current.style.top = e.clientY + "px";
+    initSetters(); // Motor kurulu değilse kur
+    if (setters.current.x && setters.current.y) {
+      setters.current.x(e.clientX);
+      setters.current.y(e.clientY);
     }
   };
 
   const handleMouseEnter = () => {
+    initSetters(); // Motor kurulu değilse kur
+
     const newColorIndex = getRandomIndexExcept(
       colors.length,
       lastColorIndexRef.current,

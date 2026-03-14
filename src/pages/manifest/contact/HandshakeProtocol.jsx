@@ -4,7 +4,7 @@ import { CustomEase } from "gsap/CustomEase";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import styles from "./style.module.css";
-import PrimerButton from "../../../ui/button/PrimerButton";
+import PrimerButton from "@/ui/button/PrimerButton";
 
 gsap.registerPlugin(CustomEase);
 const hop = CustomEase.create("hop", "0.9, 0, 0.1, 1");

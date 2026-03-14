@@ -7,24 +7,29 @@ import { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import SmoothScroll from "./components/smooth scroll/index";
 import LoadingPage from "./components/loading/LoadingPage";
+
 import HomePage from "./pages/home/HomePage";
 
+// Ziyaretçi Sayfaları
 const AboutPage = lazy(() => import("./pages/about/AboutPage"));
 const ManifestPage = lazy(() => import("./pages/manifest/ManifestPage"));
 const ProjectsPage = lazy(() => import("./pages/projects/ProjectsPage"));
 const WorkPage = lazy(() => import("./pages/project/WorkPage"));
 const ContactPage = lazy(() => import("./pages/contact/ContactPage"));
-import AdminLayout from "./admin/layout/AdminLayout";
-import LoginPage from "./admin/login/LoginPage";
-import AdminDashboard from "./admin/dashboard/AdminDashboard";
-import AdminProjectsList from "./admin/projects/AdminProjectsList";
-import ProjectCreate from "./admin/project/ProjectCreate";
+
+const AdminLayout = lazy(() => import("./admin/layout/AdminLayout"));
+const AdminDashboard = lazy(() => import("./admin/dashboard/AdminDashboard"));
+const AdminProjectsList = lazy(
+  () => import("./admin/projects/AdminProjectsList"),
+);
+const ProjectCreate = lazy(() => import("./admin/project/ProjectCreate"));
 
 function App() {
   return (
     <SmoothScroll>
       <Routes>
         <Route path="/" element={<HomePage />} />
+
         <Route
           path="/about-me"
           element={
@@ -65,7 +70,16 @@ function App() {
             </Suspense>
           }
         />
-        <Route path="/admin" element={<AdminLayout />}>
+
+        {/* Admin Rotası - Suspense ile sarmalanarak tüm alt rotaların izole edilmesi sağlandı */}
+        <Route
+          path="/admin"
+          element={
+            <Suspense fallback={<LoadingPage />}>
+              <AdminLayout />
+            </Suspense>
+          }
+        >
           <Route index element={<AdminDashboard />} />
           <Route path="projects" element={<AdminProjectsList />} />
           <Route path="projects/create" element={<ProjectCreate />} />

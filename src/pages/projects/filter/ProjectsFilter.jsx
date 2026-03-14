@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import styles from "./style.module.css";
-import AnimatedSplit from "../../../components/animated split/AnimatedSplit";
+import AnimatedSplit from "@/components/animated split/AnimatedSplit";
 
 const ProjectsFilter = ({ activeFilter, onFilterChange }) => {
   const { t, i18n } = useTranslation();

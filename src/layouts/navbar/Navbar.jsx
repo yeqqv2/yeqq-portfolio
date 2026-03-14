@@ -1,15 +1,32 @@
 import React, { useState, useRef, useEffect } from "react";
+// KRİTİK EKLENTİ: React Router Link bileşeni
+import { Link } from "react-router-dom";
 import styles from "./style.module.css";
-import MenuButton from "../../ui/menu/MenuButton";
+import MenuButton from "@/ui/menu/MenuButton";
+import PrimerLink from "@/ui/link/PrimerLink";
+import PrimerButton from "@/ui/button/PrimerButton";
+
 import gsap from "gsap";
 import CustomEase from "gsap/CustomEase";
 import { GoArrowRight } from "react-icons/go";
 import { useTranslation } from "react-i18next";
-import PrimerLink from "../../ui/link/PrimerLink";
-import PrimerButton from "../../ui/button/PrimerButton";
 
 gsap.registerPlugin(CustomEase);
-CustomEase.create("hop", "0.9, 0, 0.1, 1");
+
+if (!gsap.parseEase("hop")) {
+  CustomEase.create("hop", "0.9, 0, 0.1, 1");
+}
+
+const LAYER_COLORS = [
+  "var(--red500)",
+  "var(--pink300)",
+  "var(--purple400)",
+  "var(--orange600)",
+  "var(--main-color500)",
+  "var(--blue300)",
+];
+
+const LANGUAGES = ["tr", "en"];
 
 export default function Navbar() {
   const { t, i18n } = useTranslation();
@@ -18,15 +35,6 @@ export default function Navbar() {
   const sidebarRef = useRef(null);
   const layersRef = useRef([]);
 
-  const layerColors = [
-    "var(--red500)",
-    "var(--pink300)",
-    "var(--purple400)",
-    "var(--orange600)",
-    "var(--main-color500)",
-    "var(--blue300)",
-  ];
-
   useEffect(() => {
     gsap.set(sidebarRef.current, { x: "-100%" });
     gsap.set(layersRef.current, { x: "-100%" });
@@ -34,24 +42,23 @@ export default function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = isSidebarOpen ? "hidden" : "";
-    return () => (document.body.style.overflow = "");
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape" && isSidebarOpen) {
+        setIsSidebarOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   }, [isSidebarOpen]);
 
   useEffect(() => {
-    const onKey = (e) => e.key === "Escape" && setIsSidebarOpen(false);
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
-
-  // KUSURSUZ KOREOGRAFİ (TIMELINE)
-  useEffect(() => {
-    // Çakışmaları önlemek için çalışan animasyonları temizle
     gsap.killTweensOf([sidebarRef.current, ...layersRef.current]);
-
     const tl = gsap.timeline();
 
     if (isSidebarOpen) {
-      // 1. Önce renkli katmanlar iskambil gibi dizilerek açılır
       tl.to(layersRef.current, {
         x: "0%",
         duration: 0.5,
@@ -59,44 +66,34 @@ export default function Navbar() {
         stagger: 0.05,
       }).to(
         sidebarRef.current,
-        {
-          x: "0%",
-          duration: 0.6,
-          ease: "hop",
-        },
+        { x: "0%", duration: 0.6, ease: "hop" },
         "-=0.4",
       );
     } else {
-      // 1. Kapanırken önce asıl sidebar içeriği çekilir
-      tl.to(sidebarRef.current, {
-        x: "-100%",
-        duration: 0.5,
-        ease: "hop",
-      })
-        // 2. Ardından arkadaki renkli katmanlar ters sırayla toplanır
-        .to(
-          layersRef.current.slice().reverse(),
-          {
-            x: "-100%",
-            duration: 0.5,
-            ease: "hop",
-            stagger: 0.04,
-          },
-          "-=0.4",
-        );
+      tl.to(sidebarRef.current, { x: "-100%", duration: 0.5, ease: "hop" }).to(
+        layersRef.current.slice().reverse(),
+        { x: "-100%", duration: 0.5, ease: "hop", stagger: 0.04 },
+        "-=0.4",
+      );
     }
   }, [isSidebarOpen]);
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen((prev) => !prev);
-  };
-
-  const languages = ["tr", "en"];
+  const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
 
   const toggleLanguage = () => {
-    const currentIndex = languages.indexOf(i18n.language.split("-")[0]);
-    const nextIndex = (currentIndex + 1) % languages.length;
-    i18n.changeLanguage(languages[nextIndex]);
+    const currentIndex = LANGUAGES.indexOf(i18n.language.split("-")[0]);
+    const nextIndex = (currentIndex + 1) % LANGUAGES.length;
+    i18n.changeLanguage(LANGUAGES[nextIndex]);
+  };
+
+  // PREFETCH FONKSİYONLARI (Kullanıcı hover olduğunda ilgili sayfanın kodunu arka planda indirir)
+  const prefetchAbout = () => import("@/pages/about/AboutPage");
+  const prefetchManifest = () => import("@/pages/manifest/ManifestPage");
+  const prefetchProjects = () => import("@/pages/projects/ProjectsPage");
+
+  // Linke tıklandığında menüyü kapatması için yardımcı fonksiyon
+  const handleLinkClick = () => {
+    setIsSidebarOpen(false);
   };
 
   return (
@@ -108,9 +105,10 @@ export default function Navbar() {
             isSidebarOpen={isSidebarOpen}
           />
         </main>
-        <a href="/" className={styles.logo}>
+        {/* LOGO da bir Link olmalı */}
+        <Link to="/" className={styles.logo} onClick={handleLinkClick}>
           [ yeqq ]
-        </a>
+        </Link>
         <main className={`${styles.right} ${styles.menu_item}`}>
           <PrimerLink
             href="/contact-me"
@@ -127,9 +125,8 @@ export default function Navbar() {
         </main>
       </div>
 
-      {/* ARKAPLAN KATMANLARI (Yeni Eklendi) */}
       <div className={styles.layersContainer}>
-        {layerColors.map((color, index) => (
+        {LAYER_COLORS.map((color, index) => (
           <div
             key={index}
             ref={(el) => (layersRef.current[index] = el)}
@@ -139,7 +136,6 @@ export default function Navbar() {
         ))}
       </div>
 
-      {/* SIDEBAR (Ana İçerik) */}
       <section ref={sidebarRef} className={styles.sidebar}>
         <span className={styles.close}>
           <MenuButton
@@ -148,34 +144,48 @@ export default function Navbar() {
           />
         </span>
         <div className={styles.links}>
-          <a href="/" className={styles.link}>
+          {/* 'a' etiketleri Link ile değiştirildi, onMouseEnter ile prefetch eklendi */}
+          <Link to="/" className={styles.link} onClick={handleLinkClick}>
             <span className={styles.link_icon}>
               <GoArrowRight />
             </span>
             {t("nav.home")}
-          </a>
-          {/* Diğer linkler aynen kalıyor */}
-          <a href="/about-me" className={styles.link}>
+          </Link>
+          <Link
+            to="/about-me"
+            className={styles.link}
+            onMouseEnter={prefetchAbout}
+            onClick={handleLinkClick}
+          >
             <span className={styles.link_icon}>
               <GoArrowRight />
             </span>
             {t("nav.about")}
-          </a>
-          <a href="/manifest" className={styles.link}>
+          </Link>
+          <Link
+            to="/manifest"
+            className={styles.link}
+            onMouseEnter={prefetchManifest}
+            onClick={handleLinkClick}
+          >
             <span className={styles.link_icon}>
               <GoArrowRight />
             </span>
             {t("nav.manifest")}
-          </a>
-          <a href="/projects" className={styles.link}>
+          </Link>
+          <Link
+            to="/projects"
+            className={styles.link}
+            onMouseEnter={prefetchProjects}
+            onClick={handleLinkClick}
+          >
             <span className={styles.link_icon}>
               <GoArrowRight />
             </span>
             {t("nav.projects")}
-          </a>
+          </Link>
         </div>
         <div className={styles.links}>
-          {/* İletişim blokların aynen kalıyor... */}
           <div className={styles.contact_link_sec}>
             <div className={styles.contact_link_header}>
               {t("nav.contact_header")}
@@ -193,9 +203,12 @@ export default function Navbar() {
           <div className={styles.contact_link_sec}>
             <div className={styles.contact_link_header}>{t("nav.connect")}</div>
             <div className={styles.contact_links}>
+              {/* Harici linkler (Farklı sitelere gidenler) 'a' kalmalı, ancak aria-label eklenmeli */}
               <a
                 className={styles.contact_link}
-                target="__blank"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram profile"
                 href="https://www.instagram.com/1yunusewre"
                 onClick={toggleSidebar}
               >
@@ -204,7 +217,9 @@ export default function Navbar() {
               ,
               <a
                 className={styles.contact_link}
-                target="__blank"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub profile"
                 href="https://github.com/yeqqv2"
                 onClick={toggleSidebar}
               >
@@ -213,7 +228,9 @@ export default function Navbar() {
               ,
               <a
                 className={styles.contact_link}
-                target="__blank"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn profile"
                 href="https://tr.linkedin.com/in/yeqq"
                 onClick={toggleSidebar}
               >

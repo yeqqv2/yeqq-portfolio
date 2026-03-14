@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import AnimatedSplit from "../../../components/animated split/AnimatedSplit";
+import AnimatedSplit from "@/components/animated split/AnimatedSplit";
 import styles from "./style.module.css";
-import PrimerLink from "../../../ui/link/PrimerLink";
+import PrimerLink from "@/ui/link/PrimerLink";
 
 const ManifestHomePage = () => {
   const { t, i18n } = useTranslation();

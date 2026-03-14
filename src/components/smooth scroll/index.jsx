@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import Lenis from "@studio-freight/lenis";
+import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -9,21 +9,27 @@ gsap.registerPlugin(ScrollTrigger);
 export default function SmoothScroll({ children }) {
   const location = useLocation();
   const isAdmin = location.pathname.startsWith("/admin");
+  const lenisRef = useRef(null);
 
   useEffect(() => {
     if (isAdmin) return;
 
     const lenis = new Lenis({
+      orientation: "vertical",
+      gestureOrientation: "vertical",
       duration: 1.2,
-      lerp: 0.08,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: "vertical",
-      gestureDirection: "vertical",
-      smooth: true,
-      mouseMultiplier: 1,
-      smoothTouch: true, 
-      touchMultiplier: 1.4,
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      normalizeWheel: true,
+      syncTouch: true,
+      syncTouchLerp: 0.1,
+      touchInertiaMultiplier: 35,
+      infinite: false,
+      autoResize: true,
     });
+
+    lenisRef.current = lenis;
 
     lenis.on("scroll", ScrollTrigger.update);
 
@@ -37,8 +43,19 @@ export default function SmoothScroll({ children }) {
     return () => {
       gsap.ticker.remove(update);
       lenis.destroy();
+      lenisRef.current = null;
     };
   }, [isAdmin]);
+
+  useEffect(() => {
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
+
+    ScrollTrigger.refresh();
+  }, [location.pathname]);
 
   return <>{children}</>;
 }

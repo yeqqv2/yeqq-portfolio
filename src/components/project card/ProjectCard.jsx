@@ -1,18 +1,21 @@
 import { useRef, useEffect } from "react";
 import styles from "./style.module.css";
-import { storageBaseUrl } from "../../utils/supabase";
+import { storageBaseUrl } from "@/utils/supabase";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CustomEase } from "gsap/CustomEase";
 
 gsap.registerPlugin(CustomEase, ScrollTrigger);
-CustomEase.create("hop", "0.9, 0, 0.1, 1");
+
+if (!gsap.parseEase("hop")) {
+  CustomEase.create("hop", "0.9, 0, 0.1, 1");
+}
 
 const ProjectCard = ({
   work,
   index,
-  className, // Dışarıdan özel CSS sınıfı alabilmesi için eklendi
-  onTouchStart, // Ana sayfadaki dokunmatik animasyon için eklendi
+  className,
+  onTouchStart,
   onMouseMove,
   onMouseEnter,
   onMouseLeave,
@@ -44,23 +47,26 @@ const ProjectCard = ({
     return () => ctx.revert();
   }, [index]);
 
+  // EKSİK OLAN SATIR BURASI: return bloğundan hemen önce tanımlanmalıdır.
+  const isPriority = index < 2;
+
   return (
     <a
       href={`/projects/${work.slug}`}
-      className={className || styles.work} // Dışarıdan class gelmezse varsayılanı kullanır
+      className={className || styles.work}
       ref={cardRef}
       onMouseMove={onMouseMove}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      onTouchStart={onTouchStart} // Yeni eklenen event
+      onTouchStart={onTouchStart}
     >
       <div className={styles.work_img} ref={imgRef}>
         <img
           src={`${storageBaseUrl}${work.banner_url}`}
           alt={work.project_name}
           className={styles.img}
-          fetchpriority={index === 0 ? "high" : "auto"}
-          loading={index === 0 ? "eager" : "lazy"}
+          fetchpriority={isPriority ? "high" : "auto"}
+          loading={isPriority ? "eager" : "lazy"}
           decoding="async"
         />
       </div>

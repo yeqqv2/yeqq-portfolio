@@ -4,11 +4,11 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CustomEase } from "gsap/CustomEase";
 import styles from "./style.module.css";
-import AnimatedSplit from "../../components/animated split/AnimatedSplit";
+import AnimatedSplit from "@/components/animated split/AnimatedSplit";
 import { useTranslation } from "react-i18next";
 // 1. Yeni importlarımızı ekliyoruz
-import { useProjects } from "../../context/ProjectContext";
-import { storageBaseUrl } from "../../utils/supabase";
+import { useProjects } from "@/context/ProjectContext";
+import { storageBaseUrl } from "@/utils/supabase";
 
 gsap.registerPlugin(CustomEase, ScrollTrigger);
 CustomEase.create("hop", "0, 0, 0.1, 1");

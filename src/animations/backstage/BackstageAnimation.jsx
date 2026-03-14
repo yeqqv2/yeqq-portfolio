@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { CustomEase } from "gsap/CustomEase";
 import styles from "./style.module.css";
-import ReflectiveCard from "../../components/mirror/ReflectiveCard";
+import ReflectiveCard from "@/components/mirror/ReflectiveCard";
 
 gsap.registerPlugin(CustomEase);
 CustomEase.create("hop", "0.9, 0, 0.1, 1");

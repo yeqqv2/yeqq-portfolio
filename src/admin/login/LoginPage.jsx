@@ -1,5 +1,5 @@
 import styles from "./style.module.css";
-import AnimatedSplit from '../../components/animated split/AnimatedSplit';
+import AnimatedSplit from '@/components/animated split/AnimatedSplit';
 
 export default function LoginPage() {
   return (

@@ -5,7 +5,7 @@ import { CustomEase } from "gsap/CustomEase";
 import SplitType from "split-type";
 import styles from "./style.module.css";
 import { useTranslation } from "react-i18next";
-import PrimerLink from "../../../ui/link/PrimerLink";
+import PrimerLink from "@/ui/link/PrimerLink";
 
 gsap.registerPlugin(ScrollTrigger, CustomEase);
 CustomEase.create("hop", "0, 0, 0.1, 1");

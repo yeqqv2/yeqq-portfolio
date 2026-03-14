@@ -2,8 +2,8 @@ import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import gsap from "gsap";
 import { CustomEase } from "gsap/CustomEase";
-import NeumorphismButton from "../../../ui/neumorphismButton/NeumorphismButton";
-import AnimatedSplit from "../../../components/animated split/AnimatedSplit";
+import NeumorphismButton from "@/ui/neumorphismButton/NeumorphismButton";
+import AnimatedSplit from "@/components/animated split/AnimatedSplit";
 import styles from "./style.module.css";
 
 gsap.registerPlugin(CustomEase);

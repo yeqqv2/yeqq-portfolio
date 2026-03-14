@@ -1,4 +1,4 @@
-import AnimatedSplit from "../../components/animated split/AnimatedSplit";
+import AnimatedSplit from "@/components/animated split/AnimatedSplit";
 import styles from "./style.module.css";
 import FormContainer from "./form/FormContainer";
 import { useTranslation } from "react-i18next";

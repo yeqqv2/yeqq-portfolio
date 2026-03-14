@@ -1,12 +1,11 @@
 import { useTranslation } from "react-i18next";
+import { useMemo } from "react";
 import gsap from "gsap";
 
-// Context & Hooks
-import { useProjects } from "../../../context/ProjectContext";
-import { useProjectCursor } from "../../../hooks/useProjectCursor"; // Ortak cursor hook'umuz
-
-// Components
-import ProjectCard from "../../../components/project card/ProjectCard";
+import { useProjects } from "@/context/ProjectContext";
+import { useProjectCursor } from "@/hooks/useProjectCursor";
+import ProjectCard from "@/components/project card/ProjectCard";
+import ProjectSkeleton from "@/animations/project skeleton/ProjectSkeleton";
 
 // Styles
 import styles from "./style.module.css";
@@ -17,7 +16,6 @@ const WorksHomePage = () => {
 
   const cursorWords = t("worksHome.cursorWords", { returnObjects: true });
 
-  // Tüm cursor karmaşasını hook'a devrettik
   const {
     cursorRef,
     cursorStylesRef,
@@ -32,35 +30,42 @@ const WorksHomePage = () => {
     gsap.fromTo(el, { scale: 0.97 }, { scale: 1, duration: 0.3, ease: "hop" });
   };
 
-  if (loading) return null;
+  const lastThreeWorks = useMemo(() => projects.slice(0, 6), [projects]);
 
-  const lastThreeWorks = projects.slice(0, 6);
+  if (loading) return null;
 
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        {lastThreeWorks.map((work, index) => (
-          <ProjectCard
-            key={work.id}
-            work={work}
-            index={index}
-            onMouseMove={handleMouseMove}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            onTouchStart={handleTouchStart} // Dokunmatik animasyonunu geçiriyoruz
-          />
-        ))}
+        {loading
+          ? Array.from({ length: 6 }).map((_, index) => (
+              <ProjectSkeleton key={`skeleton-${index}`} />
+            ))
+          : lastThreeWorks.map((work, index) => (
+              <ProjectCard
+                key={work.id}
+                work={work}
+                index={index}
+                onMouseMove={handleMouseMove}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                onTouchStart={handleTouchStart}
+              />
+            ))}
       </main>
 
       <span
         ref={cursorRef}
         className={styles.customCursor}
         style={{
-          left: 0,
+          position: "fixed",
           top: 0,
+          left: 0,
+          pointerEvents: "none",
+          transform: "scale(0)",
           backgroundColor: cursorStylesRef.current.bg,
           color: cursorStylesRef.current.color,
-          transform: "translate(-50%, -50%) scale(0)", // opacity yerine scale mantığıyla gizliyoruz (hook ile uyumlu olması için)
+          zIndex: 99999,
         }}
       >
         ● {cursorTextRef.current}

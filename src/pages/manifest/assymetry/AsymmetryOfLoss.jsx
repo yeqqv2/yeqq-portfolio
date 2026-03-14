@@ -3,7 +3,7 @@ import { flushSync } from "react-dom";
 import gsap from "gsap";
 import { CustomEase } from "gsap/CustomEase";
 import { useTranslation } from "react-i18next";
-import PrimerButton from "../../../ui/button/PrimerButton";
+import PrimerButton from "@/ui/button/PrimerButton";
 import styles from "./style.module.css";
 
 gsap.registerPlugin(CustomEase);

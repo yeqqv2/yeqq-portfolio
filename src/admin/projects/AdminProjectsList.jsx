@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./style.module.css";
-import Table from "../../components/table/Table";
+import Table from "@/components/table/Table";
 import { FiEdit2 } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
 

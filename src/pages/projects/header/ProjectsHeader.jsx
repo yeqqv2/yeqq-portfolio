@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import AnimatedSplit from "../../../components/animated split/AnimatedSplit";
+import AnimatedSplit from "@/components/animated split/AnimatedSplit";
 import styles from "./style.module.css";
 
 const ProjectsHeader = () => {

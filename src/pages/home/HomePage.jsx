@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger"; // GSAP eklendi
-import SplashScreen from "../../animations/open/SplashScreen";
+import SplashScreen from "@/animations/open/SplashScreen";
 import IntroSec from "./intro/IntroSec";
 import WelcomeSec from "./welcome/WelcomeSec";
 import AboutmeHome from "./aboutme/AboutmeHome";

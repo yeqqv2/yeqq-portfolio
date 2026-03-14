@@ -4,7 +4,7 @@ import styles from "./style.module.css";
 import gsap from "gsap";
 import { throttle } from "lodash-es";
 import { useTranslation } from "react-i18next";
-import PrimerLink from "../../../ui/link/PrimerLink";
+import PrimerLink from "@/ui/link/PrimerLink";
 
 const ContactHomePage = () => {
   const { t } = useTranslation();
