@@ -53,7 +53,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: 100dvh;
   width: 30vw;
   background-color: var(--green300);
   padding: 10vh 5vw;
@@ -71,7 +71,7 @@
   top: 0;
   left: 0;
   width: 30vw;
-  height: 100vh;
+  height: 100dvh;
   pointer-events: none;
   z-index: 90;
 }
@@ -81,7 +81,7 @@
   top: 0;
   left: 0;
   width: 30vw;
-  height: 100%;
+  height: 100dvh;
   will-change: transform;
 }
 
@@ -144,9 +144,8 @@
   }
 
   .sidebar {
-    height: 100svh;
     width: 100vw;
-    padding: 20vh 10vw 10vh 10vw;
+    padding: 15vh 10vw 5vh 10vw;
   }
 
   .layersContainer,

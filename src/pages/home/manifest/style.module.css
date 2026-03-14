@@ -79,18 +79,17 @@
   line-height: 1.2;
   font-weight: 300;
   color: var(--wb800);
-  min-height: 120px;
 }
 
 .action_wrapper {
   margin-top: auto;
 }
 
-/* --- MOBİL KURALLARI --- */
 @media screen and (max-width: 1024px) {
   .context {
+    width: 98vw;
     flex-direction: column;
-    gap: 20vh;
+    gap: 5vh;
     padding: 20vw 5vw;
   }
 

@@ -15,17 +15,15 @@ export default function SmoothScroll({ children }) {
     if (isAdmin) return;
 
     const lenis = new Lenis({
-      orientation: "vertical",
-      gestureOrientation: "vertical",
       duration: 1.2,
+      lerp: 0.08,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      normalizeWheel: true,
-      syncTouch: true,
-      syncTouchLerp: 0.1,
-      touchInertiaMultiplier: 35,
-      infinite: false,
+      direction: "vertical",
+      gestureDirection: "vertical",
+      smooth: true,
+      mouseMultiplier: 1,
+      smoothTouch: true,
+      touchMultiplier: 1.4,
       autoResize: true,
     });
 

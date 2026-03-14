@@ -36,13 +36,13 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .container {
+  .content {
     width: 50vw;
   }
 }
 
 @media screen and (max-width: 600px) {
-  .container {
+  .content {
     width: 98vw;
   }
 }
