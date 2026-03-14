@@ -1,14 +1,14 @@
 import { useEffect, useRef } from "react";
-import { useParams, Link } from "react-router-dom"; // Link kullanmak daha sağlıklı olabilir ama a etiketini korudum
+import { Link, useParams } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CustomEase } from "gsap/CustomEase";
 import styles from "./style.module.css";
 import AnimatedSplit from "@/components/animated split/AnimatedSplit";
 import { useTranslation } from "react-i18next";
-// 1. Yeni importlarımızı ekliyoruz
-import { useProjects } from "@/context/ProjectContext";
+import { useProjects } from "@/hooks/useProjects";
 import { storageBaseUrl } from "@/utils/supabase";
+import LoadingPage from "@/components/loading/LoadingPage";
 
 gsap.registerPlugin(CustomEase, ScrollTrigger);
 CustomEase.create("hop", "0, 0, 0.1, 1");
@@ -16,29 +16,29 @@ CustomEase.create("hop", "0, 0, 0.1, 1");
 export default function WorkSinglePage() {
   const { t, i18n } = useTranslation();
   const { slug } = useParams();
-  const currentLang = i18n.language; // Mevcut dil (tr veya en)
+  const currentLang = i18n.language;
 
-  // 2. Projeleri Supabase'den çekiyoruz
-  const { projects, loading } = useProjects();
+  const { data: projects, isLoading, isError, error } = useProjects();
 
   const factsRef = useRef(null);
   const galleryRefs = useRef([]);
 
-  // 3. Link yerine artık "slug" üzerinden arama yapıyoruz
-  const work = projects.find((p) => p.slug === slug);
-  const currentIndex = projects.findIndex((p) => p.slug === slug);
-  
+  const safeProjects = projects || [];
+  const work = safeProjects.find((p) => p.slug === slug);
+  const currentIndex = safeProjects.findIndex((p) => p.slug === slug);
+
   const nextProject =
-    currentIndex === -1 || projects.length === 0
+    currentIndex === -1 || safeProjects.length === 0
       ? null
-      : projects[(currentIndex + 1) % projects.length];
+      : safeProjects[(currentIndex + 1) % safeProjects.length];
+
+  const prefetchProjects = () => import("@/pages/projects/ProjectsPage");
 
   useEffect(() => {
-    // Veriler veya sayfa yükleniyorsa GSAP'i boşuna tetikleme
-    if (loading || !work) return;
+    // DÜZELTME: loading değil isLoading
+    if (isLoading || !work) return;
 
     const ctx = gsap.context(() => {
-      // Facts reveal
       if (factsRef.current) {
         gsap.from(factsRef.current.children, {
           opacity: 0,
@@ -53,7 +53,6 @@ export default function WorkSinglePage() {
         });
       }
 
-      // Gallery items clip-path reveal
       galleryRefs.current.forEach((el) => {
         if (!el) return;
 
@@ -74,14 +73,12 @@ export default function WorkSinglePage() {
     });
 
     return () => ctx.revert();
-  }, [slug, currentLang, loading, work]); // Dependency'leri güncelledik
+  }, [slug, currentLang, isLoading, work]);
 
-  // 4. Veriler yüklenirken beyaz ekran / loader göster (Çok önemli)
-  if (loading) {
-    return <div style={{ height: "100vh", backgroundColor: "var(--wb50)" }} />;
+  if (isLoading) {
+    return <LoadingPage />;
   }
 
-  // Eğer proje gerçekten yoksa (URL yanlış yazılmışsa)
   if (!work) {
     return (
       <div className={styles.container}>
@@ -92,15 +89,16 @@ export default function WorkSinglePage() {
               text={t("workSingle.labels.not_found") || "Project Not Found"}
             />
           </div>
-          <a href="/projects">
-            <AnimatedSplit text={t("workSingle.labels.back_link") || "Back to Projects"} />
-          </a>
+          <Link to="/projects" onMouseEnter={prefetchProjects}>
+            <AnimatedSplit
+              text={t("workSingle.labels.back_link") || "Back to Projects"}
+            />
+          </Link>
         </section>
       </div>
     );
   }
 
-  // 5. Çoklu dil alanı çekici fonksiyonumuz
   const getL = (field) => {
     return work[`${field}_${currentLang}`] || work[field];
   };
@@ -336,7 +334,11 @@ export default function WorkSinglePage() {
       </section>
 
       <footer className={styles.next}>
-        <a href="/projects" className={styles.button}>
+        <Link
+          to="/projects"
+          onMouseEnter={prefetchProjects}
+          className={styles.button}
+        >
           <AnimatedSplit
             text={t("workSingle.labels.back") || "Back"}
             tagName="span"
@@ -344,8 +346,8 @@ export default function WorkSinglePage() {
             duration={1.5}
             start="top 80%"
           />
-        </a>
-        <a href={nextProject ? `/projects/${nextProject.slug}` : "/projects"}>
+        </Link>
+        <Link to={nextProject ? `/projects/${nextProject.slug}` : "/projects"}>
           <AnimatedSplit
             key={`next-${currentLang}`}
             text={
@@ -359,7 +361,7 @@ export default function WorkSinglePage() {
             duration={1.5}
             start="top 80%"
           />
-        </a>
+        </Link>
       </footer>
     </div>
   );

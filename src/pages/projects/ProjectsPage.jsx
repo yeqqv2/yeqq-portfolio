@@ -11,13 +11,15 @@ import ContactHomePage from "@/pages/home/contact/ContactHomePage";
 // Context, Hooks & Styles
 import styles from "./style.module.css";
 import { useProjectCursor } from "@/hooks/useProjectCursor";
-import { useProjects } from "@/context/ProjectContext";
+import { useProjects } from "@/hooks/useProjects"; // DÜZELTME: Eski Context yerine yeni hook
 import { useProjectReveal } from "@/hooks/useProjectReveal";
 
 const ProjectsPage = () => {
   const { t } = useTranslation();
   const [activeFilter, setActiveFilter] = useState("all");
-  const { projects, loading } = useProjects();
+
+  // DÜZELTME: React Query'den gelen verileri alıyoruz
+  const { data: projects, isLoading, isError, error } = useProjects();
 
   const cursorWords = t("projects.cursor", { returnObjects: true });
 
@@ -30,17 +32,22 @@ const ProjectsPage = () => {
     handleMouseLeave,
   } = useProjectCursor(cursorWords);
 
+  // DÜZELTME: projects undefined ise çökmeyi engellemek için güvenlik eklendi
   const filteredProjects = useMemo(() => {
+    const safeProjects = projects || [];
     return activeFilter === "all"
-      ? projects
-      : projects.filter((project) => project.tags?.includes(activeFilter));
+      ? safeProjects
+      : safeProjects.filter((project) => project.tags?.includes(activeFilter));
   }, [projects, activeFilter]);
 
+  // DÜZELTME: loading yerine isLoading kullanıldı
   const { workRefs } = useProjectReveal(
-    loading,
+    isLoading,
     [filteredProjects],
     `.${styles.work_img}`,
   );
+
+  if (isError) return <div>Hata oluştu: {error.message}</div>;
 
   return (
     <div className={styles.container}>
@@ -52,7 +59,7 @@ const ProjectsPage = () => {
       />
 
       <main className={styles.main}>
-        {loading
+        {isLoading
           ? // Veri beklenirken iskeletleri gösterir
             Array.from({ length: 6 }).map((_, index) => (
               <ProjectSkeleton key={`skeleton-${index}`} />

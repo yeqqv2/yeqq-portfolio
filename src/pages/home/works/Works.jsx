@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useMemo } from "react";
 import gsap from "gsap";
 
-import { useProjects } from "@/context/ProjectContext";
+import { useProjects } from "@/hooks/useProjects";
 import { useProjectCursor } from "@/hooks/useProjectCursor";
 import ProjectCard from "@/components/project card/ProjectCard";
 import ProjectSkeleton from "@/animations/project skeleton/ProjectSkeleton";
@@ -12,7 +12,7 @@ import styles from "./style.module.css";
 
 const WorksHomePage = () => {
   const { t } = useTranslation();
-  const { projects, loading } = useProjects();
+  const { data: projects, isLoading, isError, error } = useProjects();
 
   const cursorWords = t("worksHome.cursorWords", { returnObjects: true });
 
@@ -30,28 +30,37 @@ const WorksHomePage = () => {
     gsap.fromTo(el, { scale: 0.97 }, { scale: 1, duration: 0.3, ease: "hop" });
   };
 
-  const lastThreeWorks = useMemo(() => projects.slice(0, 6), [projects]);
+  // DÜZELTME: projects undefined ise boş dizi döndür
+  const lastThreeWorks = useMemo(() => projects?.slice(0, 6) || [], [projects]);
 
-  if (loading) return null;
+  if (isLoading) {
+    return (
+      <div className={styles.container}>
+        <main className={styles.main}>
+          {Array.from({ length: 6 }).map((_, index) => (
+            <ProjectSkeleton key={`skeleton-${index}`} />
+          ))}
+        </main>
+      </div>
+    );
+  }
+
+  if (isError) return <div>Hata oluştu: {error.message}</div>;
 
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        {loading
-          ? Array.from({ length: 6 }).map((_, index) => (
-              <ProjectSkeleton key={`skeleton-${index}`} />
-            ))
-          : lastThreeWorks.map((work, index) => (
-              <ProjectCard
-                key={work.id}
-                work={work}
-                index={index}
-                onMouseMove={handleMouseMove}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-                onTouchStart={handleTouchStart}
-              />
-            ))}
+        {lastThreeWorks.map((work, index) => (
+          <ProjectCard
+            key={work.id}
+            work={work}
+            index={index}
+            onMouseMove={handleMouseMove}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onTouchStart={handleTouchStart}
+          />
+        ))}
       </main>
 
       <span

@@ -102,13 +102,13 @@
   font-size: 4em;
   line-height: 1;
   letter-spacing: -0.05em;
-  transition: 0.5s;
+  transition: 0.8s ease-out;
   white-space: nowrap;
 }
 
 .link_icon {
   width: 0;
-  transition: 0.3s;
+  transition: 0.8s ease;
 }
 
 .link:hover > .link_icon {

@@ -20,8 +20,6 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes("node_modules")) {
-            // Sadece ağır ve bağımsız paketleri ayırıyoruz. 
-            // React ve diğerlerini ayırmayıp dairesel hatayı (circular chunk) engelledik.
             if (id.includes("gsap")) {
               return "vendor-gsap";
             }

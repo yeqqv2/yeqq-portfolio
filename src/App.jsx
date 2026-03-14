@@ -7,7 +7,6 @@ import { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import SmoothScroll from "./components/smooth scroll/index";
 import LoadingPage from "./components/loading/LoadingPage";
-
 import HomePage from "./pages/home/HomePage";
 
 // Ziyaretçi Sayfaları
@@ -27,64 +26,23 @@ const ProjectCreate = lazy(() => import("./admin/project/ProjectCreate"));
 function App() {
   return (
     <SmoothScroll>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
+      <Suspense fallback={<LoadingPage />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about-me" element={<AboutPage />} />
+          <Route path="/manifest" element={<ManifestPage />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/projects/:slug" element={<WorkPage />} />
+          <Route path="/contact-me" element={<ContactPage />} />
 
-        <Route
-          path="/about-me"
-          element={
-            <Suspense fallback={<LoadingPage />}>
-              <AboutPage />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/manifest"
-          element={
-            <Suspense fallback={<LoadingPage />}>
-              <ManifestPage />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/projects"
-          element={
-            <Suspense fallback={<LoadingPage />}>
-              <ProjectsPage />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/projects/:slug"
-          element={
-            <Suspense fallback={<LoadingPage />}>
-              <WorkPage />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/contact-me"
-          element={
-            <Suspense fallback={<LoadingPage />}>
-              <ContactPage />
-            </Suspense>
-          }
-        />
-
-        {/* Admin Rotası - Suspense ile sarmalanarak tüm alt rotaların izole edilmesi sağlandı */}
-        <Route
-          path="/admin"
-          element={
-            <Suspense fallback={<LoadingPage />}>
-              <AdminLayout />
-            </Suspense>
-          }
-        >
-          <Route index element={<AdminDashboard />} />
-          <Route path="projects" element={<AdminProjectsList />} />
-          <Route path="projects/create" element={<ProjectCreate />} />
-        </Route>
-      </Routes>
+          {/* Admin Rotası */}
+          <Route path="/admin/*" element={<AdminLayout />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="projects" element={<AdminProjectsList />} />
+            <Route path="projects/create" element={<ProjectCreate />} />
+          </Route>
+        </Routes>
+      </Suspense>
     </SmoothScroll>
   );
 }
