@@ -170,6 +170,10 @@
     }
   },
   "manifesto": {
+    "header": {
+      "title": "[ manifest ]",
+      "desc": "interfaces are not mere canvases; they are rational mechanisms designed to eliminate entropy in the human mind. i write code to eliminate information asymmetry and design to optimize decision-making processes. aesthetics is merely an inevitable byproduct of this flawless architecture."
+    },
     "white_on_white": {
       "question": "what does ‘white on white’ mean?",
       "footer": "in design, light is the father of form. Hiding shadows is easy; mastering light requires craft. Pure white is a screen's highest energy state. I do not hide the energy; I harness it through architecture."

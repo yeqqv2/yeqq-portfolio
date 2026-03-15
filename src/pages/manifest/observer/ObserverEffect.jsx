@@ -7,7 +7,6 @@ export default function ObserverEffect() {
   const { t } = useTranslation();
   const elementsRef = useRef([]);
 
-  // JSON'daki 'lines' dizisini güvenli bir şekilde çekiyoruz
   const observerLines =
     t("manifesto.observer.lines", { returnObjects: true }) || [];
   const tags = ["<div>", "<canvas>", "<span>", "<a>"];
@@ -15,10 +14,8 @@ export default function ObserverEffect() {
   const handleEnter = (el) => {
     if (!el) return;
     gsap.to(el, {
-      scale: 1.1,
       filter: "blur(0px)",
-      opacity: 1,
-      duration: 0.66,
+      duration: 0.25,
       ease: "expo.out",
     });
   };
@@ -26,9 +23,8 @@ export default function ObserverEffect() {
   const handleLeave = (el) => {
     if (!el) return;
     gsap.to(el, {
-      scale: 0.9,
-      filter: "blur(10px)",
-      duration: 0.2,
+      filter: "blur(12px)",
+      duration: 0.25,
       ease: "sine.inOut",
     });
   };
@@ -44,8 +40,8 @@ export default function ObserverEffect() {
             onMouseEnter={() => handleEnter(elementsRef.current[i])}
             onMouseLeave={() => handleLeave(elementsRef.current[i])}
           >
-            <span className={styles.tag_morph}>{tags[i]}</span>
-            <p className={styles.hidden_truth}>{line}</p>
+            <div className={styles.tag_morph}>{tags[i]}</div>
+            <div className={styles.hidden_truth}>{line}</div>
           </div>
         ))}
       </div>

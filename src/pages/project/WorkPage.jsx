@@ -81,7 +81,7 @@ export default function WorkSinglePage() {
 
   if (!work) {
     return (
-      <div className={styles.container}>
+      <div className={styles.container} key={`${slug}-${currentLang}`}>
         <section className={styles.hero}>
           <div className={styles.hero_header}>
             <AnimatedSplit
@@ -104,7 +104,7 @@ export default function WorkSinglePage() {
   };
 
   return (
-    <div className={styles.container} key={currentLang}>
+    <div className={styles.container} key={`${slug}-${currentLang}`} ƒ>
       {/* HERO */}
       <section className={styles.hero}>
         <img

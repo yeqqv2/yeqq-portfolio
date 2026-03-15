@@ -20,27 +20,19 @@
 }
 
 .quantum_item {
-  position: relative;
   cursor: crosshair;
   filter: blur(12px);
-  transform: scale(0.9);
-  transition:
-    filter 1.2s ease,
-    transform 1.2s ease;
+  transition: filter 1.2s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1em;
-}
-
-.quantum_item:hover {
-  opacity: 1;
-  filter: blur(0px);
-  transform: scale(1.05);
-  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  overflow: visible;
+  user-select: none;
 }
 
 .tag_morph {
+  user-select: none;
   font-size: 0.8em;
   color: var(--wb950);
   opacity: 0.5;
@@ -48,6 +40,7 @@
 }
 
 .hidden_truth {
+  user-select: none;
   font-size: 1.2em;
   font-weight: 300;
   color: var(--wb950);
@@ -87,16 +80,15 @@
 }
 
 @media screen and (max-width: 1024px) {
-  
-  .container{
+  .container {
     padding: 20vh 1vw 50vh 1vw;
   }
-  
-  .quantum_field{
-    width: 98vw;
-  }  
 
-  .annotation{
+  .quantum_field {
+    width: 98vw;
+  }
+
+  .annotation {
     top: 80%;
     bottom: 0;
     width: 80vw;

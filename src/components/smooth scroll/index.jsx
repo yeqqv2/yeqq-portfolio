@@ -16,8 +16,8 @@ export default function SmoothScroll({ children }) {
 
     const lenis = new Lenis({
       duration: 1.2,
-      lerp: 0.08,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      lerp: 0.8,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(1.5, -10 * t)),
       direction: "vertical",
       gestureDirection: "vertical",
       smooth: true,
@@ -52,7 +52,11 @@ export default function SmoothScroll({ children }) {
       window.scrollTo(0, 0);
     }
 
-    ScrollTrigger.refresh();
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 200);
+
+    return () => clearTimeout(timer);
   }, [location.pathname]);
 
   return <>{children}</>;

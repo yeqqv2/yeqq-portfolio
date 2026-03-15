@@ -170,6 +170,10 @@
     }
   },
   "manifesto": {
+    "header": {
+      "title": "[ manifesto ]",
+      "desc": "arayüzler birer kanvas değil, insan zihnindeki entropiyi sıfırlamak için kurgulanan rasyonel mekanizmalardır. bilgi asimetrisini yok etmek için kod yazar, karar alma süreçlerini optimize etmek için tasarım yaparım. estetik, bu kusursuz mimarinin sadece kaçınılmaz bir yan ürünüdür."
+    },
     "white_on_white": {
       "question": "‘beyaz üstüne beyaz’ ne anlama gelir?",
       "footer": "Tasarımda ışık, formun babasıdır. Gölgeleri saklamak kolaydır, ışığı yönetmek ise ustalık ister. Saf beyaz, bir ekranın en yüksek enerji seviyesidir. Ben enerjiyi saklamıyorum, onu mimariyle dizginliyorum."

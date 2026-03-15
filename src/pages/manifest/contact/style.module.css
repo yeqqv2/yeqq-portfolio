@@ -1,12 +1,11 @@
 .container {
   width: 100%;
-  min-height: 100vh; /* Final bölümü olduğu için tam ekranı kaplamalı */
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   background-color: var(--wb50);
-  padding: 5vw;
+  padding: 20vh 5vw;
 }
 
 /* Sistemin Şalteri (Başlangıçta yüksekliği 0) */

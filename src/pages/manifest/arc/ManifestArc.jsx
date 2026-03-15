@@ -39,9 +39,6 @@ export default function ManifestArc() {
         rel="noopener noreferrer"
         className={styles.header}
       >
-        {/* RASYONEL DÜZELTME: key={t()} yerine key={i18n.language} kullanıyoruz.
-            Böylece animasyon sadece dil gerçekten değiştiğinde tetiklenir.
-        */}
         <AnimatedSplit
           key={i18n.language}
           text={t("manifesto.white_on_white.question")}
