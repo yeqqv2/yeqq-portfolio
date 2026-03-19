@@ -63,3 +63,12 @@
 .card_content {
   font-size: 2.5em;
 }
+
+.main_content {
+  margin-top: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5vh;
+  padding: 3em;
+}

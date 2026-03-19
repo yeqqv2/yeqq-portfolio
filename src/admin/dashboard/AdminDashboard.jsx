@@ -1,5 +1,7 @@
 import React from "react";
 import styles from "./style.module.css";
+import UICheckbox from "@/ui/checkbox/UICheckbox";
+import UiInput from "@/ui/input/UiInput";
 
 export default function AdminDashboard() {
   return (
@@ -26,7 +28,10 @@ export default function AdminDashboard() {
             <div className={styles.card_content}>9</div>
           </div>
         </div>
-        <div className={styles.main_content}></div>
+        <div className={styles.main_content}>
+          <UICheckbox />
+          <UiInput />
+        </div>
       </div>
     </div>
   );
