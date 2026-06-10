@@ -3,16 +3,17 @@ import { useLocation } from "react-router-dom";
 import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { prefersReducedMotion } from "@/utils/motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function SmoothScroll({ children }) {
   const location = useLocation();
-  const isAdmin = location.pathname.startsWith("/admin");
   const lenisRef = useRef(null);
 
   useEffect(() => {
-    if (isAdmin) return;
+    // Hareketi azalt tercihinde Lenis'i hiç başlatma; tarayıcının yerel kaydırması kalsın.
+    if (prefersReducedMotion()) return;
 
     const lenis = new Lenis({
       duration: 1.2,
@@ -21,13 +22,15 @@ export default function SmoothScroll({ children }) {
       direction: "vertical",
       gestureDirection: "vertical",
       smooth: true,
-      mouseMultiplier: 1,
+      mouseMultiplier: 1.4,
       smoothTouch: true,
       touchMultiplier: 1.4,
       autoResize: true,
     });
 
     lenisRef.current = lenis;
+    // Sayfa içi yumuşak gezinme için (ör. manifesto bölüm göstergesi) global erişim.
+    window.lenis = lenis;
 
     lenis.on("scroll", ScrollTrigger.update);
 
@@ -42,8 +45,9 @@ export default function SmoothScroll({ children }) {
       gsap.ticker.remove(update);
       lenis.destroy();
       lenisRef.current = null;
+      if (window.lenis === lenis) delete window.lenis;
     };
-  }, [isAdmin]);
+  }, []);
 
   useEffect(() => {
     if (lenisRef.current) {

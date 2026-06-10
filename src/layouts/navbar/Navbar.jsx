@@ -88,7 +88,8 @@ export default function Navbar() {
 
   // PREFETCH FONKSİYONLARI (Kullanıcı hover olduğunda ilgili sayfanın kodunu arka planda indirir)
   const prefetchAbout = () => import("@/pages/about/AboutPage");
-  const prefetchManifest = () => import("@/pages/manifest/ManifestPage");
+  // manifesto şimdilik gizli — sonra geri açılacak
+  // const prefetchManifest = () => import("@/pages/manifest/ManifestPage");
   const prefetchProjects = () => import("@/pages/projects/ProjectsPage");
 
   // Linke tıklandığında menüyü kapatması için yardımcı fonksiyon
@@ -99,30 +100,30 @@ export default function Navbar() {
   return (
     <>
       <div className={styles.container}>
-        <main className={`${styles.menu_item} ${styles.left}`}>
+        <div className={`${styles.menu_item} ${styles.left}`}>
           <MenuButton
             toggleSidebar={toggleSidebar}
             isSidebarOpen={isSidebarOpen}
           />
-        </main>
+        </div>
         {/* LOGO da bir Link olmalı */}
         <Link to="/" className={styles.logo} onClick={handleLinkClick}>
           [ yeqq ]
         </Link>
-        <main className={`${styles.right} ${styles.menu_item}`}>
+        <div className={`${styles.right} ${styles.menu_item}`}>
           <PrimerLink
             href="/contact-me"
             buttonText={t("nav.contact_btn")}
             backgroundColor="var(--green300)"
-            color="var(--green800)"
+            color="var(--gree900)"
           />
           <PrimerButton
             onClick={toggleLanguage}
             buttonText={i18n.language.split("-")[0]}
-            backgroundColor="var(--green300)"
-            color="var(--green800)"
+            backgroundColor="var(--blue300)"
+            color="var(--blue900)"
           />
-        </main>
+        </div>
       </div>
 
       <div className={styles.layersContainer}>
@@ -162,6 +163,7 @@ export default function Navbar() {
             </span>
             {t("nav.about")}
           </Link>
+          {/* manifesto şimdilik gizli — sonra geri açılacak
           <Link
             to="/manifest"
             className={styles.link}
@@ -172,7 +174,7 @@ export default function Navbar() {
               <GoArrowRight />
             </span>
             {t("nav.manifest")}
-          </Link>
+          </Link> */}
           <Link
             to="/projects"
             className={styles.link}
@@ -214,7 +216,7 @@ export default function Navbar() {
               >
                 instagram
               </a>
-              ,
+              <span aria-hidden="true">,</span>
               <a
                 className={styles.contact_link}
                 target="_blank"
@@ -225,7 +227,7 @@ export default function Navbar() {
               >
                 github
               </a>
-              ,
+              <span aria-hidden="true">,</span>
               <a
                 className={styles.contact_link}
                 target="_blank"

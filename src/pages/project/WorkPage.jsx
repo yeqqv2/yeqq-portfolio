@@ -7,7 +7,6 @@ import styles from "./style.module.css";
 import AnimatedSplit from "@/components/animated split/AnimatedSplit";
 import { useTranslation } from "react-i18next";
 import { useProjects } from "@/hooks/useProjects";
-import { storageBaseUrl } from "@/utils/supabase";
 import LoadingPage from "@/components/loading/LoadingPage";
 
 gsap.registerPlugin(CustomEase, ScrollTrigger);
@@ -24,8 +23,10 @@ export default function WorkSinglePage() {
   const galleryRefs = useRef([]);
 
   const safeProjects = projects || [];
-  const work = safeProjects.find((p) => p.slug === slug);
-  const currentIndex = safeProjects.findIndex((p) => p.slug === slug);
+  const work = safeProjects.find((p) => p.link === `/projects/${slug}`);
+  const currentIndex = safeProjects.findIndex(
+    (p) => p.link === `/projects/${slug}`,
+  );
 
   const nextProject =
     currentIndex === -1 || safeProjects.length === 0
@@ -99,18 +100,13 @@ export default function WorkSinglePage() {
     );
   }
 
-  const getL = (field) => {
-    return work[`${field}_${currentLang}`] || work[field];
-  };
-
   return (
-    <div className={styles.container} key={`${slug}-${currentLang}`} ƒ>
+    <div className={styles.container} key={`${slug}-${currentLang}`}>
       {/* HERO */}
       <section className={styles.hero}>
         <img
           className={styles.hero_image}
-          // 6. Supabase Storage'dan ana resmi alıyoruz
-          src={`${storageBaseUrl}${work.banner_url}`}
+          src={`${work.asset}/banner.webp`}
           alt={work.project_name}
           aria-hidden="true"
           loading="lazy"
@@ -131,7 +127,7 @@ export default function WorkSinglePage() {
             <AnimatedSplit
               key={`subtitle-${currentLang}`}
               className={styles.subtitle}
-              text={getL("desc") || work.company_name}
+              text={work.desc || work.company_name}
               tagName="span"
               stagger={0.03}
               duration={1.5}
@@ -170,7 +166,7 @@ export default function WorkSinglePage() {
               <AnimatedSplit
                 key={`role-${currentLang}`}
                 className={styles.factValue}
-                text={getL("role") || t("workSingle.defaults.role")}
+                text={work.role || t("workSingle.defaults.role")}
                 tagName="span"
                 stagger={0.03}
                 duration={1.5}
@@ -190,7 +186,7 @@ export default function WorkSinglePage() {
               <AnimatedSplit
                 key={`type-${currentLang}`}
                 className={styles.factValue}
-                text={getL("type") || t("workSingle.defaults.type")}
+                text={work.type || t("workSingle.defaults.type")}
                 tagName="span"
                 stagger={0.03}
                 duration={1.5}
@@ -221,28 +217,6 @@ export default function WorkSinglePage() {
         </div>
       </section>
 
-      {/* OVERVIEW */}
-      <section className={styles.overview}>
-        <AnimatedSplit
-          className={styles.sectionTitle}
-          text={t("workSingle.labels.overview")}
-          tagName="span"
-          stagger={0.03}
-          duration={1.5}
-          start="top 80%"
-        />
-        <AnimatedSplit
-          key={`overview-${currentLang}`}
-          className={styles.overviewText}
-          // 8. PostgreSQL sütununu fulloverview olarak açmıştık, onu çağırıyoruz
-          text={getL("fulloverview") || t("workSingle.defaults.overview")}
-          tagName="span"
-          stagger={0.03}
-          duration={1.5}
-          start="top 80%"
-        />
-      </section>
-
       {/* ACHIEVEMENTS */}
       {work.achievements && work.achievements.length > 0 && (
         <section className={styles.achievements}>
@@ -269,7 +243,7 @@ export default function WorkSinglePage() {
                   <AnimatedSplit
                     key={`achTitle-${i}-${currentLang}`}
                     className={styles.achTitle}
-                    text={a[`title_${currentLang}`] || a.title}
+                    text={a.title}
                     tagName="span"
                     stagger={0.03}
                     duration={1.5}
@@ -278,7 +252,7 @@ export default function WorkSinglePage() {
                   <AnimatedSplit
                     key={`achDesc-${i}-${currentLang}`}
                     className={styles.achDesc}
-                    text={a[`desc_${currentLang}`] || a.desc}
+                    text={a.desc}
                     tagName="span"
                     stagger={0.03}
                     duration={1.5}
@@ -301,8 +275,7 @@ export default function WorkSinglePage() {
               ref={(el) => (galleryRefs.current[i] = el)}
             >
               <img
-                // 9. Galeri görsellerini Supabase'den çekiyoruz
-                src={`${storageBaseUrl}${img.file}`}
+                src={`${work.asset}/${img.file}`}
                 alt={work.project_name}
                 aria-hidden="true"
                 loading="lazy"
@@ -312,26 +285,6 @@ export default function WorkSinglePage() {
           ))}
         </section>
       )}
-
-      <section className={styles.conclusion}>
-        <AnimatedSplit
-          className={styles.sectionTitle}
-          text={t("workSingle.labels.conclusion")}
-          tagName="span"
-          stagger={0.03}
-          duration={1.5}
-          start="top 80%"
-        />
-        <AnimatedSplit
-          key={`conclusion-${currentLang}`}
-          className={styles.conclusionText}
-          text={getL("conclusion") || t("workSingle.defaults.conclusion")}
-          tagName="span"
-          stagger={0.03}
-          duration={1.5}
-          start="top 80%"
-        />
-      </section>
 
       <footer className={styles.next}>
         <Link
@@ -347,7 +300,7 @@ export default function WorkSinglePage() {
             start="top 80%"
           />
         </Link>
-        <Link to={nextProject ? `/projects/${nextProject.slug}` : "/projects"}>
+        <Link to={nextProject ? nextProject.link : "/projects"}>
           <AnimatedSplit
             key={`next-${currentLang}`}
             text={

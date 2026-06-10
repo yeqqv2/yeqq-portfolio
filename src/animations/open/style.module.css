@@ -28,8 +28,8 @@
 
 .artCard {
   position: absolute;
-  height: 50vh;
-  width: 50vh;
+  height: 60vh;
+  width: 60vh;
   object-fit: cover;
   object-position: center;
 }

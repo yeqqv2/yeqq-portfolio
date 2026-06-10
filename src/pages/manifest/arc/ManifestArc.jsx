@@ -50,9 +50,9 @@ export default function ManifestArc() {
         />
       </a>
 
-      <main className={styles.main}>
+      <div className={styles.main}>
         <NeumorphismButton handleStart={handleStart} />
-      </main>
+      </div>
 
       <p className={styles.footer} ref={footerRef}>
         {t("manifesto.white_on_white.footer")}

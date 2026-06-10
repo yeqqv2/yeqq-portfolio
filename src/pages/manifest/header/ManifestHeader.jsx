@@ -55,7 +55,7 @@ export default function ManifestHeader() {
           start="top 80%"
         />
       </header>
-      <main className={styles.content}>
+      <div className={styles.content}>
         {images.map((src, i) => (
           <div
             key={i}
@@ -65,13 +65,14 @@ export default function ManifestHeader() {
             <img
               className={styles.img}
               src={src}
-              alt={`art-${i}`}
+              alt=""
+              aria-hidden="true"
               loading="lazy"
               decoding="async"
             />
           </div>
         ))}
-      </main>
+      </div>
     </div>
   );
 }

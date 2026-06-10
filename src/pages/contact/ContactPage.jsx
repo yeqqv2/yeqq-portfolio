@@ -69,7 +69,8 @@ const ContactPage = () => {
           <div className={styles.footer_content_content}>
             <a
               className={styles.contact_link}
-              target="__blank"
+              target="_blank"
+              rel="noopener noreferrer"
               href="https://www.instagram.com/1yunusewre"
             >
               <AnimatedSplit
@@ -82,6 +83,7 @@ const ContactPage = () => {
             </a>
             <AnimatedSplit
               text=","
+              className={styles.comma}
               tagName="span"
               stagger={0.03}
               duration={1.5}
@@ -89,7 +91,8 @@ const ContactPage = () => {
             />
             <a
               className={styles.contact_link}
-              target="__blank"
+              target="_blank"
+              rel="noopener noreferrer"
               href="https://github.com/yeqqv2"
             >
               <AnimatedSplit
@@ -102,6 +105,7 @@ const ContactPage = () => {
             </a>
             <AnimatedSplit
               text=","
+              className={styles.comma}
               tagName="span"
               stagger={0.03}
               duration={1.5}
@@ -109,7 +113,8 @@ const ContactPage = () => {
             />
             <a
               className={styles.contact_link}
-              target="__blank"
+              target="_blank"
+              rel="noopener noreferrer"
               href="https://tr.linkedin.com/in/yeqq"
             >
               <AnimatedSplit

@@ -73,6 +73,11 @@
   font-weight: 300;
 }
 
+/* connect şeridinde virgülden sonra boşluk: "instagram, github, linkedin" */
+.comma {
+  margin-right: 0.3em;
+}
+
 @media screen and (max-width: 1024px) {
   .sidebar_title {
     flex: 3.5;

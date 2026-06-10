@@ -5,7 +5,7 @@ import styles from "./style.module.css";
 export default function ManifestPage() {
   return (
     <div className={styles.container}>
-      <ManifestHeader />
+      {/* <ManifestHeader /> */}
       <ManifestContent />
     </div>
   );

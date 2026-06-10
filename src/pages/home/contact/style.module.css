@@ -10,7 +10,7 @@
 }
 
 .context {
-  padding: 30vh 20vw;
+  padding: 20vh 20vw 30vh 20vw;
   width: 98vw;
   display: flex;
   align-items: center;

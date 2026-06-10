@@ -21,16 +21,16 @@
     "signature": "designed & built by yunus emre korkmaz"
   },
   "intro": {
-    "marqueeText": "• MINIMALISM • UI UX DESIGN • PERFECTIONISM • AESTHETICS"
+    "marqueeText": "• minimalism • ui ux design • perfectionism • aesthetics"
   },
   "welcome": {
     "greeting": "[hey, i'm]",
     "name": "[yunus emre korkmaz]",
-    "description": "I design and build modern, intentional and motion-driven digital experiences.",
+    "description": "i design, and i write code. what i care about is making the complex simple — and the simple meaningful.",
     "cursor": "● who is this?"
   },
   "aboutHome": {
-    "mainText": "I merge design clarity with engineering precision to craft thoughtful digital products.",
+    "mainText": "i don't rush. i leave every line and every empty space as if it will stay for years.",
     "link": "my story"
   },
   "worksHome": {
@@ -46,35 +46,35 @@
   "principles": {
     "title": "[principles]",
     "list": [
-      "clarity over complexity",
-      "motion with purpose",
-      "design informs engineering",
-      "consistency creates trust",
-      "details matter, but flow matters more"
+      "say less, tell more",
+      "simplicity is the hardest work",
+      "every detail is an intention",
+      "consistency builds trust",
+      "haste ruins the beautiful"
     ]
   },
   "manifest": {
-    "title": "[ mental architecture ]",
-    "desc": "interfaces are not made of pixels, but of rational decisions and controlled chaos. I don't just write code here; I ruthlessly annihilate possibilities, forcing the system into a single absolute reality. This is the cost of order.",
+    "title": "[thought]",
+    "desc": "an interface is born not from pixels, but from decisions. i let go of the needless and leave only meaning behind.",
     "topics": {
       "aesthetic": {
         "label": "aesthetics",
-        "text": "beauty is not decoration; it is the ruthless amputation of excess. The void is the most strategic architecture left for the system to breathe. Only the necessary survives."
+        "text": "beauty comes not from adding, but from taking away. let only what is needed remain."
       },
       "entropy": {
         "label": "entropy",
-        "text": "flawless order defies the nature of the universe. To sustain an interface is to relentlessly inject rational energy into a structure that constantly tends toward decay."
+        "text": "order doesn't hold on its own; it takes effort. the moment you let go, it scatters."
       },
       "rationality": {
         "label": "rationality",
-        "text": "every rational decision is the murder of infinite other possibilities. Making a choice is not freedom; it is the art of constraining the system and condemning it to a single outcome."
+        "text": "to choose one path is to say goodbye to the others. to decide is to grow simpler."
       }
     },
-    "button": "inspect mental architecture"
+    "button": "read how i think"
   },
   "contactHome": {
     "header": "let’s build something meaningful.",
-    "subtext": "I’m open to collaborations, freelance work and product-focused projects.",
+    "subtext": "my door is open. if you have a good idea or a problem to solve, let's talk.",
     "link": "get in touch",
     "sentences": [
       "if you want",
@@ -84,60 +84,61 @@
       "your place",
       "do you have",
       "an idea?",
-      "your dream",
-      "make it happen!",
-      "start",
-      "your project!"
+      "come",
+      "let's talk",
+      "something meaningful",
+      "let's build"
     ]
   },
   "heroAbout": {
-    "title": "merging design thinking with frontend engineering.",
-    "content_text_1": "obsessively crafted.",
-    "content_text_2": "engineered with intent."
+    "title": "i think in design, and build with engineering.",
+    "content_text_1": "i build with care.",
+    "content_text_2": "i design with purpose."
   },
   "aboutmePage": {
     "title": "[who am i]",
-    "bio_1": "i'm yunus emre korkmaz — a hybrid frontend developer & UI/UX designer with experience creating scalable, accessible, and visually refined digital products.",
-    "bio_2": "I obsess over micro-interactions and clarity, so products feel effortless from first click to last scroll."
+    "bio_1": "i'm yunus emre korkmaz. i'm both a front-end developer and a designer — but my real job is making people's lives easier.",
+    "bio_2": "i fuss over the small things: a space, a transition, a moment. because everything that looks easy actually takes a lot of effort."
   },
   "whatIDo": {
     "title": "[what i do]",
-    "desc_1": "i design and build digital interfaces with structure, intention, and expression.",
-    "desc_2": "my work focuses on clarity, usability, and motion-led visual identity."
+    "desc_1": "i design interfaces and write their code. i want them solid in structure and clear in intent.",
+    "desc_2": "i don't care about showing off — i care about being understood. a thing working right comes before looking good."
   },
   "discover": {
     "title": "[discover me]",
-    "subtitle": "express yourself freely. draw the shapes below to uncover how i work and what drives my creative process.",
+    "subtitle": "draw the shapes below; let them tell you how i work.",
     "discovery": "discovery",
-    "reset": "● wanna draw again?",
+    "cursor": "draw",
+    "reset": "wanna draw again?",
     "cards": [
       {
         "instruction": "draw a puzzle piece",
         "title": "the big picture",
-        "description": "i don't just fit pieces together; i solve the whole puzzle. bridging the gap between user needs, business goals, and technical reality."
+        "description": "i try to see the whole, not the pieces. user needs, business goals, and technical reality — i bring all three to the same table."
       },
       {
-        "instruction": "draw a pen inside the box",
+        "instruction": "draw a pen",
         "title": "design engineering",
-        "description": "writing code with a designer’s eye. i translate creative concepts into pixel-perfect interfaces without losing clarity in translation."
+        "description": "i write code with a designer's eye. i turn an idea into pixels without losing its meaning."
       },
       {
         "instruction": "draw a checkmark",
-        "title": "shipped & solid",
-        "description": "it’s not done until it feels right. building accessible, performant, and polished experiences that users can trust."
+        "title": "solid delivery",
+        "description": "i don't call it done until it feels right. i keep at it until it's fast, accessible, and reliable."
       }
     ]
   },
   "projects": {
     "header_title": "[works]",
-    "header_desc": "a selection of professional projects i've designed and developed over the past years. from municipal platforms to startup products, each project focuses on clean UI, accessibility, and meaningful interaction.",
+    "header_desc": "a selection of work i've designed and built over the past years. from municipal platforms to startup products, in all of them i was after the same thing: a simple interface and a flow that eases the user's job.",
     "filters": {
-      "all": "All",
-      "municipal": "Municipal",
-      "startup": "Startup",
-      "dashboard": "Dashboard / Admin",
-      "uiux": "UI/UX",
-      "webapp": "Web Apps"
+      "all": "all",
+      "municipal": "municipal",
+      "startup": "startup",
+      "dashboard": "dashboard / admin",
+      "uiux": "ui/ux",
+      "webapp": "web apps"
     },
     "cursor": [
       "see more",
@@ -157,46 +158,95 @@
       "achievements": "[achievements]",
       "conclusion": "[conclusion]",
       "back": "● back to works",
-      "not_found": "Project not found",
+      "not_found": "project not found",
       "back_link": "← back to works",
       "next_project": "next project"
     },
     "defaults": {
-      "role": "UI/UX Designer & Developer",
-      "type": "Web Application",
-      "tech": "React, JavaScript, Figma",
-      "overview": "Modern, scalable and accessible interfaces designed for real users.",
-      "conclusion": "this project allowed me to combine clean ui principles, fast development practices and modern motion design—while solving real-world problems for real users."
+      "role": "ui/ux designer & developer",
+      "type": "web application",
+      "tech": "react, javascript, figma",
+      "overview": "simple, clear interfaces designed for real people to use.",
+      "conclusion": "on this project what i wanted was a simple interface and a flow that eases the user's job. i worked to make it right first, then look good."
     }
   },
   "manifesto": {
+    "nav": [
+      "white",
+      "observer",
+      "entropy",
+      "dichotomy",
+      "choice",
+      "loss",
+      "protocol"
+    ],
+    "read_more": "read more",
+    "article_back": "manifesto",
+    "article_next": "next",
+    "article_not_found": "concept not found",
+    "articles": {
+      "entropy": {
+        "label": "entropy",
+        "title": "the cost of order",
+        "lead": "order is not natural. order is effort that has been paid for.",
+        "sections": [
+          {
+            "heading": "the mind is an energy machine",
+            "body": "karl friston's free energy principle says something simple but ruthless: the mind spends energy ceaselessly to minimize surprise and uncertainty. anything unexpected is an error, and the mind works to close it. the systems i build obey the same law — staying stable demands constant energy."
+          },
+          {
+            "heading": "a temporary war against chaos",
+            "body": "a flawless code architecture or a rational decision is a temporary front opened against the universe's natural chaos. entropy always returns; keeping an interface, an idea, or an order alive means continuously injecting energy against decay. the moment you cut the energy, the system reverts to its natural — that is, scattered — state."
+          },
+          {
+            "heading": "is the cost worth paying?",
+            "body": "every order is a cost, but that cost is not meaningless. what i pay for is a clarity that reduces noise, sharpens the decision, and lightens the load on the user's mind. what we call aesthetics is often that cost made visible."
+          }
+        ]
+      }
+    },
     "header": {
-      "title": "[ manifest ]",
+      "title": "[manifest]",
       "desc": "interfaces are not mere canvases; they are rational mechanisms designed to eliminate entropy in the human mind. i write code to eliminate information asymmetry and design to optimize decision-making processes. aesthetics is merely an inevitable byproduct of this flawless architecture."
     },
     "white_on_white": {
       "question": "what does ‘white on white’ mean?",
-      "footer": "in design, light is the father of form. Hiding shadows is easy; mastering light requires craft. Pure white is a screen's highest energy state. I do not hide the energy; I harness it through architecture."
+      "footer": "in design, light is the father of form. hiding shadows is easy; mastering light requires craft. pure white is a screen's highest energy state. i do not hide the energy; i harness it through architecture."
     },
     "dichotomy": {
-      "left_title": "[ left brain ]",
+      "left_title": "[left brain]",
       "left_annotation_title": "rational hemisphere",
-      "left_annotation_desc": "Calculations, boundaries, and architecture. As flawless as a component's lifecycle, an enemy of entropy. It rejects emotion, accepting only data. Karl Friston's Free Energy Principle operates here: No surprises, no errors.",
-      "right_title": "[ right brain ]",
+      "left_annotation_desc": "calculations, boundaries, and architecture. as flawless as a component's lifecycle, an enemy of entropy. it rejects emotion, accepting only data. karl friston's free energy principle operates here: no surprises, no errors.",
+      "right_title": "[right brain]",
       "right_annotation_title": "emotional hemisphere",
-      "right_annotation_desc": "The deep isolation in Balıkesir. The raw anger following a lost hand on the chessboard. The irregular motivation that moves the body pointlessly every day. Flawed, unpredictable, but undeniably human.",
-      "card_rational": "system Log",
+      "right_annotation_desc": "the deep isolation in balıkesir. the raw anger following a lost hand on the chessboard. the irregular motivation that moves the body pointlessly every day. flawed, unpredictable, but undeniably human.",
+      "card_rational": "system log",
       "card_emotional": "feeling board",
-      "action_btn": "execute"
+      "action_btn": "execute",
+      "log_lines": [
+        "> scanning entropy",
+        "> surprise: 0.00",
+        "> deviation rejected",
+        "> memory: optimized",
+        "status: stable"
+      ],
+      "mood_words": [
+        "raw anger",
+        "isolation",
+        "the lost hand",
+        "irregular impulse",
+        "intuition",
+        "unpredictable"
+      ]
     },
     "cost_of_order": {
       "btn_label": "apply energy",
-      "title": "[ the entropy of mind ]",
-      "desc": "Karl Friston was right. The mind is a machine that constantly expends energy to minimize surprise and entropy. Just like the systems I build. Order is not natural. Order is a paid-for effort. A flawless code architecture or a rational decision is a temporary war waged against the natural chaos of the universe. The moment you cut the energy, the system returns to its natural state."
+      "title": "[the entropy of mind]",
+      "desc": "karl friston was right. the mind is a machine that constantly expends energy to minimize surprise and entropy. just like the systems i build. order is not natural. order is a paid-for effort. a flawless code architecture or a rational decision is a temporary war waged against the natural chaos of the universe. the moment you cut the energy, the system returns to its natural state."
     },
     "observer": {
-      "title": "[ the observer's tyranny ]",
-      "desc": "the system holds all errors and all truths simultaneously until I observe it. reality is a heap of possibilities pruned by the attention of a rational observer. i don't write code; i force probabilities into a single rational output.",
+      "title": "[the observer's tyranny]",
+      "desc": "the system holds all errors and all truths simultaneously until i observe it. reality is a heap of possibilities pruned by the attention of a rational observer. i don't write code; i force probabilities into a single rational output.",
       "lines": [
         "reality is merely an assumption.",
         "code decays when unwatched.",
@@ -205,15 +255,15 @@
       ]
     },
     "choice": {
-      "title": "[ the gravity of 'yes' ]",
+      "title": "[the gravity of 'yes']",
       "desc": "rationality is not freedom; it is a form of constraint. to choose one path is to annihilate all others. choice is a rational mass; it requires effort to carry.",
       "button": "make a decision"
     },
     "asymmetry": {
-      "title": "[ the asymmetry of loss ]",
+      "title": "[the asymmetry of loss]",
       "desc": "daniel kahneman was right. the mind is programmed for the trauma of loss rather than the thrill of gain. building a new structure takes time; destroying it forces the entire system to face gravity. losing is not the opposite of gaining, but its mutation.",
-      "build": "[ + build ]",
-      "destruct": "[ - destruct ]",
+      "build": "[+ build]",
+      "destruct": "[- destruct]",
       "concepts": [
         "rationality",
         "architecture",
@@ -227,21 +277,20 @@
       ]
     },
     "protocol": {
-      "title": "[ protocol_00: handshake ]",
-      "desc": "You have seen the architecture of my mind and the price I pay to build a system. Order is not natural; it can only be sustained by ruthless rationality. If your project requires this level of gravity and structural effort, open the communication channel. Otherwise, you may exit the system.",
-      "connect": "initiate contact",
-      "exit": "exit system"
+      "title": "[protocol_00: handshake]",
+      "desc": "you've seen the architecture of my mind and the price of keeping order. if you have work that deserves this kind of care, let's talk.",
+      "connect": "initiate contact"
     }
   },
   "contactPage": {
-    "header": "[online meeting,message me]",
+    "header": "[online meeting, message me]",
     "sidebar_title": "please contact me to set up an online meeting or ask any questions you have.",
     "footer_contact": "[contact]",
     "footer_connect": "[connect]"
   },
   "contactForm": {
     "labels": {
-      "fullname": "name,surname",
+      "fullname": "name, surname",
       "company": "company",
       "email": "email",
       "phone": "phone",
@@ -253,7 +302,7 @@
       "company": "apple computer, inc.",
       "email": "example@example.com",
       "phone": "+90 555 555 55 55",
-      "subject": "web app, mobile app, UI/UX design",
+      "subject": "web app, mobile app, ui/ux design",
       "message": "describe whatever you want."
     },
     "button": {
@@ -261,13 +310,13 @@
       "loading": "● sending"
     },
     "errors": {
-      "required": "This field is required.",
-      "emailInvalid": "Please enter a valid email address.",
-      "phoneIncomplete": "Phone number is incomplete or invalid."
+      "required": "this field is required.",
+      "emailInvalid": "please enter a valid email address.",
+      "phoneIncomplete": "phone number is incomplete or invalid."
     }
   },
   "successBox": {
     "title": "● message sent",
-    "text": "thank you — I’ll get back to you as soon as possible."
+    "text": "thank you — i’ll get back to you as soon as possible."
   }
 }

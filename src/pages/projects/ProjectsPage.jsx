@@ -58,7 +58,7 @@ const ProjectsPage = () => {
         onFilterChange={setActiveFilter}
       />
 
-      <main className={styles.main}>
+      <div className={styles.main}>
         {isLoading
           ? // Veri beklenirken iskeletleri gösterir
             Array.from({ length: 6 }).map((_, index) => (
@@ -67,7 +67,7 @@ const ProjectsPage = () => {
           : // Veri geldiğinde gerçek projeleri render eder
             filteredProjects.map((work, index) => (
               <ProjectCard
-                key={work.id}
+                key={work.link}
                 work={work}
                 index={index}
                 ref={(el) => (workRefs.current[index] = el)}
@@ -76,7 +76,7 @@ const ProjectsPage = () => {
                 onMouseLeave={handleMouseLeave}
               />
             ))}
-      </main>
+      </div>
 
       <ContactHomePage />
 

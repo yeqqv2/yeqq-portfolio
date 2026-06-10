@@ -1,30 +1,64 @@
 import { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import CustomEase from "gsap/CustomEase";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./style.module.css";
 import AnimatedSplit from "@/components/animated split/AnimatedSplit";
+import PrimerButton from "@/ui/button/PrimerButton";
 import { useTranslation } from "react-i18next";
 
-gsap.registerPlugin(CustomEase);
+gsap.registerPlugin(CustomEase, ScrollTrigger);
 CustomEase.create("hop", "0.9, 0, 0.1, 1");
 
-// Görsel varlıklar (Dilden bağımsız)
+const reduceMotion = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const finePointer = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+// Görsel varlıklar (dilden bağımsız) — renkler marka token'larından
 const cardAssets = [
-  { id: 1, shape: "puzzle", color: "#1be7ff" },
-  { id: 2, shape: "pen", color: "#ff9b0a" },
-  { id: 3, shape: "check", color: "#89fc00" },
+  { id: 1, shape: "puzzle", color: "#c38ef2" }, // purple400
+  { id: 2, shape: "pen", color: "#63e8fd" }, // blue300
+  { id: 3, shape: "check", color: "#80ed99" }, // green300
 ];
 
-const Card = ({ asset, content, index }) => {
+// canvas ctx CSS değişkeni çözemez — var(--x) yazılırsa kökten somutlaştır
+const resolveColor = (c) => {
+  if (!c.startsWith("var(")) return c;
+  return (
+    getComputedStyle(document.documentElement)
+      .getPropertyValue(c.slice(4, -1).trim())
+      .trim() || "#111"
+  );
+};
+
+// accent zemin üzerinde okunur metin: açık renge koyu, koyu renge açık
+const onAccentColor = (c) => {
+  const m = resolveColor(c).replace("#", "");
+  if (m.length !== 6) return "var(--wb50)";
+  const [r, g, b] = [0, 2, 4].map((i) => parseInt(m.slice(i, i + 2), 16) / 255);
+  const lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  return lum > 0.6 ? "var(--wb950)" : "var(--wb50)";
+};
+
+const Card = ({ asset, content, index, cursor }) => {
   const { t } = useTranslation();
-  const [isDrawing, setIsDrawing] = useState(false);
   const [isRevealed, setIsRevealed] = useState(false);
   const [paths, setPaths] = useState([]);
 
-  const canvasRef = useRef(null);
+  const cardRef = useRef(null);
+  const ruleRef = useRef(null);
   const curtainRef = useRef(null);
   const contentRef = useRef(null);
+  const canvasRef = useRef(null);
+
   const currentPathRef = useRef([]);
+  const lastMidRef = useRef(null);
+  const widthRef = useRef(5);
+  const drawingRef = useRef(false);
+  const revealedRef = useRef(false);
 
   const setupCanvasAndDrawTemplate = () => {
     const canvas = canvasRef.current;
@@ -36,18 +70,61 @@ const Card = ({ asset, content, index }) => {
     const ctx = canvas.getContext("2d");
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.scale(ratio, ratio);
-    ctx.clearRect(0, 0, rect.width, rect.height);
-    drawTemplate(ctx, asset.shape, rect.width, rect.height);
+    ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+    drawTemplate(ctx, asset.shape, canvas.clientWidth, canvas.clientHeight);
   };
 
   useEffect(() => {
     requestAnimationFrame(setupCanvasAndDrawTemplate);
+
+    // boyut değişiminde bitmap'i tazele (eski iz geçersizleşir)
+    const field = canvasRef.current?.parentElement;
+    if (!field || typeof ResizeObserver === "undefined") return;
+    let first = true;
+    const ro = new ResizeObserver(() => {
+      if (first) {
+        first = false;
+        return;
+      }
+      if (drawingRef.current || revealedRef.current) return;
+      currentPathRef.current = [];
+      setPaths([]);
+      setupCanvasAndDrawTemplate();
+    });
+    ro.observe(field);
+    return () => ro.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [asset.shape]);
 
+  // Giriş animasyonu (scroll) — sayfanın geri kalanı gibi: yüksel + hop
+  useEffect(() => {
+    if (reduceMotion()) return;
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        cardRef.current,
+        { y: 48, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.9,
+          ease: "hop",
+          delay: index * 0.1,
+          scrollTrigger: { trigger: cardRef.current, start: "top 85%" },
+        },
+      );
+    }, cardRef);
+    return () => ctx.revert();
+  }, [index]);
+
   const drawTemplate = (ctx, shape, width, height) => {
-    ctx.strokeStyle = "rgba(0, 0, 0, 0.5)";
-    ctx.lineWidth = 2;
-    ctx.setLineDash([5, 5]);
+    // Kılavuz iz: kartın accent renginde kesik çizgi — nötr ızgaradan ayrışır
+    ctx.save();
+    ctx.strokeStyle = resolveColor(asset.color);
+    ctx.globalAlpha = 0.5;
+    ctx.lineWidth = 3;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.setLineDash([8, 8]);
     const centerX = width / 2;
     const centerY = height / 2;
 
@@ -55,7 +132,7 @@ const Card = ({ asset, content, index }) => {
       const w = 120,
         h = 120,
         tab = 20,
-        curve = 15;
+        curve = 8;
       const x = centerX - w / 2,
         y = centerY - h / 2;
       ctx.beginPath();
@@ -108,46 +185,67 @@ const Card = ({ asset, content, index }) => {
       ctx.lineTo(centerX + r * 0.5, centerY - r * 0.3);
       ctx.stroke();
     }
+    ctx.restore();
   };
 
+  // ---- ÇİZİM ----------------------------------------------------------------
   const getMousePos = (e, canvas) => {
     const rect = canvas.getBoundingClientRect();
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-    return { x: clientX - rect.left, y: clientY - rect.top };
+    const sx = rect.width ? canvas.clientWidth / rect.width : 1;
+    const sy = rect.height ? canvas.clientHeight / rect.height : 1;
+    return {
+      x: (clientX - rect.left) * sx,
+      y: (clientY - rect.top) * sy,
+      t: performance.now(),
+    };
   };
 
   const startDrawing = (e) => {
     if (e.cancelable && e.type.startsWith("touch")) e.preventDefault();
     if (isRevealed) return;
-    setIsDrawing(true);
-    currentPathRef.current = [getMousePos(e, canvasRef.current)];
+    drawingRef.current = true;
+    const p = getMousePos(e, canvasRef.current);
+    currentPathRef.current = [p];
+    lastMidRef.current = p;
+    widthRef.current = 5;
   };
 
   const draw = (e) => {
-    if (!isDrawing || isRevealed) return;
+    if (!drawingRef.current || isRevealed) return;
     if (e.cancelable && e.type.startsWith("touch")) e.preventDefault();
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     const pos = getMousePos(e, canvas);
-    currentPathRef.current.push(pos);
-    ctx.strokeStyle = asset.color;
-    ctx.lineWidth = 6;
+    const pts = currentPathRef.current;
+    const prev = pts[pts.length - 1];
+    pts.push(pos);
+
+    // Hıza göre çizgi kalınlığı: yavaş = kalın, hızlı = ince (grafit hissi)
+    const dt = Math.max(pos.t - prev.t, 1);
+    const dist = Math.hypot(pos.x - prev.x, pos.y - prev.y);
+    const speed = dist / dt;
+    const target = gsap.utils.clamp(2.5, 8, 8 - speed * 3.2);
+    widthRef.current += (target - widthRef.current) * 0.35;
+
+    // Orta nokta yumuşatma (quadratic) ile akışkan iz — düz mürekkep, parlama yok
+    const mid = { x: (prev.x + pos.x) / 2, y: (prev.y + pos.y) / 2 };
+    ctx.setLineDash([]);
+    ctx.strokeStyle = resolveColor(asset.color);
+    ctx.lineWidth = widthRef.current;
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
-    ctx.setLineDash([]);
-    const path = currentPathRef.current;
-    if (path.length > 1) {
-      ctx.beginPath();
-      ctx.moveTo(path[path.length - 2].x, path[path.length - 2].y);
-      ctx.lineTo(pos.x, pos.y);
-      ctx.stroke();
-    }
+    ctx.beginPath();
+    ctx.moveTo(lastMidRef.current.x, lastMidRef.current.y);
+    ctx.quadraticCurveTo(prev.x, prev.y, mid.x, mid.y);
+    ctx.stroke();
+    lastMidRef.current = mid;
   };
 
   const stopDrawing = () => {
-    if (!isDrawing || isRevealed) return;
-    setIsDrawing(false);
+    if (!drawingRef.current || isRevealed) return;
+    drawingRef.current = false;
     if (currentPathRef.current.length > 5) {
       const newPaths = [...paths, currentPathRef.current];
       setPaths(newPaths);
@@ -158,9 +256,8 @@ const Card = ({ asset, content, index }) => {
 
   const checkShape = (allPaths) => {
     const canvas = canvasRef.current;
-    const rect = canvas.getBoundingClientRect();
-    const centerX = rect.width / 2,
-      centerY = rect.height / 2;
+    const centerX = canvas.clientWidth / 2,
+      centerY = canvas.clientHeight / 2;
     const allPoints = allPaths.flat();
     if (allPoints.length < 20) return;
 
@@ -193,126 +290,174 @@ const Card = ({ asset, content, index }) => {
     if (detected) revealContent();
   };
 
+  // ---- REVEAL / RESET KOREOGRAFİSİ -----------------------------------------
   const revealContent = () => {
     setIsRevealed(true);
-    const tl = gsap.timeline({
-      onComplete: () => {
-        if (curtainRef.current) curtainRef.current.style.display = "none";
-      },
-    });
+    revealedRef.current = true;
+    cursor?.hide();
 
-    tl.to(curtainRef.current, {
-      clipPath: "inset(50% 50% 50% 50%)",
-      duration: 0.6,
-      ease: "hop",
-    });
+    const finish = () => {
+      if (curtainRef.current) curtainRef.current.style.display = "none";
+    };
 
+    if (reduceMotion()) {
+      gsap.set(ruleRef.current, { scaleX: 1 });
+      gsap.set(curtainRef.current, { autoAlpha: 0 });
+      gsap.set(contentRef.current, { clipPath: "inset(0% 0% 0% 0%)" });
+      gsap.set(contentRef.current.children, { y: 0, autoAlpha: 1 });
+      finish();
+      return;
+    }
+
+    const tl = gsap.timeline({ onComplete: finish });
+
+    // tamamlanma imzası: accent çizgi hairline üzerinde soldan dolar
     tl.fromTo(
-      contentRef.current,
+      ruleRef.current,
+      { scaleX: 0 },
+      { scaleX: 1, duration: 0.5, ease: "hop" },
+    );
+
+    // perde yukarı soyulur
+    tl.to(
+      curtainRef.current,
       {
-        clipPath: "inset(50% 50% 50% 50%)",
-      },
-      {
-        clipPath: "inset(0% 0% 0% 0%)",
-        duration: 0.8,
+        clipPath: "inset(0% 0% 100% 0%)",
+        autoAlpha: 0,
+        duration: 0.55,
         ease: "hop",
       },
-      "-=0.3",
+      "-=0.25",
+    );
+
+    // içerik aşağıdan açılır, satırlar kademeli yerleşir
+    tl.fromTo(
+      contentRef.current,
+      { clipPath: "inset(100% 0% 0% 0%)" },
+      { clipPath: "inset(0% 0% 0% 0%)", duration: 0.6, ease: "hop" },
+      "-=0.35",
+    );
+    tl.fromTo(
+      contentRef.current.children,
+      { y: 22, autoAlpha: 0 },
+      { y: 0, autoAlpha: 1, duration: 0.55, ease: "hop", stagger: 0.07 },
+      "<+0.05",
     );
   };
 
   const resetCard = () => {
     setIsRevealed(false);
+    revealedRef.current = false;
     setPaths([]);
     currentPathRef.current = [];
     requestAnimationFrame(setupCanvasAndDrawTemplate);
 
-    if (curtainRef.current) {
-      curtainRef.current.style.display = "flex";
-      gsap.set(curtainRef.current, { clipPath: "inset(50% 50% 50% 50%)" });
+    const curtain = curtainRef.current;
+    if (curtain) curtain.style.display = "flex";
+
+    if (reduceMotion()) {
+      gsap.set(ruleRef.current, { scaleX: 0 });
+      gsap.set(curtain, { clipPath: "inset(0% 0% 0% 0%)", autoAlpha: 1 });
+      gsap.set(contentRef.current, { clipPath: "inset(100% 0% 0% 0%)" });
+      return;
     }
 
     const tl = gsap.timeline();
-
     tl.to(contentRef.current, {
-      clipPath: "inset(50% 50% 50% 50%)",
-      duration: 0.6,
+      clipPath: "inset(100% 0% 0% 0%)",
+      duration: 0.45,
       ease: "hop",
     });
-
-    tl.to(
-      curtainRef.current,
+    tl.to(ruleRef.current, { scaleX: 0, duration: 0.35, ease: "hop" }, "<");
+    tl.fromTo(
+      curtain,
+      { clipPath: "inset(0% 0% 100% 0%)", autoAlpha: 0 },
       {
         clipPath: "inset(0% 0% 0% 0%)",
-        duration: 0.8,
+        autoAlpha: 1,
+        duration: 0.55,
         ease: "hop",
       },
-      "-=0.3",
+      "-=0.15",
     );
   };
 
+  // klavye ile keşif: alan odaklanabilir, enter/space açar
+  const handleFieldKeyDown = (e) => {
+    if (isRevealed) return;
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      revealContent();
+      // perde kapanınca odak kaybolmasın: reset butonuna taşı
+      requestAnimationFrame(() => {
+        contentRef.current
+          ?.querySelector("button")
+          ?.focus({ preventScroll: true });
+      });
+    }
+  };
+
   return (
-    <div className={styles.card}>
-      <div ref={contentRef} className={styles.cardContent}>
-        <AnimatedSplit
-          key={content.title}
-          text={content.title}
-          className={styles.cardTitle}
-          tagName="span"
-          stagger={0.03}
-          duration={1.5}
-          start="top 80%"
-        />
-        <AnimatedSplit
-          key={content.description}
-          text={content.description}
-          className={styles.cardDescription}
-          tagName="span"
-          stagger={0.03}
-          duration={1.5}
-          start="top 80%"
-        />
-        <button onClick={resetCard} className={styles.resetButton}>
-          {t("discover.reset")}
-        </button>
+    <article ref={cardRef} className={styles.card} style={{ "--accent": asset.color }}>
+      <header className={styles.meta}>
+        <span className={styles.metaDot} aria-hidden="true">
+          ●
+        </span>
+        <span className={styles.metaLabel}>
+          {t("discover.discovery")} {String(index + 1).padStart(2, "0")}
+        </span>
+      </header>
+
+      <div className={styles.rule} aria-hidden="true">
+        <span ref={ruleRef} className={styles.ruleAccent} />
       </div>
 
-      <div ref={curtainRef} className={styles.curtain}>
-        <div className={styles.curtainInner}>
-          <div className={styles.instructionHeader}>
-            <AnimatedSplit
-              key={`${t("discover.discovery")}-${index}`}
-              text={`${t("discover.discovery")} #${index + 1}`}
-              className={styles.discoveryNumber}
-              tagName="span"
-              stagger={0.03}
-              duration={1.5}
-              start="top 80%"
-            />
-            <AnimatedSplit
-              key={content.instruction}
-              text={content.instruction}
-              className={styles.instruction}
-              tagName="span"
-              stagger={0.03}
-              duration={1.5}
-              start="top 80%"
+      <div className={styles.stage}>
+        <div ref={curtainRef} className={styles.curtain}>
+          <AnimatedSplit
+            key={content.instruction}
+            text={content.instruction}
+            className={styles.instruction}
+            tagName="span"
+            stagger={0.03}
+            duration={1.5}
+            start="top 80%"
+          />
+          <div
+            className={styles.field}
+            role="button"
+            tabIndex={isRevealed ? -1 : 0}
+            aria-label={content.instruction}
+            onKeyDown={handleFieldKeyDown}
+            onMouseEnter={() => !isRevealed && cursor?.show(t("discover.cursor"))}
+            onMouseLeave={() => cursor?.hide()}
+          >
+            <canvas
+              ref={canvasRef}
+              onMouseDown={startDrawing}
+              onMouseMove={draw}
+              onMouseUp={stopDrawing}
+              onMouseLeave={stopDrawing}
+              onTouchStart={startDrawing}
+              onTouchMove={draw}
+              onTouchEnd={stopDrawing}
+              className={styles.canvas}
             />
           </div>
-          <canvas
-            ref={canvasRef}
-            onMouseDown={startDrawing}
-            onMouseMove={draw}
-            onMouseUp={stopDrawing}
-            onMouseLeave={stopDrawing}
-            onTouchStart={startDrawing}
-            onTouchMove={draw}
-            onTouchEnd={stopDrawing}
-            className={`${styles.canvas} ${isRevealed ? styles.canvasRevealed : ""}`}
+        </div>
+
+        <div ref={contentRef} className={styles.content}>
+          <h3 className={styles.cardTitle}>{content.title}</h3>
+          <p className={styles.cardDescription}>{content.description}</p>
+          <PrimerButton
+            onClick={resetCard}
+            buttonText={t("discover.reset")}
+            backgroundColor={asset.color}
+            color="var(--wb50)"
           />
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 
@@ -320,8 +465,43 @@ export default function DiscoverMe() {
   const { t } = useTranslation();
   const translatedCards = t("discover.cards", { returnObjects: true });
 
+  const cursorRef = useRef(null);
+  const xTo = useRef(null);
+  const yTo = useRef(null);
+
+  useEffect(() => {
+    if (!finePointer()) return;
+    xTo.current = gsap.quickTo(cursorRef.current, "x", {
+      duration: 0.1,
+      ease: "power3",
+    });
+    yTo.current = gsap.quickTo(cursorRef.current, "y", {
+      duration: 0.1,
+      ease: "power3",
+    });
+  }, []);
+
+  const handleMouseMove = (e) => {
+    if (xTo.current && yTo.current) {
+      xTo.current(e.clientX);
+      yTo.current(e.clientY);
+    }
+  };
+
+  const cursor = {
+    show: (label) => {
+      if (!finePointer() || !cursorRef.current) return;
+      cursorRef.current.textContent = `● ${label}`;
+      gsap.to(cursorRef.current, { scale: 1, duration: 0.25, ease: "hop" });
+    },
+    hide: () => {
+      if (!finePointer() || !cursorRef.current) return;
+      gsap.to(cursorRef.current, { scale: 0, duration: 0.25, ease: "hop" });
+    },
+  };
+
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onMouseMove={handleMouseMove}>
       <div className={styles.header}>
         <AnimatedSplit
           key={t("discover.title")}
@@ -349,9 +529,17 @@ export default function DiscoverMe() {
             asset={asset}
             content={translatedCards[index] || {}}
             index={index}
+            cursor={cursor}
           />
         ))}
       </div>
+      <span
+        ref={cursorRef}
+        className={styles.customCursor}
+        style={{ top: 0, left: 0, transform: "translate(-50%, -50%) scale(0)" }}
+      >
+        ●
+      </span>
     </div>
   );
 }

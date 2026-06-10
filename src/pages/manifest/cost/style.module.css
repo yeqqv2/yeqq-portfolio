@@ -84,9 +84,10 @@
 }
 
 .manifesto_block h4 {
-  font-size: 1.25em;
-  font-weight: 400;
+  font-size: 0.875em;
+  font-weight: 200;
   color: var(--wb950);
+  opacity: 0.5;
 }
 
 .manifesto_block p {

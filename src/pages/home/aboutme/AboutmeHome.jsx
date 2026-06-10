@@ -64,14 +64,14 @@ const AboutmeHome = () => {
 
   return (
     <div className={styles.container}>
-      <main
+      <div
         key={i18n.language}
         ref={textRef}
         className={styles.main}
         data-animate
       >
         {t("aboutHome.mainText")}
-      </main>
+      </div>
 
       <footer ref={footerRef} className={styles.footer}>
         <PrimerLink

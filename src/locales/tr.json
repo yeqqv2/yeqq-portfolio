@@ -21,16 +21,16 @@
     "signature": "yunus emre korkmaz tarafından tasarlandı ve geliştirildi"
   },
   "intro": {
-    "marqueeText": "• MİNİMALİZM • UI UX TASARIM • MÜKEMMELLİYETÇİLİK  • ESTETİK "
+    "marqueeText": "• minimalizm • ui ux tasarım • mükemmelliyetçilik • estetik "
   },
   "welcome": {
     "greeting": "[selam, ben]",
     "name": "[yunus emre korkmaz]",
-    "description": "Modern, amaç odaklı ve hareket temelli dijital deneyimler tasarlıyor ve geliştiriyorum.",
+    "description": "tasarlarım, kod yazarım. derdim; karmaşık olanı sade, sade olanı anlamlı kılmak.",
     "cursor": "● bu da kim?"
   },
   "aboutHome": {
-    "mainText": "Tasarım netliğini mühendislik hassasiyetiyle birleştirerek özenle tasarlanmış dijital ürünler yaratıyorum.",
+    "mainText": "acele etmem. her satırı, her boşluğu, yıllarca kalacakmış gibi bırakırım.",
     "link": "benim hikayem"
   },
   "worksHome": {
@@ -44,37 +44,37 @@
     ]
   },
   "principles": {
-    "title": "[prensipler]",
+    "title": "[ilkeler]",
     "list": [
-      "karmaşıklık yerine netlik",
-      "amaçlı hareket",
-      "tasarım mühendisliği besler",
-      "tutarlılık güven yaratır",
-      "detaylar önemlidir ama akış daha önemlidir"
+      "az söyle, çok anlat",
+      "sadelik, en zor iştir",
+      "her detay bir niyettir",
+      "tutarlılık güven verir",
+      "acele, güzeli bozar"
     ]
   },
   "manifest": {
-    "title": "[ zihinsel_mimari ]",
-    "desc": "arayüzler piksellerden değil, rasyonel kararlardan ve kontrol altına alınmış kaostan oluşur. Burada sadece kod yazmıyorum; olasılıkları acımasızca imha ederek sistemi tek bir mutlak gerçekliğe zorluyorum. Bu, düzenin bedelidir.",
+    "title": "[düşünce]",
+    "desc": "arayüz, piksellerden değil, verilen kararlardan doğar. gereksizi bırakır, geriye yalnız anlamı koyarım.",
     "topics": {
       "aesthetic": {
         "label": "estetik",
-        "text": "güzellik bir süsleme değil, fazlalıkların acımasızca kesilip atılmasıdır. Boşluk, sistemin nefes alması için bırakılan en stratejik mimaridir. Sadece gerekli olan hayatta kalır."
+        "text": "güzellik eklemekle değil, eksiltmekle gelir. geriye yalnız gereken kalsın."
       },
       "entropy": {
         "label": "entropi",
-        "text": "kusursuz bir düzen evrenin doğasına aykırıdır. Bir arayüzü ayakta tutmak, sürekli olarak bozulmaya (bit rot) eğilimli bir yapıya durmaksızın rasyonel enerji enjekte etmektir."
+        "text": "düzen kendiliğinden durmaz, emek ister. elini çektiğin an dağılır."
       },
       "rationality": {
         "label": "rasyonalite",
-        "text": "her rasyonel karar, diğer sonsuz olasılığın öldürülmesidir. Karar vermek özgürlük değil, sistemi kısıtlayarak onu tek bir ihtimale mahkum etme sanatıdır."
+        "text": "bir yolu seçmek, ötekilere veda etmektir. karar vermek, sadeleşmektir."
       }
     },
-    "button": "zihinsel mimariyi incele"
+    "button": "nasıl düşündüğümü oku"
   },
   "contactHome": {
     "header": "birlikte anlamlı bir şeyler inşa edelim.",
-    "subtext": "İş birliklerine, freelance çalışmalara ve ürün odaklı projelere açığım.",
+    "subtext": "kapım açık. iyi bir fikrin ya da çözülecek bir derdin varsa, konuşalım.",
     "link": "iletişime geç",
     "sentences": [
       "eğer istersen",
@@ -84,60 +84,61 @@
       "senin yerin",
       "bir fikrin",
       "mi var?",
-      "hayalini",
-      "gerçeğe dönüştür!",
-      "başla",
-      "projene!"
+      "gel",
+      "konuşalım",
+      "anlamlı bir şey",
+      "kuralım"
     ]
   },
   "heroAbout": {
-    "title": "tasarım odaklı düşünceyi ön uç mühendisliği ile birleştirme.",
-    "content_text_1": "takıntılı üretim.",
-    "content_text_2": "amaçlı bir şekilde tasarım."
+    "title": "tasarımı düşünür, mühendislikle kurarım.",
+    "content_text_1": "takıntıyla üretirim.",
+    "content_text_2": "amaçla tasarlarım."
   },
   "aboutmePage": {
     "title": "[ben kimim]",
-    "bio_1": "ben yunus emre korkmaz — ölçeklenebilir, erişilebilir ve görsel olarak rafine dijital ürünler yaratma deneyimine sahip, hem ön uç geliştirici hem de UI/UX tasarımcısıyım.",
-    "bio_2": "mikro etkileşimlere ve netliğe takıntılıyım, bu yüzden ürünlerim ilk tıklamadan son kaydırmaya kadar zahmetsizce kullanılabiliyor."
+    "bio_1": "ben yunus emre korkmaz. hem ön yüz geliştirici hem tasarımcıyım — ama asıl işim, insanın işini kolaylaştırmak.",
+    "bio_2": "küçük şeylere takılırım: bir boşluk, bir geçiş, bir an. çünkü kolay görünen her şey, aslında çok emek ister."
   },
   "whatIDo": {
     "title": "[ne yapıyorum]",
-    "desc_1": "yapı, amaç ve ifade içeren dijital arayüzler tasarlıyor ve geliştiriyorum.",
-    "desc_2": "çalışmalarım netlik, kullanılabilirlik ve hareket odaklı görsel kimlik üzerine odaklanmaktadır."
+    "desc_1": "arayüz tasarlar, kodunu yazarım. yapısı sağlam, niyeti açık olsun isterim.",
+    "desc_2": "derdim gösteriş değil, anlaşılır olmak. işin doğru çalışması, güzel görünmesinden önce gelir."
   },
   "discover": {
     "title": "[beni keşfet]",
-    "subtitle": "kendini özgürce ifade et. nasıl çalıştığımı ve yaratıcı sürecimi neyin yönlendirdiğini keşfetmek için aşağıdaki şekilleri çiz.",
-    "discovery": "keşfet",
-    "reset": "● tekrar çizmek ister misin?",
+    "subtitle": "aşağıdaki şekilleri çiz; nasıl çalıştığımı sana onlar anlatsın.",
+    "discovery": "keşif",
+    "cursor": "çiz",
+    "reset": "tekrar çizmek ister misin?",
     "cards": [
       {
         "instruction": "bir yapboz parçası çiz",
         "title": "büyük resim",
-        "description": "ben sadece parçaları bir araya getirmekle kalmıyorum; tüm bulmacayı çözüyorum. kullanıcı ihtiyaçları, iş hedefleri ve teknik gerçeklik arasındaki boşluğu dolduruyorum."
+        "description": "parçaları değil, bütünü görmeye çalışırım. kullanıcının ihtiyacı, işin hedefi ve teknik gerçek — üçünü aynı masada buluştururum."
       },
       {
         "instruction": "bir kalem çiz",
         "title": "tasarım mühendisliği",
-        "description": "tasarımcı gözüyle kod yazmak. yaratıcı konseptleri, çeviride netliği kaybetmeden piksel mükemmelliğinde arayüzlere dönüştürüyorum."
+        "description": "tasarımcı gözüyle kod yazarım. fikri, anlamını kaybetmeden piksele dönüştürürüm."
       },
       {
         "instruction": "bir onay işareti çiz",
-        "title": "teslim edildi & sapasağlam",
-        "description": "doğru hissettirene kadar bitmiş sayılmaz. kullanıcıların güvenebileceği erişilebilir, performanslı ve kusursuz deneyimler oluşturma hedefiyle."
+        "title": "sağlam teslim",
+        "description": "doğru hissettirmeden bitmiş saymam. hızlı, erişilebilir ve güvenilir olana kadar uğraşırım."
       }
     ]
   },
   "projects": {
     "header_title": "[işler]",
-    "header_desc": "Geçtiğimiz yıllarda tasarladığım ve geliştirdiğim profesyonel projelerden bir seçki. Belediye platformlarından startup ürünlerine kadar her proje temiz arayüz, erişilebilirlik ve anlamlı etkileşime odaklanır.",
+    "header_desc": "son yıllarda tasarlayıp geliştirdiğim işlerden bir seçki. belediye platformlarından girişim ürünlerine kadar hepsinde aynı derde düştüm: sade bir arayüz, kullananın işini kolaylaştıran bir akış.",
     "filters": {
-      "all": "Hepsi",
-      "municipal": "Belediye",
-      "startup": "Girişim",
-      "dashboard": "Panel / Admin",
-      "uiux": "UI/UX",
-      "webapp": "Web Uygulamaları"
+      "all": "hepsi",
+      "municipal": "belediye",
+      "startup": "girişim",
+      "dashboard": "panel / admin",
+      "uiux": "ui/ux",
+      "webapp": "web uygulamaları"
     },
     "cursor": [
       "incele",
@@ -157,45 +158,94 @@
       "achievements": "[başarılar]",
       "conclusion": "[sonuç]",
       "back": "● işlere geri dön",
-      "not_found": "Proje bulunamadı",
+      "not_found": "proje bulunamadı",
       "back_link": "← işlere geri dön",
       "next_project": "sıradaki proje"
     },
     "defaults": {
-      "role": "UI/UX Tasarımcısı & Geliştirici",
-      "type": "Web Uygulaması",
-      "tech": "React, JavaScript, Figma",
-      "overview": "Gerçek kullanıcılar için tasarlanmış modern, ölçeklenebilir ve erişilebilir arayüzler.",
-      "conclusion": "Bu proje, gerçek kullanıcılar için gerçek dünya sorunlarını çözerken temiz kullanıcı arayüzü ilkelerini, hızlı geliştirme pratiklerini ve modern hareket tasarımını birleştirmemi sağladı."
+      "role": "ui/ux tasarımcısı & geliştirici",
+      "type": "web uygulaması",
+      "tech": "react, javascript, figma",
+      "overview": "gerçek insanların kullanması için tasarlanmış, sade ve anlaşılır arayüzler.",
+      "conclusion": "bu projede derdim sade bir arayüz ve kullananın işini kolaylaştıran bir akıştı. önce doğru çalışsın, sonra iyi görünsün diye uğraştım."
     }
   },
   "manifesto": {
+    "nav": [
+      "beyaz",
+      "gözlemci",
+      "entropi",
+      "ikilik",
+      "seçim",
+      "kayıp",
+      "protokol"
+    ],
+    "read_more": "devamını oku",
+    "article_back": "manifesto",
+    "article_next": "sıradaki",
+    "article_not_found": "kavram bulunamadı",
+    "articles": {
+      "entropy": {
+        "label": "entropi",
+        "title": "düzenin bedeli",
+        "lead": "düzen doğal değildir. düzen, bedeli ödenmiş bir eforttur.",
+        "sections": [
+          {
+            "heading": "zihin bir enerji makinesidir",
+            "body": "karl friston'ın serbest enerji ilkesi basit ama acımasız bir şey söyler: zihin, sürprizi ve belirsizliği en aza indirmek için durmaksızın enerji harcar. beklenmedik her şey bir hatadır ve zihin bu hatayı kapatmak için çalışır. yazdığım sistemler de aynı yasaya tabidir — kararlı kalmak sürekli enerji ister."
+          },
+          {
+            "heading": "kaosa karşı geçici bir savaş",
+            "body": "kusursuz bir kod mimarisi ya da rasyonel bir karar, evrenin doğal kaosuna açılmış geçici bir cephedir. entropi her zaman geri döner; bir arayüzü, bir fikri ya da bir düzeni ayakta tutmak, bozulmaya karşı durmadan enerji enjekte etmek demektir. enerjiyi kestiğin an, sistem doğal —yani dağınık— haline döner."
+          },
+          {
+            "heading": "bedel ödemeye değer mi?",
+            "body": "her düzen bir maliyettir, ama bu maliyet anlamsız değildir. ödediğim bedel; gürültüyü azaltan, kararı netleştiren ve kullanıcının zihnindeki yükü hafifleten bir berraklıktır. estetik dediğimiz şey, çoğu zaman bu bedelin görünür hale gelmiş halidir."
+          }
+        ]
+      }
+    },
     "header": {
-      "title": "[ manifesto ]",
+      "title": "[manifesto]",
       "desc": "arayüzler birer kanvas değil, insan zihnindeki entropiyi sıfırlamak için kurgulanan rasyonel mekanizmalardır. bilgi asimetrisini yok etmek için kod yazar, karar alma süreçlerini optimize etmek için tasarım yaparım. estetik, bu kusursuz mimarinin sadece kaçınılmaz bir yan ürünüdür."
     },
     "white_on_white": {
       "question": "‘beyaz üstüne beyaz’ ne anlama gelir?",
-      "footer": "Tasarımda ışık, formun babasıdır. Gölgeleri saklamak kolaydır, ışığı yönetmek ise ustalık ister. Saf beyaz, bir ekranın en yüksek enerji seviyesidir. Ben enerjiyi saklamıyorum, onu mimariyle dizginliyorum."
+      "footer": "tasarımda ışık, formun babasıdır. gölgeleri saklamak kolaydır, ışığı yönetmek ise ustalık ister. saf beyaz, bir ekranın en yüksek enerji seviyesidir. ben enerjiyi saklamıyorum, onu mimariyle dizginliyorum."
     },
     "dichotomy": {
-      "left_title": "[ sol beyin ]",
+      "left_title": "[sol beyin]",
       "left_annotation_title": "rasyonel yarımküre",
-      "left_annotation_desc": "Hesaplar, sınırlar ve mimari. Bir bileşenin yaşam döngüsü kadar kusursuz, entropiye düşman. Duyguyu reddeder, sadece veriyi kabul eder. Karl Friston'ın Serbest Enerji İlkesi burada çalışır: Sürpriz yok, hata yok.",
-      "right_title": "[ sağ beyin ]",
+      "left_annotation_desc": "hesaplar, sınırlar ve mimari. bir bileşenin yaşam döngüsü kadar kusursuz, entropiye düşman. duyguyu reddeder, sadece veriyi kabul eder. karl friston'ın serbest enerji ilkesi burada çalışır: sürpriz yok, hata yok.",
+      "right_title": "[sağ beyin]",
       "right_annotation_title": "duygusal yarımküre",
-      "right_annotation_desc": "Balıkesir'deki derin izolasyon. Satranç tahtasında kaybedilen bir elden sonra gelen o ham öfke. Her gün bedenini anlamsızca harekete geçiren düzensiz motivasyon. Kusurlu, tahmin edilemez ama bir o kadar da insani.",
-      "card_rational": "sistem Günlüğü",
-      "card_emotional": "his Panosu",
-      "action_btn": "çalıştır"
+      "right_annotation_desc": "balıkesir'deki derin izolasyon. satranç tahtasında kaybedilen bir elden sonra gelen o ham öfke. her gün bedenini anlamsızca harekete geçiren düzensiz motivasyon. kusurlu, tahmin edilemez ama bir o kadar da insani.",
+      "card_rational": "sistem günlüğü",
+      "card_emotional": "his panosu",
+      "action_btn": "çalıştır",
+      "log_lines": [
+        "> entropi taranıyor",
+        "> sürpriz: 0.00",
+        "> sapma reddedildi",
+        "> bellek: optimize",
+        "durum: kararlı"
+      ],
+      "mood_words": [
+        "ham öfke",
+        "izolasyon",
+        "kaybedilen el",
+        "düzensiz dürtü",
+        "sezgi",
+        "tahmin edilemez"
+      ]
     },
     "cost_of_order": {
       "btn_label": "enerji uygula",
-      "title": "[ zihnin entropisi ]",
-      "desc": "Karl Friston haklıydı. Zihin, sürprizi ve entropiyi en aza indirmek için sürekli enerji harcayan bir makinedir. Tıpkı yazdığım sistemler gibi. Düzen doğal değildir. Düzen, bedeli ödenmiş bir efordur. Kusursuz bir kod mimarisi veya rasyonel bir karar, evrenin doğal kaosuna karşı açılmış geçici bir savaştır. Enerjiyi kestiğin an, sistem doğal haline döner."
+      "title": "[zihnin entropisi]",
+      "desc": "karl friston haklıydı. zihin, sürprizi ve entropiyi en aza indirmek için sürekli enerji harcayan bir makinedir. tıpkı yazdığım sistemler gibi. düzen doğal değildir. düzen, bedeli ödenmiş bir efordur. kusursuz bir kod mimarisi veya rasyonel bir karar, evrenin doğal kaosuna karşı açılmış geçici bir savaştır. enerjiyi kestiğin an, sistem doğal haline döner."
     },
     "observer": {
-      "title": "[ gözlemcinin tiranlığı ]",
+      "title": "[gözlemcinin tiranlığı]",
       "desc": "sistem, ben ona bakmadığım sürece tüm hataları ve tüm doğruları aynı anda barındırır. gerçeklik, rasyonel bir gözlemcinin dikkatiyle budanmış bir olasılıklar yığınıdır. ben kod yazmıyorum; ben ihtimalleri tek bir rasyonel çıktıya zorluyorum.",
       "lines": [
         "gerçeklik sadece bir varsayımdır.",
@@ -205,15 +255,15 @@
       ]
     },
     "choice": {
-      "title": "[ evet'in yerçekimi ]",
+      "title": "[evet'in yerçekimi]",
       "desc": "rasyonellik, özgürlük değil bir kısıtlama biçimidir. bir yolu seçmek, diğer tüm yolları imha etmektir. seçim, rasyonel bir kütledir; taşınması efor ister.",
       "button": "bir karar ver"
     },
     "asymmetry": {
-      "title": "[ kayıp asimetrisi ]",
+      "title": "[kayıp asimetrisi]",
       "desc": "daniel kahneman haklıydı. zihin, kazanımın hazzından çok kaybın travmasına programlanmıştır. bir mimaride yeni bir yapı inşa etmek sadece zaman alır; var olanı yıkmak ise tüm sistemin yerçekimiyle yüzleşmesidir. kaybetmek, kazanmanın zıttı değil, mutasyonudur.",
-      "build": "[ + inşa et ]",
-      "destruct": "[ - imha et ]",
+      "build": "[+ inşa et]",
+      "destruct": "[- imha et]",
       "concepts": [
         "rasyonalite",
         "mimari",
@@ -227,14 +277,13 @@
       ]
     },
     "protocol": {
-      "title": "[ protocol_00: tokalaşma ]",
-      "desc": "Zihnimin mimarisini ve bir sistemi inşa ederken ödediğim bedelleri gördünüz. Düzen doğal değildir; sadece acımasız bir rasyonalite ile ayakta tutulabilir. Eğer projeniz bu seviyede bir ciddiyet ve yapısal efor gerektiriyorsa, iletişim kanalını açın. Aksi takdirde, sistemi terk edebilirsiniz.",
-      "connect": "bağlantı kur",
-      "exit": "sistemi terk et"
+      "title": "[protocol_00: tokalaşma]",
+      "desc": "zihnimin mimarisini ve bir düzeni ayakta tutmanın bedelini gördün. aklında böyle bir özenle kurulacak bir iş varsa, konuşalım.",
+      "connect": "bağlantı kur"
     }
   },
   "contactPage": {
-    "header": "[online görüşme,bana yazın]",
+    "header": "[online görüşme, bana yazın]",
     "sidebar_title": "online bir görüşme ayarlamak veya sorularınızı sormak için lütfen benimle iletişime geçin.",
     "footer_contact": "[iletişim]",
     "footer_connect": "[bağlan]"
@@ -253,7 +302,7 @@
       "company": "apple computer, inc.",
       "email": "ornek@mail.com",
       "phone": "+90 555 555 55 55",
-      "subject": "web uygulaması, mobil uygulama, UI/UX tasarım",
+      "subject": "web uygulaması, mobil uygulama, ui/ux tasarım",
       "message": "istediğiniz her şeyi yazın."
     },
     "button": {
@@ -261,9 +310,9 @@
       "loading": "● gönderiliyor"
     },
     "errors": {
-      "required": "Bu alan zorunludur.",
-      "emailInvalid": "Geçerli bir e-posta adresi giriniz.",
-      "phoneIncomplete": "Telefon numarası eksik veya hatalı."
+      "required": "bu alan zorunludur.",
+      "emailInvalid": "geçerli bir e-posta adresi giriniz.",
+      "phoneIncomplete": "telefon numarası eksik veya hatalı."
     }
   },
   "successBox": {

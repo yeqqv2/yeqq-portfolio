@@ -33,53 +33,30 @@ const ContactHomePage = () => {
 
   const minimumDistance = 50;
 
-  const handleMouseMove = useCallback(
-    throttle((e) => {
+  // Tek bir kelimeyi verilen ekran konumunda (clientX/Y) patlat.
+  const spawnWord = useCallback(
+    (clientX, clientY) => {
       const context = contextRef.current;
       const container = containerRef.current;
-      if (
-        !context ||
-        !container ||
-        !sentencesData ||
-        sentencesData.length === 0
-      )
+      if (!context || !container || !sentencesData || sentencesData.length === 0)
         return;
 
       const rect = context.getBoundingClientRect();
-      let x = e.clientX - rect.left;
-      let y = e.clientY - rect.top;
+      const x = clientX - rect.left + (Math.random() * 4 - 2);
+      const y = clientY - rect.top + (Math.random() * 4 - 2);
 
-      x += Math.random() * 4 - 2;
-      y += Math.random() * 4 - 2;
-
-      if (lastSpawnRef.current) {
-        const dx = x - lastSpawnRef.current.x;
-        const dy = y - lastSpawnRef.current.y;
-        const distance = Math.hypot(dx, dy);
-        if (distance < minimumDistance) {
-          return;
-        }
-      }
-
-      // Kelime ve stil indekslerini güncelle
-      if (wordIndexRef.current >= sentencesData.length)
-        wordIndexRef.current = 0;
+      if (wordIndexRef.current >= sentencesData.length) wordIndexRef.current = 0;
       const word = sentencesData[wordIndexRef.current];
       wordIndexRef.current += 1;
 
-      if (styleIndexRef.current >= stylesArray.length)
-        styleIndexRef.current = 0;
+      if (styleIndexRef.current >= stylesArray.length) styleIndexRef.current = 0;
       const styleClass = stylesArray[styleIndexRef.current];
       styleIndexRef.current += 1;
 
-      lastSpawnRef.current = { x, y };
-
-      // 1. VANILLA JS İLE ELEMENT YARAT (React'i bypass ediyoruz)
+      // Her kelime için React render etmemek adına DOM'a doğrudan yazıyoruz.
       const span = document.createElement("span");
       span.textContent = word;
-      span.className = styleClass; // CSS module sınıfını ekle
-
-      // Inline stilleri ekle
+      span.className = styleClass;
       Object.assign(span.style, {
         position: "absolute",
         left: `${x}px`,
@@ -89,11 +66,8 @@ const ContactHomePage = () => {
         zIndex: 9999,
         willChange: "transform",
       });
-
-      // Container içine yerleştir
       container.appendChild(span);
 
-      // 2. GSAP İLE ANİMASYON (Animasyon bitince elementi DOM'dan sil)
       gsap.fromTo(
         span,
         { scale: 0 },
@@ -110,16 +84,39 @@ const ContactHomePage = () => {
               ease: "expo.in",
               delay: 0.25,
               force3D: true,
-              onComplete: () => {
-                // Animasyon tamamen bitince DOM'dan uçur
-                span.remove();
-              },
+              onComplete: () => span.remove(),
             });
           },
         },
       );
-    }, 30), // Throttle süresini hafifçe 30ms'ye çektim, performans için daha sağlıklı
+    },
     [sentencesData],
+  );
+
+  // İmleç/parmak takibi: hareket ettikçe iz bırak (mouse hover + touch drag).
+  const handlePointerMove = useCallback(
+    throttle((e) => {
+      const last = lastSpawnRef.current;
+      if (last) {
+        const distance = Math.hypot(e.clientX - last.x, e.clientY - last.y);
+        if (distance < minimumDistance) return;
+      }
+      lastSpawnRef.current = { x: e.clientX, y: e.clientY };
+      spawnWord(e.clientX, e.clientY);
+    }, 30),
+    [spawnWord],
+  );
+
+  // Dokunma/tıklama: mobilde "takip" yokken tek noktada küçük bir demet patlat.
+  const handlePointerDown = useCallback(
+    (e) => {
+      lastSpawnRef.current = { x: e.clientX, y: e.clientY };
+      const burst = e.pointerType === "touch" ? 3 : 1;
+      for (let i = 0; i < burst; i++) {
+        spawnWord(e.clientX + (Math.random() * 50 - 25), e.clientY + (Math.random() * 50 - 25));
+      }
+    },
+    [spawnWord],
   );
 
   return (
@@ -127,7 +124,8 @@ const ContactHomePage = () => {
       <div
         className={styles.context}
         ref={contextRef}
-        onMouseMove={handleMouseMove}
+        onPointerMove={handlePointerMove}
+        onPointerDown={handlePointerDown}
       >
         <div className={styles.context_div}>
           <div className={styles.context_header}>

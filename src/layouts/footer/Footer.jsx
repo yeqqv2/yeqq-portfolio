@@ -13,7 +13,7 @@ const Footer = () => {
       <div className={styles.content}>
         <header className={styles.logo}>[ yeqq ]</header>
         <section className={styles.links_container}>
-          <main className={styles.links}>
+          <div className={styles.links}>
             <div className={styles.links_header}>
               {t("footer.links_header")}
             </div>
@@ -24,45 +24,49 @@ const Footer = () => {
               <Link className={styles.link} to="/about-me">
                 {t("footer.about")}
               </Link>
+              {/* manifesto şimdilik gizli — sonra geri açılacak
               <Link className={styles.link} to="/manifest">
                 {t("footer.manifest")}
-              </Link>
+              </Link> */}
               <Link className={styles.link} to="/projects">
                 {t("footer.projects")}
               </Link>
             </div>
-          </main>
+          </div>
 
-          <main className={styles.links}>
+          <div className={styles.links}>
             <div className={styles.links_header}>
               {t("footer.connect_header")}
             </div>
             <div className={styles.links_content}>
               <a
                 className={styles.link}
-                target="__blank"
+                target="_blank"
+                rel="noopener noreferrer"
                 href="https://www.instagram.com/1yunusewre"
               >
                 instagram
               </a>
               <a
                 className={styles.link}
-                target="__blank"
+                target="_blank"
+                rel="noopener noreferrer"
                 href="https://github.com/yeqqv2"
               >
                 github
               </a>
               <a
                 className={styles.link}
-                target="__blank"
+                target="_blank"
+                rel="noopener noreferrer"
                 href="https://tr.linkedin.com/in/yeqq"
               >
                 linkedin
               </a>
             </div>
-          </main>
+          </div>
 
-          <main className={styles.links}>
+          <div className={styles.links}>
             <div className={styles.links_header}>
               {t("footer.contact_header")}
             </div>
@@ -71,12 +75,12 @@ const Footer = () => {
                 {t("footer.contact_btn")}
               </Link>
             </div>
-          </main>
+          </div>
         </section>
       </div>
       <hr />
       <footer className={styles.footer}>
-        {t("footer.signature")}© {new Date().getFullYear()}
+        {t("footer.signature")} © {new Date().getFullYear()}
       </footer>
     </div>
   );

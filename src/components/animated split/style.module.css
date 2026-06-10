@@ -12,7 +12,10 @@
 .animatedText > div,
 .animatedText > div > div,
 .animatedText > div > span,
-.animatedText > span > div {
+.animatedText > span > div,
+.animatedText > p,
+.animatedText > p > span,
+.animatedText > p > p {
   display: inline-block;
   overflow: hidden; /* kelime animasyonu için maskeler */
   vertical-align: middle;

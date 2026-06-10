@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   position: relative;
-  rotate: -10deg;
+  rotate: 10deg;
 }
 
 .circle {

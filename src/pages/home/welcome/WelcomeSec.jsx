@@ -123,7 +123,6 @@ const WelcomeSec = () => {
                     className={styles.img}
                     src="/assets/yunus-emre-korkmaz/6.webp"
                     alt="Yunus Emre Korkmaz"
-                    aria-hidden="true"
                     loading="lazy"
                     decoding="async"
                 />

@@ -44,16 +44,22 @@
 .action_btn {
   background: transparent;
   border: none;
-  font-family: var(--font-mono);
   font-size: 1em;
+  font-weight: 300;
   color: var(--wb950);
   cursor: pointer;
   text-align: left;
-  transition: opacity 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.16s ease-out;
 }
 
 .action_btn:hover {
   opacity: 0.5;
+}
+
+.action_btn:active {
+  transform: scale(0.97);
 }
 
 .annotation {
@@ -69,9 +75,10 @@
 }
 
 .annotation h4 {
-  font-size: 1.25em;
-  font-weight: 400;
+  font-size: 0.875em;
+  font-weight: 200;
   color: var(--wb950);
+  opacity: 0.5;
 }
 
 .annotation p {

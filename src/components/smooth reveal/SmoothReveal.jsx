@@ -1,8 +1,10 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { CustomEase } from "gsap/all";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, CustomEase);
+CustomEase.create("hop", "0.9, 0, 0.1, 1");
 
 export default function SolidReveal({ children }) {
   const sectionRef = useRef(null);
@@ -12,24 +14,21 @@ export default function SolidReveal({ children }) {
     if (!el) return;
 
     let ctx = gsap.context(() => {
-      // Opacity YOK. Bileşen en başından beri %100 solid (katı).
-      // Ancak "clip-path" ile bileşeni fiziksel olarak en tepesinden en altına kadar "kesiyoruz" (maskeliyoruz).
-      // y: 150 ile de bileşeni fiziksel olarak aşağı itiyoruz.
-      gsap.set(el, { 
-        y: 150, 
-        clipPath: "inset(100% 0% 0% 0%)" // Tamamen kapalı bir maske
+      gsap.set(el, {
+        y: 150,
+        clipPath: "inset(100% 0% 0% 0%)",
       });
 
       ScrollTrigger.create({
         trigger: el,
-        start: "top 85%", 
+        start: "top 85%",
         animation: gsap.to(el, {
           y: 0,
-          clipPath: "inset(0% 0% 0% 0%)", // Maske yukarı doğru jilet gibi açılır
+          clipPath: "inset(0% 0% 0% 0%)",
           duration: 1.2,
-          ease: "expo.out", // Yağ gibi kayıp yerine sertçe oturan ivme
+          ease: "hop",
         }),
-        toggleActions: "play none none reverse", 
+        toggleActions: "play none none reverse",
       });
     });
 
@@ -37,7 +36,10 @@ export default function SolidReveal({ children }) {
   }, []);
 
   return (
-    <div ref={sectionRef} style={{ width: "100%", willChange: "transform, clip-path" }}>
+    <div
+      ref={sectionRef}
+      style={{ width: "100%", willChange: "transform, clip-path" }}
+    >
       {children}
     </div>
   );

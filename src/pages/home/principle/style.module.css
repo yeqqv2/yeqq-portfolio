@@ -1,6 +1,6 @@
 .container {
   /* Sabit height yerine min-height kullanmak her zaman daha güvenlidir */
-  min-height: 70vh; 
+  min-height: 50vh; 
   width: 100vw;
   display: flex;
   align-items: center;

@@ -8,12 +8,27 @@ import PrimerButton from "@/ui/button/PrimerButton";
 gsap.registerPlugin(CustomEase);
 const hop = CustomEase.create("hop", "0.9, 0, 0.1, 1");
 
+const reduceMotion = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 export default function WeightOfChoice() {
   const { t } = useTranslation();
   const shapesRef = useRef([]);
   const decisionRef = useRef(null);
 
   const applyDecision = () => {
+    if (reduceMotion()) {
+      gsap.set(decisionRef.current, {
+        width: "10vw",
+        height: "10vw",
+        rotate: 0,
+        backgroundColor: "var(--wb950)",
+      });
+      gsap.set(shapesRef.current, { height: 0 });
+      return;
+    }
+
     const tl = gsap.timeline();
 
     tl.to(

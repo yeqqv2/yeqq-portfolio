@@ -1,23 +1,348 @@
 .container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
-  width: 100vw;
+  padding: 10vh 0;
+}
+
+/* BRAIN CONTAINERS */
+
+.left_brain,
+.right_brain {
+  flex: 1;
+  aspect-ratio: 1;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.right_brain {
+  justify-content: flex-end;
+}
+
+.brain_content {
+  width: 75%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 20vh;
-  padding: 10vh 1vw;
+  padding: 5vw;
 }
 
-.content{
-  height: 20vh;
+.right_brain .brain_content {
+  align-items: flex-end;
+}
+
+.annotation {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1em;
+}
+
+.right_brain .brain_content .annotation {
+  align-items: flex-end;
+  text-align: end;
+}
+
+.annotation_title {
+  line-height: 1em;
+  font-size: 1em;
+  font-weight: 300;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  cursor: pointer;
+  color: var(--wb950);
+}
+
+.annotation_desc {
+  font-size: 0.925em;
+  line-height: 1.1;
+  font-weight: 200;
+  color: var(--wb500);
+}
+
+/* TOGGLE BUTTON */
+
+.toggle_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5vh;
+}
+
+.toggle_title {
+  font-size: 0.875em;
+  font-weight: 200;
+  opacity: 0.5;
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* düz anahtar: hairline çerçeve, kayan beyaz yüzey — gölgesiz */
+.toggle {
+  isolation: isolate;
+  position: relative;
+  height: 30px;
+  width: 60px;
+  border-radius: 15px;
+  overflow: hidden;
+  border: 1px solid var(--wb200);
+  background-color: var(--wb100);
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.toggle_state {
+  display: none;
+}
+
+.indicator {
+  height: 100%;
+  width: 200%;
+  background: #fff;
+  border-radius: 15px;
+  transform: translate3d(-75%, 0, 0);
+  transition: transform 0.4s cubic-bezier(0.85, 0.05, 0.18, 1.35);
+}
+
+.toggle_state:checked ~ .indicator {
+  transform: translate3d(25%, 0, 0);
+}
+
+.toggle:has(.toggle_state:checked) {
+  background-color: var(--green300);
+  border-color: var(--green400);
+}
+
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 25vw;
+  min-width: 300px;
+  padding: 3em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  z-index: 10;
+  background-color: var(--wb50);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card_header h2 {
+  font-size: 2em;
+  margin: 0;
+  transition: all 0.6s ease;
+}
+
+.card_body {
   width: 100%;
-  background-color: red;
+  min-height: 7.5em;
+  display: flex;
+  align-items: flex-start;
 }
 
-.choise {
-  aspect-ratio: 16/9;
-  width: 30vw;
-  z-index: 0;
-  background-color: var(--wb950);
+/* RASYONEL: SİSTEM GÜNLÜĞÜ (sıralı, keskin, B&W) */
+.log {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35em;
+  padding: 0.75em 0;
+  border-top: 1px solid var(--wb950);
+  border-bottom: 1px solid var(--wb950);
+}
+
+.log_line {
+  font-size: 0.8em;
+  line-height: 1.4;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--wb950);
+  white-space: nowrap;
+}
+
+.log_line:last-child {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* DUYGUSAL: HİS PANOSU (dağınık, renkli, yumuşak) */
+.mood {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  align-content: flex-start;
+}
+
+.mood_chip {
+  padding: 0.375em 0.75em;
+  border-radius: 999px;
+  font-size: 0.8em;
+  font-weight: 300;
+  line-height: 1.2;
+  color: var(--wb50);
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.mood_chip:nth-child(6n + 1) {
+  background-color: var(--blue400);
+}
+.mood_chip:nth-child(6n + 2) {
+  background-color: var(--green400);
+}
+.mood_chip:nth-child(6n + 3) {
+  background-color: var(--main-color500);
+  color: var(--wb950);
+}
+.mood_chip:nth-child(6n + 4) {
+  background-color: var(--orange400);
+}
+.mood_chip:nth-child(6n + 5) {
+  background-color: var(--red400);
+}
+.mood_chip:nth-child(6n + 6) {
+  background-color: var(--purple400);
+}
+
+.action_btn {
+  transition: all 0.6s ease;
+}
+
+/* =========================================
+   SOL BEYİN (RASYONEL - .rational)
+   ========================================= */
+.rational {
+  border: 1px solid var(--wb950);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.rational .card_header h2 {
+  font-size: 1.5em;
+  color: var(--wb950);
+}
+
+.rational .action_btn {
+  background-color: transparent;
+  color: var(--wb950);
+  border: 1px solid var(--wb950);
+  border-radius: 0;
+  padding: 0.375em 0.5em 0.375em 0.5em;
+}
+
+/* =========================================
+SAĞ BEYİN (DUYGUSAL - .emotional)
+========================================= */
+.emotional {
+  border: 1px solid transparent;
+  border-radius: 2em;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.emotional .card_header h2 {
+  font-size: 1.5em;
+  color: var(--blue500);
+  letter-spacing: -0.02em;
+  font-weight: 200;
+  text-transform: lowercase;
+}
+
+.emotional .action_btn {
+  padding: 0.375em 0.5em 0.375em 0.5em;
+  border-radius: 0.25em;
+  position: relative;
+  line-height: 1em;
+  font-size: 1em;
+  font-weight: 300;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  cursor: pointer;
+  background-color: var(--blue400);
+  color: var(--wb50);
+}
+
+.emotional .action_btn::before {
+  content: "●";
+}
+
+@media screen and (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .left_brain,
+  .right_brain {
+    aspect-ratio: 16/9;
+  }
+
+  .brain_content {
+    flex-direction: row;
+    width: 100%;
+    gap: 20vw;
+  }
+
+  .annotation,
+  .toggle_container {
+    flex: 1;
+    position: relative;
+    z-index: 9;
+  }
+
+  .annotation {
+    align-items: flex-end;
+    text-align: end;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .left_brain,
+  .right_brain {
+    aspect-ratio: auto;
+  }
+
+  .brain_content {
+    flex-direction: column;
+    gap: 5vh;
+  }
+
+  .left_brain .brain_content {
+    padding-bottom: 30vh;
+  }
+
+  .right_brain .brain_content {
+    padding-top: 30vh;
+  }
+
+  .annotation {
+    align-items: flex-start !important;
+    text-align: start !important;
+  }
+
+  .toggle_container {
+    width: 100%;
+    flex-direction: row;
+    padding-bottom: 5vh;
+    border-bottom: 1px solid var(--wb100);
+  }
 }

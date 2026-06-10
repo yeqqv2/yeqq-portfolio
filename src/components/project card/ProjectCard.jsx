@@ -1,15 +1,12 @@
 import { useRef, useEffect } from "react";
 import styles from "./style.module.css";
-import { storageBaseUrl } from "@/utils/supabase";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CustomEase } from "gsap/CustomEase";
 
 gsap.registerPlugin(CustomEase, ScrollTrigger);
 
-if (!gsap.parseEase("hop")) {
-  CustomEase.create("hop", "0.9, 0, 0.1, 1");
-}
+CustomEase.create("hop", "0.25, 0.1, 0.25, 1");
 
 const ProjectCard = ({
   work,
@@ -36,8 +33,7 @@ const ProjectCard = ({
           delay: index * 0.1,
           scrollTrigger: {
             trigger: cardRef.current,
-            start: "top 80%",
-            end: "top 50%",
+            start: "top 50%",
             toggleActions: "play none none none",
           },
         },
@@ -47,12 +43,11 @@ const ProjectCard = ({
     return () => ctx.revert();
   }, [index]);
 
-  // EKSİK OLAN SATIR BURASI: return bloğundan hemen önce tanımlanmalıdır.
   const isPriority = index < 2;
 
   return (
     <a
-      href={`/projects/${work.slug}`}
+      href={work.link}
       className={className || styles.work}
       ref={cardRef}
       onMouseMove={onMouseMove}
@@ -62,9 +57,13 @@ const ProjectCard = ({
     >
       <div className={styles.work_img} ref={imgRef}>
         <img
-          src={`${storageBaseUrl}${work.banner_url}`}
+          src={`/assets/banners/${work.banner}-800.webp`}
+          srcSet={`/assets/banners/${work.banner}-400.webp 400w, /assets/banners/${work.banner}-800.webp 800w, /assets/banners/${work.banner}-1200.webp 1200w, /assets/banners/${work.banner}-1600.webp 1600w`}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           alt={work.project_name}
           className={styles.img}
+          width="800"
+          height="450"
           fetchpriority={isPriority ? "high" : "auto"}
           loading={isPriority ? "eager" : "lazy"}
           decoding="async"

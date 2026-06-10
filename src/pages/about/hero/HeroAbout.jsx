@@ -16,8 +16,8 @@ export default function HeroAbout() {
 
   const workImages = [
     "/assets/yunus-emre-korkmaz/1.webp",
-    "/assets/yunus-emre-korkmaz/15.webp",
     "/assets/yunus-emre-korkmaz/13.webp",
+    "/assets/yunus-emre-korkmaz/21.webp",
   ];
 
   useEffect(() => {
@@ -82,7 +82,6 @@ export default function HeroAbout() {
         <div className={styles.desc}>
           <div className={styles.text_and_imgs}>
             <div className={styles.content_desc_text}>
-              {/* SplitType hayaleti silindi, metinleri AnimatedSplit sorunsuzca çözer */}
               <AnimatedSplit
                 key={`${i18n.language}-hero-desc-1`}
                 text={t("heroAbout.content_text_1")}
@@ -108,10 +107,10 @@ export default function HeroAbout() {
                 <div key={idx} className={styles.work_item}>
                   <img
                     src={src}
-                    alt={`work-${idx + 1}`}
+                    alt=""
                     className={styles.work_img}
                     aria-hidden="true"
-                    loading={idx === 0 ? "eager" : "lazy"} // Optimizasyon
+                    loading={idx === 0 ? "eager" : "lazy"}
                     decoding="async"
                   />
                 </div>

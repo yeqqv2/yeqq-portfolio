@@ -46,18 +46,6 @@
   z-index: 10;
 }
 
-.decision_btn {
-  position: absolute;
-  bottom: 10vh;
-  background: transparent;
-  border: none;
-  color: var(--wb950);
-  font-size: 1em;
-  font-family: var(--font-mono);
-  cursor: pointer;
-  z-index: 20;
-}
-
 .annotation {
   position: absolute;
   top: 5vh;
@@ -72,9 +60,10 @@
 }
 
 .annotation h4 {
-  font-size: 1.25em;
-  font-weight: 400;
+  font-size: 0.875em;
+  font-weight: 200;
   color: var(--wb950);
+  opacity: 0.5;
 }
 
 .annotation p {

@@ -1,26 +1,5 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./style.module.css";
-import { Fingerprint, Activity, Lock } from "lucide-react";
-
-{/* <div
-  style={{
-    height: "60vh",
-    width: "20vw",
-    overflow: "hidden",
-    borderRadius: "1em",
-  }}
->
-  <ReflectiveCard
-    blurStrength={1}
-    glassDistortion={30}
-    metalness={0.5}
-    roughness={0.5}
-    displacementStrength={1}
-    noiseScale={5}
-    specularConstant={5}
-    grayscale={0.15}
-  />
-</div> */}
 
 const ReflectiveCard = ({
   blurStrength = 12,
@@ -37,20 +16,22 @@ const ReflectiveCard = ({
   style = {},
 }) => {
   const videoRef = useRef(null);
+  const [consented, setConsented] = useState(false);
+  const streamRef = useRef(null);
 
   useEffect(() => {
-    let stream = null;
+    if (!consented) return;
 
     const startWebcam = async () => {
       try {
-        stream = await navigator.mediaDevices.getUserMedia({
+        const stream = await navigator.mediaDevices.getUserMedia({
           video: {
             width: { ideal: 640 },
             height: { ideal: 480 },
             facingMode: "user",
           },
         });
-
+        streamRef.current = stream;
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
         }
@@ -62,11 +43,12 @@ const ReflectiveCard = ({
     startWebcam();
 
     return () => {
-      if (stream) {
-        stream.getTracks().forEach((track) => track.stop());
+      if (streamRef.current) {
+        streamRef.current.getTracks().forEach((track) => track.stop());
+        streamRef.current = null;
       }
     };
-  }, []);
+  }, [consented]);
 
   const baseFrequency = 0.03 / Math.max(0.1, noiseScale);
   const saturation = 1 - Math.max(0, Math.min(1, grayscale));
@@ -167,12 +149,27 @@ const ReflectiveCard = ({
         </defs>
       </svg>
 
+      {!consented && (
+        <div className={styles.reflective_consent}>
+          <p className={styles.reflective_consent_text}>
+            ● this mirror needs your camera.
+          </p>
+          <button
+            className={styles.reflective_consent_btn}
+            onClick={() => setConsented(true)}
+          >
+            activate mirror
+          </button>
+        </div>
+      )}
+
       <video
         ref={videoRef}
         autoPlay
         playsInline
         muted
         className={styles.reflective_video}
+        style={{ opacity: consented ? 1 : 0 }}
       />
 
       <div className={styles.reflective_noise} />

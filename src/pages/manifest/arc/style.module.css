@@ -1,5 +1,5 @@
 .container {
-  height: 100vh;
+  height: 100dvh;
   width: 100%;
   display: flex;
   align-items: center;
@@ -13,11 +13,17 @@
   flex: 2;
 }
 
+/* soru, tema gereği zor görünür başlar; dikkatle (hover) belirginleşir */
 .title {
   font-size: 3em;
-  font-weight: 400;
+  font-weight: 300;
   color: var(--wb100);
-  letter-spacing: -0.05em;
+  letter-spacing: -5%;
+  transition: color 0.33s ease;
+}
+
+.header:hover .title {
+  color: var(--wb200);
 }
 
 .main {
@@ -26,6 +32,51 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* ---------------------------------------------------------------- */
+/*  MALEVICH KARESİ — beyaz üstüne beyaz, düz ve hairline            */
+/* ---------------------------------------------------------------- */
+.square {
+  display: block;
+  cursor: pointer;
+}
+
+.squareInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.squareVisual {
+  display: block;
+  width: 12em;
+  aspect-ratio: 1;
+  background-color: #fff;
+  border: 1px solid var(--wb100);
+  transform: rotate(-4deg);
+  transition:
+    border-color 0.5s ease,
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .square:hover .squareVisual {
+    border-color: var(--wb300);
+  }
+}
+
+/* aktive: kaos rasyonelleşir — kare 0°'a oturur, çerçeve netleşir */
+.squareInput:checked + .squareVisual {
+  transform: rotate(0deg);
+  border-color: var(--wb950);
+}
+
+.squareInput:focus-visible + .squareVisual {
+  outline: 2px solid var(--wb950);
+  outline-offset: 3px;
 }
 
 .footer {
@@ -63,11 +114,15 @@
     padding: 10vh 10vw;
   }
 
-  .main{
+  .main {
     flex: 10;
   }
 
   .title {
     font-size: 2.5em;
+  }
+
+  .squareVisual {
+    width: 10em;
   }
 }

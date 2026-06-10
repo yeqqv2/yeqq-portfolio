@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useMemo } from "react";
 import gsap from "gsap";
+import { CustomEase } from "gsap/all";
 
 import { useProjects } from "@/hooks/useProjects";
 import { useProjectCursor } from "@/hooks/useProjectCursor";
@@ -9,6 +10,9 @@ import ProjectSkeleton from "@/animations/project skeleton/ProjectSkeleton";
 
 // Styles
 import styles from "./style.module.css";
+
+gsap.registerPlugin(CustomEase);
+CustomEase.create("hop", "0.9, 0, 0.1, 1");
 
 const WorksHomePage = () => {
   const { t } = useTranslation();
@@ -36,23 +40,36 @@ const WorksHomePage = () => {
   if (isLoading) {
     return (
       <div className={styles.container}>
-        <main className={styles.main}>
+        <div className={styles.main}>
           {Array.from({ length: 6 }).map((_, index) => (
             <ProjectSkeleton key={`skeleton-${index}`} />
           ))}
-        </main>
+        </div>
       </div>
     );
   }
 
-  if (isError) return <div>Hata oluştu: {error.message}</div>;
+  if (isError)
+    return (
+      <div className={styles.container}>
+        <p
+          style={{
+            padding: "4em 1vw",
+            color: "var(--wb500)",
+            fontSize: "0.9em",
+          }}
+        >
+          ● could not load projects — {error.message}
+        </p>
+      </div>
+    );
 
   return (
     <div className={styles.container}>
-      <main className={styles.main}>
+      <div className={styles.main}>
         {lastThreeWorks.map((work, index) => (
           <ProjectCard
-            key={work.id}
+            key={work.link}
             work={work}
             index={index}
             onMouseMove={handleMouseMove}
@@ -61,7 +78,7 @@ const WorksHomePage = () => {
             onTouchStart={handleTouchStart}
           />
         ))}
-      </main>
+      </div>
 
       <span
         ref={cursorRef}

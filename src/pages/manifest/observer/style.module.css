@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  min-height: 80vh;
+  height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,7 +22,6 @@
 .quantum_item {
   cursor: crosshair;
   filter: blur(12px);
-  transition: filter 1.2s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -65,9 +64,10 @@
 }
 
 .annotation h4 {
-  font-size: 1.25em;
-  font-weight: 400;
+  font-size: 0.875em;
+  font-weight: 200;
   color: var(--wb950);
+  opacity: 0.5;
   user-select: none;
 }
 

@@ -2,12 +2,33 @@ import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import gsap from "gsap";
 import styles from "./style.module.css";
+import ReadMore from "@/pages/manifest/shared/ReadMore";
+
+const reduceMotion = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 export default function CostOfOrder() {
   const { t, i18n } = useTranslation();
   const containerRef = useRef(null);
   const dotsRef = useRef([]);
   const totalDots = 100;
+
+  // hareket azaltılmışsa: kaos döngüsü yok, tek seferlik statik saçılım
+  const scatterStatic = () => {
+    dotsRef.current.forEach((dot) => {
+      if (!dot) return;
+      gsap.set(dot, {
+        x: gsap.utils.random(-window.innerWidth * 0.4, window.innerWidth * 0.4),
+        y: gsap.utils.random(
+          -window.innerHeight * 0.4,
+          window.innerHeight * 0.4,
+        ),
+        scale: gsap.utils.random(0.5, 1.5),
+        opacity: gsap.utils.random(0.3, 0.7),
+      });
+    });
+  };
 
   // Rastgele Kaos Fonksiyonu (Entropi)
   const animateChaos = (dot) => {
@@ -65,14 +86,23 @@ export default function CostOfOrder() {
 
   const handleUp = () => {
     containerRef.current?.classList.remove(styles.ordered_bg);
+    if (reduceMotion()) {
+      scatterStatic();
+      return;
+    }
     dotsRef.current.forEach((dot) => animateChaos(dot));
   };
 
   useEffect(() => {
     let ctx = gsap.context(() => {
+      if (reduceMotion()) {
+        scatterStatic();
+        return;
+      }
       dotsRef.current.forEach((dot) => animateChaos(dot));
     }, containerRef);
     return () => ctx.revert();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -102,6 +132,7 @@ export default function CostOfOrder() {
         <div className={styles.manifesto_block} key={i18n.language}>
           <h4>{t("manifesto.cost_of_order.title")}</h4>
           <p>{t("manifesto.cost_of_order.desc")}</p>
+          <ReadMore slug="entropy" />
         </div>
       </div>
     </div>

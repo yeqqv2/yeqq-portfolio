@@ -1,103 +1,163 @@
 .container {
+  width: 98vw;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--wb50);
-  padding: 10vh 1vw;
+  padding: 12vh 2.5vw;
 }
 
+/* tek asimetrik kompozisyon: cümle solda, indeks tam genişlik, aksiyon sağda */
 .context {
+  width: 30vw;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 5vh;
-  width: 30vw;
-  padding: 10vh;
-  border: 1px solid var(--wb950);
+  gap: 6vh;
+  padding-top: 3vh;
 }
 
 .title {
-  font-family: var(--font-mono);
-  font-size: 0.925em;
-  font-weight: 300;
+  font-size: 0.875em;
+  font-weight: 200;
   color: var(--wb950);
-  letter-spacing: -0.02em;
+  opacity: 0.5;
 }
 
 .desc {
-  font-size: 2em;
+  font-size: 1.75em;
+  font-weight: 200;
+  letter-spacing: -5%;
+  color: var(--wb950);
+}
+
+/* ---------------------------------------------------------------- */
+/*  İLKE İNDEKSİ — büyük tipografi, hairline satırlar, akordeon      */
+/* ---------------------------------------------------------------- */
+.index {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--wb100);
+}
+
+.row {
+  width: auto;
+  border-bottom: 1px solid var(--wb100);
+}
+
+.rowButton {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  padding: 0.6em 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: start;
+  color: var(--wb400);
+  transition:
+    color 0.3s ease,
+    padding-left 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .rowButton:not(.rowActive):hover {
+    color: var(--wb800);
+    padding-left: 0.5em;
+  }
+}
+
+.rowIndex {
+  font-size: 0.75em;
   font-weight: 300;
+  width: 3em;
+  opacity: 0.6;
+}
+
+.rowLabel {
+  font-size: 2em;
+  font-weight: 200;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.rowActive {
+  color: var(--wb950);
+}
+
+.rowActive .rowLabel {
+  font-weight: 300;
+}
+
+.rowActive .rowIndex {
+  opacity: 1;
+}
+
+.panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.35s ease;
+}
+
+.panelOpen {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.panelInner {
+  overflow: hidden;
+}
+
+.panelText {
+  padding: 0 0 1.5em 2.25em;
+  max-width: 44ch;
+  font-size: 1em;
+  font-weight: 300;
+  line-height: 1.4;
   color: var(--wb600);
 }
 
-.content_secondary {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 2em;
-  padding-left: 3vw;
-}
-
-.radio_group {
-  display: flex;
-  gap: 1.5em;
-  flex-wrap: wrap;
-}
-
-.hidden_radio {
-  display: none;
-}
-
-.radio_label {
-  cursor: pointer;
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-  padding: 0.375em 0.5em 0.375em 0.5em;
-  border-radius: 0.25em;
-  font-size: 1em;
-  font-weight: 300;
-  line-height: 1.2em;
-  white-space: nowrap;
-  letter-spacing: -0.025em;
-  transition: 0.3s;
-}
-
-.active_label {
-  font-weight: 500;
-}
-
-.active_label::before {
-  content: "●";
-  line-height: 1;
-  transition: 0.3s;
-}
-
-.link_desc {
-  font-size: 1em;
-  line-height: 1.2;
-  font-weight: 300;
-  color: var(--wb800);
-}
-
-.action_wrapper {
-  margin-top: auto;
+.action {
+  align-self: flex-end;
 }
 
 @media screen and (max-width: 1024px) {
   .context {
-    width: 98vw;
-    flex-direction: column;
-    gap: 5vh;
-    padding: 20vw 5vw;
-  }
-
-  .content {
-    gap: 1em;
+    width: 90vw;
   }
 
   .desc {
-    font-size: 1.25em;
+    font-size: 1.5em;
+  }
+
+  .rowLabel {
+    font-size: 1.75em;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 12vh 4vw;
+  }
+
+  .context {
+    width: 98vw;
+    gap: 5vh;
+  }
+
+  .desc {
+    font-size: 1.3em;
+    max-width: 100%;
+  }
+
+  .rowLabel {
+    font-size: 1.4em;
+  }
+
+  .panelText {
+    padding-left: 0;
   }
 }

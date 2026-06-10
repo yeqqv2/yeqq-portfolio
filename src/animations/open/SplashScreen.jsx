@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useMemo } from "react";
 import styles from "./style.module.css";
 import { gsap } from "gsap";
 import { CustomEase } from "gsap/CustomEase";
+import { prefersReducedMotion } from "@/utils/motion";
 
 gsap.registerPlugin(CustomEase);
 CustomEase.create("butter", "0.25, 0.1, 0.25, 1");
@@ -20,6 +21,12 @@ export default function SplashScreen({ onAnimationComplete }) {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+
+    // Hareketi azalt tercihinde açılış koreografisini atla, doğrudan içeriğe geç.
+    if (prefersReducedMotion()) {
+      onAnimationComplete?.();
+      return;
+    }
 
     originalOverflow.current.body = document.body.style.overflow || "";
     originalOverflow.current.html =
@@ -40,7 +47,6 @@ export default function SplashScreen({ onAnimationComplete }) {
       const q = gsap.utils.selector(containerRef);
       const artCards = q(`.${styles.artCard}`);
 
-      // Virgüller silindi.
       gsap.set(containerRef.current, {
         clipPath: "inset(0% 0% 0% 0%)",
       });
@@ -78,8 +84,6 @@ export default function SplashScreen({ onAnimationComplete }) {
         "-=0.2",
       );
 
-      // (Boş kalan o anlamsız timeline bloğu silindi)
-
       // 3. Kartlar tam boyuta ulaşır
       tl.to(
         artCards,
@@ -92,7 +96,6 @@ export default function SplashScreen({ onAnimationComplete }) {
       );
 
       // 4. Bütün ekran, keskin bir dikdörtgen kalıp halinde kendi içine çöker
-      // Virgüller silindi.
       tl.to(
         containerRef.current,
         {
@@ -119,9 +122,9 @@ export default function SplashScreen({ onAnimationComplete }) {
             key={index}
             className={styles.artCard}
             src={src}
-            alt={`art-${index}`}
+            alt=""
+            aria-hidden="true"
             loading="eager"
-            /* style.module.css içinde border-radius olmadığını varsayıyorum, varsa kesinlikle silmelisin */
           />
         ))}
       </div>

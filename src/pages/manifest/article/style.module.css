@@ -1,0 +1,143 @@
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 22vh 5vw 12vh;
+  background-color: var(--wb50);
+}
+
+/* Ortak okuma kolonu genişliği */
+.back,
+.header,
+.body,
+.footer {
+  width: 100%;
+  max-width: 60ch;
+}
+
+.back {
+  font-size: 0.85em;
+  font-weight: 400;
+  color: var(--wb500);
+  margin-bottom: 7vh;
+  width: fit-content;
+  transition: color 0.3s ease;
+}
+
+.back:hover {
+  color: var(--wb950);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75em;
+  margin-bottom: 9vh;
+}
+
+.label {
+  font-size: 0.875em;
+  font-weight: 200;
+  letter-spacing: 0.02em;
+  color: var(--wb950);
+  opacity: 0.5;
+}
+
+.title {
+  font-size: 3.2em;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--wb950);
+}
+
+.lead {
+  font-size: 1.35em;
+  font-weight: 300;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--wb700);
+  margin-top: 0.5em;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 6vh;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.85em;
+}
+
+.heading {
+  font-size: 1.5em;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--wb950);
+}
+
+.text {
+  font-size: 1.05em;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--wb800);
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2em;
+  margin-top: 12vh;
+  padding-top: 3vh;
+  border-top: 1px solid var(--wb200);
+}
+
+.foot_link {
+  font-size: 0.95em;
+  font-weight: 400;
+  color: var(--wb600);
+  transition: color 0.3s ease;
+}
+
+.foot_link:hover {
+  color: var(--wb950);
+}
+
+/* Bulunamadı durumu */
+.notfound {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+}
+
+.nf_title {
+  font-size: 1.5em;
+  font-weight: 300;
+  color: var(--wb950);
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 18vh 6vw 12vh;
+  }
+
+  .title {
+    font-size: 2.4em;
+  }
+
+  .lead {
+    font-size: 1.15em;
+  }
+}
