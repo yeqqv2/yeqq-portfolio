@@ -8,6 +8,7 @@ import HandshakeProtocol from "@/pages/manifest/contact/HandshakeProtocol";
 import ManifestProgress from "@/pages/manifest/progress/ManifestProgress";
 import SmoothReveal from "@/components/smooth reveal/SmoothReveal";
 import styles from "./style.module.css";
+import ContactHomePage from "@/pages/home/contact/ContactHomePage";
 
 export default function ManifestContent() {
   return (
@@ -34,25 +35,13 @@ export default function ManifestContent() {
 
       <SmoothReveal>
         <section data-manifest-section className={styles.section}>
-          <TheDichotomy />
-        </section>
-      </SmoothReveal>
-
-      <SmoothReveal>
-        <section data-manifest-section className={styles.section}>
           <WeightOfChoice />
         </section>
       </SmoothReveal>
 
       <SmoothReveal>
         <section data-manifest-section className={styles.section}>
-          <AsymmetryOfLoss />
-        </section>
-      </SmoothReveal>
-
-      <SmoothReveal>
-        <section data-manifest-section className={styles.section}>
-          <HandshakeProtocol />
+          <ContactHomePage />
         </section>
       </SmoothReveal>
     </div>

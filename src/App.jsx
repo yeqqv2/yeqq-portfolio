@@ -11,10 +11,10 @@ import LoadingPage from "./components/loading/LoadingPage";
 import HomePage from "./pages/home/HomePage";
 
 const AboutPage = lazy(() => import("./pages/about/AboutPage"));
-/* const ManifestPage = lazy(() => import("./pages/manifest/ManifestPage"));
+const ManifestPage = lazy(() => import("./pages/manifest/ManifestPage"));
 const ManifestArticle = lazy(
   () => import("./pages/manifest/article/ManifestArticle"),
-); */
+);
 const ProjectsPage = lazy(() => import("./pages/projects/ProjectsPage"));
 const WorkPage = lazy(() => import("./pages/project/WorkPage"));
 const ContactPage = lazy(() => import("./pages/contact/ContactPage"));
@@ -26,8 +26,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about-me" element={<AboutPage />} />
-          {/* <Route path="/manifest" element={<ManifestPage />} />
-          <Route path="/manifest/:slug" element={<ManifestArticle />} /> */}
+          <Route path="/manifest" element={<ManifestPage />} />
+          <Route path="/manifest/:slug" element={<ManifestArticle />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/projects/:slug" element={<WorkPage />} />
           <Route path="/contact-me" element={<ContactPage />} />

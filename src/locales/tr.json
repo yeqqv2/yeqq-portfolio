@@ -210,6 +210,7 @@
       "desc": "arayüzler birer kanvas değil, insan zihnindeki entropiyi sıfırlamak için kurgulanan rasyonel mekanizmalardır. bilgi asimetrisini yok etmek için kod yazar, karar alma süreçlerini optimize etmek için tasarım yaparım. estetik, bu kusursuz mimarinin sadece kaçınılmaz bir yan ürünüdür."
     },
     "white_on_white": {
+      "title": "[beyaz üstüne beyaz]",
       "question": "‘beyaz üstüne beyaz’ ne anlama gelir?",
       "footer": "tasarımda ışık, formun babasıdır. gölgeleri saklamak kolaydır, ışığı yönetmek ise ustalık ister. saf beyaz, bir ekranın en yüksek enerji seviyesidir. ben enerjiyi saklamıyorum, onu mimariyle dizginliyorum."
     },
@@ -242,28 +243,56 @@
     "cost_of_order": {
       "btn_label": "enerji uygula",
       "title": "[zihnin entropisi]",
-      "desc": "karl friston haklıydı. zihin, sürprizi ve entropiyi en aza indirmek için sürekli enerji harcayan bir makinedir. tıpkı yazdığım sistemler gibi. düzen doğal değildir. düzen, bedeli ödenmiş bir efordur. kusursuz bir kod mimarisi veya rasyonel bir karar, evrenin doğal kaosuna karşı açılmış geçici bir savaştır. enerjiyi kestiğin an, sistem doğal haline döner."
+      "desc": "düzen bir durum değil, bir harcamadır. bastığın sürece var, bıraktığın an dağılır. ayakta duran her sistemin arkasında bedeli ödeyen biri vardır. ben o bedeli severek öderim."
     },
     "observer": {
       "title": "[gözlemcinin tiranlığı]",
+      "eye_label": "gözlemle",
       "desc": "sistem, ben ona bakmadığım sürece tüm hataları ve tüm doğruları aynı anda barındırır. gerçeklik, rasyonel bir gözlemcinin dikkatiyle budanmış bir olasılıklar yığınıdır. ben kod yazmıyorum; ben ihtimalleri tek bir rasyonel çıktıya zorluyorum.",
       "lines": [
-        "gerçeklik sadece bir varsayımdır.",
-        "kod, bakmadığında bozulur.",
-        "rasyonalite bir diktatörlüktür.",
-        "dikkat, enerjinin en saf formudur."
+        "bana baktığın an var oldum.",
+        "gözünü ayırdığında olasılığa dönerim.",
+        "dikkatin, beni nete çeken mercek.",
+        "bakışın yoksa ben sadece gürültüyüm."
       ]
     },
     "choice": {
       "title": "[evet'in yerçekimi]",
-      "desc": "rasyonellik, özgürlük değil bir kısıtlama biçimidir. bir yolu seçmek, diğer tüm yolları imha etmektir. seçim, rasyonel bir kütledir; taşınması efor ister.",
-      "button": "bir karar ver"
+      "desc": "seçmek, eksiltme sanatıdır. evet dediğim her şey, binlerce hayalete mal olur. ağırlığı buradan gelir: taşıdığım şey karar değil, uğruna vazgeçtiklerimdir.",
+      "stage": "beş kapı; yalnız birini açabilirsin.",
+      "final": "kalan dördünü hiç okumayacaksın.",
+      "doors": [
+        {
+          "whisper": "belki başka bir şehirde...",
+          "full": "belki başka bir şehirde, başka bir masada, aynı soruyu soruyordun."
+        },
+        {
+          "whisper": "hiç yazılmayan bir satır...",
+          "full": "hiç yazılmayan bir satır, hiç açılmayan bir proje, hiç tanışmadığın bir ekip."
+        },
+        {
+          "whisper": "evet demediğin o iş...",
+          "full": "evet demediğin o iş seni başka birine dönüştürecekti; kime, artık bilemezsin."
+        },
+        {
+          "whisper": "daha sessiz bir hayat...",
+          "full": "daha sessiz bir hayat: az ekran, çok sabah. onu da sevebilirdin."
+        },
+        {
+          "whisper": "aynaya benzeyen biri...",
+          "full": "aynaya benzeyen biri, senin yapmadığın her seçimi yapmış. onunla hiç karşılaşmayacaksın."
+        }
+      ]
     },
     "asymmetry": {
       "title": "[kayıp asimetrisi]",
-      "desc": "daniel kahneman haklıydı. zihin, kazanımın hazzından çok kaybın travmasına programlanmıştır. bir mimaride yeni bir yapı inşa etmek sadece zaman alır; var olanı yıkmak ise tüm sistemin yerçekimiyle yüzleşmesidir. kaybetmek, kazanmanın zıttı değil, mutasyonudur.",
-      "build": "[+ inşa et]",
-      "destruct": "[- imha et]",
+      "desc": "kaybetmek, kazanmanın negatifi değildir; ağırlığı iki kat çeker. kahneman bunu ölçtü, ben her silme tuşunda yaşıyorum. kurduğum şeyi yıkacaksam, parmağımın titremesini beklerim.",
+      "build": "[+ kazan]",
+      "destruct": "[- kaybet]",
+      "gain_word": "kazanç",
+      "loss_word": "kayıp",
+      "mass_word": "kütle",
+      "reset_label": "kefeleri boşalt",
       "concepts": [
         "rasyonalite",
         "mimari",

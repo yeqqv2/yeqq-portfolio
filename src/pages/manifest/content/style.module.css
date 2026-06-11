@@ -1,14 +1,36 @@
-.container {
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 10vh;
+.manifest {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
 }
 
-.section {
-  height: 100dvh;
-  width: 100vw;
+.stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
+}
+
+.panel {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  place-items: center;
+
+  overflow: hidden;
+  will-change: transform;
+}
+
+.panelInner {
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  place-items: center;
 }

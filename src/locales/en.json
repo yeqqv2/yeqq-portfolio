@@ -210,6 +210,7 @@
       "desc": "interfaces are not mere canvases; they are rational mechanisms designed to eliminate entropy in the human mind. i write code to eliminate information asymmetry and design to optimize decision-making processes. aesthetics is merely an inevitable byproduct of this flawless architecture."
     },
     "white_on_white": {
+      "title": "[white on white]",
       "question": "what does ‘white on white’ mean?",
       "footer": "in design, light is the father of form. hiding shadows is easy; mastering light requires craft. pure white is a screen's highest energy state. i do not hide the energy; i harness it through architecture."
     },
@@ -242,28 +243,56 @@
     "cost_of_order": {
       "btn_label": "apply energy",
       "title": "[the entropy of mind]",
-      "desc": "karl friston was right. the mind is a machine that constantly expends energy to minimize surprise and entropy. just like the systems i build. order is not natural. order is a paid-for effort. a flawless code architecture or a rational decision is a temporary war waged against the natural chaos of the universe. the moment you cut the energy, the system returns to its natural state."
+      "desc": "order is not a state; it is an expense. it exists while you hold, and scatters when you let go. behind every standing system, someone is paying the cost. i pay it gladly."
     },
     "observer": {
       "title": "[the observer's tyranny]",
+      "eye_label": "observe",
       "desc": "the system holds all errors and all truths simultaneously until i observe it. reality is a heap of possibilities pruned by the attention of a rational observer. i don't write code; i force probabilities into a single rational output.",
       "lines": [
-        "reality is merely an assumption.",
-        "code decays when unwatched.",
-        "rationality is a dictatorship.",
-        "attention is the purest form of energy."
+        "i came into being the moment you looked.",
+        "look away, and i return to probability.",
+        "your attention is the lens that sharpens me.",
+        "without your gaze i am only noise."
       ]
     },
     "choice": {
       "title": "[the gravity of 'yes']",
-      "desc": "rationality is not freedom; it is a form of constraint. to choose one path is to annihilate all others. choice is a rational mass; it requires effort to carry.",
-      "button": "make a decision"
+      "desc": "choosing is the art of subtraction. every yes i say costs a thousand ghosts. that is where the weight comes from: what i carry is not the decision, but everything i gave up for it.",
+      "stage": "five doors; you may open only one.",
+      "final": "the other four you will never read.",
+      "doors": [
+        {
+          "whisper": "maybe in another city...",
+          "full": "maybe in another city, at another desk, you were asking the same question."
+        },
+        {
+          "whisper": "a line never written...",
+          "full": "a line never written, a project never opened, a team you never met."
+        },
+        {
+          "whisper": "that job you didn't say yes to...",
+          "full": "that job you didn't say yes to would have turned you into someone else; who, you'll never know."
+        },
+        {
+          "whisper": "a quieter life...",
+          "full": "a quieter life: less screen, more morning. you could have loved that one too."
+        },
+        {
+          "whisper": "someone like a mirror...",
+          "full": "someone like a mirror, who made every choice you didn't. you will never meet them."
+        }
+      ]
     },
     "asymmetry": {
       "title": "[the asymmetry of loss]",
-      "desc": "daniel kahneman was right. the mind is programmed for the trauma of loss rather than the thrill of gain. building a new structure takes time; destroying it forces the entire system to face gravity. losing is not the opposite of gaining, but its mutation.",
-      "build": "[+ build]",
-      "destruct": "[- destruct]",
+      "desc": "losing is not the negative of gaining; it pulls twice the weight. kahneman measured it, i live it at every delete key. if i am to tear down what i built, i wait for my finger to tremble.",
+      "gain_word": "gain",
+      "loss_word": "loss",
+      "mass_word": "mass",
+      "reset_label": "empty the pans",
+      "build": "[+ gain]",
+      "destruct": "[- lose]",
       "concepts": [
         "rationality",
         "architecture",

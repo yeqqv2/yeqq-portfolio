@@ -3,112 +3,248 @@ import { useTranslation } from "react-i18next";
 import gsap from "gsap";
 import styles from "./style.module.css";
 import ReadMore from "@/pages/manifest/shared/ReadMore";
+import { CustomEase } from "gsap/CustomEase";
+
+gsap.registerPlugin(CustomEase);
+const hop = CustomEase.create("hop", "0.9, 0, 0.1, 1");
 
 const reduceMotion = () =>
   typeof window !== "undefined" &&
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+const TOTAL = 300;
+const WORDMARK = "[yeqq]";
+
+// wordmark'ı outfit ile büyük boyutta gizli bir canvas'a çizer, sonra düzenli
+// bir ızgarada dolu hücre merkezlerini nokta hedeflerine çevirir; led panel
+// gibi eşit aralıklı, net bir dizilim çıkar. düzen kurulunca ortaya kimlik çıkar.
+const buildTargets = (count, container) => {
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d", { willReadFrequently: true });
+  const fs = 100; // büyük çiz, ızgarayla örnekle: ince çizgiler kaybolmaz
+  const font = `600 ${fs}px "Outfit", sans-serif`;
+
+  ctx.font = font;
+  canvas.width = Math.ceil(ctx.measureText(WORDMARK).width) + 8;
+  canvas.height = Math.ceil(fs * 1.6);
+  ctx.font = font; // canvas yeniden boyutlanınca context sıfırlanır
+  ctx.textBaseline = "middle";
+  ctx.fillText(WORDMARK, 4, canvas.height / 2);
+
+  const img = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+  const filled = (x, y) => img[(y * canvas.width + x) * 4 + 3] > 128;
+
+  // ızgara adımını, hücre sayısı nokta sayısının altına inene kadar büyüt;
+  // böylece eldeki her nokta bir hücreye oturur, boş hedef kalmaz
+  let pts = [];
+  for (let g = 3; g <= 20; g++) {
+    pts = [];
+    for (let y = Math.floor(g / 2); y < canvas.height; y += g) {
+      for (let x = Math.floor(g / 2); x < canvas.width; x += g) {
+        if (filled(x, y)) {
+          pts.push({ x: x - canvas.width / 2, y: y - canvas.height / 2 });
+        }
+      }
+    }
+    if (pts.length && pts.length <= count) break;
+  }
+  if (!pts.length) return null;
+
+  // sahneye ölçekle ve butonun üstüne kaldır
+  const scale = Math.min(container.offsetWidth * 0.55, 520) / canvas.width;
+  const offsetY = -container.offsetHeight * 0.16;
+
+  // artan noktalar mevcut hücrelerin üzerine birebir biner (görünmez kopya)
+  const out = [];
+  for (let i = 0; i < count; i++) {
+    const p = pts[i % pts.length];
+    out.push({ x: p.x * scale, y: p.y * scale + offsetY });
+  }
+  return out;
+};
+
 export default function CostOfOrder() {
   const { t, i18n } = useTranslation();
   const containerRef = useRef(null);
   const dotsRef = useRef([]);
-  const totalDots = 100;
+  const pulsesRef = useRef([]);
+  const holdingRef = useRef(false);
 
   // hareket azaltılmışsa: kaos döngüsü yok, tek seferlik statik saçılım
   const scatterStatic = () => {
+    const c = containerRef.current;
+    if (!c) return;
     dotsRef.current.forEach((dot) => {
       if (!dot) return;
       gsap.set(dot, {
-        x: gsap.utils.random(-window.innerWidth * 0.4, window.innerWidth * 0.4),
-        y: gsap.utils.random(
-          -window.innerHeight * 0.4,
-          window.innerHeight * 0.4,
-        ),
-        scale: gsap.utils.random(0.5, 1.5),
-        opacity: gsap.utils.random(0.3, 0.7),
+        x: gsap.utils.random(-c.offsetWidth * 0.4, c.offsetWidth * 0.4),
+        y: gsap.utils.random(-c.offsetHeight * 0.4, c.offsetHeight * 0.4),
+        scale: gsap.utils.random(0.5, 1.6),
+        opacity: gsap.utils.random(0.25, 0.8),
       });
     });
   };
 
-  // Rastgele Kaos Fonksiyonu (Entropi)
+  // entropi: nokta amaçsızca sürüklenir; boyutu ve opaklığı da düzensizdir
   const animateChaos = (dot) => {
-    if (!dot) return;
+    const c = containerRef.current;
+    if (!dot || !c) return;
     gsap.to(dot, {
-      x: () =>
-        gsap.utils.random(-window.innerWidth * 0.4, window.innerWidth * 0.4),
-      y: () =>
-        gsap.utils.random(-window.innerHeight * 0.4, window.innerHeight * 0.4),
+      x: () => gsap.utils.random(-c.offsetWidth * 0.4, c.offsetWidth * 0.4),
+      y: () => gsap.utils.random(-c.offsetHeight * 0.4, c.offsetHeight * 0.4),
+      scale: () => gsap.utils.random(0.5, 1.6),
+      opacity: () => gsap.utils.random(0.25, 0.8),
       duration: () => gsap.utils.random(3, 8),
-      ease: "sine.inOut",
+      ease: "hop",
       overwrite: "auto",
-      scale: () => gsap.utils.random(0.5, 1.5),
-      opacity: () => gsap.utils.random(0.3, 0.7),
-      force3D: true, // GPU Hızlandırmasını zorla
+      force3D: true,
       onComplete: () => {
-        // Doğrudan DOM'dan sınıf kontrolü (React re-render beklemez)
-        if (!containerRef.current?.classList.contains(styles.ordered_bg)) {
-          animateChaos(dot);
-        }
+        if (!holdingRef.current) animateChaos(dot);
       },
     });
   };
 
-  // Kusursuz Matris Fonksiyonu (Düzen)
+  // basış: noktalar kelimenin merkezinden dışa yayılan dalgayla
+  // [ yeqq ] yazısına oturur; boyut ve opaklık eşitlenir
   const applyOrder = () => {
-    gsap.killTweensOf(dotsRef.current);
+    const c = containerRef.current;
+    const dots = dotsRef.current.filter(Boolean);
+    if (!c || !dots.length) return;
+    gsap.killTweensOf(dots);
 
-    dotsRef.current.forEach((dot, i) => {
-      const row = Math.floor(i / 10);
-      const col = i % 10;
-      const spacing = 24;
+    const targets = buildTargets(dots.length, c);
+    if (!targets) return;
 
-      const offsetX = (9 * spacing) / 2;
-      const offsetY = (9 * spacing) / 2;
+    if (reduceMotion()) {
+      dots.forEach((dot, i) => {
+        gsap.set(dot, {
+          x: targets[i].x,
+          y: targets[i].y,
+          scale: 1,
+          opacity: 1,
+        });
+      });
+      return;
+    }
 
+    // dalga merkezi: kelimenin orta noktası
+    const cy = targets.reduce((sum, p) => sum + p.y, 0) / targets.length;
+    const maxDist = targets.reduce(
+      (max, p) => Math.max(max, Math.hypot(p.x, p.y - cy)),
+      1,
+    );
+
+    dots.forEach((dot, i) => {
+      const p = targets[i];
       gsap.to(dot, {
-        x: col * spacing - offsetX,
-        y: row * spacing - offsetY,
-        duration: 0.8,
-        ease: "expo.out",
-        overwrite: true,
+        x: p.x,
+        y: p.y,
         scale: 1,
         opacity: 1,
+        duration: 1.2,
+        delay: (Math.hypot(p.x, p.y - cy) / maxDist) * 0.45,
+        ease: "hop",
+        overwrite: true,
         force3D: true,
       });
     });
   };
 
-  // Etkileşim: React State YOK, Doğrudan DOM müdahalesi VAR.
-  const handleDown = () => {
-    containerRef.current?.classList.add(styles.ordered_bg);
-    applyOrder();
-  };
+  // bırakış: çürüme — grid bir anda değil, rastgele sırayla ve
+  // hızlanarak çözülür; noktalar önce hafifçe dökülür, sonra sürüklenir
+  const decay = () => {
+    const dots = dotsRef.current.filter(Boolean);
+    gsap.killTweensOf(dots);
 
-  const handleUp = () => {
-    containerRef.current?.classList.remove(styles.ordered_bg);
     if (reduceMotion()) {
       scatterStatic();
       return;
     }
-    dotsRef.current.forEach((dot) => animateChaos(dot));
+
+    dots.forEach((dot) => {
+      // gecikmeler sona yığılır: önce tek tük, sonra sağanak
+      const delay = (1 - Math.pow(Math.random(), 2)) * 0.8;
+      gsap.to(dot, {
+        x: `+=${gsap.utils.random(-36, 36)}`,
+        y: `+=${gsap.utils.random(18, 48)}`,
+        scale: () => gsap.utils.random(0.5, 1.6),
+        opacity: () => gsap.utils.random(0.25, 0.8),
+        duration: 2,
+        delay,
+        ease: "hop",
+        overwrite: true,
+        onComplete: () => {
+          if (!holdingRef.current) animateChaos(dot);
+        },
+      });
+    });
+  };
+
+  // bedelin görseli: basılı tutarken butondan dışarı enerji dalgaları yayılır
+  const startPulses = () => {
+    if (reduceMotion()) return;
+    pulsesRef.current.forEach((p, i) => {
+      if (!p) return;
+      gsap.fromTo(
+        p,
+        { scale: 0.5, autoAlpha: 0.5 },
+        {
+          scale: 3,
+          autoAlpha: 0,
+          duration: 1.5,
+          ease: "hop",
+          repeat: -1,
+          delay: i * 0.75,
+        },
+      );
+    });
+  };
+
+  const stopPulses = () => {
+    const pulses = pulsesRef.current.filter(Boolean);
+    gsap.killTweensOf(pulses);
+    gsap.to(pulses, { autoAlpha: 0, duration: 0.3, overwrite: true });
+  };
+
+  const handleDown = () => {
+    if (holdingRef.current) return;
+    holdingRef.current = true;
+    applyOrder();
+    startPulses();
+  };
+
+  const handleUp = () => {
+    if (!holdingRef.current) return;
+    holdingRef.current = false;
+    decay();
+    stopPulses();
   };
 
   useEffect(() => {
-    let ctx = gsap.context(() => {
-      if (reduceMotion()) {
-        scatterStatic();
-        return;
-      }
-      dotsRef.current.forEach((dot) => animateChaos(dot));
-    }, containerRef);
-    return () => ctx.revert();
+    // canvas örneklemesi için fontu ısıt (ilk basışta hazır olsun)
+    if (typeof document !== "undefined" && document.fonts?.load) {
+      document.fonts.load('600 100px "Outfit"').catch(() => {});
+    }
+
+    if (reduceMotion()) {
+      scatterStatic();
+      return;
+    }
+    const dots = dotsRef.current.filter(Boolean);
+    dots.forEach((dot) => animateChaos(dot));
+
+    return () => {
+      holdingRef.current = false;
+      gsap.killTweensOf(dots);
+      gsap.killTweensOf(pulsesRef.current.filter(Boolean));
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div ref={containerRef} className={styles.container}>
       <div className={styles.particle_system}>
-        {Array.from({ length: totalDots }).map((_, i) => (
+        {Array.from({ length: TOTAL }).map((_, i) => (
           <div
             key={i}
             ref={(el) => (dotsRef.current[i] = el)}
@@ -117,23 +253,39 @@ export default function CostOfOrder() {
         ))}
       </div>
 
-      <div className={styles.ui_layer}>
+      <div className={styles.center}>
+        <span
+          className={styles.pulse}
+          ref={(el) => (pulsesRef.current[0] = el)}
+          aria-hidden="true"
+        />
+        <span
+          className={styles.pulse}
+          ref={(el) => (pulsesRef.current[1] = el)}
+          aria-hidden="true"
+        />
         <button
           className={styles.energy_btn}
-          onMouseDown={handleDown}
-          onMouseUp={handleUp}
-          onMouseLeave={handleUp}
-          onTouchStart={handleDown}
-          onTouchEnd={handleUp}
+          onPointerDown={handleDown}
+          onPointerUp={handleUp}
+          onPointerLeave={handleUp}
+          onPointerCancel={handleUp}
+          onKeyDown={(e) => {
+            if ((e.key === " " || e.key === "Enter") && !e.repeat) handleDown();
+          }}
+          onKeyUp={(e) => {
+            if (e.key === " " || e.key === "Enter") handleUp();
+          }}
+          onContextMenu={(e) => e.preventDefault()}
         >
           {t("manifesto.cost_of_order.btn_label")}
         </button>
+      </div>
 
-        <div className={styles.manifesto_block} key={i18n.language}>
-          <h4>{t("manifesto.cost_of_order.title")}</h4>
-          <p>{t("manifesto.cost_of_order.desc")}</p>
-          <ReadMore slug="entropy" />
-        </div>
+      <div className={styles.annotation} key={i18n.language}>
+        <h4>{t("manifesto.cost_of_order.title")}</h4>
+        <p>{t("manifesto.cost_of_order.desc")}</p>
+        <ReadMore slug="entropy" />
       </div>
     </div>
   );

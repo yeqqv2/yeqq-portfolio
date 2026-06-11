@@ -1,77 +1,32 @@
+/* terazi: aynı hamle, iki kat kütle. anotasyon sol altta.
+   gövde asgari: kiriş, mil, ipler, kefeler, birer rakam.
+   ipler yük altında gerilir: uzar, incelir, darbe anında titreşir. */
 .container {
   width: 100%;
-  min-height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+  height: 100dvh;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr auto;
+  column-gap: 1vw;
+  padding: 15vh 20vw;
   background-color: var(--wb50);
-  padding: 5vw;
-}
-
-.interaction_zone {
-  display: flex;
-  align-items: flex-end;
-  gap: 5em;
-  width: 50vw;
-  justify-content: center;
-}
-
-.tower {
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: center;
-  width: 20em;
-  min-height: 25em;
-  border-bottom: 2px solid var(--wb950);
-  padding-bottom: 2px;
-  transform-origin: bottom;
-}
-
-.block_wrapper {
-  width: 100%;
-  margin: 2px 0;
+  position: relative;
+  z-index: 0;
+  user-select: none;
   overflow: hidden;
-  transform-origin: bottom;
-}
-
-.controls {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5em;
-}
-
-.action_btn {
-  background: transparent;
-  border: none;
-  font-size: 1em;
-  font-weight: 300;
-  color: var(--wb950);
-  cursor: pointer;
-  text-align: left;
-  transition:
-    opacity 0.3s ease,
-    transform 0.16s ease-out;
-}
-
-.action_btn:hover {
-  opacity: 0.5;
-}
-
-.action_btn:active {
-  transform: scale(0.97);
 }
 
 .annotation {
-  position: absolute;
-  top: 5vh;
-  left: 5vw;
-  width: 20vw;
-  min-width: 250px;
+  grid-column: 1 / 3;
+  grid-row: 2;
+  align-self: end;
+  max-width: 30em;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 1em;
+  position: relative;
+  z-index: 10;
 }
 
 .annotation h4 {
@@ -88,25 +43,223 @@
   color: var(--wb600);
 }
 
+.stage {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5vh;
+}
+
+/* ---------------------------------------------------------------- */
+/* TERAZİ                                                            */
+/* ---------------------------------------------------------------- */
+.scale {
+  position: relative;
+  width: min(46vw, 460px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 96px; /* kiriş eğilince uçların yükseleceği boşluk */
+  padding-bottom: 4em; /* ip gerildikçe kefenin ineceği boşluk */
+}
+
+/* kiriş: dönen tek parça; kollar ve kefeler ona asılı */
+.beam {
+  position: relative;
+  width: 100%;
+  height: 1px;
+  background-color: var(--wb950);
+  transform-origin: center center;
+  will-change: transform;
+}
+
+/* mil: kirişin asıldığı tek nokta */
+.pivot {
+  position: absolute;
+  top: calc(96px - 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--wb950);
+  z-index: 1;
+}
+
+.arm {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.arm_left {
+  left: 0;
+  transform: translateX(-50%);
+}
+
+.arm_right {
+  right: 0;
+  transform: translateX(50%);
+}
+
+/* ip: boştayken kısa ve kalın; yük bindikçe uzar ve incelir (gsap sürer) */
+.string {
+  width: 2px;
+  height: 46px;
+  background-color: var(--wb400);
+  transform-origin: top center;
+  will-change: transform, height, width;
+}
+
+/* kefe grubu: kirişe ters dönerek hep yatay kalır (gsap sürer) */
+.pan_group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: top center;
+  will-change: transform;
+}
+
+/* kütleler kefenin üstünde yükselir; yenisi en üste oturur */
+.weights {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2px;
+  height: 134px;
+}
+
+/* kazanç: 1 birimlik kütle */
+.unit_gain {
+  width: 14px;
+  height: 9px;
+  background-color: var(--wb950);
+  will-change: transform, opacity;
+}
+
+/* kayıp: aynı hamle, iki birimlik kütle */
+.unit_loss {
+  width: 14px;
+  height: 20px;
+  background-color: var(--wb950);
+  will-change: transform, opacity;
+}
+
+.pan {
+  width: 88px;
+  height: 1px;
+  background-color: var(--wb950);
+}
+
+/* kefedeki toplam kütle: tek, sessiz bir rakam */
+.pan_mass {
+  margin-top: 0.75em;
+  font-size: 0.8em;
+  font-weight: 200;
+  color: var(--wb400);
+}
+
+/* ---------------------------------------------------------------- */
+/* KONTROLLER: her buton kendi kefesinin altında                     */
+/* ---------------------------------------------------------------- */
+.controls {
+  width: min(46vw, 460px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.action_btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 1em;
+  font-weight: 300;
+  color: var(--wb950);
+  cursor: pointer;
+  transition:
+    opacity 0.3s ease,
+    transform 0.16s ease-out;
+}
+
+.action_btn:hover:enabled {
+  opacity: 0.5;
+}
+
+.action_btn:active:enabled {
+  transform: scale(0.97);
+}
+
+.action_btn:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+/* boşaltma: sessiz, küçük; yalnızca kefelerde yük varken görünür */
+.reset {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 0.8em;
+  font-weight: 300;
+  color: var(--wb400);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease;
+}
+
+.reset_visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.reset:hover {
+  color: var(--wb600);
+}
+
 @media screen and (max-width: 1024px) {
   .container {
-    padding: 20vh 1vw 30vh 1vw;
-  }
-
-  .interaction_zone {
-    width: 98vw;
-    flex-direction: column;
-    align-items: center;
-    gap: 0em;
-  }
-
-  .controls{
-    flex-direction: row;
-    gap: 4em;
+    grid-template-columns: 1fr;
+    padding: 10vh 10vw;
+    row-gap: 5vh;
   }
 
   .annotation {
-    top: 80%;
-    width: 80vw;
+    grid-column: 1;
+  }
+
+  .scale,
+  .controls {
+    width: min(70vw, 460px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 8vh 7.5vw;
+  }
+
+  .scale,
+  .controls {
+    width: 86vw;
+  }
+
+  .scale {
+    padding-top: 72px;
+  }
+
+  .weights {
+    height: 110px;
+  }
+
+  .pan {
+    width: 64px;
   }
 }

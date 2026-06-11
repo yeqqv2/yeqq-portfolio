@@ -24,9 +24,9 @@
 }
 
 .desc {
-  font-size: 1.75em;
+  font-size: 1em;
   font-weight: 200;
-  letter-spacing: -5%;
+  letter-spacing: -2.5%;
   color: var(--wb950);
 }
 
@@ -116,7 +116,8 @@
   max-width: 44ch;
   font-size: 1em;
   font-weight: 300;
-  line-height: 1.4;
+  line-height: 1.2;
+  letter-spacing: -2.5%;
   color: var(--wb600);
 }
 
@@ -126,7 +127,7 @@
 
 @media screen and (max-width: 1024px) {
   .context {
-    width: 90vw;
+    width: 50vw;
   }
 
   .desc {
@@ -140,11 +141,11 @@
 
 @media screen and (max-width: 600px) {
   .container {
-    padding: 12vh 4vw;
+    padding: 12vh 15vw;
   }
 
   .context {
-    width: 98vw;
+    width: 100%;
     gap: 5vh;
   }
 

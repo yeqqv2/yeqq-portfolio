@@ -1,62 +1,29 @@
+/* beş kapı: anotasyon sol üstte, kapılar merkezde tek sıra.
+   görünüm ikon kadar sade; açılış ise kalınlığı olan gerçek bir 3d levha.
+   bir kapı beyaz ışığa açılır, dördü ufalanır; yerlerinde gölgeleri kalır. */
 .container {
   width: 100%;
-  min-height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+  height: 100dvh;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto 1fr;
+  column-gap: 1vw;
+  padding: 5vh 20vw;
   background-color: var(--wb50);
-  padding: 5vw;
+  position: relative;
+  z-index: 0;
+  user-select: none;
   overflow: hidden;
 }
 
-/* Çizgilerin tüm sayfaya yayılması için alanı kaplamasını sağlıyoruz */
-.entropy_field {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-}
-
-/* Dağınık çizgiler */
-.stray_shape {
-  position: absolute;
-  width: .125em;
-  height: 3em;
-  background-color: var(--wb950);
-  transform-origin: center;
-  opacity: .25;
-}
-
-/* Ortadaki Çizgi */
-.decision_core {
-  position: absolute;
-  width: .125em;
-  height: 3em; /* Başlangıçta diğerleri gibi sadece bir çizgi */
-  background-color: var(
-    --wb500
-  ); /* Başlangıç rengi (siyaha dönüşeceği için gri veya vurgu rengi başlatıyoruz) */
-  transform: rotate(
-    45deg
-  ); /* Sıfıra dönerken hareketin anlaşılması için başlangıç açısı veriyoruz */
-  transform-origin: center;
-  z-index: 10;
-}
-
 .annotation {
-  position: absolute;
-  top: 5vh;
-  left: 5vw;
-  width: 20vw;
-  min-width: 250px;
+  grid-column: 1 / 3;
+  grid-row: 1;
+  max-width: 30em;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 1em;
-  z-index: 10;
 }
 
 .annotation h4 {
@@ -73,12 +40,230 @@
   color: var(--wb600);
 }
 
+.stage {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5vh;
+}
+
+.stage_line {
+  font-size: 0.925em;
+  font-weight: 300;
+  color: var(--wb500);
+}
+
+.doors {
+  display: flex;
+  align-items: flex-start;
+  gap: 2.5vw;
+}
+
+.cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25em;
+}
+
+/* kapı çerçevesi: perspektif buradan gelir */
+.frame {
+  position: relative;
+  perspective: 700px;
+}
+
+/* açılan kapının içi: saf beyaz ışık */
+.doorway {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-color: var(--wb100);
+}
+
+/* yok olan kapıdan geriye kalan: bulanık siyah bir gölge */
+.shade {
+  position: absolute;
+  inset: 3% 8%;
+  z-index: 2;
+  background-color: var(--wb950);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* kapı: görünmez 3d kabuk; görünümü yüzler taşır */
+.door {
+  position: relative;
+  z-index: 3;
+  display: block;
+  width: clamp(64px, 7vw, 110px);
+  aspect-ratio: 1 / 2.1;
+  background: transparent;
+  border: none;
+  padding: 0;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+/* ön yüz: eski minimal kapı; düz beyaz, hairline çerçeve, nokta kol */
+.face_front {
+  position: absolute;
+  inset: 0;
+  background-color: var(--wb50);
+  border: 1px solid var(--wb200);
+  transition: border-color 0.35s ease;
+}
+
+.face_front::after {
+  content: "";
+  position: absolute;
+  right: 9%;
+  top: 49%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--wb200);
+  transition: background-color 0.35s ease;
+}
+
+/* yan yüz: kapıya kalınlığını veren levha kenarı */
+.face_edge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 7px;
+  height: 100%;
+  background-color: var(--wb100);
+  border: 1px solid var(--wb300);
+  transform-origin: right center;
+  transform: rotateY(-90deg);
+}
+
+/* hover / klavye odağı: kapı aralanır, beyaz ışık sızar */
+.cell:hover .door:enabled,
+.cell:has(.door:focus-visible) .door:enabled {
+  transform: rotateY(-15deg);
+}
+
+.cell:hover .door:enabled .face_front,
+.cell:has(.door:focus-visible) .door:enabled .face_front {
+  border-color: var(--wb300);
+}
+
+.cell:hover .door:enabled .face_front::after,
+.cell:has(.door:focus-visible) .door:enabled .face_front::after {
+  background-color: var(--wb500);
+}
+
+/* seçim yapıldıktan sonra css geçişi gsap'a karışmasın */
+.spent .door {
+  transition: none;
+}
+
+/* ufalanma zerreleri: kapı tabanından dökülür (gsap sürer) */
+.dust {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  z-index: 4;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background-color: var(--wb500);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* fısıltı: hover, klavye odağı ya da dokunmatik ilk dokunuşta belirir */
+.whisper {
+  font-size: 0.85em;
+  font-weight: 300;
+  color: var(--wb500);
+  text-align: center;
+  max-width: 16ch;
+  line-height: 1.3;
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+.cell:hover .whisper,
+.cell.armed .whisper,
+.cell:has(.door:focus-visible) .whisper {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ödül alanı: yüksekliği baştan rezerve, seçimde hiçbir şey zıplamaz */
+.outcome {
+  min-height: 7em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25em;
+  text-align: center;
+}
+
+.sentence {
+  font-size: 1.3em;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  color: var(--wb950);
+  max-width: 38ch;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.final {
+  font-size: 0.875em;
+  font-weight: 300;
+  color: var(--wb400);
+  opacity: 0;
+  visibility: hidden;
+}
+
 @media screen and (max-width: 1024px) {
   .container {
-    padding: 20vh 1vw 50vh 1vw;
+    grid-template-columns: 1fr;
+    padding: 10vh 10vw;
+    row-gap: 4vh;
   }
+
   .annotation {
-    top: 70%;
-    width: 80vw;
+    grid-column: 1;
+  }
+
+  .doors {
+    gap: 4vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 8vh 5vw;
+  }
+
+  .doors {
+    gap: 3vw;
+  }
+
+  .whisper {
+    font-size: 0.75em;
+    max-width: 12ch;
+  }
+
+  .sentence {
+    font-size: 1.1em;
   }
 }

@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import Lenis from "lenis";
+import "lenis/dist/lenis.css";
+
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { prefersReducedMotion } from "@/utils/motion";
@@ -12,24 +14,20 @@ export default function SmoothScroll({ children }) {
   const lenisRef = useRef(null);
 
   useEffect(() => {
-    // Hareketi azalt tercihinde Lenis'i hiç başlatma; tarayıcının yerel kaydırması kalsın.
     if (prefersReducedMotion()) return;
 
     const lenis = new Lenis({
-      duration: 1.2,
-      lerp: 0.8,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(1.5, -10 * t)),
-      direction: "vertical",
-      gestureDirection: "vertical",
-      smooth: true,
-      mouseMultiplier: 1.4,
-      smoothTouch: true,
-      touchMultiplier: 1.4,
-      autoResize: true,
+      lerp: 0.055,
+      smoothWheel: true,
+      wheelMultiplier: 0.75,
+      syncTouch: true,
+      touchMultiplier: 1,
+      orientation: "vertical",
+      gestureOrientation: "vertical",
+      overscroll: false,
     });
 
     lenisRef.current = lenis;
-    // Sayfa içi yumuşak gezinme için (ör. manifesto bölüm göstergesi) global erişim.
     window.lenis = lenis;
 
     lenis.on("scroll", ScrollTrigger.update);
@@ -41,26 +39,39 @@ export default function SmoothScroll({ children }) {
     gsap.ticker.add(update);
     gsap.ticker.lagSmoothing(0);
 
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+    });
+
     return () => {
       gsap.ticker.remove(update);
       lenis.destroy();
+
       lenisRef.current = null;
-      if (window.lenis === lenis) delete window.lenis;
+
+      if (window.lenis === lenis) {
+        delete window.lenis;
+      }
     };
   }, []);
 
   useEffect(() => {
-    if (lenisRef.current) {
-      lenisRef.current.scrollTo(0, { immediate: true });
+    const lenis = lenisRef.current;
+
+    if (lenis) {
+      lenis.scrollTo(0, {
+        immediate: true,
+        force: true,
+      });
     } else {
       window.scrollTo(0, 0);
     }
 
-    const timer = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 200);
-
-    return () => clearTimeout(timer);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
+      });
+    });
   }, [location.pathname]);
 
   return <>{children}</>;

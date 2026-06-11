@@ -101,14 +101,14 @@ const ManifestHomePage = () => {
           })}
         </div>
 
-        {/* <div className={styles.action}>
+        <div className={styles.action}>
           <PrimerLink
             href="/manifest"
             buttonText={t("manifest.button")}
             backgroundColor="var(--wb950)"
             color="var(--wb50)"
           />
-        </div> */}
+        </div>
       </div>
     </section>
   );

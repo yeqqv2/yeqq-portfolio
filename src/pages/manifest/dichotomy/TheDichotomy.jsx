@@ -4,7 +4,7 @@ import gsap from "gsap";
 import styles from "./style.module.css";
 import CustomEase from "gsap/CustomEase.js";
 
-gsap.registerPlugin(ScrollTrigger, CustomEase);
+gsap.registerPlugin(CustomEase);
 CustomEase.create("hop", "0.9, 0, 0.1, 1");
 
 export default function TheDichotomy() {

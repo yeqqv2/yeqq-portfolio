@@ -114,14 +114,14 @@ export default function Navbar() {
           <PrimerLink
             href="/contact-me"
             buttonText={t("nav.contact_btn")}
-            backgroundColor="var(--green300)"
-            color="var(--gree900)"
+            backgroundColor="var(--main-color400)"
+            color="var(--main-color900)"
           />
           <PrimerButton
             onClick={toggleLanguage}
             buttonText={i18n.language.split("-")[0]}
-            backgroundColor="var(--blue300)"
-            color="var(--blue900)"
+            backgroundColor="var(--orange400)"
+            color="var(--wb50)"
           />
         </div>
       </div>
