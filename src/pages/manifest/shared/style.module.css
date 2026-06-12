@@ -10,10 +10,12 @@
   font-weight: 300;
   transition: opacity 0.3s ease;
   cursor: pointer;
+  line-height: 1;
 }
 
 .read_more:hover {
   opacity: 1;
   transition: 0.3s;
   background-color: var(--green300);
+  color: var(--green50);
 }

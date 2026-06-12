@@ -178,7 +178,8 @@
       "ikilik",
       "seçim",
       "kayıp",
-      "protokol"
+      "ikilem",
+      "iletişim"
     ],
     "read_more": "devamını oku",
     "article_back": "manifesto",
@@ -200,7 +201,7 @@
           },
           {
             "heading": "beyaz boşluk değil, ışıktır",
-            "body": "ekranda beyaz, kâğıttaki gibi bir yokluk değildir; her pikselin tam güçte yandığı en yüksek enerji halidir. size beyaz bir sayfa gösteriyorsam bir şey gizlediğimden değil — ışığı mimariyle dizginlediğimden. minimalizmi vazgeçmek sananlar yanılıyor: asıl iş, neyin kalacağına karar verirken verilir."
+            "body": "ekranda beyaz, kâğıttaki gibi bir yokluk değildir; her pikselin tam güçte yandığı en yüksek enerji halidir. size beyaz bir sayfa gösteriyorsam bir şey gizlediğimden değil — ışığı mimariyle dizginlediğimden. minimalizmi vazgeçmek sananlar yanılıyor: asıl iş, neyin kalacağına karar verirken yapılır."
           },
           {
             "heading": "size kalsın istediğim",
@@ -302,6 +303,33 @@
             "body": "kayıp korkusu sessizce karar veriyor: batık maliyete sarılıyoruz, kötü işte kalıyoruz, ölü kodu silemiyoruz. ben asimetriyi kabul ederek çalışıyorum — geri alınabilir tasarlıyorum, küçük kaybediyorum, erken siliyorum. ve kullanıcıya asla telafisiz bir kayıp yaşatmıyorum: geri al düğmesi bir özellik değil, bir merhamettir."
           }
         ]
+      },
+      "dilemma": {
+        "label": "ikilem",
+        "title": "güvenin matematiği",
+        "lead": "iki mahkum, iki ayrı hücre, tek soru: ötekine güvenecek misin? oyun teorisi buna ikilem diyor. bense aynı soruyu her dostluğun, her bağın ilk gününde görüyorum.",
+        "sections": [
+          {
+            "heading": "1950: iki hücre, bir tablo",
+            "body": "oyunu rand'da merrill flood ile melvin dresher kurdu; albert tucker ona hikâyesini verdi. iki mahkum, iki ayrı hücre: konuşan kazanır gibi görünür. iki taraf da bunu bildiği için ikisi de konuşur ve ikisi de kaybeder. matematik buna denge diyor; akıl, tuzak. tek elde haklıdır da — bir daha görmeyeceğin birine neden açılasın?"
+          },
+          {
+            "quote": "işbirliğinin temeli güven değil, ilişkinin sürmesidir.",
+            "cite": "robert axelrod, 1984"
+          },
+          {
+            "heading": "dört satırlık kazanan",
+            "body": "1980'de axelrod bir turnuva düzenledi: yinelenen ikilemde hangi strateji kazanır? dünyanın dört yanından kurnaz programlar gönderildi. kazanan, anatol rapoport'un dört satırlık programı oldu: işbirliğiyle başla, sonra karşındakinin son hamlesini tekrarla. kibar, misillemeci, affedici, okunaklı. kazandıran zekâ değildi; tutarlılıktı."
+          },
+          {
+            "heading": "önce güvenmek",
+            "body": "açık başlayan incinebilir. bunu bile bile ilk eli hep güvenle açarım, çünkü kapalı başlayan hiçbir şey örülmez. karşılığını bulamazsam aynaya dönerim — saflık erdem değildir. ama kin tutmam: sen dönersen ben de dönerim. unutmak değil bu; oyunu yeniden mümkün kılmak."
+          },
+          {
+            "heading": "izlerin söylediği",
+            "body": "hayat tek el değil; aynı insanlarla tekrar tekrar karşılaşıyoruz. her karşılaşma ya örüyor ya koparıyor ve yıllar sonra geriye kararlar değil, şeklin kendisi kalıyor: kiminle örülmüşsün, kimden kopmuşsun. skor tutmuyorum — şekil yetiyor. güven sözle değil, tekrarla kurulur."
+          }
+        ]
       }
     },
     "header": {
@@ -377,10 +405,21 @@
       "loss_word": "kayıp",
       "reset_label": "çizgiyi sıfırla"
     },
-    "protocol": {
-      "title": "[protocol_00: tokalaşma]",
-      "desc": "zihnimin mimarisini ve bir düzeni ayakta tutmanın bedelini gördün. aklında böyle bir özenle kurulacak bir iş varsa, konuşalım.",
-      "connect": "bağlantı kur"
+    "dilemma": {
+      "title": "[mahkumun ikilemi]",
+      "desc": "güven bir his değil, bir stratejidir. tek elde kazanan ihanettir; ama ben kimseyle tek el oynamam. aynı masaya yeniden oturulacaksa, hesap değişir.",
+      "strategy": "kuralım basit: önce güvenirim. ne yaparsan onu yaparım. kin tutmam.",
+      "you_label": "[sen]",
+      "me_label": "[ben]",
+      "silent_btn": "güven",
+      "betray_btn": "ihanet et",
+      "silent_word": "güvendi",
+      "betray_word": "ihanet etti",
+      "verdict_coop": "beş el boyunca güvendik. iki iz birbirine örüldü — güven böyle görünür.",
+      "verdict_mixed": "yer yer koptu, yine de örüldü. önemli olan kopmamak değil, geri dönmek.",
+      "verdict_betray": "bana yaptığını yaptım. geriye örgü değil, yan yana iki yalnız çizgi kaldı.",
+      "replay": "baştan al",
+      "hint": "güven ya da ihanet et — iki iz aynı anda çizilir"
     }
   },
   "contactPage": {

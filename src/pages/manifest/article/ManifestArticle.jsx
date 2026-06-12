@@ -12,7 +12,15 @@ if (!gsap.parseEase("hop")) {
 
 // kavramların sıralı listesi (landing ile aynı sıra).
 // "sıradaki" gezinmesi ve sayfa indeksi (01 / 06) bunu kullanır.
-const ORDER = ["white", "observer", "entropy", "dichotomy", "choice", "loss"];
+const ORDER = [
+  "white",
+  "observer",
+  "entropy",
+  "dichotomy",
+  "choice",
+  "loss",
+  "dilemma",
+];
 
 const pad = (n) => String(n).padStart(2, "0");
 

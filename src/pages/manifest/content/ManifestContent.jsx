@@ -9,6 +9,7 @@ import CostOfOrder from "@/pages/manifest/cost/CostOfOrder";
 import WeightOfChoice from "@/pages/manifest/choice/WeightOfChoice";
 import ContactHomePage from "@/pages/home/contact/ContactHomePage";
 import AsymmetryOfLoss from "@/pages/manifest/assymetry/AsymmetryOfLoss";
+import PrisonersDilemma from "@/pages/manifest/dilemma/PrisonersDilemma";
 import ManifestProgress from "@/pages/manifest/progress/ManifestProgress";
 import { prefersReducedMotion } from "@/utils/motion";
 import styles from "./style.module.css";
@@ -23,7 +24,8 @@ const PANELS = [
   { id: "choice", labelIndex: 3, Component: TheDichotomy },
   { id: "dichotomy", labelIndex: 4, Component: WeightOfChoice },
   { id: "loss", labelIndex: 5, Component: AsymmetryOfLoss },
-  { id: "contact", labelIndex: 6, Component: ContactHomePage },
+  { id: "dilemma", labelIndex: 6, Component: PrisonersDilemma },
+  { id: "contact", labelIndex: 7, Component: ContactHomePage },
 ];
 
 /* her geçişten sonra panel ekranda bir süre sabit dinlenir (plato).

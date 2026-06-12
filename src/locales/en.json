@@ -178,7 +178,8 @@
       "dichotomy",
       "choice",
       "loss",
-      "protocol"
+      "dilemma",
+      "contact"
     ],
     "read_more": "read more",
     "article_back": "manifesto",
@@ -302,6 +303,33 @@
             "body": "the fear of loss decides quietly: we cling to sunk costs, stay in bad jobs, cannot delete dead code. i work by accepting the asymmetry — i design for reversibility, lose small, delete early. and i never let the user suffer an irreversible loss: the undo button is not a feature, it is an act of mercy."
           }
         ]
+      },
+      "dilemma": {
+        "label": "dilemma",
+        "title": "the mathematics of trust",
+        "lead": "two prisoners, two separate cells, one question: will you trust the other? game theory calls it a dilemma. i see the same question on the first day of every friendship, every bond.",
+        "sections": [
+          {
+            "heading": "1950: two cells, one table",
+            "body": "the game was built at rand by merrill flood and melvin dresher; albert tucker gave it its story. two prisoners, two separate cells: talking looks like winning. since both sides know it, both talk — and both lose. mathematics calls this an equilibrium; the mind calls it a trap. and in a single hand it is even right — why open up to someone you will never see again?"
+          },
+          {
+            "quote": "the foundation of cooperation is not really trust, but the durability of the relationship.",
+            "cite": "robert axelrod, 1984"
+          },
+          {
+            "heading": "the four-line winner",
+            "body": "in 1980 axelrod ran a tournament: which strategy wins the repeated dilemma? clever programs arrived from all over the world. the winner was anatol rapoport's four-line program: open with cooperation, then repeat the other's last move. nice, retaliatory, forgiving, readable. what won wasn't brilliance; it was consistency."
+          },
+          {
+            "heading": "trusting first",
+            "body": "whoever begins open can be hurt. knowing this, i still open every first hand with trust, because nothing that begins closed ever weaves. if it isn't returned, i become a mirror — naivety is not a virtue. but i hold no grudge: the moment you come back, so do i. that is not forgetting; it is making the game possible again."
+          },
+          {
+            "heading": "what the lines say",
+            "body": "life is not a single hand; we keep meeting the same people. every meeting either weaves or breaks, and years later what remains is not the decisions but the shape itself: who you wove with, who you broke from. i don't keep score — the shape is enough. trust is built not by words, but by repetition."
+          }
+        ]
       }
     },
     "header": {
@@ -377,10 +405,21 @@
       "build": "+ gain",
       "destruct": "- lose"
     },
-    "protocol": {
-      "title": "[protocol_00: handshake]",
-      "desc": "you've seen the architecture of my mind and the price of keeping order. if you have work that deserves this kind of care, let's talk.",
-      "connect": "initiate contact"
+    "dilemma": {
+      "title": "[the prisoner's dilemma]",
+      "desc": "trust is not a feeling; it is a strategy. in a single hand, betrayal wins — but i don't play single hands with anyone. if we're sitting at the same table again, the math changes.",
+      "strategy": "my rule is simple: i trust first. i do what you do. i hold no grudge.",
+      "you_label": "[you]",
+      "me_label": "[me]",
+      "silent_btn": "trust",
+      "betray_btn": "betray",
+      "silent_word": "trusted",
+      "betray_word": "betrayed",
+      "verdict_coop": "five hands of trust. two lines braided into each other — this is what trust looks like.",
+      "verdict_mixed": "it broke here and there, yet it wove. what matters is not never breaking, but coming back.",
+      "verdict_betray": "i did what you did. what remains is not a braid — just two lonely lines, side by side.",
+      "replay": "start over",
+      "hint": "trust or betray — both lines are drawn at once"
     }
   },
   "contactPage": {
