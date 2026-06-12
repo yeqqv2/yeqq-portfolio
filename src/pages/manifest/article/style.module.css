@@ -1,41 +1,81 @@
+/* manifest detay sayfası — sitenin kendi diliyle:
+   küçük sessiz başlıklar (0.875em / 200 / soluk), 0.925em gövde,
+   hairline'lar, read_more kalıbında linkler. diyagonal, blokların
+   küçük adımlarla sağa kaymasından ibaret; başka görsel öğe yok. */
+
 .container {
   width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 22vh 5vw 12vh;
+  padding: 22vh 8vw 14vh;
   background-color: var(--wb50);
 }
 
-/* Ortak okuma kolonu genişliği */
+/* ortak ray: okuma kolonu + diyagonal adım payı */
 .back,
 .header,
 .body,
 .footer {
   width: 100%;
-  max-width: 60ch;
+  max-width: 50rem;
 }
 
 .back {
+  margin-bottom: 7vh;
+}
+
+/* ---- read_more kalıbı: küçük metin + hairline + kayan ok ---- */
+.nav_link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
   font-size: 0.85em;
   font-weight: 400;
-  color: var(--wb500);
-  margin-bottom: 7vh;
-  width: fit-content;
-  transition: color 0.3s ease;
-}
-
-.back:hover {
+  letter-spacing: -0.01em;
   color: var(--wb950);
+  cursor: pointer;
+  width: fit-content;
+  border-bottom: 1px solid var(--wb950);
+  padding-bottom: 0.15em;
+  transition: opacity 0.3s ease;
 }
 
+.nav_link:hover {
+  opacity: 0.6;
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.85, 0.05, 0.18, 1.35);
+}
+
+.nav_link:hover .arrow_r {
+  transform: translateX(4px);
+}
+
+.nav_link:hover .arrow_l {
+  transform: translateX(-4px);
+}
+
+/* ---- başlık alanı ---- */
 .header {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.75em;
-  margin-bottom: 9vh;
+  margin-bottom: 10vh;
+}
+
+/* üst satır: etiket solda, sayfa indeksi sağda; altında hairline */
+.meta_row {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: 1em;
+  margin-bottom: 1.5em;
+  border-bottom: 1px solid var(--wb100);
 }
 
 .label {
@@ -46,51 +86,103 @@
   opacity: 0.5;
 }
 
+.index {
+  font-size: 0.875em;
+  font-weight: 200;
+  letter-spacing: 0.08em;
+  color: var(--wb400);
+}
+
 .title {
-  font-size: 3.2em;
+  font-size: 1.25em;
   font-weight: 300;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
   color: var(--wb950);
 }
 
 .lead {
-  font-size: 1.35em;
-  font-weight: 300;
-  line-height: 1.4;
+  font-size: 1em;
+  font-weight: 200;
   letter-spacing: -0.01em;
-  color: var(--wb700);
-  margin-top: 0.5em;
+  line-height: 1.4;
+  color: var(--wb950);
+  max-width: 34em;
+  margin-top: 0.75em;
 }
 
+/* ---- gövde: ince diyagonal ---- */
 .body {
   display: flex;
   flex-direction: column;
-  gap: 6vh;
+  gap: 8vh;
 }
 
 .section {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.85em;
+  gap: 0.75em;
+  max-width: 32em;
+  margin-left: min(calc(var(--i, 0) * 7%), 21%);
 }
 
+.heading_row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75em;
+}
+
+.sec_index {
+  font-size: 0.75em;
+  font-weight: 200;
+  letter-spacing: 0.08em;
+  color: var(--wb400);
+}
+
+/* anotasyon h4 kalıbı: küçük, hafif, soluk */
 .heading {
-  font-size: 1.5em;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
+  font-size: 0.875em;
+  font-weight: 200;
+  letter-spacing: 0.02em;
   color: var(--wb950);
+  opacity: 0.5;
 }
 
 .text {
-  font-size: 1.05em;
+  font-size: 0.925em;
   font-weight: 300;
-  line-height: 1.7;
-  color: var(--wb800);
+  line-height: 1.6;
+  color: var(--wb600);
 }
 
+/* ---- alıntı: hairline sol ray ---- */
+.quote {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  max-width: 30em;
+  margin-left: min(calc(var(--i, 0) * 7%), 21%);
+  padding-left: 1.25em;
+  border-left: 1px solid var(--wb950);
+}
+
+.quote_text {
+  font-size: 1em;
+  font-weight: 200;
+  letter-spacing: -0.01em;
+  line-height: 1.5;
+  color: var(--wb950);
+}
+
+.cite {
+  font-size: 0.8em;
+  font-weight: 300;
+  font-style: normal;
+  color: var(--wb400);
+}
+
+/* ---- alt gezinme ---- */
 .footer {
   display: flex;
   justify-content: space-between;
@@ -98,21 +190,10 @@
   gap: 2em;
   margin-top: 12vh;
   padding-top: 3vh;
-  border-top: 1px solid var(--wb200);
+  border-top: 1px solid var(--wb100);
 }
 
-.foot_link {
-  font-size: 0.95em;
-  font-weight: 400;
-  color: var(--wb600);
-  transition: color 0.3s ease;
-}
-
-.foot_link:hover {
-  color: var(--wb950);
-}
-
-/* Bulunamadı durumu */
+/* bulunamadı durumu */
 .notfound {
   min-height: 60vh;
   display: flex;
@@ -123,9 +204,18 @@
 }
 
 .nf_title {
-  font-size: 1.5em;
+  font-size: 1.25em;
   font-weight: 300;
   color: var(--wb950);
+}
+
+/* ---- dar ekran: diyagonal tek kolona iner ---- */
+@media screen and (max-width: 900px) {
+  .section,
+  .quote {
+    margin-left: 0;
+    max-width: 100%;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -133,11 +223,7 @@
     padding: 18vh 6vw 12vh;
   }
 
-  .title {
-    font-size: 2.4em;
-  }
-
-  .lead {
-    font-size: 1.15em;
+  .body {
+    gap: 6vh;
   }
 }

@@ -25,12 +25,35 @@
 
   overflow: hidden;
   will-change: transform;
+  contain: layout style paint;
 }
 
 .panelInner {
   width: 100%;
   height: 100%;
-
+  border-top: 1px solid var(--wb100);
   display: grid;
   place-items: center;
+  background-color: var(--wb50);
+}
+
+/* hareketi azalt: pin ve scrub yok, paneller normal akışta alt alta durur */
+@media (prefers-reduced-motion: reduce) {
+  .manifest {
+    height: auto;
+    overflow: visible;
+  }
+
+  .stage {
+    height: auto;
+    overflow: visible;
+  }
+
+  .panel {
+    position: relative;
+    inset: auto;
+    height: auto;
+    min-height: 100svh;
+    will-change: auto;
+  }
 }

@@ -1,14 +1,13 @@
 .progress {
   position: fixed;
-  right: 48px;
+  left: 48px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 99999;
-
   display: flex;
   flex-direction: column;
   gap: 14px;
-
+  mix-blend-mode: difference;
   pointer-events: auto;
 }
 
@@ -46,4 +45,11 @@
   font-size: 12px;
   line-height: 1;
   white-space: nowrap;
+}
+
+@media screen and (max-width: 800px) {
+  .progress {
+    display: none;
+    z-index: 0;
+  }
 }

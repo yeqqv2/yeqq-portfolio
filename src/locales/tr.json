@@ -185,9 +185,51 @@
     "article_next": "sıradaki",
     "article_not_found": "kavram bulunamadı",
     "articles": {
+      "white": {
+        "label": "beyaz",
+        "title": "beyazın ağırlığı",
+        "lead": "malevich 1918'de resmi sıfırladı. ben her gün beyaz bir ekranın karşısına aynı soruyla oturuyorum: ne taşımaya değer?",
+        "sections": [
+          {
+            "heading": "1918: resmin sıfır noktası",
+            "body": "kazimir malevich, beyaz üstüne beyaz'da resimden atılabilecek her şeyi attı: nesneyi, rengi, ufku, hikâyeyi. geriye beyaz bir zeminde hafifçe dönmüş beyaz bir kare kaldı. iki beyaz birbirinden yalnızca fırçanın dokusuyla ve o küçük açıyla ayrılır — yokluğun sınırına bırakılmış son iki insan izi."
+          },
+          {
+            "quote": "renk sınırlarının mavi bendini yıkıp beyaza ulaştım; yoldaş pilotlar, yüzün benimle bu sonsuzlukta.",
+            "cite": "kazimir malevich, 1919"
+          },
+          {
+            "heading": "beyaz boşluk değil, ışıktır",
+            "body": "ekranda beyaz, kâğıttaki gibi bir yokluk değildir; her pikselin tam güçte yandığı en yüksek enerji halidir. size beyaz bir sayfa gösteriyorsam bir şey gizlediğimden değil — ışığı mimariyle dizginlediğimden. minimalizmi vazgeçmek sananlar yanılıyor: asıl iş, neyin kalacağına karar verirken verilir."
+          },
+          {
+            "heading": "size kalsın istediğim",
+            "body": "sadeleştirmek, fakirleştirmek değildir. malevich'in karesi bana şunu öğretti: sınırı yırtarsan geriye boşluk değil, sonsuzluk kalır. bir arayüzden, bir cümleden, bir günden gereksizi çıkarın; kalan şey daha az değil, daha net bir şeydir."
+          }
+        ]
+      },
+      "observer": {
+        "label": "gözlemci",
+        "title": "bakmak dokunmaktır",
+        "lead": "bakmak masum değildir. ölçülen şey, ölçüldüğü için değişir.",
+        "sections": [
+          {
+            "heading": "çift yarıkta bir foton",
+            "body": "kuantum fiziğinin en huzursuz edici dersi: foton, hangi yarıktan geçtiğine bakıldığında davranışını değiştirir. dalga gibi davranan şey, gözlem altında parçacığa döner. ölçüm dışarıdan bir bakış değildir; sisteme yapılan bir dokunuştur."
+          },
+          {
+            "heading": "izlendiğini bilen kullanıcı",
+            "body": "aynı yasa arayüzlerde de işler. izlendiğini hisseden kullanıcı doğal davranmaz; metrik haline getirilen her davranış bükülür. neyi ölçmeyi seçtiysem, ürünü o yöne eğmişim demektir. ölçüm tarafsız değildir; bir tercihtir ve ben bu tercihi kullanıcıya karşı değil, onun adına yapmaya çalışıyorum."
+          },
+          {
+            "heading": "size kalsın istediğim",
+            "body": "kod yazarken, yazı yazarken, hatta yaşarken bir gözlemci varsayın. ben kodu birinin okuyacağını bildiğim için temiz yazıyorum; bakış ihtimali bile davranışı düzeltiyor. gözlemciyi silemezsiniz — ama hangi gözlemciye göre yaşayacağınızı seçebilirsiniz."
+          }
+        ]
+      },
       "entropy": {
         "label": "entropi",
-        "title": "düzenin bedeli",
+        "title": "düzen bir harcamadır",
         "lead": "düzen doğal değildir. düzen, bedeli ödenmiş bir eforttur.",
         "sections": [
           {
@@ -203,6 +245,63 @@
             "body": "her düzen bir maliyettir, ama bu maliyet anlamsız değildir. ödediğim bedel; gürültüyü azaltan, kararı netleştiren ve kullanıcının zihnindeki yükü hafifleten bir berraklıktır. estetik dediğimiz şey, çoğu zaman bu bedelin görünür hale gelmiş halidir."
           }
         ]
+      },
+      "dichotomy": {
+        "label": "ikilik",
+        "title": "iki ses, tek imza",
+        "lead": "kafamın içinde iki ses var: biri plan yapar, öteki planı yakar. işim, ikisini aynı masada tutmak.",
+        "sections": [
+          {
+            "heading": "güzel bir yalan",
+            "body": "sol beyin rasyonel, sağ beyin duygusaldır hikâyesi nörolojik olarak bir efsane; beyin böyle ikiye bölünmüyor. ama efsane yaşıyor, çünkü metafor doğru: içimizde gerçekten iki kuvvet pazarlık ediyor. ben de bu yalanı bilerek kullanıyorum — yanlış bir harita bile doğru bölgeyi anlatabilir."
+          },
+          {
+            "heading": "düzenin sesi, kaosun sesi",
+            "body": "biri sınır çizer, listeler yapar, bitmeden bırakmaz. öteki balıkesir'in sessizliğini, kaybedilen oyunların öfkesini, sebepsiz sabah koşularını taşır. yıllarca birinin diğerini yenmesini bekledim. sonra fark ettim: iyi iş, savaşın bittiği yerde değil, tam cephe hattında çıkıyor."
+          },
+          {
+            "heading": "size kalsın istediğim",
+            "body": "içinizdeki çelişkiyi çözülecek bir hata gibi görmeyin. rasyonel taraf işe formunu verir, duygusal taraf nedenini. birini susturursanız elinizde ya ruhsuz bir makine ya da dağılmış bir his kalır. imza, ikisinin ortak elidir."
+          }
+        ]
+      },
+      "choice": {
+        "label": "seçim",
+        "title": "kapanan kapılar",
+        "lead": "bir kapıyı açmak, diğerlerini duvara çevirmektir.",
+        "sections": [
+          {
+            "heading": "özgürlüğün baş dönmesi",
+            "body": "kierkegaard kaygıyı özgürlüğün baş dönmesi diye tanımlar. uçurumun kenarında hissettiğin şey düşme korkusu değil, atlayabilecek olmanın bilgisidir. beş kapının önünde duran herkes aynı baş dönmesini yaşar: korkutan, seçeneklerin çokluğu değil; seçmenin geri alınamazlığıdır."
+          },
+          {
+            "heading": "mimaride her karar bir vedadır",
+            "body": "bir framework seçmek, bir veri modeli kurmak, bir işe hayır demek — hepsi kapanan kapılardır. mühendislikte buna trade-off diyoruz ama kelime fazla steril: gerçekte, yaşanmayacak geleceklere veda ediyorsun. ben her büyük kararda biraz dururum; parmağımın titremesini beklerim. titreme, kararın ağırlığını ölçer."
+          },
+          {
+            "heading": "size kalsın istediğim",
+            "body": "seçmemek de bir seçimdir — üstelik en pahalısı, çünkü bütün kapıları zaman kapatır. yanlış kapıdan dönülür; açılmamış kapıdan dönülmez. baş dönmesine rağmen seçin. seçtiğiniz kapının ışığı, kalan dördünün karanlığını taşımaya değsin, yeter."
+          }
+        ]
+      },
+      "loss": {
+        "label": "kayıp",
+        "title": "kaybın yerçekimi",
+        "lead": "aynı büyüklükteki kazanç ve kayıp eşit çekmez. kayıp, her zaman iki kat ağırdır.",
+        "sections": [
+          {
+            "heading": "kahneman'ın terazisi",
+            "body": "kahneman ve tversky ölçtü: bir kaybın acısı, aynı büyüklükteki kazancın sevincinden yaklaşık iki kat şiddetlidir. yazı tura atalım: kazanırsan +150, kaybedersen -100. matematik oyna der, içgüdü oynama. o içgüdü bozuk değil; sadece başka bir çağa göre kalibre edilmiş."
+          },
+          {
+            "heading": "kazanç olaydır, kayıp durumdur",
+            "body": "kazancın sevinci bir sıçramadır; kutlarsın ve taban çizgine geri dönersin. kayıp öyle değil: referans noktanın kendisi aşağı taşınır ve eski seviyen, ulaşamadığın bir hayalet çizgi olarak asılı kalır. sildiğim projelerin, kaybettiğim oyunların hepsi orada duruyor. zaman o çizgiyi silmiyor; sadece bakmaya alıştırıyor."
+          },
+          {
+            "heading": "size kalsın istediğim",
+            "body": "kayıp korkusu sessizce karar veriyor: batık maliyete sarılıyoruz, kötü işte kalıyoruz, ölü kodu silemiyoruz. ben asimetriyi kabul ederek çalışıyorum — geri alınabilir tasarlıyorum, küçük kaybediyorum, erken siliyorum. ve kullanıcıya asla telafisiz bir kayıp yaşatmıyorum: geri al düğmesi bir özellik değil, bir merhamettir."
+          }
+        ]
       }
     },
     "header": {
@@ -215,30 +314,15 @@
       "footer": "tasarımda ışık, formun babasıdır. gölgeleri saklamak kolaydır, ışığı yönetmek ise ustalık ister. saf beyaz, bir ekranın en yüksek enerji seviyesidir. ben enerjiyi saklamıyorum, onu mimariyle dizginliyorum."
     },
     "dichotomy": {
-      "left_title": "[sol beyin]",
-      "left_annotation_title": "rasyonel yarımküre",
-      "left_annotation_desc": "hesaplar, sınırlar ve mimari. bir bileşenin yaşam döngüsü kadar kusursuz, entropiye düşman. duyguyu reddeder, sadece veriyi kabul eder. karl friston'ın serbest enerji ilkesi burada çalışır: sürpriz yok, hata yok.",
-      "right_title": "[sağ beyin]",
-      "right_annotation_title": "duygusal yarımküre",
-      "right_annotation_desc": "balıkesir'deki derin izolasyon. satranç tahtasında kaybedilen bir elden sonra gelen o ham öfke. her gün bedenini anlamsızca harekete geçiren düzensiz motivasyon. kusurlu, tahmin edilemez ama bir o kadar da insani.",
-      "card_rational": "sistem günlüğü",
-      "card_emotional": "his panosu",
-      "action_btn": "çalıştır",
-      "log_lines": [
-        "> entropi taranıyor",
-        "> sürpriz: 0.00",
-        "> sapma reddedildi",
-        "> bellek: optimize",
-        "durum: kararlı"
-      ],
-      "mood_words": [
-        "ham öfke",
-        "izolasyon",
-        "kaybedilen el",
-        "düzensiz dürtü",
-        "sezgi",
-        "tahmin edilemez"
-      ]
+      "title": "[zihnin ikiliği]",
+      "desc": "tek zihin, iki lob. ikisi de benim.",
+      "hint": "bir loba tıkla",
+      "left_label": "sol lob",
+      "right_label": "sağ lob",
+      "left_title": "rasyonel taraf",
+      "left_desc": "bu taraf benim düzenim. planlar, sınırlar, bitmeden bırakamadığım işler. bir şey ya doğrudur ya yanlıştır; arası beni yorar. burada süs yok. veri girer, karar çıkar.",
+      "right_title": "duygusal taraf",
+      "right_desc": "bu taraf benim kaosum. balıkesir'in sessizliği, kaybettiğim oyunların öfkesi, sebepsiz sabah koşuları. plana gelmez, ölçüye sığmaz. ama beni ben yapan ne varsa burada duruyor."
     },
     "cost_of_order": {
       "btn_label": "enerji uygula",
@@ -287,23 +371,11 @@
     "asymmetry": {
       "title": "[kayıp asimetrisi]",
       "desc": "kaybetmek, kazanmanın negatifi değildir; ağırlığı iki kat çeker. kahneman bunu ölçtü, ben her silme tuşunda yaşıyorum. kurduğum şeyi yıkacaksam, parmağımın titremesini beklerim.",
-      "build": "[+ kazan]",
-      "destruct": "[- kaybet]",
+      "build": "+ kazan",
+      "destruct": "- kaybet",
       "gain_word": "kazanç",
       "loss_word": "kayıp",
-      "mass_word": "kütle",
-      "reset_label": "kefeleri boşalt",
-      "concepts": [
-        "rasyonalite",
-        "mimari",
-        "boşluk",
-        "entropi",
-        "kütle",
-        "izolasyon",
-        "estetik",
-        "sistem",
-        "zaman"
-      ]
+      "reset_label": "çizgiyi sıfırla"
     },
     "protocol": {
       "title": "[protocol_00: tokalaşma]",

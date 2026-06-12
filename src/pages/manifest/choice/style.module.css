@@ -8,7 +8,7 @@
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto 1fr;
   column-gap: 1vw;
-  padding: 5vh 20vw;
+  padding: 20vh 20vw;
   background-color: var(--wb50);
   position: relative;
   z-index: 0;
@@ -255,7 +255,7 @@
   }
 
   .doors {
-    gap: 3vw;
+    gap: 2vw;
   }
 
   .whisper {

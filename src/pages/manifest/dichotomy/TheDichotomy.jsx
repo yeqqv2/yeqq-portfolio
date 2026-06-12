@@ -1,195 +1,178 @@
-import { useState, useRef, useEffect } from "react";
+import { Fragment, useLayoutEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import gsap from "gsap";
+import { CustomEase } from "gsap/CustomEase";
+import ReadMore from "@/pages/manifest/shared/ReadMore";
+import { prefersReducedMotion } from "@/utils/motion";
 import styles from "./style.module.css";
-import CustomEase from "gsap/CustomEase.js";
 
 gsap.registerPlugin(CustomEase);
-CustomEase.create("hop", "0.9, 0, 0.1, 1");
+if (!gsap.parseEase("hop")) {
+  CustomEase.create("hop", "0.9, 0, 0.1, 1");
+}
+
+/* lucide "brain" (isc lisansı): iki kapalı yarımküre yolu — sol ve sağ lob.
+   yollar kapalı (z) olduğu için fill alanı tıklamayı yakalar. */
+const LOBE_LEFT =
+  "M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z";
+const LOBE_RIGHT =
+  "M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z";
+
+const SHAPE_COUNT = 5; // renkli şekil çeşidi (css: .s0 … .s4)
 
 export default function TheDichotomy() {
   const { t } = useTranslation();
-  const [activeBrain, setActiveBrain] = useState("left");
+  const [mode, setMode] = useState("rational");
+  const isRational = mode === "rational";
 
-  const logRef = useRef([]);
-  const moodRef = useRef([]);
+  const titleRef = useRef(null);
+  const wordRefs = useRef([]);
+  const shapeRefs = useRef([]);
+  wordRefs.current = [];
+  shapeRefs.current = [];
 
-  const logLines = t("manifesto.dichotomy.log_lines", { returnObjects: true });
-  const moodWords = t("manifesto.dichotomy.mood_words", {
-    returnObjects: true,
-  });
+  const title = isRational
+    ? t("manifesto.dichotomy.left_title")
+    : t("manifesto.dichotomy.right_title");
+  const desc = isRational
+    ? t("manifesto.dichotomy.left_desc")
+    : t("manifesto.dichotomy.right_desc");
 
-  // Rasyonel: günlük satırlarını soldan sağa, sırayla "yaz" (kusursuz süreç).
-  const playLog = () => {
-    const lines = logRef.current.filter(Boolean);
-    gsap.fromTo(
-      lines,
-      { clipPath: "inset(0 100% 0 0)", opacity: 0.2 },
-      {
-        clipPath: "inset(0 0% 0 0)",
-        opacity: 1,
-        duration: 0.45,
-        stagger: 0.12,
-        ease: "hop",
-      },
+  // mod değişince metin animatedsplit diliyle gelir: maskeden yükselen kelimeler.
+  // duygusal modda kelimelerin arasına renkli şekiller pıt pıt açılır.
+  useLayoutEffect(() => {
+    if (prefersReducedMotion()) return;
+
+    const words = wordRefs.current.filter(Boolean);
+    const shapes = shapeRefs.current.filter(Boolean);
+    const tl = gsap.timeline();
+
+    if (titleRef.current) {
+      tl.fromTo(
+        titleRef.current,
+        { y: "110%" },
+        { y: "0%", duration: 0.8, ease: "hop" },
+        0,
+      );
+    }
+
+    tl.fromTo(
+      words,
+      { y: "110%" },
+      { y: "0%", duration: 0.9, ease: "hop", stagger: 0.015 },
+      0.05,
     );
-  };
 
-  // Duygusal: his etiketlerini kaotik biçimde sars, sonra yerine bırak (entropi).
-  const playMood = () => {
-    const chips = moodRef.current.filter(Boolean);
-    gsap.killTweensOf(chips);
-    gsap.fromTo(
-      chips,
-      { x: 0, y: 0, rotate: 0 },
-      {
-        x: () => gsap.utils.random(-40, 40),
-        y: () => gsap.utils.random(-28, 28),
-        rotate: () => gsap.utils.random(-18, 18),
-        duration: 0.4,
-        ease: "hop",
-        yoyo: true,
-        repeat: 1,
-        stagger: { each: 0.03, from: "random" },
-      },
-    );
-  };
+    if (shapes.length) {
+      // şekiller sırayla width 0'dan büyür; metin aralarında yumuşakça açılır
+      tl.from(
+        shapes,
+        {
+          delay: 1,
+          width: 0,
+          duration: 0.8,
+          ease: "back.out(1.7)",
+          stagger: 0.2,
+        },
+        0.35,
+      );
+    }
 
-  const handleExecute = () => {
-    if (activeBrain === "left") playLog();
-    else playMood();
-  };
+    return () => tl.kill();
+  }, [desc]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(() => {
-    if (activeBrain === "left") playLog();
-    else playMood();
-  }, [activeBrain]);
+  // kelimeler tek tek maskelenir; duygusal modda her 3. kelimeden sonra şekil
+  const renderWords = (text) =>
+    text.split(" ").map((word, i, arr) => {
+      const shapeIdx = (i + 1) / 3 - 1;
+      const hasShape = !isRational && (i + 1) % 3 === 0 && i < arr.length - 1;
+
+      return (
+        <Fragment key={`${mode}-${i}`}>
+          <span className={styles.mask}>
+            <span
+              ref={(el) => (wordRefs.current[i] = el)}
+              className={styles.word}
+            >
+              {word}
+            </span>
+          </span>
+          {hasShape && (
+            <span
+              ref={(el) => (shapeRefs.current[shapeIdx] = el)}
+              className={`${styles.shape} ${styles[`s${shapeIdx % SHAPE_COUNT}`]}`}
+              aria-hidden="true"
+            />
+          )}{" "}
+        </Fragment>
+      );
+    });
 
   return (
-    <div className={styles.container}>
-      {/* SOL BEYİN (Rational) */}
-      <div
-        className={`${styles.left_brain} ${activeBrain === "left" ? styles.active : ""}`}
-      >
-        <div className={styles.brain_content}>
-          <div className={styles.toggle_container}>
-            <div className={styles.toggle_title}>
-              {t("manifesto.dichotomy.left_title")}
-            </div>
-            <label className={styles.label}>
-              <div className={styles.toggle}>
-                <input
-                  className={styles.toggle_state}
-                  type="radio"
-                  name="brain"
-                  checked={activeBrain === "left"}
-                  onChange={() => setActiveBrain("left")}
-                />
-                <div className={styles.indicator} />
-              </div>
-            </label>
-          </div>
-
-          <div className={styles.annotation}>
-            <h4 className={styles.annotation_title}>
-              {t("manifesto.dichotomy.left_annotation_title")}
-            </h4>
-            <p className={styles.annotation_desc}>
-              {t("manifesto.dichotomy.left_annotation_desc")}
-            </p>
-          </div>
-        </div>
-        <span className={styles.blob} />
-        <span className={styles.blob} />
-        <span className={styles.blob} />
+    <div className={styles.container} data-mode={mode}>
+      <div className={styles.annotation}>
+        <h4>{t("manifesto.dichotomy.title")}</h4>
+        <p>{t("manifesto.dichotomy.desc")}</p>
+        <ReadMore slug="dichotomy" />
       </div>
 
-      <div className={styles.divider} />
+      <div className={styles.stage}>
+        <svg
+          className={styles.brain}
+          viewBox="0 0 24 24"
+          fill="none"
+          aria-hidden="true"
+        >
+          <defs>
+            {/* var() svg niteliklerinde çözülmez; token karşılıkları hex */}
+            <linearGradient id="dichoWarm" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="#ffdd1b" /> {/* main-color400 */}
+              <stop offset="100%" stopColor="#ffb432" /> {/* orange400 */}
+            </linearGradient>
+          </defs>
+          <path
+            className={`${styles.lobe} ${styles.lobeLeft}`}
+            d={LOBE_LEFT}
+            onClick={() => setMode("rational")}
+          />
+          <path
+            className={`${styles.lobe} ${styles.lobeRight}`}
+            d={LOBE_RIGHT}
+            onClick={() => setMode("emotional")}
+          />
+        </svg>
 
-      {/* SAĞ BEYİN (Emotional) */}
-      <div
-        className={`${styles.right_brain} ${activeBrain === "right" ? styles.active : ""}`}
-      >
-        <div className={styles.brain_content}>
-          <div className={styles.toggle_container}>
-            <div className={styles.toggle_title}>
-              {t("manifesto.dichotomy.right_title")}
-            </div>
-            <label className={styles.label}>
-              <div className={styles.toggle}>
-                <input
-                  className={styles.toggle_state}
-                  type="radio"
-                  name="brain"
-                  checked={activeBrain === "right"}
-                  onChange={() => setActiveBrain("right")}
-                />
-                <div className={styles.indicator} />
-              </div>
-            </label>
-          </div>
-
-          <div className={styles.annotation}>
-            <h4 className={styles.annotation_title}>
-              {t("manifesto.dichotomy.right_annotation_title")}
-            </h4>
-            <p className={styles.annotation_desc}>
-              {t("manifesto.dichotomy.right_annotation_desc")}
-            </p>
-          </div>
+        <div className={styles.labels}>
+          <button
+            type="button"
+            className={styles.lobe_btn}
+            aria-pressed={isRational}
+            onClick={() => setMode("rational")}
+          >
+            {t("manifesto.dichotomy.left_label")}
+          </button>
+          <button
+            type="button"
+            className={styles.lobe_btn}
+            aria-pressed={!isRational}
+            onClick={() => setMode("emotional")}
+          >
+            {t("manifesto.dichotomy.right_label")}
+          </button>
         </div>
 
-        <span className={styles.blob} />
-        <span className={styles.blob} />
-        <span className={styles.blob} />
-        <span className={styles.blob} />
-        <span className={styles.blob} />
-        <span className={styles.blob} />
-      </div>
-
-      {/* MERKEZ KART (The Transformation) */}
-      <div
-        className={`${styles.card} ${activeBrain === "left" ? styles.rational : styles.emotional}`}
-      >
-        <div className={styles.card_header}>
-          <h2>
-            {activeBrain === "left"
-              ? t("manifesto.dichotomy.card_rational")
-              : t("manifesto.dichotomy.card_emotional")}
-          </h2>
+        <div className={styles.readout} key={mode}>
+          <h3 className={styles.mode_title}>
+            <span className={styles.mask}>
+              <span ref={titleRef} className={styles.word}>
+                {title}
+              </span>
+            </span>
+          </h3>
+          <p className={styles.mode_text}>{renderWords(desc)}</p>
         </div>
 
-        <div className={styles.card_body}>
-          {activeBrain === "left" ? (
-            <div className={styles.log}>
-              {(Array.isArray(logLines) ? logLines : []).map((line, i) => (
-                <span
-                  key={i}
-                  ref={(el) => (logRef.current[i] = el)}
-                  className={styles.log_line}
-                >
-                  {line}
-                </span>
-              ))}
-            </div>
-          ) : (
-            <div className={styles.mood}>
-              {(Array.isArray(moodWords) ? moodWords : []).map((word, i) => (
-                <span
-                  key={i}
-                  ref={(el) => (moodRef.current[i] = el)}
-                  className={styles.mood_chip}
-                >
-                  {word}
-                </span>
-              ))}
-            </div>
-          )}
-        </div>
-
-        <button className={styles.action_btn} onClick={handleExecute}>
-          {t("manifesto.dichotomy.action_btn")}
-        </button>
+        <span className={styles.hint}>{t("manifesto.dichotomy.hint")}</span>
       </div>
     </div>
   );

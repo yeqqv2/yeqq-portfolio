@@ -206,15 +206,33 @@ export default function CostOfOrder() {
     gsap.to(pulses, { autoAlpha: 0, duration: 0.3, overwrite: true });
   };
 
-  const handleDown = () => {
+  const handleDown = (e) => {
+    e.preventDefault();
+
+    if (e.currentTarget.setPointerCapture && e.pointerId != null) {
+      e.currentTarget.setPointerCapture(e.pointerId);
+    }
+
     if (holdingRef.current) return;
+
     holdingRef.current = true;
     applyOrder();
     startPulses();
   };
 
-  const handleUp = () => {
+  const handleUp = (e) => {
+    e?.preventDefault();
+
+    if (
+      e?.currentTarget?.releasePointerCapture &&
+      e.pointerId != null &&
+      e.currentTarget.hasPointerCapture?.(e.pointerId)
+    ) {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    }
+
     if (!holdingRef.current) return;
+
     holdingRef.current = false;
     decay();
     stopPulses();
@@ -265,18 +283,27 @@ export default function CostOfOrder() {
           aria-hidden="true"
         />
         <button
+          type="button"
           className={styles.energy_btn}
           onPointerDown={handleDown}
           onPointerUp={handleUp}
           onPointerLeave={handleUp}
           onPointerCancel={handleUp}
+          onSelectStart={(e) => e.preventDefault()}
+          onDragStart={(e) => e.preventDefault()}
+          onContextMenu={(e) => e.preventDefault()}
           onKeyDown={(e) => {
-            if ((e.key === " " || e.key === "Enter") && !e.repeat) handleDown();
+            if ((e.key === " " || e.key === "Enter") && !e.repeat) {
+              e.preventDefault();
+              handleDown(e);
+            }
           }}
           onKeyUp={(e) => {
-            if (e.key === " " || e.key === "Enter") handleUp();
+            if (e.key === " " || e.key === "Enter") {
+              e.preventDefault();
+              handleUp(e);
+            }
           }}
-          onContextMenu={(e) => e.preventDefault()}
         >
           {t("manifesto.cost_of_order.btn_label")}
         </button>

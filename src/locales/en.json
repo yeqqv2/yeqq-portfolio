@@ -185,9 +185,51 @@
     "article_next": "next",
     "article_not_found": "concept not found",
     "articles": {
+      "white": {
+        "label": "white",
+        "title": "the weight of white",
+        "lead": "malevich reset painting in 1918. i sit down in front of a white screen every day with the same question: what is worth carrying?",
+        "sections": [
+          {
+            "heading": "1918: the zero point of painting",
+            "body": "in white on white, kazimir malevich threw away everything a painting could lose: the object, the color, the horizon, the story. what remained was a white square, slightly tilted, on a white ground. the two whites differ only in the texture of the brush and that small angle — the last two human marks left at the edge of absence."
+          },
+          {
+            "quote": "i have broken the blue boundary of color limits, come out into the white; beside me comrade-pilots swim in this infinity.",
+            "cite": "kazimir malevich, 1919"
+          },
+          {
+            "heading": "white is not emptiness; it is light",
+            "body": "on a screen, white is not an absence the way it is on paper; it is the highest energy state, every pixel burning at full power. if i show you a white page, it is not because i am hiding something — it is because i am harnessing the light through architecture. those who mistake minimalism for giving up are wrong: the real work happens while deciding what stays."
+          },
+          {
+            "heading": "what i want you to keep",
+            "body": "to simplify is not to impoverish. malevich's square taught me this: tear through the limit and what remains is not emptiness but infinity. remove the unnecessary from an interface, a sentence, a day; what is left is not less — it is clearer."
+          }
+        ]
+      },
+      "observer": {
+        "label": "observer",
+        "title": "to look is to touch",
+        "lead": "looking is not innocent. what is measured changes because it is measured.",
+        "sections": [
+          {
+            "heading": "a photon at the double slit",
+            "body": "the most unsettling lesson of quantum physics: a photon changes its behavior when you watch which slit it passes through. what acts like a wave becomes a particle under observation. measurement is not a glance from outside; it is a touch upon the system."
+          },
+          {
+            "heading": "the user who knows they are watched",
+            "body": "the same law operates in interfaces. a user who feels watched does not behave naturally; every behavior turned into a metric bends. whatever i choose to measure, i have tilted the product in that direction. measurement is not neutral; it is a choice — and i try to make that choice on the user's behalf, not against them."
+          },
+          {
+            "heading": "what i want you to keep",
+            "body": "assume an observer while writing code, while writing words, even while living. i write clean code because i know someone will read it; even the possibility of a gaze corrects behavior. you cannot erase the observer — but you can choose which observer you live by."
+          }
+        ]
+      },
       "entropy": {
         "label": "entropy",
-        "title": "the cost of order",
+        "title": "order is an expenditure",
         "lead": "order is not natural. order is effort that has been paid for.",
         "sections": [
           {
@@ -203,6 +245,63 @@
             "body": "every order is a cost, but that cost is not meaningless. what i pay for is a clarity that reduces noise, sharpens the decision, and lightens the load on the user's mind. what we call aesthetics is often that cost made visible."
           }
         ]
+      },
+      "dichotomy": {
+        "label": "dichotomy",
+        "title": "two voices, one signature",
+        "lead": "there are two voices in my head: one makes the plan, the other burns it. my job is to keep them at the same table.",
+        "sections": [
+          {
+            "heading": "a beautiful lie",
+            "body": "the story that the left brain is rational and the right brain emotional is a neurological myth; the brain does not split that way. but the myth survives because the metaphor is true: two forces really do negotiate inside us. i use this lie knowingly — even a wrong map can describe the right territory."
+          },
+          {
+            "heading": "the voice of order, the voice of chaos",
+            "body": "one draws boundaries, makes lists, cannot leave a thing unfinished. the other carries the silence of balıkesir, the anger of lost games, morning runs without a reason. for years i waited for one to defeat the other. then i realized: good work does not come from where the war ends — it comes from the front line."
+          },
+          {
+            "heading": "what i want you to keep",
+            "body": "do not treat your inner contradiction as a bug to be fixed. the rational side gives the work its form, the emotional side gives it its reason. silence either one and you are left with a soulless machine or a scattered feeling. the signature is signed by both hands."
+          }
+        ]
+      },
+      "choice": {
+        "label": "choice",
+        "title": "the doors that close",
+        "lead": "to open one door is to turn the others into walls.",
+        "sections": [
+          {
+            "heading": "the dizziness of freedom",
+            "body": "kierkegaard defined anxiety as the dizziness of freedom. what you feel at the edge of a cliff is not the fear of falling but the knowledge that you could jump. everyone standing before five doors feels the same dizziness: what frightens is not the abundance of options — it is the irreversibility of choosing."
+          },
+          {
+            "heading": "in architecture, every decision is a farewell",
+            "body": "choosing a framework, committing to a data model, saying no to a job — all of them are closing doors. in engineering we call this a trade-off, but the word is too sterile: in truth, you are saying goodbye to futures that will never be lived. before every big decision i pause; i wait for my finger to tremble. the tremble measures the weight of the decision."
+          },
+          {
+            "heading": "what i want you to keep",
+            "body": "not choosing is also a choice — the most expensive one, because time closes every door. you can come back from the wrong door; you cannot come back from the one you never opened. choose despite the dizziness. it is enough that the light behind your door is worth the darkness of the other four."
+          }
+        ]
+      },
+      "loss": {
+        "label": "loss",
+        "title": "the gravity of loss",
+        "lead": "a gain and a loss of the same size do not pull equally. loss is always twice as heavy.",
+        "sections": [
+          {
+            "heading": "kahneman's scale",
+            "body": "kahneman and tversky measured it: the pain of a loss is roughly twice as intense as the joy of an equal gain. flip a coin: win 150, lose 100. the math says play; the gut says don't. that gut is not broken — it was simply calibrated for another age."
+          },
+          {
+            "heading": "a gain is an event, a loss is a state",
+            "body": "the joy of a gain is a spike; you celebrate and return to your baseline. loss is different: the reference point itself moves down, and your old level hangs there as a ghost line you can no longer reach. the projects i deleted, the games i lost — they are all still hanging there. time does not erase that line; it only teaches you to look at it."
+          },
+          {
+            "heading": "what i want you to keep",
+            "body": "the fear of loss decides quietly: we cling to sunk costs, stay in bad jobs, cannot delete dead code. i work by accepting the asymmetry — i design for reversibility, lose small, delete early. and i never let the user suffer an irreversible loss: the undo button is not a feature, it is an act of mercy."
+          }
+        ]
       }
     },
     "header": {
@@ -215,30 +314,15 @@
       "footer": "in design, light is the father of form. hiding shadows is easy; mastering light requires craft. pure white is a screen's highest energy state. i do not hide the energy; i harness it through architecture."
     },
     "dichotomy": {
-      "left_title": "[left brain]",
-      "left_annotation_title": "rational hemisphere",
-      "left_annotation_desc": "calculations, boundaries, and architecture. as flawless as a component's lifecycle, an enemy of entropy. it rejects emotion, accepting only data. karl friston's free energy principle operates here: no surprises, no errors.",
-      "right_title": "[right brain]",
-      "right_annotation_title": "emotional hemisphere",
-      "right_annotation_desc": "the deep isolation in balıkesir. the raw anger following a lost hand on the chessboard. the irregular motivation that moves the body pointlessly every day. flawed, unpredictable, but undeniably human.",
-      "card_rational": "system log",
-      "card_emotional": "feeling board",
-      "action_btn": "execute",
-      "log_lines": [
-        "> scanning entropy",
-        "> surprise: 0.00",
-        "> deviation rejected",
-        "> memory: optimized",
-        "status: stable"
-      ],
-      "mood_words": [
-        "raw anger",
-        "isolation",
-        "the lost hand",
-        "irregular impulse",
-        "intuition",
-        "unpredictable"
-      ]
+      "title": "[the dichotomy of mind]",
+      "desc": "one mind, two lobes. both are me.",
+      "hint": "click a lobe",
+      "left_label": "left lobe",
+      "right_label": "right lobe",
+      "left_title": "the rational side",
+      "left_desc": "this side is my order. plans, boundaries, work i can't leave unfinished. a thing is either right or wrong; the in-between tires me. no ornament here. data in, decision out.",
+      "right_title": "the emotional side",
+      "right_desc": "this side is my chaos. the silence of balıkesir, the anger of lost games, morning runs without a reason. it won't follow a plan, it won't fit a measure. but everything that makes me, me, lives here."
     },
     "cost_of_order": {
       "btn_label": "apply energy",
@@ -289,21 +373,9 @@
       "desc": "losing is not the negative of gaining; it pulls twice the weight. kahneman measured it, i live it at every delete key. if i am to tear down what i built, i wait for my finger to tremble.",
       "gain_word": "gain",
       "loss_word": "loss",
-      "mass_word": "mass",
-      "reset_label": "empty the pans",
-      "build": "[+ gain]",
-      "destruct": "[- lose]",
-      "concepts": [
-        "rationality",
-        "architecture",
-        "the void",
-        "entropy",
-        "mass",
-        "isolation",
-        "aesthetics",
-        "system",
-        "time"
-      ]
+      "reset_label": "reset the line",
+      "build": "+ gain",
+      "destruct": "- lose"
     },
     "protocol": {
       "title": "[protocol_00: handshake]",

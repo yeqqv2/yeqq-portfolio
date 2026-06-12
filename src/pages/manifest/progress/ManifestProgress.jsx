@@ -4,19 +4,22 @@ import styles from "./style.module.css";
 export default function ManifestProgress({
   active = 0,
   sectionCount = 0,
+  labels: customLabels,
   onSelect,
 }) {
   const { t } = useTranslation();
 
   const rawLabels = t("manifesto.nav", { returnObjects: true });
 
-  const labels = Array.from({ length: sectionCount }, (_, i) => {
-    if (Array.isArray(rawLabels) && rawLabels[i]) {
-      return rawLabels[i];
-    }
+  const labels =
+    customLabels ??
+    Array.from({ length: sectionCount }, (_, i) => {
+      if (Array.isArray(rawLabels) && rawLabels[i]) {
+        return rawLabels[i];
+      }
 
-    return `Section ${i + 1}`;
-  });
+      return `section ${i + 1}`;
+    });
 
   return (
     <nav className={styles.progress} aria-label="manifesto progress">

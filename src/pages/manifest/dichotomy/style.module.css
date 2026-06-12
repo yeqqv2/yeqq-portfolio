@@ -1,348 +1,241 @@
+/* ikilik: ortada iki loblu beyin. aktif lob tam görünür, pasif lob 0.3.
+   sol lob (rasyonel): renk yok, metin düz ve net.
+   sağ lob (duygusal): lob ısınır, kelimelerin arasında renkli şekiller açılır.
+   dil, diğer manifest panelleriyle aynı: düz wb50 zemin, hairline, hop ease. */
+
 .container {
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  padding: 10vh 0;
-}
-
-/* BRAIN CONTAINERS */
-
-.left_brain,
-.right_brain {
-  flex: 1;
-  aspect-ratio: 1;
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-
-.right_brain {
-  justify-content: flex-end;
-}
-
-.brain_content {
-  width: 75%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding: 5vw;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  padding: 18vh 15vw 12vh;
+  background-color: var(--wb50);
+  position: relative;
+  overflow: hidden;
+  user-select: none;
 }
 
-.right_brain .brain_content {
-  align-items: flex-end;
-}
-
+/* ---- anotasyon: diğer bölümlerle aynı kalıp ---- */
 .annotation {
+  max-width: 30em;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 1em;
 }
 
-.right_brain .brain_content .annotation {
-  align-items: flex-end;
-  text-align: end;
-}
-
-.annotation_title {
-  line-height: 1em;
-  font-size: 1em;
-  font-weight: 300;
-  transition: 0.3s;
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-  cursor: pointer;
-  color: var(--wb950);
-}
-
-.annotation_desc {
-  font-size: 0.925em;
-  line-height: 1.1;
-  font-weight: 200;
-  color: var(--wb500);
-}
-
-/* TOGGLE BUTTON */
-
-.toggle_container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5vh;
-}
-
-.toggle_title {
+.annotation h4 {
   font-size: 0.875em;
   font-weight: 200;
+  color: var(--wb950);
   opacity: 0.5;
 }
 
-.label {
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-/* düz anahtar: hairline çerçeve, kayan beyaz yüzey — gölgesiz */
-.toggle {
-  isolation: isolate;
-  position: relative;
-  height: 30px;
-  width: 60px;
-  border-radius: 15px;
-  overflow: hidden;
-  border: 1px solid var(--wb200);
-  background-color: var(--wb100);
-  transition:
-    background-color 0.3s ease,
-    border-color 0.3s ease;
-}
-
-.toggle_state {
-  display: none;
-}
-
-.indicator {
-  height: 100%;
-  width: 200%;
-  background: #fff;
-  border-radius: 15px;
-  transform: translate3d(-75%, 0, 0);
-  transition: transform 0.4s cubic-bezier(0.85, 0.05, 0.18, 1.35);
-}
-
-.toggle_state:checked ~ .indicator {
-  transform: translate3d(25%, 0, 0);
-}
-
-.toggle:has(.toggle_state:checked) {
-  background-color: var(--green300);
-  border-color: var(--green400);
-}
-
-.card {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 25vw;
-  min-width: 300px;
-  padding: 3em;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 2rem;
-  z-index: 10;
-  background-color: var(--wb50);
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.card_header h2 {
-  font-size: 2em;
-  margin: 0;
-  transition: all 0.6s ease;
-}
-
-.card_body {
-  width: 100%;
-  min-height: 7.5em;
-  display: flex;
-  align-items: flex-start;
-}
-
-/* RASYONEL: SİSTEM GÜNLÜĞÜ (sıralı, keskin, B&W) */
-.log {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 0.35em;
-  padding: 0.75em 0;
-  border-top: 1px solid var(--wb950);
-  border-bottom: 1px solid var(--wb950);
-}
-
-.log_line {
-  font-size: 0.8em;
-  line-height: 1.4;
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  color: var(--wb950);
-  white-space: nowrap;
-}
-
-.log_line:last-child {
-  font-weight: 600;
-  letter-spacing: 0.02em;
-}
-
-/* DUYGUSAL: HİS PANOSU (dağınık, renkli, yumuşak) */
-.mood {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5em;
-  align-content: flex-start;
-}
-
-.mood_chip {
-  padding: 0.375em 0.75em;
-  border-radius: 999px;
-  font-size: 0.8em;
-  font-weight: 300;
+.annotation p {
+  font-size: 0.925em;
   line-height: 1.2;
-  color: var(--wb50);
-  white-space: nowrap;
+  font-weight: 300;
+  color: var(--wb600);
+}
+
+/* ---- sahne ---- */
+.stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3.5vh;
+  text-align: center;
+}
+
+/* ---- beyin ---- */
+.brain {
+  width: clamp(140px, 15vw, 200px);
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.lobe {
+  fill: transparent; /* kapalı yol: iç alan tıklamayı yakalar */
+  stroke: var(--wb950);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  cursor: pointer;
+  transition:
+    opacity 0.45s ease,
+    stroke 0.45s ease;
+}
+
+/* pasif lob söner, üzerine gelince hafif uyanır */
+.container[data-mode="rational"] .lobeRight,
+.container[data-mode="emotional"] .lobeLeft {
+  opacity: 0.3;
+}
+
+.container[data-mode="rational"] .lobeRight:hover,
+.container[data-mode="emotional"] .lobeLeft:hover {
+  opacity: 0.6;
+}
+
+/* renk yalnızca duygusal taraf açıkken var olur */
+.container[data-mode="emotional"] .lobeRight {
+  stroke: url(#dichoWarm);
+  stroke-width: 1.75;
+}
+
+/* ---- lob etiketleri ---- */
+.labels {
+  width: clamp(140px, 15vw, 200px);
+  display: flex;
+  justify-content: space-between;
+}
+
+.lobe_btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 0.8em;
+  font-weight: 200;
+  color: var(--wb950);
+  opacity: 0.35;
+  transition: opacity 0.45s ease;
+}
+
+.lobe_btn[aria-pressed="true"] {
+  opacity: 1;
+}
+
+.lobe_btn:hover {
+  opacity: 0.7;
+}
+
+/* ---- değişen metin ---- */
+.readout {
+  max-width: 25vw;
+  min-height: 9em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25em;
+}
+
+.mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.word {
+  display: inline-block;
   will-change: transform;
 }
 
-.mood_chip:nth-child(6n + 1) {
-  background-color: var(--blue400);
+.mode_title {
+  font-size: 1em;
+  line-height: 1.2;
+  transition:
+    color 0.45s ease,
+    font-weight 0.45s ease;
 }
-.mood_chip:nth-child(6n + 2) {
-  background-color: var(--green400);
-}
-.mood_chip:nth-child(6n + 3) {
-  background-color: var(--main-color500);
+
+.container[data-mode="rational"] .mode_title {
+  font-weight: 400;
   color: var(--wb950);
 }
-.mood_chip:nth-child(6n + 4) {
+
+.container[data-mode="emotional"] .mode_title {
+  font-weight: 200;
+  color: var(--wb300);
+}
+
+.mode_text {
+  font-size: 0.925em;
+  line-height: 1.5;
+  transition: color 0.45s ease;
+}
+
+/* sol: dümdüz, net metin */
+.container[data-mode="rational"] .mode_text {
+  font-weight: 300;
+  color: var(--wb950);
+}
+
+/* sağ: daha yumuşak metin; rengi şekiller taşır */
+.container[data-mode="emotional"] .mode_text {
+  font-weight: 200;
+  color: var(--wb600);
+}
+
+/* ---- kelime arası renkli şekiller (yalnızca duygusal mod) ---- */
+.shape {
+  display: inline-block;
+  aspect-ratio: 1;
+  width: 1.5em;
+  height: 1.5em;
+  margin: 0 0.12em;
+  vertical-align: middle;
+}
+
+.s0 {
+  background-color: var(--main-color400);
+  border-radius: 50%;
+}
+.s1 {
   background-color: var(--orange400);
 }
-.mood_chip:nth-child(6n + 5) {
-  background-color: var(--red400);
+.s2 {
+  background-color: var(--red500);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
 }
-.mood_chip:nth-child(6n + 6) {
-  background-color: var(--purple400);
-}
-
-.action_btn {
-  transition: all 0.6s ease;
-}
-
-/* =========================================
-   SOL BEYİN (RASYONEL - .rational)
-   ========================================= */
-.rational {
-  border: 1px solid var(--wb950);
-  border-radius: 0;
-  box-shadow: none;
-}
-
-.rational .card_header h2 {
-  font-size: 1.5em;
-  color: var(--wb950);
-}
-
-.rational .action_btn {
-  background-color: transparent;
-  color: var(--wb950);
-  border: 1px solid var(--wb950);
-  border-radius: 0;
-  padding: 0.375em 0.5em 0.375em 0.5em;
-}
-
-/* =========================================
-SAĞ BEYİN (DUYGUSAL - .emotional)
-========================================= */
-.emotional {
-  border: 1px solid transparent;
-  border-radius: 2em;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-}
-
-.emotional .card_header h2 {
-  font-size: 1.5em;
-  color: var(--blue500);
-  letter-spacing: -0.02em;
-  font-weight: 200;
-  text-transform: lowercase;
-}
-
-.emotional .action_btn {
-  padding: 0.375em 0.5em 0.375em 0.5em;
-  border-radius: 0.25em;
-  position: relative;
-  line-height: 1em;
-  font-size: 1em;
-  font-weight: 300;
-  transition: 0.3s;
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-  cursor: pointer;
+.s3 {
   background-color: var(--blue400);
-  color: var(--wb50);
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+}
+.s4 {
+  background-color: var(--green400);
+  border-radius: 50%;
 }
 
-.emotional .action_btn::before {
-  content: "●";
+/* ---- ipucu ---- */
+.hint {
+  font-size: 0.75em;
+  font-weight: 200;
+  color: var(--wb400);
 }
 
+/* ---- dar ekran ---- */
 @media screen and (max-width: 1024px) {
   .container {
-    flex-direction: column;
-  }
-
-  .left_brain,
-  .right_brain {
-    aspect-ratio: 16/9;
-  }
-
-  .brain_content {
-    flex-direction: row;
-    width: 100%;
-    gap: 20vw;
-  }
-
-  .annotation,
-  .toggle_container {
-    flex: 1;
-    position: relative;
-    z-index: 9;
-  }
-
-  .annotation {
-    align-items: flex-end;
-    text-align: end;
+    padding: 16vh 10vw 10vh;
   }
 }
 
 @media screen and (max-width: 600px) {
-  .left_brain,
-  .right_brain {
-    aspect-ratio: auto;
+  .container {
+    padding: 14vh 8vw 8vh;
   }
 
-  .brain_content {
-    flex-direction: column;
-    gap: 5vh;
+  .readout{
+    max-width: 60vw;
   }
 
-  .left_brain .brain_content {
-    padding-bottom: 30vh;
+  .stage {
+    gap: 2.5vh;
   }
 
-  .right_brain .brain_content {
-    padding-top: 30vh;
+  .brain {
+    width: clamp(120px, 36vw, 160px);
   }
 
-  .annotation {
-    align-items: flex-start !important;
-    text-align: start !important;
+  .labels {
+    width: clamp(120px, 36vw, 160px);
   }
 
-  .toggle_container {
-    width: 100%;
-    flex-direction: row;
-    padding-bottom: 5vh;
-    border-bottom: 1px solid var(--wb100);
+  .readout {
+    min-height: 11em;
   }
 }

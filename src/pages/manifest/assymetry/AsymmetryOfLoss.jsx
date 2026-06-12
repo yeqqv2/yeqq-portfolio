@@ -1,240 +1,308 @@
-import { useRef, useState } from "react";
-import { flushSync } from "react-dom";
-import gsap from "gsap";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import gsap from "gsap";
 import ReadMore from "@/pages/manifest/shared/ReadMore";
+import { prefersReducedMotion } from "@/utils/motion";
 import styles from "./style.module.css";
 
-const reduceMotion = () =>
-  typeof window !== "undefined" &&
-  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+/* çizgi unutmaz — kayıp asimetrisinin telemetrisi.
+   canlı akan tek bir hairline: kazanç yukarı sıçrar ve tabana geri söner
+   (olay); kayıp tabanın kendisini aşağı taşır ve eski taban arkada hayalet
+   bir referans çizgisi olarak kalır (durum). aynı sayıda + ve −, çizgiyi
+   başladığı yerin çok altında bırakır: kahneman, tek kelime açıklamadan. */
 
-const MAX_UNITS = 12; // kefe kapasitesi (birim)
-const TILT_PER_UNIT = 4; // derece / birim fark
-const MAX_TILT = 22;
+/* canvas css var() okuyamaz; token karşılıkları sabit hex */
+const INK = "#111"; /* wb950 */
+const GHOST = "#dcdcdc"; /* wb200 */
+const LOSS_RED = "#da1e37"; /* red600 */
 
-// ip fiziği: yük bindikçe ip gerilir; uzar ve incelir (hacim korunur)
-const STRING_BASE_H = 46;
-const STRING_BASE_W = 2;
-const stringHeight = (units) => STRING_BASE_H + units * 1.4;
-const stringWidth = (units) => Math.max(0.5, STRING_BASE_W - units * 0.12);
+const STEP = 1.4; /* px / örnek — çizginin akış adımı */
+const HEAD_RATIO = 0.5; /* "şimdi" noktası grafiğin ortasında; sağı boş: gelecek henüz çizilmedi */
+const FRAME = 1000 / 60; /* örnekleme periyodu (ms): hız ekrandan bağımsız */
+const AMP = 0.16; /* sıçrama/düşüş yüksekliği (grafik yüksekliği oranı) */
+const HEAL = 1.2; /* px / sn — taban çok yavaş "alışır", asla geri dönmez */
+const GHOST_GAP = 10; /* taban, hayalet çizgiye en fazla bu kadar yaklaşır */
+const BASE_RATIO = 0.32; /* başlangıç tabanı üst üçte bir: düşecek yeri olsun */
+
+const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
 
 export default function AsymmetryOfLoss() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const wrapRef = useRef(null);
+  const canvasRef = useRef(null);
+  const [stats, setStats] = useState({ gains: 0, losses: 0 });
 
-  // kazanç hamlesi 1 birim, kayıp hamlesi 2 birim kütle düşürür.
-  // aynı sayıda hamleyle terazi asla dengede kalmaz: kahneman katsayısı.
-  const [gains, setGains] = useState(0);
-  const [losses, setLosses] = useState(0);
+  /* animasyon durumu react'e girmez: her frame değişir */
+  const s = useRef({
+    ctx: null,
+    w: 0,
+    h: 0,
+    cols: 0,
+    hist: null, // kolon başına y: çizginin hafızası
+    baseline: 0,
+    initial: 0,
+    transient: { v: 0 }, // kazanç sıçramasının geçici sapması
+    ghosts: [], // eski tabanlar: kalıcı referans çizgileri
+    cliffs: [], // kayıp anları: akışla sola kayan kırmızı çentikler
+    noiseT: 0,
+    acc: 0,
+    visible: true,
+    reduced: false,
+  }).current;
 
-  const beamRef = useRef(null);
-  const panLRef = useRef(null);
-  const panRRef = useRef(null);
-  const stringLRef = useRef(null);
-  const stringRRef = useRef(null);
-  const gainUnitRefs = useRef([]);
-  const lossUnitRefs = useRef([]);
+  const draw = () => {
+    const { ctx, w, h } = s;
+    if (!ctx) return;
+    ctx.clearRect(0, 0, w, h);
 
-  // kiriş eğimi: pozitif fark kazanç kefesini, negatif fark kayıp kefesini indirir
-  const settle = (g, l) => {
-    const rot = gsap.utils.clamp(
-      -MAX_TILT,
-      MAX_TILT,
-      (g - 2 * l) * TILT_PER_UNIT,
-    );
-    const pans = [panLRef.current, panRRef.current];
+    /* hayalet tabanlar: kesikli, soluk — unutulmayan referans noktaları */
+    ctx.save();
+    ctx.strokeStyle = GHOST;
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 4]);
+    s.ghosts.forEach((y) => {
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(w, y);
+      ctx.stroke();
+    });
+    ctx.restore();
 
-    if (reduceMotion()) {
-      gsap.set(beamRef.current, { rotation: rot });
-      gsap.set(pans, { rotation: -rot });
-      return;
+    /* kayıp uçurumları: paneldeki tek renk — düşüşün kendisi kırmızı.
+       çentik bir anda belirmez; düşen çizgiyle birlikte yukarıdan
+       aşağı uzayarak çizilir (p: 0 → 1) */
+    ctx.strokeStyle = LOSS_RED;
+    ctx.lineWidth = 1.5;
+    s.cliffs.forEach((c) => {
+      if (c.x < 0 || c.p <= 0) return;
+      ctx.beginPath();
+      ctx.moveTo(c.x, c.from);
+      ctx.lineTo(c.x, c.from + (c.to - c.from) * c.p);
+      ctx.stroke();
+    });
+
+    /* çizginin kendisi */
+    ctx.strokeStyle = INK;
+    ctx.lineWidth = 1.25;
+    ctx.lineJoin = "round";
+    ctx.beginPath();
+    for (let i = 0; i < s.cols; i++) {
+      const x = i * STEP;
+      if (i === 0) ctx.moveTo(x, s.hist[i]);
+      else ctx.lineTo(x, s.hist[i]);
     }
+    ctx.stroke();
 
-    // kefeler sarkaç gibi ters dönerek hep yere paralel kalır
-    gsap.to(beamRef.current, {
-      rotation: rot,
-      duration: 1.4,
-      ease: "elastic.out(1, 0.45)",
-      overwrite: "auto",
-    });
-    gsap.to(pans, {
-      rotation: -rot,
-      duration: 1.4,
-      ease: "elastic.out(1, 0.45)",
-      overwrite: "auto",
-    });
+    /* uç nokta: kalp monitörünün "şimdi"si */
+    ctx.fillStyle = INK;
+    ctx.beginPath();
+    ctx.arc((s.cols - 1) * STEP, s.hist[s.cols - 1], 2.2, 0, Math.PI * 2);
+    ctx.fill();
   };
 
-  // darbe: ip gerilir (uzar, incelir), tel gibi titreşir; kefe hafifçe çöker
-  const strain = (stringEl, panEl, units) => {
-    if (!stringEl) return;
+  /* bir örnek ilerlet: hafıza sola kayar, "şimdi" sağdan yazılır */
+  const advance = () => {
+    /* tabanın alışması: gözle zor seçilir bir yükseliş; hayalete asla değmez */
+    const ceiling = s.ghosts.length
+      ? s.ghosts[s.ghosts.length - 1] + GHOST_GAP
+      : s.initial;
+    if (s.baseline > ceiling) {
+      s.baseline = Math.max(ceiling, s.baseline - HEAL * (FRAME / 1000));
+    }
 
-    if (reduceMotion()) {
-      gsap.set(stringEl, {
-        height: stringHeight(units),
-        width: stringWidth(units),
-        skewX: 0,
-      });
+    /* hafif yaşam titreşimi */
+    s.noiseT += FRAME / 1000;
+    const noise =
+      Math.sin(s.noiseT * 1.7) * 1.1 + Math.sin(s.noiseT * 3.1 + 1) * 0.6;
+
+    const value = clamp(s.baseline + s.transient.v + noise, 6, s.h - 6);
+
+    s.hist.copyWithin(0, 1);
+    s.hist[s.cols - 1] = value;
+    s.cliffs.forEach((c) => (c.x -= STEP));
+    s.cliffs = s.cliffs.filter((c) => c.x > -2);
+  };
+
+  const tick = (_time, deltaTime) => {
+    if (!s.visible || !s.ctx) return;
+    /* sabit periyotlu örnekleme: 120hz ekranda çizgi hızlanmaz */
+    s.acc = Math.min(s.acc + deltaTime, FRAME * 4);
+    let dirty = false;
+    while (s.acc >= FRAME) {
+      advance();
+      s.acc -= FRAME;
+      dirty = true;
+    }
+    if (dirty) draw();
+  };
+
+  /* hareket azaltılmışsa akış yok: durumun anlık fotoğrafı */
+  const drawStatic = () => {
+    if (!s.ctx) return;
+    s.hist?.fill(s.baseline);
+    draw();
+  };
+
+  /* kazanç: olay. sıçrar, tabana geri söner, iz bırakmaz. */
+  const gain = () => {
+    setStats((p) => ({ ...p, gains: p.gains + 1 }));
+    if (s.reduced) return;
+
+    gsap.killTweensOf(s.transient);
+    gsap
+      .timeline()
+      .to(s.transient, { v: -s.h * AMP, duration: 0.16, ease: "power3.out" })
+      .to(s.transient, { v: 0, duration: 1.3, ease: "power2.inOut" });
+  };
+
+  /* kayıp: durum. taban aşağı taşınır, eskisi hayalet olarak kalır. */
+  const loss = () => {
+    setStats((p) => ({ ...p, losses: p.losses + 1 }));
+
+    const from = s.baseline;
+    const drop = Math.min(s.h * AMP, s.h * 0.92 - from);
+
+    if (s.reduced) {
+      if (drop >= 12) {
+        s.ghosts.push(from);
+        s.baseline = from + drop;
+      }
+      drawStatic();
       return;
     }
 
-    gsap.to(stringEl, {
-      height: stringHeight(units),
-      width: stringWidth(units),
-      duration: 1.2,
-      ease: "elastic.out(1, 0.35)",
-      overwrite: "auto",
-    });
-    gsap.fromTo(
-      stringEl,
-      { skewX: 2.5 },
-      { skewX: 0, duration: 0.9, ease: "elastic.out(2, 0.15)" },
-    );
-    if (panEl) {
+    if (drop < 12) {
+      /* dipteyiz: düşecek yer kalmadı, çizgi yalnızca sarsılır */
+      gsap.killTweensOf(s.transient);
       gsap.fromTo(
-        panEl,
-        { y: 5 },
-        { y: 0, duration: 1, ease: "elastic.out(1.2, 0.3)" },
+        s.transient,
+        { v: 0 },
+        { v: 5, duration: 0.07, yoyo: true, repeat: 5, ease: "power1.inOut" },
       );
-    }
-  };
-
-  // kütle yukarıdan kefeye düşer; yere indiğinde ip gerilir, kiriş denge arar
-  const drop = (el, after) => {
-    if (!el || reduceMotion()) {
-      if (el) gsap.set(el, { y: 0, autoAlpha: 1 });
-      after();
       return;
     }
-    gsap.fromTo(
-      el,
-      { y: -90, autoAlpha: 0.4 },
-      { y: 0, autoAlpha: 1, duration: 0.4, ease: "power2.in", onComplete: after },
-    );
+
+    s.ghosts.push(from);
+    const cliff = { x: (s.cols - 1) * STEP, from, to: from + drop, p: 0 };
+    s.cliffs.push(cliff);
+    /* aynı süre ve ease: kırmızı ucun inişi, düşen çizgiyle bire bir aynı */
+    gsap.to(cliff, { p: 1, duration: 0.45, ease: "power4.in" });
+    gsap.to(s, { baseline: from + drop, duration: 0.45, ease: "power4.in" });
   };
 
-  const handleGain = () => {
-    if (gains >= MAX_UNITS) return;
-    const next = gains + 1;
-    flushSync(() => setGains(next));
-    drop(gainUnitRefs.current[next - 1], () => {
-      strain(stringRRef.current, panRRef.current, next);
-      settle(next, losses);
-    });
+  const reset = () => {
+    gsap.killTweensOf([s, s.transient, ...s.cliffs]);
+    s.ghosts = [];
+    s.cliffs = [];
+    s.baseline = s.initial;
+    s.transient.v = 0;
+    s.hist?.fill(s.initial);
+    setStats({ gains: 0, losses: 0 });
+    draw();
   };
 
-  const handleLose = () => {
-    if (losses * 2 >= MAX_UNITS) return;
-    const next = losses + 1;
-    flushSync(() => setLosses(next));
-    drop(lossUnitRefs.current[next - 1], () => {
-      strain(stringLRef.current, panLRef.current, next * 2);
-      settle(gains, next);
-    });
-  };
+  useEffect(() => {
+    s.reduced = prefersReducedMotion();
+    const wrap = wrapRef.current;
+    const canvas = canvasRef.current;
+    if (!wrap || !canvas) return;
 
-  const handleReset = () => {
-    setGains(0);
-    setLosses(0);
-    settle(0, 0);
-    [stringLRef.current, stringRRef.current].forEach((s) => {
-      if (!s) return;
-      gsap.to(s, {
-        height: stringHeight(0),
-        width: stringWidth(0),
-        skewX: 0,
-        duration: reduceMotion() ? 0 : 0.6,
-        ease: "power2.out",
-        overwrite: "auto",
-      });
+    const init = () => {
+      const w = wrap.clientWidth;
+      const h = wrap.clientHeight;
+      if (!w || !h) return;
+
+      const dpr = Math.min(2, window.devicePixelRatio || 1);
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+      const ctx = canvas.getContext("2d");
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      /* yeniden boyutta durumu oranla taşı; ilk kurulumda üst üçte bir */
+      gsap.killTweensOf(s);
+      const factor = s.h ? h / s.h : 0;
+      s.baseline = factor ? s.baseline * factor : h * BASE_RATIO;
+      s.ghosts = factor ? s.ghosts.map((g) => g * factor) : [];
+      s.cliffs = [];
+      s.initial = h * BASE_RATIO;
+      s.cols = Math.max(2, Math.floor((w * HEAD_RATIO) / STEP) + 1);
+      s.hist = new Float32Array(s.cols).fill(s.baseline);
+      s.ctx = ctx;
+      s.w = w;
+      s.h = h;
+
+      if (s.reduced) drawStatic();
+      else draw();
+    };
+
+    init();
+
+    const ro = new ResizeObserver(init);
+    ro.observe(wrap);
+
+    /* deste içinde panel ekran dışındayken boşa çizmeyelim */
+    const io = new IntersectionObserver(([entry]) => {
+      s.visible = entry.isIntersecting;
     });
-  };
+    io.observe(wrap);
+
+    if (!s.reduced) gsap.ticker.add(tick);
+
+    return () => {
+      gsap.ticker.remove(tick);
+      ro.disconnect();
+      io.disconnect();
+      gsap.killTweensOf([s, s.transient]);
+      s.ctx = null;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={styles.container}>
-      <div className={styles.annotation}>
+      <div className={styles.annotation} key={i18n.language}>
         <h4>{t("manifesto.asymmetry.title")}</h4>
         <p>{t("manifesto.asymmetry.desc")}</p>
         <ReadMore slug="loss" />
       </div>
 
       <div className={styles.stage}>
-        <div className={styles.scale}>
-          <div ref={beamRef} className={styles.beam}>
-            {/* kayıp kefesi: her hamle 2 birimlik kütle */}
-            <div className={`${styles.arm} ${styles.arm_left}`}>
-              <span
-                ref={stringLRef}
-                className={styles.string}
-                aria-hidden="true"
-              />
-              <div ref={panLRef} className={styles.pan_group}>
-                <div className={styles.weights}>
-                  {Array.from({ length: losses }).map((_, i) => (
-                    <span
-                      key={i}
-                      ref={(el) => (lossUnitRefs.current[i] = el)}
-                      className={styles.unit_loss}
-                    />
-                  ))}
-                </div>
-                <span className={styles.pan} aria-hidden="true" />
-                <span className={styles.pan_mass}>{losses * 2}</span>
-              </div>
-            </div>
-
-            {/* kazanç kefesi: her hamle 1 birimlik kütle */}
-            <div className={`${styles.arm} ${styles.arm_right}`}>
-              <span
-                ref={stringRRef}
-                className={styles.string}
-                aria-hidden="true"
-              />
-              <div ref={panRRef} className={styles.pan_group}>
-                <div className={styles.weights}>
-                  {Array.from({ length: gains }).map((_, i) => (
-                    <span
-                      key={i}
-                      ref={(el) => (gainUnitRefs.current[i] = el)}
-                      className={styles.unit_gain}
-                    />
-                  ))}
-                </div>
-                <span className={styles.pan} aria-hidden="true" />
-                <span className={styles.pan_mass}>{gains}</span>
-              </div>
-            </div>
-          </div>
-
-          <span className={styles.pivot} aria-hidden="true" />
+        <div ref={wrapRef} className={styles.chart}>
+          <canvas
+            ref={canvasRef}
+            className={styles.canvas}
+            aria-hidden="true"
+          />
         </div>
 
         <div className={styles.controls}>
-          <button
-            className={styles.action_btn}
-            onClick={handleLose}
-            disabled={losses * 2 >= MAX_UNITS}
-          >
-            {t("manifesto.asymmetry.destruct")}
-          </button>
-          <button
-            className={styles.action_btn}
-            onClick={handleGain}
-            disabled={gains >= MAX_UNITS}
-          >
+          <button type="button" className={styles.action_btn} onClick={gain}>
             {t("manifesto.asymmetry.build")}
+          </button>
+          <button type="button" className={styles.action_btn} onClick={loss}>
+            {t("manifesto.asymmetry.destruct")}
           </button>
         </div>
 
-        <button
-          className={`${styles.reset} ${
-            gains + losses > 0 ? styles.reset_visible : ""
-          }`}
-          onClick={handleReset}
-          tabIndex={gains + losses > 0 ? 0 : -1}
-        >
-          {t("manifesto.asymmetry.reset_label")}
-        </button>
+        <div className={styles.meta} aria-live="polite">
+          <span>
+            {t("manifesto.asymmetry.gain_word")} {stats.gains}
+          </span>
+          <span aria-hidden="true">/</span>
+          <span>
+            {t("manifesto.asymmetry.loss_word")} {stats.losses}
+          </span>
+          <button
+            type="button"
+            className={`${styles.reset} ${
+              stats.gains + stats.losses > 0 ? styles.reset_visible : ""
+            }`}
+            onClick={reset}
+            tabIndex={stats.gains + stats.losses > 0 ? 0 : -1}
+          >
+            [{t("manifesto.asymmetry.reset_label")}]
+          </button>
+        </div>
       </div>
     </div>
   );
