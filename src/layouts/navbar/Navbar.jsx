@@ -120,7 +120,7 @@ export default function Navbar() {
           <PrimerButton
             onClick={toggleLanguage}
             buttonText={i18n.language.split("-")[0]}
-            backgroundColor="var(--orange400)"
+            backgroundColor="var(--orange500)"
             color="var(--wb50)"
           />
         </div>

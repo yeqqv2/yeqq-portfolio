@@ -47,7 +47,10 @@ body {
   font-size: clamp(12px, 0.85vw, 72px);
   min-height: 100vh;
   width: 100vw;
+  /* hidden body'yi scroll container yapıp position: sticky'yi (footer reveal) kırıyor;
+     clip aynı taşma korumasını scroll container oluşturmadan verir. */
   overflow-x: hidden;
+  overflow-x: clip;
   font-family: "Outfit", system-ui, sans-serif !important;
 
   /*
@@ -131,6 +134,21 @@ hr {
 /* Skip-link ile odaklanan ana içerik kabı tüm sayfayı saran halka göstermesin. */
 #main:focus {
   outline: none;
+}
+
+/* ---------------------------- */
+/*  FOOTER REVEAL               */
+/* ---------------------------- */
+/* Footer ekranın arkasında sabit durur (sticky); içerik üstünden kayarak
+   onu açığa çıkarır. Bunun için main'in footer'ı tamamen örtmesi gerekir:
+   opak arka plan + üst katman. */
+#main {
+  position: relative;
+  z-index: 1;
+  background-color: var(--wb50);
+  border-top: 1px solid var(--wb100);
+  min-height: 100vh;
+  min-height: 100svh;
 }
 
 /* ---------------------------- */

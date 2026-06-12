@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import Lenis from "lenis";
 import "lenis/dist/lenis.css";
@@ -14,17 +14,32 @@ export default function SmoothScroll({ children }) {
   const lenisRef = useRef(null);
 
   useEffect(() => {
+    const previousScrollRestoration = window.history.scrollRestoration;
+
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
+    return () => {
+      if ("scrollRestoration" in window.history) {
+        window.history.scrollRestoration = previousScrollRestoration;
+      }
+    };
+  }, []);
+
+  useEffect(() => {
     if (prefersReducedMotion()) return;
 
     const lenis = new Lenis({
-      lerp: 0.055,
+      lerp: 0.045,
       smoothWheel: true,
       wheelMultiplier: 0.75,
       syncTouch: true,
-      touchMultiplier: 1,
+      touchMultiplier: 0.75,
       orientation: "vertical",
       gestureOrientation: "vertical",
       overscroll: false,
+      prevent: (node) => node.closest("[data-lenis-prevent]"),
     });
 
     lenisRef.current = lenis;
@@ -45,6 +60,7 @@ export default function SmoothScroll({ children }) {
 
     return () => {
       gsap.ticker.remove(update);
+      lenis.off("scroll", ScrollTrigger.update);
       lenis.destroy();
 
       lenisRef.current = null;
@@ -56,23 +72,54 @@ export default function SmoothScroll({ children }) {
   }, []);
 
   useEffect(() => {
-    const lenis = lenisRef.current;
+    if (typeof ResizeObserver === "undefined") return;
 
-    if (lenis) {
-      lenis.scrollTo(0, {
-        immediate: true,
-        force: true,
-      });
-    } else {
+    /* Lazy yüklenen rotalar ve geç gelen görseller sayfa boyunu değiştirince
+       ScrollTrigger pozisyonları (footer reveal dahil) bayatlıyor;
+       boy değişimini izleyip debounce ile tazele. */
+    let timeout;
+
+    const observer = new ResizeObserver(() => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => ScrollTrigger.refresh(), 200);
+    });
+
+    observer.observe(document.body);
+
+    return () => {
+      clearTimeout(timeout);
+      observer.disconnect();
+    };
+  }, []);
+
+  useLayoutEffect(() => {
+    const scrollTop = () => {
+      const lenis = lenisRef.current;
+
       window.scrollTo(0, 0);
-    }
 
-    requestAnimationFrame(() => {
+      if (lenis) {
+        lenis.scrollTo(0, {
+          immediate: true,
+          force: true,
+        });
+      }
+    };
+
+    scrollTop();
+
+    const frame = requestAnimationFrame(() => {
+      scrollTop();
+
       requestAnimationFrame(() => {
         ScrollTrigger.refresh();
       });
     });
-  }, [location.pathname]);
+
+    return () => {
+      cancelAnimationFrame(frame);
+    };
+  }, [location.key]);
 
   return <>{children}</>;
 }

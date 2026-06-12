@@ -22,13 +22,13 @@ function NavLink({ to, children, back = false }) {
     <Link to={to} className={styles.nav_link}>
       {back && (
         <span className={`${styles.arrow} ${styles.arrow_l}`} aria-hidden="true">
-          ←
+          ●
         </span>
       )}
       <span>{children}</span>
       {!back && (
         <span className={`${styles.arrow} ${styles.arrow_r}`} aria-hidden="true">
-          →
+          ●
         </span>
       )}
     </Link>

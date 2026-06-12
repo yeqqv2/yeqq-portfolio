@@ -46,7 +46,6 @@ const onAccentColor = (c) => {
 const Card = ({ asset, content, index, cursor }) => {
   const { t } = useTranslation();
   const [isRevealed, setIsRevealed] = useState(false);
-  const [paths, setPaths] = useState([]);
 
   const cardRef = useRef(null);
   const ruleRef = useRef(null);
@@ -54,6 +53,9 @@ const Card = ({ asset, content, index, cursor }) => {
   const contentRef = useRef(null);
   const canvasRef = useRef(null);
 
+  /* paths render'da okunmuyor; native dokunma dinleyicileri stale closure
+     yakalamasın diye state yerine ref tutulur. */
+  const pathsRef = useRef([]);
   const currentPathRef = useRef([]);
   const lastMidRef = useRef(null);
   const widthRef = useRef(5);
@@ -88,7 +90,7 @@ const Card = ({ asset, content, index, cursor }) => {
       }
       if (drawingRef.current || revealedRef.current) return;
       currentPathRef.current = [];
-      setPaths([]);
+      pathsRef.current = [];
       setupCanvasAndDrawTemplate();
     });
     ro.observe(field);
@@ -204,7 +206,7 @@ const Card = ({ asset, content, index, cursor }) => {
 
   const startDrawing = (e) => {
     if (e.cancelable && e.type.startsWith("touch")) e.preventDefault();
-    if (isRevealed) return;
+    if (revealedRef.current) return;
     drawingRef.current = true;
     const p = getMousePos(e, canvasRef.current);
     currentPathRef.current = [p];
@@ -213,7 +215,7 @@ const Card = ({ asset, content, index, cursor }) => {
   };
 
   const draw = (e) => {
-    if (!drawingRef.current || isRevealed) return;
+    if (!drawingRef.current || revealedRef.current) return;
     if (e.cancelable && e.type.startsWith("touch")) e.preventDefault();
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
@@ -244,15 +246,37 @@ const Card = ({ asset, content, index, cursor }) => {
   };
 
   const stopDrawing = () => {
-    if (!drawingRef.current || isRevealed) return;
+    if (!drawingRef.current || revealedRef.current) return;
     drawingRef.current = false;
     if (currentPathRef.current.length > 5) {
-      const newPaths = [...paths, currentPathRef.current];
-      setPaths(newPaths);
-      checkShape(newPaths);
+      pathsRef.current = [...pathsRef.current, currentPathRef.current];
+      checkShape(pathsRef.current);
     }
     currentPathRef.current = [];
   };
+
+  /* React, dokunma olaylarını kökte passive bağladığı için JSX'teki
+     onTouch* içinde preventDefault çalışmaz: sayfa kayar ve iOS'ta
+     tap-focus (.field tabIndex) alanı görünüme kaydırıp zıplatır.
+     Çizim jesti bu yüzden native, passive olmayan dinleyicilerle bağlanır. */
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const opts = { passive: false };
+    canvas.addEventListener("touchstart", startDrawing, opts);
+    canvas.addEventListener("touchmove", draw, opts);
+    canvas.addEventListener("touchend", stopDrawing);
+    canvas.addEventListener("touchcancel", stopDrawing);
+
+    return () => {
+      canvas.removeEventListener("touchstart", startDrawing);
+      canvas.removeEventListener("touchmove", draw);
+      canvas.removeEventListener("touchend", stopDrawing);
+      canvas.removeEventListener("touchcancel", stopDrawing);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const checkShape = (allPaths) => {
     const canvas = canvasRef.current;
@@ -348,7 +372,7 @@ const Card = ({ asset, content, index, cursor }) => {
   const resetCard = () => {
     setIsRevealed(false);
     revealedRef.current = false;
-    setPaths([]);
+    pathsRef.current = [];
     currentPathRef.current = [];
     requestAnimationFrame(setupCanvasAndDrawTemplate);
 
@@ -398,7 +422,11 @@ const Card = ({ asset, content, index, cursor }) => {
   };
 
   return (
-    <article ref={cardRef} className={styles.card} style={{ "--accent": asset.color }}>
+    <article
+      ref={cardRef}
+      className={styles.card}
+      style={{ "--accent": asset.color }}
+    >
       <header className={styles.meta}>
         <span className={styles.metaDot} aria-hidden="true">
           ●
@@ -425,11 +453,14 @@ const Card = ({ asset, content, index, cursor }) => {
           />
           <div
             className={styles.field}
+            data-lenis-prevent
             role="button"
             tabIndex={isRevealed ? -1 : 0}
             aria-label={content.instruction}
             onKeyDown={handleFieldKeyDown}
-            onMouseEnter={() => !isRevealed && cursor?.show(t("discover.cursor"))}
+            onMouseEnter={() =>
+              !isRevealed && cursor?.show(t("discover.cursor"))
+            }
             onMouseLeave={() => cursor?.hide()}
           >
             <canvas
@@ -438,9 +469,6 @@ const Card = ({ asset, content, index, cursor }) => {
               onMouseMove={draw}
               onMouseUp={stopDrawing}
               onMouseLeave={stopDrawing}
-              onTouchStart={startDrawing}
-              onTouchMove={draw}
-              onTouchEnd={stopDrawing}
               className={styles.canvas}
             />
           </div>

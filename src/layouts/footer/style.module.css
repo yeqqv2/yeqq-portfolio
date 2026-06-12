@@ -1,75 +1,124 @@
+/* Sticky reveal: footer sayfanın arkasında bekler, main üstünden
+   kalkarak onu açığa çıkarır. z-index: 0 → main (z-index: 1) altında. */
 .container {
-  width: 100vw;
+  position: sticky;
+  border-top: 1px solid var(--wb100);
+  bottom: 0;
+  z-index: 0;
+  width: 100%;
   background-color: var(--wb50);
-  padding: 10vh 10vw;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10vh;
-  position: relative;
-  border-top: 1px solid var(--wb200);
+  color: var(--wb950);
+  overflow: hidden; /* parallax sırasında yukarı taşan içeriği kırpar */
 }
 
-.content {
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 9vh;
+  padding: 12vh 10vw 4vh;
+  will-change: transform;
+}
+
+.top {
   width: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 10vh;
+  flex-wrap: wrap;
+  gap: 6vh 5vw;
 }
 
-.logo {
-  flex: 1;
-  font-size: 2em;
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25em;
 }
 
-.links_container {
+.contact_link {
+  font-size: clamp(1.75rem, 3vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--wb950);
+  transition: color 0.3s ease-out;
+}
+
+.contact_link:hover {
+  color: var(--wb500);
+}
+
+.columns {
   display: flex;
   align-items: flex-start;
-  gap: 5vw;
+  gap: 6vw;
 }
 
 .links {
-  display: flex;
-  align-items: flex-start;
-  gap: 2em;
-}
-
-.links_content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 1em;
 }
 
-.links_header {
+.label {
   font-size: 0.875em;
-  font-weight: 200;
-  opacity: 0.5;
-  width: 4em;
+  font-weight: 300;
+  color: var(--wb400);
 }
 
 .link {
   font-weight: 300;
   letter-spacing: -0.025em;
+  color: var(--wb400);
+  transition: color 0.3s ease-out;
 }
 
-.footer {
-  color: var(--wb400);
+.link:hover {
+  color: var(--wb500);
+}
+
+/* Dekoratif imza: nav logosundaki [ yeqq ] motifinin büyütülmüş hali.
+   100svh sınırını aşmaması için yükseklikle de sınırlanır. */
+.wordmark {
+  font-size: min(16vw, 24vh);
   font-weight: 300;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+  user-select: none;
+  color: var(--wb950);
+}
+
+.bracket {
+  color: var(--wb600);
+}
+
+.bottom {
+  width: 100%;
+  padding-top: 1.5em;
+  border-top: 1px solid var(--wb200);
+  font-size: 0.875em;
+  font-weight: 300;
+  color: var(--wb400);
 }
 
 @media screen and (max-width: 1024px) {
-  .container {
-    padding: 10vh 5vw;
+  .inner {
+    gap: 7vh;
+    padding: 8vh 5vw 3vh;
   }
 
-  .content {
-    width: 98vw;
+  .top {
     flex-direction: column;
   }
 
-  .links_container {
+  .columns {
     flex-wrap: wrap;
+    gap: 4vh 12vw;
+  }
+
+  .wordmark {
+    font-size: min(22vw, 18vh);
   }
 }
