@@ -36,6 +36,7 @@ const DWELL = 1;
 const SEG = 1 + DWELL;
 const LAST = PANELS.length - 1;
 const TOTAL = LAST * SEG; // son geçişten sonra da bir plato kalır
+const PANEL_RENDER_RADIUS = 1;
 
 /* timeline içindeki t anına göre aktif panel: geçişin yarısını
    aşınca gelen panel "aktif" sayılır */
@@ -50,6 +51,11 @@ export default function ManifestContent() {
   const containerRef = useRef(null);
   const triggerRef = useRef(null);
   const [active, setActive] = useState(0);
+  const renderAllPanels = prefersReducedMotion();
+
+  const setActivePanel = useCallback((next) => {
+    setActive((current) => (current === next ? current : next));
+  }, []);
 
   const rawLabels = t("manifesto.nav", { returnObjects: true });
   const labels = PANELS.map(({ labelIndex }, i) =>
@@ -65,8 +71,6 @@ export default function ManifestContent() {
     const panels = gsap.utils.toArray("[data-manifest-panel]", container);
     if (panels.length < 2) return;
 
-    const last = panels.length - 1;
-
     const ctx = gsap.context(() => {
       if (prefersReducedMotion()) {
         panels.forEach((panel, i) => {
@@ -74,7 +78,7 @@ export default function ManifestContent() {
             trigger: panel,
             start: "top center",
             end: "bottom center",
-            onToggle: (self) => self.isActive && setActive(i),
+            onToggle: (self) => self.isActive && setActivePanel(i),
           });
         });
         return;
@@ -87,14 +91,14 @@ export default function ManifestContent() {
         scrollTrigger: {
           trigger: container,
           start: "top top",
-          end: `+=${TOTAL * 100}%`,
+          end: `+=${TOTAL * 50}%`,
           pin: true,
           pinSpacing: true,
           scrub: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
-            setActive(activeAt(self.progress * TOTAL));
+            setActivePanel(activeAt(self.progress * TOTAL));
           },
         },
       });
@@ -142,7 +146,7 @@ export default function ManifestContent() {
       triggerRef.current = null;
       ctx.revert();
     };
-  }, []);
+  }, [setActivePanel]);
 
   const scrollToPanel = useCallback((index) => {
     const st = triggerRef.current;
@@ -179,13 +183,25 @@ export default function ManifestContent() {
 
       <div ref={containerRef} className={styles.manifest}>
         <div className={styles.stage}>
-          {PANELS.map(({ id, Component }) => (
-            <section key={id} data-manifest-panel className={styles.panel}>
-              <div className={styles.panelInner}>
-                <Component />
-              </div>
-            </section>
-          ))}
+          {PANELS.map(({ id, Component }, i) => {
+            const isActive = active === i;
+            const shouldRender =
+              renderAllPanels || Math.abs(active - i) <= PANEL_RENDER_RADIUS;
+
+            return (
+              <section
+                key={id}
+                data-active={isActive}
+                data-manifest-panel
+                className={styles.panel}
+                inert={isActive ? undefined : ""}
+              >
+                <div className={styles.panelInner}>
+                  {shouldRender && <Component isActive={isActive} />}
+                </div>
+              </section>
+            );
+          })}
         </div>
       </div>
     </>

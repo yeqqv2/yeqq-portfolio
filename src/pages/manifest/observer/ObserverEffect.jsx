@@ -24,7 +24,7 @@ const ORBITS = [
   { radius: 0.8, omega: 0.3, phase: Math.PI },
 ];
 
-export default function ObserverEffect() {
+export default function ObserverEffect({ isActive = true }) {
   const { t, i18n } = useTranslation();
   const atomRef = useRef(null);
   const nucleusRef = useRef(null);
@@ -60,6 +60,14 @@ export default function ObserverEffect() {
       gsap.set(truths, { opacity: 1 });
       gsap.set(tags, { opacity: 0 });
       nucleus.classList.add(styles.observing);
+      return;
+    }
+
+    if (!isActive) {
+      gsap.set(electrons, { "--blur": `${MAX_BLUR}px`, opacity: 0.45 });
+      gsap.set(truths, { opacity: 0 });
+      gsap.set(tags, { opacity: 1 });
+      nucleus.classList.remove(styles.observing);
       return;
     }
 
@@ -148,7 +156,7 @@ export default function ObserverEffect() {
     }
 
     return () => cleanups.forEach((fn) => fn());
-  }, [i18n.language]);
+  }, [i18n.language, isActive]);
 
   return (
     <div className={styles.container}>

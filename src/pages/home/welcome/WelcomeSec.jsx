@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TextPlugin } from "gsap/TextPlugin";
 import { CustomEase } from "gsap/CustomEase";
+import { Link } from "react-router-dom";
 import styles from "./style.module.css";
 import colors from "@/utils/colors";
 import AnimatedSplit from "@/components/animated split/AnimatedSplit";
@@ -93,13 +94,13 @@ const WelcomeSec = () => {
                     key={t('welcome.greeting')}
                     text={t('welcome.greeting')}
                     className={styles.content_text}
-                    tagName="span"
+                    tagName="p"
                     stagger={0.03}
                     duration={1.5}
                     start="top 80%"
                 />
-                <a
-                    href="/about-me"
+                <Link
+                    to="/about-me"
                     onMouseMove={handleMouseMove}
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
@@ -109,12 +110,13 @@ const WelcomeSec = () => {
                     <AnimatedSplit
                         key={t('welcome.name')}
                         text={t('welcome.name')}
-                        tagName="span"
+                        className={styles.name}
+                        tagName="h1"
                         stagger={0.03}
                         duration={1.5}
                         start="top 80%"
                     />
-                </a>
+                </Link>
             </div>
 
             <div className={styles.side_image_container}>

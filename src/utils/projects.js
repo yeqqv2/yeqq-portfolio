@@ -10,6 +10,12 @@ const works = [
     name: "skynotech | iot smart site management platform",
     // Düzeltilmiş desc: 'waste' kelimesi eklendi ve daha sonuç odaklı hale getirildi.
     desc: "an iot-based, full-scope site management platform. it minimized waste, labor, and lack of control by providing real-time monitoring and control capabilities for critical residential infrastructure, including garden irrigation, lighting, and pool systems, all from a single hub.",
+    challenge:
+      "Residential site teams needed a single interface for physical infrastructure that was normally fragmented across manual controls, separate devices, and delayed field checks.",
+    approach:
+      "I designed and built a dashboard-first workflow around real-time status, quick remote actions, and clear device grouping so technical teams could understand and control the system without extra training.",
+    impact:
+      "The MVP connected 80+ IoT devices and turned routine operational checks into a faster remote-control workflow with measurable efficiency gains.",
     achievements: [
       {
         number: "2",
@@ -52,6 +58,12 @@ const works = [
     role: "frontend developer & ui/ux designer",
     name: "skynotech | corporate brand & web presence",
     desc: "designed and developed the official corporate website, establishing a new brand image to reflect skynotech's technological leadership. the site registered the visual language (logo, icons, design system) which i created.",
+    challenge:
+      "Skynotech needed a corporate presence that could explain a technical IoT product clearly while also making the new brand feel credible and scalable.",
+    approach:
+      "I created the visual identity, interface system, and front-end implementation together so the website, product UI, icons, and brand language could feel like one ecosystem.",
+    impact:
+      "The result became the public face of the company and established a consistent design system for both the corporate site and the main platform.",
     achievements: [
       {
         number: "96",
@@ -95,6 +107,12 @@ const works = [
     role: "frontend developer & ui/ux designer",
     name: "balıkesir digital employment platform",
     desc: "a high-performance municipal employment platform designed for speed and accessibility. the project’s hyper-optimized ui/ux ensures citizens can quickly access job listings and employers can post vacancies efficiently.",
+    challenge:
+      "Citizens and employers were moving through a slow, paper-heavy employment process where application tracking and candidate matching were hard to follow.",
+    approach:
+      "I focused the interface on speed, accessible flows, clear job discovery, employer posting, application tracking, and PDF CV generation for public-service use at scale.",
+    impact:
+      "The platform collected 12,291 resumes, supported 428 businesses, and helped the municipality move a critical public workflow into a faster digital channel.",
     achievements: [
       {
         number: "30%",
@@ -145,6 +163,12 @@ const works = [
     role: "frontend developer & ui/ux designer",
     name: "balıkesir | event app",
     desc: "a dedicated react native mobile application providing instant notifications and real-time listings for youth-focused events (concerts, theatre, cinema). it transitioned the municipality's image from institutional to a modern, accessible, and cool brand for young users.",
+    challenge:
+      "Youth events were scattered across social media and institutional announcements, making discovery unreliable for the audience that needed fast mobile updates.",
+    approach:
+      "I designed a mobile-first event hub with a more energetic visual language, simple categories, and notification-ready flows for concerts, theatre, cinema, and local activities.",
+    impact:
+      "The app created a central event touchpoint for a 100k+ youth audience and helped the municipality speak with a more modern digital voice.",
     achievements: [
       {
         number: "40+",
@@ -157,7 +181,6 @@ const works = [
         desc: "targeted an audience of 100,000+ young citizens, creating a centralized digital space for social events that was previously unavailable outside of decentralized social media channels.",
       },
       {
-        // HATA DÜZELTİLDİ: Nicel bir değer kullanıldı.
         number: "100%",
         title: "real-time system implementation",
         desc: "achieved 100% implementation of the instant notification system via react native, providing real-time updates (concerts, movies, etc.) and addressing the challenge of poor social event communication.",
@@ -199,6 +222,12 @@ const works = [
     name: "yakın kart | social financial assistance app",
     // Tanım güncellendi: Odak noktası finansal destek ve yönetim.
     desc: "a social municipal platform that digitizes financial support management for citizens in need. it provides users with a reliable, transparent hub to track their monthly assistance funds and manage their usage.",
+    challenge:
+      "Citizens receiving financial assistance needed a transparent way to understand balance, usage, and support status without depending on unclear offline communication.",
+    approach:
+      "I shaped the UX around trust: balance visibility, expense review, simple inquiry, and calm mobile flows that make sensitive financial support feel understandable.",
+    impact:
+      "The product supported 12,101 citizens and made monthly assistance easier to track through a clearer self-service mobile experience.",
     achievements: [
       {
         number: "12,101",
@@ -251,6 +280,12 @@ const works = [
     name: "bapka corporate website & information hub",
     // desc güncellendi: Tasarım ve büyüme hedefleri birleştirildi.
     desc: "a completely redesigned corporate website aimed at establishing a strong online presence and driving organic traffic. the project involved creating the entire design language and optimizing the platform for search engines.",
+    challenge:
+      "BAPKA needed a more useful public information hub that could surface reports, announcements, and institutional content without feeling slow or buried.",
+    approach:
+      "I redesigned the information architecture, homepage hierarchy, and visual system with SEO, readability, and content discovery as the main constraints.",
+    impact:
+      "The redesign helped drive 43% monthly SEO growth and brought 600+ organic visitors in the first 28 days.",
     achievements: [
       {
         number: "43%",
@@ -295,6 +330,12 @@ const works = [
     role: "frontend developer & ui/ux designer",
     name: "askıda fatura | social solidarity platform",
     desc: "a mobile platform developed with react native that facilitates anonymous social solidarity by enabling citizens to pay essential utility bills (electricity, water, gas) for those in financial need.",
+    challenge:
+      "A solidarity product has to make giving feel safe while protecting the dignity and privacy of people who need help.",
+    approach:
+      "I simplified the flow around three essential bill categories and designed anonymity into the interface by showing only the information needed to complete a donation.",
+    impact:
+      "The application turned a sensitive assistance flow into a clear mobile experience built around trust, privacy, and fast action.",
     achievements: [
       {
         number: "100%",
@@ -336,6 +377,12 @@ const works = [
     role: "frontend developer & ui/ux designer",
     name: "can dostlar | safe animal adoption platform",
     desc: "a react native mobile application designed to ensure the safe and transparent rehoming of stray animals. the platform focuses on human-centered adoption processes to create lasting bonds between citizens and animals.",
+    challenge:
+      "Adoption flows needed to feel warm and simple without losing the structure required for safe, responsible animal rehoming.",
+    approach:
+      "I designed profile details, application steps, and approval flow around transparency so citizens could make informed decisions before visiting the shelter.",
+    impact:
+      "The app created a reusable social-welfare pattern inside the municipality's mobile ecosystem while making adoption information easier to understand.",
     achievements: [
       {
         number: "3",
@@ -380,6 +427,12 @@ const works = [
     role: "frontend developer & ui/ux designer",
     name: "balıkesir | pharmacy finder",
     desc: "a critical mobile application providing real-time, location-based guidance to on-duty pharmacies. the ux prioritizes speed and clarity for citizens seeking urgent medical access.",
+    challenge:
+      "People looking for an on-duty pharmacy are often stressed, mobile, and time-constrained, so the interface had to remove every nonessential step.",
+    approach:
+      "I designed the flow around emergency UX: nearby pharmacy, distance, and navigation access within as few taps as possible.",
+    impact:
+      "The application made urgent pharmacy discovery faster and more reliable through location-based, real-time information.",
     achievements: [
       {
         number: "2",

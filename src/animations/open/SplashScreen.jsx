@@ -8,13 +8,15 @@ gsap.registerPlugin(CustomEase);
 CustomEase.create("butter", "0.25, 0.1, 0.25, 1");
 CustomEase.create("butterSlow", "0.14, 0.11, 0.11, 1");
 
+const SPLASH_IMAGE_COUNT = 8;
+
 export default function SplashScreen({ onAnimationComplete }) {
   const containerRef = useRef(null);
   const originalOverflow = useRef({ body: "", html: "" });
 
   const artImages = useMemo(() => {
     return Array.from(
-      { length: 8 },
+      { length: SPLASH_IMAGE_COUNT },
       (_, i) => `/assets/modern-art/${i + 1}.webp`,
     );
   }, []);
@@ -124,7 +126,9 @@ export default function SplashScreen({ onAnimationComplete }) {
             src={src}
             alt=""
             aria-hidden="true"
-            loading="eager"
+            loading={index < 2 ? "eager" : "lazy"}
+            decoding="async"
+            fetchPriority={index === 0 ? "high" : "low"}
           />
         ))}
       </div>

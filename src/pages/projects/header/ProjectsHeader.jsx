@@ -11,7 +11,7 @@ const ProjectsHeader = () => {
         key={`title-${i18n.language}`}
         text={t("projects.header_title")}
         className={styles.header_title}
-        tagName="span"
+        tagName="h1"
         stagger={0.05}
         duration={1.5}
         start="top 90%"
@@ -21,7 +21,7 @@ const ProjectsHeader = () => {
         key={`desc-${i18n.language}`}
         text={t("projects.header_desc")}
         className={styles.header_desc}
-        tagName="span"
+        tagName="p"
         stagger={0.03}
         duration={1.5}
         start="top 90%"

@@ -43,7 +43,7 @@
   height: 100%;
   width: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: left;
   user-select: none;
   overflow: hidden;
   will-change: clip-path;
@@ -60,5 +60,14 @@
   .work,
   .work:nth-child(n) {
     grid-column: span 1;
+  }
+
+  .work_img {
+    height: 52svh;
+    min-height: 360px;
+  }
+
+  .works {
+    padding: 0.85em 2vw;
   }
 }

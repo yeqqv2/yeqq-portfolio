@@ -13,7 +13,7 @@ export default function PrinciplesSection() {
           key={t("principles.title")}
           text={t("principles.title")}
           className={styles.title}
-          tagName="span"
+          tagName="h2"
           stagger={0.03}
           duration={1.5}
           start="top 80%"
@@ -25,7 +25,7 @@ export default function PrinciplesSection() {
                 key={`${p}-${i}`}
                 text={p}
                 className={styles.item}
-                tagName="span"
+                tagName="p"
                 stagger={0.03}
                 duration={1.5}
                 start="top 80%"

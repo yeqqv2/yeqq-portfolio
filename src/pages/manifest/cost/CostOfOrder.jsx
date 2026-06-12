@@ -12,8 +12,18 @@ const reduceMotion = () =>
   typeof window !== "undefined" &&
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-const TOTAL = 300;
+const DESKTOP_TOTAL = 300;
 const WORDMARK = "[yeqq]";
+
+const getParticleTotal = () => {
+  if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
+    return DESKTOP_TOTAL;
+  }
+
+  if (window.matchMedia("(max-width: 600px)").matches) return 140;
+  if (window.matchMedia("(max-width: 1024px)").matches) return 220;
+  return DESKTOP_TOTAL;
+};
 
 // wordmark'ı outfit ile büyük boyutta gizli bir canvas'a çizer, sonra düzenli
 // bir ızgarada dolu hücre merkezlerini nokta hedeflerine çevirir; led panel
@@ -63,12 +73,14 @@ const buildTargets = (count, container) => {
   return out;
 };
 
-export default function CostOfOrder() {
+export default function CostOfOrder({ isActive = true }) {
   const { t, i18n } = useTranslation();
   const containerRef = useRef(null);
   const dotsRef = useRef([]);
   const pulsesRef = useRef([]);
   const holdingRef = useRef(false);
+  const activeRef = useRef(isActive);
+  const particleTotalRef = useRef(getParticleTotal());
 
   // hareket azaltılmışsa: kaos döngüsü yok, tek seferlik statik saçılım
   const scatterStatic = () => {
@@ -88,7 +100,7 @@ export default function CostOfOrder() {
   // entropi: nokta amaçsızca sürüklenir; boyutu ve opaklığı da düzensizdir
   const animateChaos = (dot) => {
     const c = containerRef.current;
-    if (!dot || !c) return;
+    if (!dot || !c || !activeRef.current) return;
     gsap.to(dot, {
       x: () => gsap.utils.random(-c.offsetWidth * 0.4, c.offsetWidth * 0.4),
       y: () => gsap.utils.random(-c.offsetHeight * 0.4, c.offsetHeight * 0.4),
@@ -99,7 +111,7 @@ export default function CostOfOrder() {
       overwrite: "auto",
       force3D: true,
       onComplete: () => {
-        if (!holdingRef.current) animateChaos(dot);
+        if (!holdingRef.current && activeRef.current) animateChaos(dot);
       },
     });
   };
@@ -107,6 +119,8 @@ export default function CostOfOrder() {
   // basış: noktalar kelimenin merkezinden dışa yayılan dalgayla
   // [ yeqq ] yazısına oturur; boyut ve opaklık eşitlenir
   const applyOrder = () => {
+    if (!activeRef.current) return;
+
     const c = containerRef.current;
     const dots = dotsRef.current.filter(Boolean);
     if (!c || !dots.length) return;
@@ -153,6 +167,8 @@ export default function CostOfOrder() {
   // bırakış: çürüme — grid bir anda değil, rastgele sırayla ve
   // hızlanarak çözülür; noktalar önce hafifçe dökülür, sonra sürüklenir
   const decay = () => {
+    if (!activeRef.current) return;
+
     const dots = dotsRef.current.filter(Boolean);
     gsap.killTweensOf(dots);
 
@@ -174,7 +190,7 @@ export default function CostOfOrder() {
         ease: "hop",
         overwrite: true,
         onComplete: () => {
-          if (!holdingRef.current) animateChaos(dot);
+          if (!holdingRef.current && activeRef.current) animateChaos(dot);
         },
       });
     });
@@ -182,7 +198,7 @@ export default function CostOfOrder() {
 
   // bedelin görseli: basılı tutarken butondan dışarı enerji dalgaları yayılır
   const startPulses = () => {
-    if (reduceMotion()) return;
+    if (reduceMotion() || !activeRef.current) return;
     pulsesRef.current.forEach((p, i) => {
       if (!p) return;
       gsap.fromTo(
@@ -208,6 +224,8 @@ export default function CostOfOrder() {
 
   const handleDown = (e) => {
     e.preventDefault();
+
+    if (!activeRef.current) return;
 
     if (e.currentTarget.setPointerCapture && e.pointerId != null) {
       e.currentTarget.setPointerCapture(e.pointerId);
@@ -243,26 +261,42 @@ export default function CostOfOrder() {
     if (typeof document !== "undefined" && document.fonts?.load) {
       document.fonts.load('600 100px "Outfit"').catch(() => {});
     }
+  }, []);
+
+  useEffect(() => {
+    activeRef.current = isActive;
+    const dots = dotsRef.current.filter(Boolean);
+    const pulses = pulsesRef.current.filter(Boolean);
+
+    gsap.killTweensOf(dots);
+    gsap.killTweensOf(pulses);
+
+    if (!isActive) {
+      holdingRef.current = false;
+      gsap.set(pulses, { autoAlpha: 0 });
+      scatterStatic();
+      return undefined;
+    }
 
     if (reduceMotion()) {
       scatterStatic();
-      return;
+      return undefined;
     }
-    const dots = dotsRef.current.filter(Boolean);
+
     dots.forEach((dot) => animateChaos(dot));
 
     return () => {
       holdingRef.current = false;
       gsap.killTweensOf(dots);
-      gsap.killTweensOf(pulsesRef.current.filter(Boolean));
+      gsap.killTweensOf(pulses);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isActive]);
 
   return (
     <div ref={containerRef} className={styles.container}>
       <div className={styles.particle_system}>
-        {Array.from({ length: TOTAL }).map((_, i) => (
+        {Array.from({ length: particleTotalRef.current }).map((_, i) => (
           <div
             key={i}
             ref={(el) => (dotsRef.current[i] = el)}
@@ -289,7 +323,6 @@ export default function CostOfOrder() {
           onPointerUp={handleUp}
           onPointerLeave={handleUp}
           onPointerCancel={handleUp}
-          onSelectStart={(e) => e.preventDefault()}
           onDragStart={(e) => e.preventDefault()}
           onContextMenu={(e) => e.preventDefault()}
           onKeyDown={(e) => {

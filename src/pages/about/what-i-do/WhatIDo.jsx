@@ -26,10 +26,8 @@ export default function WhatIDo() {
       orderedImages.forEach((img, index) => {
         if (!img) return;
 
-        // Başlangıç değerleri
         gsap.set(img, { clipPath: "inset(100% 0% 0% 0%)" });
 
-        // Her resim için SADECE BİR TANE ScrollTrigger yaratan Timeline
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: img,
@@ -38,7 +36,6 @@ export default function WhatIDo() {
           },
         });
 
-        // Aynı timeline içine animasyonları (farklı süre ve gecikmelerle) ekliyoruz
         tl.to(
           img,
           {
@@ -48,7 +45,7 @@ export default function WhatIDo() {
             delay: index * 0.15,
           },
           0,
-        ) // '0' parametresi animasyonların aynı anda başlamasını sağlar
+        )
           .to(
             img,
             {
@@ -92,7 +89,6 @@ export default function WhatIDo() {
           <AnimatedSplit
             key={`${i18n.language}-whatido-title`}
             text={t("whatIDo.title")}
-            tagName="span"
             stagger={0.03}
             duration={1.5}
             start="top 80%"
@@ -103,7 +99,7 @@ export default function WhatIDo() {
             key={`${i18n.language}-whatido-desc1`}
             text={t("whatIDo.desc_1")}
             className={styles.desc}
-            tagName="span"
+            tagName="p"
             stagger={0.03}
             duration={1.5}
             start="top 80%"
@@ -114,7 +110,7 @@ export default function WhatIDo() {
             key={`${i18n.language}-whatido-desc2`}
             text={t("whatIDo.desc_2")}
             className={styles.desc}
-            tagName="span"
+            tagName="p"
             stagger={0.03}
             duration={1.5}
             start="top 80%"

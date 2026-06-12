@@ -36,7 +36,6 @@ export default function WorkSinglePage() {
   const prefetchProjects = () => import("@/pages/projects/ProjectsPage");
 
   useEffect(() => {
-    // DÜZELTME: loading değil isLoading
     if (isLoading || !work) return;
 
     const ctx = gsap.context(() => {
@@ -100,6 +99,24 @@ export default function WorkSinglePage() {
     );
   }
 
+  const caseStudySections = [
+    {
+      id: "challenge",
+      label: t("workSingle.labels.challenge"),
+      body: work.challenge,
+    },
+    {
+      id: "approach",
+      label: t("workSingle.labels.approach"),
+      body: work.approach,
+    },
+    {
+      id: "impact",
+      label: t("workSingle.labels.impact"),
+      body: work.impact,
+    },
+  ].filter((section) => section.body);
+
   return (
     <div className={styles.container} key={`${slug}-${currentLang}`}>
       {/* HERO */}
@@ -108,7 +125,6 @@ export default function WorkSinglePage() {
           className={styles.hero_image}
           src={`${work.asset}/banner.webp`}
           alt={work.project_name}
-          aria-hidden="true"
           loading="lazy"
           decoding="async"
         />
@@ -118,7 +134,7 @@ export default function WorkSinglePage() {
               key={`title-${currentLang}`}
               className={styles.title}
               text={work.project_name}
-              tagName="span"
+              tagName="h1"
               stagger={0.03}
               duration={1.5}
               start="top 80%"
@@ -128,7 +144,7 @@ export default function WorkSinglePage() {
               key={`subtitle-${currentLang}`}
               className={styles.subtitle}
               text={work.desc || work.company_name}
-              tagName="span"
+              tagName="p"
               stagger={0.03}
               duration={1.5}
               start="top 80%"
@@ -205,7 +221,6 @@ export default function WorkSinglePage() {
               />
               <AnimatedSplit
                 className={styles.factValue}
-                // 7. tech yerine tags kullanıyoruz
                 text={work.tags?.join(", ") || t("workSingle.defaults.tech")}
                 tagName="span"
                 stagger={0.03}
@@ -217,13 +232,37 @@ export default function WorkSinglePage() {
         </div>
       </section>
 
-      {/* ACHIEVEMENTS */}
+      {caseStudySections.length > 0 && (
+        <section className={styles.caseStudy}>
+          {caseStudySections.map((section) => (
+            <article key={section.id} className={styles.caseStudyItem}>
+              <AnimatedSplit
+                className={styles.sectionTitle}
+                text={section.label}
+                tagName="h2"
+                stagger={0.03}
+                duration={1.5}
+                start="top 85%"
+              />
+              <AnimatedSplit
+                className={styles.caseText}
+                text={section.body}
+                tagName="p"
+                stagger={0.02}
+                duration={1.2}
+                start="top 85%"
+              />
+            </article>
+          ))}
+        </section>
+      )}
+
       {work.achievements && work.achievements.length > 0 && (
         <section className={styles.achievements}>
           <AnimatedSplit
             className={styles.sectionTitle}
             text={t("workSingle.labels.achievements")}
-            tagName="span"
+            tagName="h2"
             stagger={0.03}
             duration={1.5}
             start="top 80%"
@@ -244,7 +283,7 @@ export default function WorkSinglePage() {
                     key={`achTitle-${i}-${currentLang}`}
                     className={styles.achTitle}
                     text={a.title}
-                    tagName="span"
+                    tagName="h3"
                     stagger={0.03}
                     duration={1.5}
                     start="top 80%"
@@ -276,8 +315,7 @@ export default function WorkSinglePage() {
             >
               <img
                 src={`${work.asset}/${img.file}`}
-                alt={work.project_name}
-                aria-hidden="true"
+                alt={`${work.project_name} screen ${i + 1}`}
                 loading="lazy"
                 decoding="async"
               />

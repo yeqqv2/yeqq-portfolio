@@ -74,7 +74,7 @@ export default function HeroAbout() {
           key={`${i18n.language}-hero-title`}
           text={t("heroAbout.title")}
           className={styles.title}
-          tagName="span"
+          tagName="h1"
           stagger={0.03}
           duration={1.5}
           start="top 80%"

@@ -1,16 +1,14 @@
-import React from "react";
 import "./menu.css";
 
-const MenuButton = ({ toggleSidebar, isSidebarOpen }) => {
+const MenuButton = ({ toggleSidebar, isSidebarOpen, label = "menu" }) => {
   return (
-    <label className="hamburger">
-      <input
-        type="checkbox"
-        checked={isSidebarOpen}
-        onChange={toggleSidebar}
-        aria-label="menü"
-        aria-expanded={isSidebarOpen}
-      />
+    <button
+      type="button"
+      className={`hamburger ${isSidebarOpen ? "is-open" : ""}`}
+      onClick={toggleSidebar}
+      aria-label={label}
+      aria-expanded={isSidebarOpen}
+    >
       <svg viewBox="0 0 32 32" aria-hidden="true">
         <path
           className="line line-top-bottom"
@@ -18,7 +16,7 @@ const MenuButton = ({ toggleSidebar, isSidebarOpen }) => {
         />
         <path className="line" d="M7 16 27 16" />
       </svg>
-    </label>
+    </button>
   );
 };
 

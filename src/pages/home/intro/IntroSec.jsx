@@ -10,9 +10,17 @@ const FAST_MULT = 3; // sola hover → hızlan
 const REVERSE_MULT = -1.4; // sağa hover → geri dön
 const SMOOTH = 6; // hız geçişlerinin yumuşaklığı (yüksek = daha hızlı oturur)
 
+const prefersLightVideoLoad = () =>
+  prefersReducedMotion() ||
+  (typeof window !== "undefined" &&
+    typeof window.matchMedia === "function" &&
+    window.matchMedia("(max-width: 600px)").matches);
+
 const IntroSec = () => {
   const { t } = useTranslation();
   const text = t("intro.marqueeText");
+  const reduceMotion = prefersReducedMotion();
+  const lightVideoLoad = prefersLightVideoLoad();
 
   const containerRef = useRef(null);
   const hoverRef = useRef(null);
@@ -129,12 +137,13 @@ const IntroSec = () => {
       <video
         className={styles.vid}
         src="/assets/videos/videoo.webm"
-        autoPlay
+        poster="/assets/loader/video-placeholder.webp"
+        autoPlay={!reduceMotion}
         loop
         muted
         playsInline
-        preload="auto"
-        fetchpriority="high"
+        preload={lightVideoLoad ? "metadata" : "auto"}
+        fetchPriority={lightVideoLoad ? "auto" : "high"}
       />
 
       <div className={styles.marquee_div}>

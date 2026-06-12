@@ -104,7 +104,7 @@ export default function ManifestArc() {
       <div className={styles.placard}>
         <h4 className={styles.label}>{t("manifesto.white_on_white.title")}</h4>
         <AnimatedSplit
-          key={i18n.language}
+          key={`question-${i18n.language}`}
           text={t("manifesto.white_on_white.question")}
           className={styles.title}
           tagName="span"
@@ -112,7 +112,11 @@ export default function ManifestArc() {
           duration={1.5}
           start="top 80%"
         />
-        <p className={styles.footer} ref={footerRef} key={i18n.language}>
+        <p
+          className={styles.footer}
+          ref={footerRef}
+          key={`footer-${i18n.language}`}
+        >
           {t("manifesto.white_on_white.footer")}
         </p>
         <div className={styles.read_more} ref={readMoreRef}>

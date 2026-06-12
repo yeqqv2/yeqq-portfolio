@@ -12,7 +12,7 @@ const ContactPage = () => {
         key={`${i18n.language}-contact-header`}
         text={t("contactPage.header")}
         className={styles.header}
-        tagName="span"
+        tagName="h1"
         stagger={0.03}
         duration={1.5}
         start="top 80%"
@@ -23,7 +23,7 @@ const ContactPage = () => {
           key={`${i18n.language}-contact-sidebar-title`}
           text={t("contactPage.sidebar_title")}
           className={styles.sidebar_title}
-          tagName="span"
+          tagName="p"
           stagger={0.03}
           duration={1.5}
           start="top 80%"

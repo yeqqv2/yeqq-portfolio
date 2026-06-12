@@ -19,6 +19,9 @@ const ProjectsFilter = ({ activeFilter, onFilterChange }) => {
       {filters.map((filter) => (
         <button
           key={filter.id}
+          type="button"
+          aria-pressed={activeFilter === filter.id}
+          aria-label={filter.label}
           className={`${styles.filter_btn} ${
             activeFilter === filter.id ? styles.active : ""
           }`}

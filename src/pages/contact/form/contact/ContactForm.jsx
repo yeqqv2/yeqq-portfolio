@@ -72,8 +72,19 @@ export default function ContactForm({ onSuccess, onError }) {
     const phoneDigits = phone.replace(/\D/g, "").slice(2);
     const isPhoneValid = phone === "" || phoneDigits.length === 10;
     const isEmailValid = validateEmail(email);
+    const nextEmailError = isEmailValid
+      ? ""
+      : t("contactForm.errors.emailInvalid") || "Please enter a valid email.";
+    const nextPhoneError = isPhoneValid
+      ? ""
+      : t("contactForm.errors.phoneIncomplete") || "Phone number is incomplete.";
 
-    if (!isEmailValid || !isPhoneValid) return;
+    setEmailError(nextEmailError);
+    setPhoneError(nextPhoneError);
+
+    if (!isEmailValid || !isPhoneValid) {
+      return;
+    }
 
     setLoading(true);
     const formData = new FormData(e.target);
@@ -100,13 +111,12 @@ export default function ContactForm({ onSuccess, onError }) {
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      {/* Ad Soyad */}
       <div className={styles.input_group}>
         <label className={styles.label} htmlFor="fullname">
           {t("contactForm.labels.fullname")}
         </label>
         <input
-          id="fullname" /* EKLENDİ */
+          id="fullname"
           className={styles.input}
           name="fullname"
           type="text"
@@ -115,13 +125,12 @@ export default function ContactForm({ onSuccess, onError }) {
         />
       </div>
 
-      {/* Şirket */}
       <div className={styles.input_group}>
         <label className={styles.label} htmlFor="company">
           {t("contactForm.labels.company")}
         </label>
         <input
-          id="company" /* EKLENDİ */
+          id="company"
           className={styles.input}
           name="company"
           type="text"
@@ -129,52 +138,57 @@ export default function ContactForm({ onSuccess, onError }) {
         />
       </div>
 
-      {/* Email */}
       <div className={styles.input_group}>
         <label className={styles.label} htmlFor="email">
           {t("contactForm.labels.email")}
         </label>
         <input
-          id="email" /* EKLENDİ */
+          id="email"
           className={`${styles.input} ${emailError ? styles.input_error : ""}`}
           name="email"
           type="email"
           placeholder={t("contactForm.placeholders.email")}
           value={email}
           onChange={handleEmailChange}
+          aria-invalid={Boolean(submitted && emailError)}
+          aria-describedby={emailError ? "email-error" : undefined}
           required
         />
         {submitted && emailError && (
-          <span className={styles.error_message}>{emailError}</span>
+          <span id="email-error" className={styles.error_message}>
+            {emailError}
+          </span>
         )}
       </div>
 
-      {/* Telefon */}
       <div className={styles.input_group}>
         <label className={styles.label} htmlFor="phone">
           {t("contactForm.labels.phone")}
         </label>
         <input
-          id="phone" /* EKLENDİ */
+          id="phone"
           className={`${styles.input} ${phoneError ? styles.input_error : ""}`}
           name="phone"
           type="tel"
           placeholder="+90 (5__) ___ __ __"
           value={phone}
           onChange={handlePhoneChange}
+          aria-invalid={Boolean(submitted && phoneError)}
+          aria-describedby={phoneError ? "phone-error" : undefined}
         />
         {submitted && phoneError && (
-          <span className={styles.error_message}>{phoneError}</span>
+          <span id="phone-error" className={styles.error_message}>
+            {phoneError}
+          </span>
         )}
       </div>
 
-      {/* Konu */}
       <div className={styles.input_group}>
         <label className={styles.label} htmlFor="subject">
           {t("contactForm.labels.subject")}
         </label>
         <input
-          id="subject" /* EKLENDİ */
+          id="subject"
           className={styles.input}
           name="subject"
           type="text"
@@ -182,13 +196,12 @@ export default function ContactForm({ onSuccess, onError }) {
         />
       </div>
 
-      {/* Mesaj */}
       <div className={styles.textarea_group}>
         <label className={styles.label} htmlFor="message">
           {t("contactForm.labels.message")}
         </label>
         <textarea
-          id="message" /* EKLENDİ */
+          id="message"
           className={styles.textarea}
           name="message"
           placeholder={t("contactForm.placeholders.message")}

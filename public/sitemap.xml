@@ -27,9 +27,9 @@
         <priority>0.8</priority>
     </url>
     
-    <!-- Galeri Sayfası (Eğer AboutPage ile aynıysa, önceliği düşürülebilir) -->
+    <!-- Manifesto Sayfası -->
     <url>
-        <loc>https://www.yeqq.com.tr/gallery</loc>
+        <loc>https://www.yeqq.com.tr/manifest</loc>
         <lastmod>2025-10-16</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.7</priority>

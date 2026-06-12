@@ -115,11 +115,11 @@
       calc(50% - 25vw - var(--mouse-y-offset)) 
       calc(50% - 25vw + var(--mouse-x-offset))
     );
-    font-size: 25vw;
+    font-size: 16vw;
   }
 
   .marquee_div_2 {
-    font-size: 25vw;
+    font-size: 16vw;
   }
 
   .marquee_hover {
@@ -128,15 +128,20 @@
 }
 
 @media screen and (max-width: 600px) {
+  .container {
+    height: 100dvh;
+    padding: 8vh 0;
+  }
+
   .marquee_div_content {
-    font-size: 15vw;
+    font-size: 9vw;
   }
 
   .marquee_div_2 {
-    font-size: 15vw;
+    font-size: 9vw;
   }
 
   .marquee_hover {
-    height: 18vw;
+    height: 12vw;
   }
 }

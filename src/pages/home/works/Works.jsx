@@ -34,7 +34,6 @@ const WorksHomePage = () => {
     gsap.fromTo(el, { scale: 0.97 }, { scale: 1, duration: 0.3, ease: "hop" });
   };
 
-  // DÜZELTME: projects undefined ise boş dizi döndür
   const lastThreeWorks = useMemo(() => projects?.slice(0, 6) || [], [projects]);
 
   if (isLoading) {

@@ -1,16 +1,12 @@
 .container {
-  /* Sabit height yerine min-height kullanmak her zaman daha güvenlidir */
   min-height: 50vh; 
   width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Dışarıdan verdiğin gap: 30vh zaten bu container'ı diğerlerinden ayırıyor, 
-     ekstra padding'e gerek yok. */
 }
 
 .content {
-  /* height: 70vh ve padding: 30vh SİLİNDİ. Taşma (overflow) engellendi. */
   width: 30vw;
   display: flex;
   justify-content: center;
@@ -19,7 +15,7 @@
 
 .title {
   font-size: 0.875em;
-  opacity: 0.5; /* Eğer felsefene uyuyorsa kalsın, ama solid seviyorsan opacity'yi sil :) */
+  opacity: 0.5;
   font-weight: 200;
 }
 

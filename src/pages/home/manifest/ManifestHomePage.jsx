@@ -52,7 +52,7 @@ const ManifestHomePage = () => {
         <AnimatedSplit
           text={t("manifest.title")}
           className={styles.title}
-          tagName="span"
+          tagName="h2"
           stagger={0.012}
           duration={1.5}
           start="top 80%"
@@ -61,7 +61,7 @@ const ManifestHomePage = () => {
         <AnimatedSplit
           text={t("manifest.desc")}
           className={styles.desc}
-          tagName="span"
+          tagName="p"
           stagger={0.012}
           duration={1.5}
           start="top 80%"
@@ -77,6 +77,8 @@ const ManifestHomePage = () => {
                 ref={(el) => (rowsRef.current[i] = el)}
               >
                 <button
+                  type="button"
+                  aria-pressed={isActive}
                   className={`${styles.rowButton} ${isActive ? styles.rowActive : ""}`}
                   onClick={() => setActiveTopic(key)}
                   aria-expanded={isActive}

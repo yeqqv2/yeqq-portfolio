@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-// KRİTİK EKLENTİ: React Router Link bileşeni
 import { Link } from "react-router-dom";
 import styles from "./style.module.css";
 import MenuButton from "@/ui/menu/MenuButton";
@@ -33,6 +32,7 @@ export default function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const sidebarRef = useRef(null);
+  const firstSidebarLinkRef = useRef(null);
   const layersRef = useRef([]);
 
   useEffect(() => {
@@ -42,14 +42,59 @@ export default function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = isSidebarOpen ? "hidden" : "";
+    const main = document.getElementById("main");
+    const footer = document.querySelector("footer");
+
+    [main, footer].forEach((el) => {
+      if (!el) return;
+      el.inert = isSidebarOpen;
+      if (isSidebarOpen) {
+        el.setAttribute("aria-hidden", "true");
+      } else {
+        el.removeAttribute("aria-hidden");
+      }
+    });
+
+    if (sidebarRef.current) {
+      sidebarRef.current.inert = !isSidebarOpen;
+    }
+
+    if (isSidebarOpen) {
+      requestAnimationFrame(() => firstSidebarLinkRef.current?.focus());
+    }
+
     const handleKeyDown = (e) => {
       if (e.key === "Escape" && isSidebarOpen) {
         setIsSidebarOpen(false);
       }
+
+      if (e.key !== "Tab" || !isSidebarOpen || !sidebarRef.current) return;
+
+      const focusable = sidebarRef.current.querySelectorAll(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      );
+      if (!focusable.length) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     };
+
     window.addEventListener("keydown", handleKeyDown);
     return () => {
       document.body.style.overflow = "";
+      [main, footer].forEach((el) => {
+        if (!el) return;
+        el.inert = false;
+        el.removeAttribute("aria-hidden");
+      });
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isSidebarOpen]);
@@ -88,11 +133,9 @@ export default function Navbar() {
 
   // PREFETCH FONKSİYONLARI (Kullanıcı hover olduğunda ilgili sayfanın kodunu arka planda indirir)
   const prefetchAbout = () => import("@/pages/about/AboutPage");
-  // manifesto şimdilik gizli — sonra geri açılacak
   // const prefetchManifest = () => import("@/pages/manifest/ManifestPage");
   const prefetchProjects = () => import("@/pages/projects/ProjectsPage");
 
-  // Linke tıklandığında menüyü kapatması için yardımcı fonksiyon
   const handleLinkClick = () => {
     setIsSidebarOpen(false);
   };
@@ -104,9 +147,9 @@ export default function Navbar() {
           <MenuButton
             toggleSidebar={toggleSidebar}
             isSidebarOpen={isSidebarOpen}
+            label={isSidebarOpen ? t("nav.menu_close") : t("nav.menu_open")}
           />
         </div>
-        {/* LOGO da bir Link olmalı */}
         <Link to="/" className={styles.logo} onClick={handleLinkClick}>
           [ yeqq ]
         </Link>
@@ -122,6 +165,7 @@ export default function Navbar() {
             buttonText={i18n.language.split("-")[0]}
             backgroundColor="var(--orange500)"
             color="var(--wb50)"
+            ariaLabel={t("nav.language_toggle")}
           />
         </div>
       </div>
@@ -137,16 +181,26 @@ export default function Navbar() {
         ))}
       </div>
 
-      <section ref={sidebarRef} className={styles.sidebar}>
+      <section
+        ref={sidebarRef}
+        className={styles.sidebar}
+        aria-hidden={!isSidebarOpen}
+        aria-label={t("nav.menu_label")}
+      >
         <span className={styles.close}>
           <MenuButton
             toggleSidebar={toggleSidebar}
             isSidebarOpen={isSidebarOpen}
+            label={t("nav.menu_close")}
           />
         </span>
         <div className={styles.links}>
-          {/* 'a' etiketleri Link ile değiştirildi, onMouseEnter ile prefetch eklendi */}
-          <Link to="/" className={styles.link} onClick={handleLinkClick}>
+          <Link
+            ref={firstSidebarLinkRef}
+            to="/"
+            className={styles.link}
+            onClick={handleLinkClick}
+          >
             <span className={styles.link_icon}>
               <GoArrowRight />
             </span>
@@ -205,7 +259,6 @@ export default function Navbar() {
           <div className={styles.contact_link_sec}>
             <div className={styles.contact_link_header}>{t("nav.connect")}</div>
             <div className={styles.contact_links}>
-              {/* Harici linkler (Farklı sitelere gidenler) 'a' kalmalı, ancak aria-label eklenmeli */}
               <a
                 className={styles.contact_link}
                 target="_blank"

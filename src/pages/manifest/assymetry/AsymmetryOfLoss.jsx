@@ -26,7 +26,7 @@ const BASE_RATIO = 0.32; /* başlangıç tabanı üst üçte bir: düşecek yeri
 
 const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
 
-export default function AsymmetryOfLoss() {
+export default function AsymmetryOfLoss({ isActive = true }) {
   const { t, i18n } = useTranslation();
   const wrapRef = useRef(null);
   const canvasRef = useRef(null);
@@ -47,6 +47,7 @@ export default function AsymmetryOfLoss() {
     noiseT: 0,
     acc: 0,
     visible: true,
+    active: isActive,
     reduced: false,
   }).current;
 
@@ -124,7 +125,7 @@ export default function AsymmetryOfLoss() {
   };
 
   const tick = (_time, deltaTime) => {
-    if (!s.visible || !s.ctx) return;
+    if (!s.active || !s.visible || !s.ctx) return;
     /* sabit periyotlu örnekleme: 120hz ekranda çizgi hızlanmaz */
     s.acc = Math.min(s.acc + deltaTime, FRAME * 4);
     let dirty = false;
@@ -145,6 +146,8 @@ export default function AsymmetryOfLoss() {
 
   /* kazanç: olay. sıçrar, tabana geri söner, iz bırakmaz. */
   const gain = () => {
+    if (!s.active) return;
+
     setStats((p) => ({ ...p, gains: p.gains + 1 }));
     if (s.reduced) return;
 
@@ -157,6 +160,8 @@ export default function AsymmetryOfLoss() {
 
   /* kayıp: durum. taban aşağı taşınır, eskisi hayalet olarak kalır. */
   const loss = () => {
+    if (!s.active) return;
+
     setStats((p) => ({ ...p, losses: p.losses + 1 }));
 
     const from = s.baseline;
@@ -191,6 +196,8 @@ export default function AsymmetryOfLoss() {
   };
 
   const reset = () => {
+    if (!s.active) return;
+
     gsap.killTweensOf([s, s.transient, ...s.cliffs]);
     s.ghosts = [];
     s.cliffs = [];
@@ -200,6 +207,11 @@ export default function AsymmetryOfLoss() {
     setStats({ gains: 0, losses: 0 });
     draw();
   };
+
+  useEffect(() => {
+    s.active = isActive;
+    if (!isActive) s.acc = 0;
+  }, [isActive, s]);
 
   useEffect(() => {
     s.reduced = prefersReducedMotion();

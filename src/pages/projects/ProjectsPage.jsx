@@ -11,14 +11,12 @@ import ContactHomePage from "@/pages/home/contact/ContactHomePage";
 // Context, Hooks & Styles
 import styles from "./style.module.css";
 import { useProjectCursor } from "@/hooks/useProjectCursor";
-import { useProjects } from "@/hooks/useProjects"; // DÜZELTME: Eski Context yerine yeni hook
-import { useProjectReveal } from "@/hooks/useProjectReveal";
+import { useProjects } from "@/hooks/useProjects";
 
 const ProjectsPage = () => {
   const { t } = useTranslation();
   const [activeFilter, setActiveFilter] = useState("all");
 
-  // DÜZELTME: React Query'den gelen verileri alıyoruz
   const { data: projects, isLoading, isError, error } = useProjects();
 
   const cursorWords = t("projects.cursor", { returnObjects: true });
@@ -32,20 +30,12 @@ const ProjectsPage = () => {
     handleMouseLeave,
   } = useProjectCursor(cursorWords);
 
-  // DÜZELTME: projects undefined ise çökmeyi engellemek için güvenlik eklendi
   const filteredProjects = useMemo(() => {
     const safeProjects = projects || [];
     return activeFilter === "all"
       ? safeProjects
       : safeProjects.filter((project) => project.tags?.includes(activeFilter));
   }, [projects, activeFilter]);
-
-  // DÜZELTME: loading yerine isLoading kullanıldı
-  const { workRefs } = useProjectReveal(
-    isLoading,
-    [filteredProjects],
-    `.${styles.work_img}`,
-  );
 
   if (isError) return <div>Hata oluştu: {error.message}</div>;
 
@@ -70,7 +60,6 @@ const ProjectsPage = () => {
                 key={work.link}
                 work={work}
                 index={index}
-                ref={(el) => (workRefs.current[index] = el)}
                 onMouseMove={handleMouseMove}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}

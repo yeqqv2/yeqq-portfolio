@@ -47,7 +47,6 @@ export default function FormContainer() {
         );
     };
 
-    // FORM HATASI → SHAKE ANİMASYONU
     const handleError = () => {
         if (!formWrapperRef.current) return;
 

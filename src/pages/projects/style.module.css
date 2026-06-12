@@ -3,8 +3,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 20vh 0 10vh 0;
-  gap: 10vh;
+  padding: 16vh 0 10vh 0;
+  gap: 7vh;
 }
 
 .main {
@@ -47,8 +47,8 @@
 
 @media screen and (max-width: 600px) {
   .container {
-    padding: 15vh 2.5vw 5vh 2.5vw;
-    gap: 15vh;
+    padding: 10vh 2.5vw 5vh 2.5vw;
+    gap: 7vh;
     align-items: center;
   }
 

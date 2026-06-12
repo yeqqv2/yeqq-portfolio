@@ -535,7 +535,7 @@ export default function DiscoverMe() {
           key={t("discover.title")}
           text={t("discover.title")}
           className={styles.title}
-          tagName="span"
+          tagName="h2"
           stagger={0.03}
           duration={1.5}
           start="top 80%"
@@ -544,7 +544,7 @@ export default function DiscoverMe() {
           key={t("discover.subtitle")}
           text={t("discover.subtitle")}
           className={styles.subtitle}
-          tagName="span"
+          tagName="p"
           stagger={0.03}
           duration={1.5}
           start="top 80%"

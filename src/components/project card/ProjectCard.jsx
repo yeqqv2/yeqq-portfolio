@@ -1,4 +1,5 @@
-import { useRef, useEffect } from "react";
+import { forwardRef, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 import styles from "./style.module.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -6,9 +7,11 @@ import { CustomEase } from "gsap/CustomEase";
 
 gsap.registerPlugin(CustomEase, ScrollTrigger);
 
-CustomEase.create("hop", "0.25, 0.1, 0.25, 1");
+if (!gsap.parseEase("hop")) {
+  CustomEase.create("hop", "0.9, 0, 0.1, 1");
+}
 
-const ProjectCard = ({
+const ProjectCard = forwardRef(({
   work,
   index,
   className,
@@ -16,9 +19,19 @@ const ProjectCard = ({
   onMouseMove,
   onMouseEnter,
   onMouseLeave,
-}) => {
+}, forwardedRef) => {
   const cardRef = useRef(null);
   const imgRef = useRef(null);
+
+  const setCardRef = (node) => {
+    cardRef.current = node;
+
+    if (typeof forwardedRef === "function") {
+      forwardedRef(node);
+    } else if (forwardedRef) {
+      forwardedRef.current = node;
+    }
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -33,7 +46,7 @@ const ProjectCard = ({
           delay: index * 0.1,
           scrollTrigger: {
             trigger: cardRef.current,
-            start: "top 50%",
+            start: "top 80%",
             toggleActions: "play none none none",
           },
         },
@@ -46,10 +59,11 @@ const ProjectCard = ({
   const isPriority = index < 2;
 
   return (
-    <a
-      href={work.link}
+    <Link
+      to={work.link}
       className={className || styles.work}
-      ref={cardRef}
+      ref={setCardRef}
+      aria-label={`Open case study: ${work.project_name}`}
       onMouseMove={onMouseMove}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
@@ -70,11 +84,13 @@ const ProjectCard = ({
         />
       </div>
       <div className={styles.works}>
-        <div className={styles.work_name}>{work.project_name}</div>
+        <h2 className={styles.work_name}>{work.project_name}</h2>
         <div className={styles.work_desc}>{work.company_name}</div>
       </div>
-    </a>
+    </Link>
   );
-};
+});
+
+ProjectCard.displayName = "ProjectCard";
 
 export default ProjectCard;

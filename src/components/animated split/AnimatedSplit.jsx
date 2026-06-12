@@ -1,31 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
-import SplitType from "split-type";
 import styles from "./style.module.css";
+import { prefersReducedMotion } from "@/utils/motion";
 
-/**
- * AnimatedSplit
- *
- * Props:
- * - text: string (opsiyonel). children varsa children kullanılır.
- * - children: JSX | string (opsiyonel)
- * - className: dışarıdan verilen stil sınıfı (opsiyonel)
- * - tagName: wrapper için HTML tag (default: "span")
- * - types: SplitType için types (default: "lines, words")
- * - stagger: kelime stagger değeri (default: 0.05)
- * - duration: animasyon süresi (default: 1.5)
- * - start: ScrollTrigger start (default: "top 80%")
- * - ease: easing key (default: "hop")
- *
- * Not: GSAP plugin (ScrollTrigger, CustomEase) ve CustomEase.create("hop", ...) üst seviye bir dosyada
- * (ör. ProjectsContainer) bir kez tanımlanmış olmalı; aksi takdirde "hop" custom ease bulunamayabilir.
- */
 const AnimatedSplit = ({
     text,
     children,
     className = "",
     tagName = "span",
-    types = "lines, words",
     stagger = 0.05,
     duration = 1.5,
     start = "top 80%",
@@ -33,31 +15,20 @@ const AnimatedSplit = ({
     ...rest
 }) => {
     const elRef = useRef(null);
-    const splitRef = useRef(null);
+    const content = text != null ? text : children;
+    const accessibleText = typeof content === "string" ? content : undefined;
 
     useEffect(() => {
         if (!elRef.current) return;
+        if (prefersReducedMotion()) return;
 
-        let split;
-        let tween;
+        const wordElements = elRef.current.querySelectorAll("[data-split-word-inner]");
+        if (!wordElements.length) return;
 
-        try {
-            // Eğer önceden bir split uygulanmışsa temizle
-            SplitType.revert(elRef.current);
-        } catch (e) {
-            // noop
-        }
+        gsap.set(wordElements, { y: "110%" });
 
-        // Yeni split oluştur
-        split = new SplitType(elRef.current, { types, tagName });
-        splitRef.current = split;
-
-        // Başlangıç pozisyonu
-        gsap.set(split.words, { y: "110%" });
-
-        // Animasyon (ScrollTrigger ile)
-        tween = gsap.fromTo(
-            split.words,
+        const tween = gsap.fromTo(
+            wordElements,
             {
                 y: "110%",
             },
@@ -74,33 +45,47 @@ const AnimatedSplit = ({
         );
 
         return () => {
-            // Tween / ScrollTrigger temizliği
             try {
                 if (tween && tween.scrollTrigger) {
                     tween.scrollTrigger.kill();
                 }
-            } catch (e) {
-                // noop
-            }
-
-            // SplitType revert
-            try {
-                if (split && typeof split.revert === "function") {
-                    split.revert();
-                }
+                tween.kill();
             } catch (e) {
                 // noop
             }
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [text, types, tagName, stagger, duration, start, ease]);
+    }, [accessibleText, stagger, duration, start, ease]);
 
-    const content = text != null ? text : children;
+    const renderedContent =
+        typeof content === "string"
+            ? content.split(/(\s+)/).map((segment, index) => {
+                if (!segment) return null;
+                if (/\s+/.test(segment)) return segment;
+
+                return (
+                    <span
+                        className={styles.wordMask}
+                        data-split-word
+                        key={`${segment}-${index}`}
+                    >
+                        <span className={styles.word} data-split-word-inner>
+                            {segment}
+                        </span>
+                    </span>
+                );
+            })
+            : content;
 
     return React.createElement(
         tagName,
-        { ref: elRef, className: `${styles.animatedText} ${className}`.trim(), ...rest },
-        content
+        {
+            ref: elRef,
+            className: `${styles.animatedText} ${className}`.trim(),
+            "aria-label": rest["aria-label"] ?? accessibleText,
+            ...rest,
+        },
+        renderedContent
     );
 };
 
