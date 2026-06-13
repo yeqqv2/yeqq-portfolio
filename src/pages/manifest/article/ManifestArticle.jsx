@@ -1,14 +1,8 @@
 import { useParams, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import gsap from "gsap";
-import { CustomEase } from "gsap/CustomEase";
-import AnimatedSplit from "@/components/animated split/AnimatedSplit";
+import AnimatedSplit from "@/components/animated-split/AnimatedSplit";
 import styles from "./style.module.css";
-
-gsap.registerPlugin(CustomEase);
-if (!gsap.parseEase("hop")) {
-  CustomEase.create("hop", "0.9, 0, 0.1, 1");
-}
 
 // kavramların sıralı listesi (landing ile aynı sıra).
 // "sıradaki" gezinmesi ve sayfa indeksi (01 / 06) bunu kullanır.

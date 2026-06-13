@@ -2,15 +2,13 @@ import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TextPlugin } from "gsap/TextPlugin";
-import { CustomEase } from "gsap/CustomEase";
 import { Link } from "react-router-dom";
 import styles from "./style.module.css";
 import colors from "@/utils/colors";
-import AnimatedSplit from "@/components/animated split/AnimatedSplit";
+import AnimatedSplit from "@/components/animated-split/AnimatedSplit";
 import { useTranslation } from 'react-i18next';
 
-gsap.registerPlugin(ScrollTrigger, TextPlugin, CustomEase);
-CustomEase.create("hop", "0.9, 0, 0.1, 1");
+gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
 const WelcomeSec = () => {
     const { t } = useTranslation();

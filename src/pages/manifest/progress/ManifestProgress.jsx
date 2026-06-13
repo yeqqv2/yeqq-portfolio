@@ -6,6 +6,7 @@ export default function ManifestProgress({
   sectionCount = 0,
   labels: customLabels,
   onSelect,
+  visible = false,
 }) {
   const { t } = useTranslation();
 
@@ -22,19 +23,29 @@ export default function ManifestProgress({
     });
 
   return (
-    <nav className={styles.progress} aria-label="manifesto progress">
+    <nav
+      className={styles.progress}
+      data-visible={visible ? "true" : "false"}
+      aria-hidden={visible ? undefined : "true"}
+      aria-label="manifesto progress"
+    >
       {labels.map((label, i) => (
         <button
           key={i}
           type="button"
+          style={{ "--i": i }}
           className={`${styles.item} ${active === i ? styles.active : ""}`}
           onClick={() => onSelect?.(i)}
+          aria-current={active === i ? "true" : undefined}
         >
-          <span className={styles.index}>{String(i + 1).padStart(2, "0")}</span>
-
           <span className={styles.tick} />
 
-          <span className={styles.label}>{label}</span>
+          <span className={styles.meta}>
+            <span className={styles.index}>
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <span className={styles.label}>{label}</span>
+          </span>
         </button>
       ))}
     </nav>

@@ -2,15 +2,13 @@ import { useEffect, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { CustomEase } from "gsap/CustomEase";
 import styles from "./style.module.css";
-import AnimatedSplit from "@/components/animated split/AnimatedSplit";
+import AnimatedSplit from "@/components/animated-split/AnimatedSplit";
 import { useTranslation } from "react-i18next";
 import { useProjects } from "@/hooks/useProjects";
 import LoadingPage from "@/components/loading/LoadingPage";
 
-gsap.registerPlugin(CustomEase, ScrollTrigger);
-CustomEase.create("hop", "0, 0, 0.1, 1");
+gsap.registerPlugin(ScrollTrigger);
 
 export default function WorkSinglePage() {
   const { t, i18n } = useTranslation();

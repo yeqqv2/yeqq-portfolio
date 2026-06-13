@@ -1,15 +1,11 @@
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import gsap from "gsap";
-import { CustomEase } from "gsap/CustomEase";
 import SplitType from "split-type";
-import NeumorphismButton from "@/ui/neumorphismButton/NeumorphismButton";
-import AnimatedSplit from "@/components/animated split/AnimatedSplit";
+import NeumorphismButton from "@/ui/neumorphism-button/NeumorphismButton";
+import AnimatedSplit from "@/components/animated-split/AnimatedSplit";
 import ReadMore from "@/pages/manifest/shared/ReadMore";
 import styles from "./style.module.css";
-
-gsap.registerPlugin(CustomEase);
-const hop = CustomEase.create("hop", "0.9, 0, 0.1, 1");
 
 const reduceMotion = () =>
   typeof window !== "undefined" &&
@@ -62,7 +58,7 @@ export default function ManifestArc() {
       gsap.to(words, {
         y: "0%",
         duration: 1.2,
-        ease: hop,
+        ease: "hop",
         stagger: 0.02,
         overwrite: true,
       });

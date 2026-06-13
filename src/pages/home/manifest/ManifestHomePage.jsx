@@ -2,13 +2,11 @@ import { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { CustomEase } from "gsap/CustomEase";
-import AnimatedSplit from "@/components/animated split/AnimatedSplit";
+import AnimatedSplit from "@/components/animated-split/AnimatedSplit";
 import styles from "./style.module.css";
 import PrimerLink from "@/ui/link/PrimerLink";
 
-gsap.registerPlugin(ScrollTrigger, CustomEase);
-CustomEase.create("hop", "0.9, 0, 0.1, 1");
+gsap.registerPlugin(ScrollTrigger);
 
 const reduceMotion = () =>
   typeof window !== "undefined" &&

@@ -6,15 +6,8 @@ import PrimerLink from "@/ui/link/PrimerLink";
 import PrimerButton from "@/ui/button/PrimerButton";
 
 import gsap from "gsap";
-import CustomEase from "gsap/CustomEase";
 import { GoArrowRight } from "react-icons/go";
 import { useTranslation } from "react-i18next";
-
-gsap.registerPlugin(CustomEase);
-
-if (!gsap.parseEase("hop")) {
-  CustomEase.create("hop", "0.9, 0, 0.1, 1");
-}
 
 const LAYER_COLORS = [
   "var(--red500)",

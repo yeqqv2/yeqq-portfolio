@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useState } from "react";
-import SplashScreen from "@/animations/open/SplashScreen";
+import SplashScreen from "@/components/splash-screen/SplashScreen";
 import IntroSec from "./intro/IntroSec";
 import styles from "./style.module.css";
 

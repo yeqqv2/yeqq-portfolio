@@ -1,12 +1,8 @@
 import { useRef, useEffect } from "react";
 import styles from "./style.module.css";
 import gsap from "gsap";
-import { CustomEase } from "gsap/CustomEase";
-import AnimatedSplit from "@/components/animated split/AnimatedSplit";
+import AnimatedSplit from "@/components/animated-split/AnimatedSplit";
 import { useTranslation } from "react-i18next";
-
-gsap.registerPlugin(CustomEase);
-CustomEase.create("hop", "0.9, 0, 0.1, 1");
 
 const images = [
   "/assets/modern-art/1.webp",

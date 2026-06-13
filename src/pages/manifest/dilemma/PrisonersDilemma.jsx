@@ -1,15 +1,9 @@
 import { Fragment, useLayoutEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import gsap from "gsap";
-import { CustomEase } from "gsap/CustomEase";
 import ReadMore from "@/pages/manifest/shared/ReadMore";
 import { prefersReducedMotion } from "@/utils/motion";
 import styles from "./style.module.css";
-
-gsap.registerPlugin(CustomEase);
-if (!gsap.parseEase("hop")) {
-  CustomEase.create("hop", "0.9, 0, 0.1, 1");
-}
 
 const TOTAL_ROUNDS = 5;
 

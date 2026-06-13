@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import Navbar from "@/layouts/navbar/Navbar";
 import Footer from "@/layouts/footer/Footer";
-import ScrollProgress from "@/components/scroll progress/ScrollProgress";
+import ScrollProgress from "@/components/scroll-progress/ScrollProgress";
 
 const AppLayout = ({ children }) => {
   return (

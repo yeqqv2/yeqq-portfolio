@@ -2,12 +2,10 @@ import { useEffect, useRef } from "react";
 import styles from "./style.module.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import CustomEase from "gsap/CustomEase";
-import AnimatedSplit from "@/components/animated split/AnimatedSplit";
+import AnimatedSplit from "@/components/animated-split/AnimatedSplit";
 import { useTranslation } from "react-i18next";
 
-gsap.registerPlugin(ScrollTrigger, CustomEase);
-CustomEase.create("hop", "0.9, 0, 0.1, 1");
+gsap.registerPlugin(ScrollTrigger);
 
 export default function HeroAbout() {
   const { t, i18n } = useTranslation();

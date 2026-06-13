@@ -90,7 +90,8 @@
       "an idea?",
       "come",
       "let's talk",
-      "something meaningful",
+      "something",
+      "meaningful",
       "let's build"
     ]
   },
@@ -342,7 +343,10 @@
     },
     "header": {
       "title": "[manifest]",
-      "desc": "interfaces are not mere canvases; they are rational mechanisms designed to eliminate entropy in the human mind. i write code to eliminate information asymmetry and design to optimize decision-making processes. aesthetics is merely an inevitable byproduct of this flawless architecture."
+      "desc": "i don't see design as decoration. i strip the unnecessary from an interface, a sentence, a day. what remains isn't less, it's clearer."
+    },
+    "intro": {
+      "scroll": "the ideas begin below, scroll"
     },
     "white_on_white": {
       "title": "[white on white]",
@@ -352,13 +356,15 @@
     "dichotomy": {
       "title": "[the dichotomy of mind]",
       "desc": "one mind, two lobes. both are me.",
-      "hint": "click a lobe",
+      "hint": "click a side — and where they meet",
       "left_label": "left lobe",
       "right_label": "right lobe",
       "left_title": "the rational side",
       "left_desc": "this side is my order. plans, boundaries, work i can't leave unfinished. a thing is either right or wrong; the in-between tires me. no ornament here. data in, decision out.",
       "right_title": "the emotional side",
-      "right_desc": "this side is my chaos. the silence of balıkesir, the anger of lost games, morning runs without a reason. it won't follow a plan, it won't fit a measure. but everything that makes me, me, lives here."
+      "right_desc": "this side is my chaos. the silence of balıkesir, the anger of lost games, morning runs without a reason. it won't follow a plan, it won't fit a measure. but everything that makes me, me, lives here.",
+      "center_label": "human",
+      "center_desc": "not pure logic, not pure feeling. human is where the two collide."
     },
     "cost_of_order": {
       "btn_label": "apply energy",

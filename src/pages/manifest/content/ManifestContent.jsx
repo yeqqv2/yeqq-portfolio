@@ -51,6 +51,7 @@ export default function ManifestContent() {
   const containerRef = useRef(null);
   const triggerRef = useRef(null);
   const [active, setActive] = useState(0);
+  const [navVisible, setNavVisible] = useState(false);
   const renderAllPanels = prefersReducedMotion();
 
   const setActivePanel = useCallback((next) => {
@@ -73,6 +74,13 @@ export default function ManifestContent() {
 
     const ctx = gsap.context(() => {
       if (prefersReducedMotion()) {
+        // intro'yu geçip içeriğe gelince progress nav belirir
+        ScrollTrigger.create({
+          trigger: container,
+          start: "top 60%",
+          end: "bottom 40%",
+          onToggle: (self) => setNavVisible(self.isActive),
+        });
         panels.forEach((panel, i) => {
           ScrollTrigger.create({
             trigger: panel,
@@ -91,12 +99,14 @@ export default function ManifestContent() {
         scrollTrigger: {
           trigger: container,
           start: "top top",
-          end: `+=${TOTAL * 50}%`,
+          end: `+=${TOTAL * 20}%`,
           pin: true,
           pinSpacing: true,
           scrub: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
+          // perde pinlenince (intro geçilince) progress nav belirir
+          onToggle: (self) => setNavVisible(self.isActive),
           onUpdate: (self) => {
             setActivePanel(activeAt(self.progress * TOTAL));
           },
@@ -179,6 +189,7 @@ export default function ManifestContent() {
         sectionCount={PANELS.length}
         labels={labels}
         onSelect={scrollToPanel}
+        visible={navVisible}
       />
 
       <div ref={containerRef} className={styles.manifest}>

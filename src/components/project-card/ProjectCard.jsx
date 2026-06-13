@@ -3,13 +3,8 @@ import { Link } from "react-router-dom";
 import styles from "./style.module.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { CustomEase } from "gsap/CustomEase";
 
-gsap.registerPlugin(CustomEase, ScrollTrigger);
-
-if (!gsap.parseEase("hop")) {
-  CustomEase.create("hop", "0.9, 0, 0.1, 1");
-}
+gsap.registerPlugin(ScrollTrigger);
 
 const ProjectCard = forwardRef(({
   work,

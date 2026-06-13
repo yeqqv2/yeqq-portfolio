@@ -4,8 +4,8 @@ import { useTranslation } from "react-i18next";
 // Components
 import ProjectsHeader from "@/pages/projects/header/ProjectsHeader";
 import ProjectsFilter from "@/pages/projects/filter/ProjectsFilter";
-import ProjectCard from "@/components/project card/ProjectCard";
-import ProjectSkeleton from "@/animations/project skeleton/ProjectSkeleton";
+import ProjectCard from "@/components/project-card/ProjectCard";
+import ProjectSkeleton from "@/components/project-skeleton/ProjectSkeleton";
 import ContactHomePage from "@/pages/home/contact/ContactHomePage";
 
 // Context, Hooks & Styles

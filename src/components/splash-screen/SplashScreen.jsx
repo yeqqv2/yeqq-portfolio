@@ -1,12 +1,7 @@
 import React, { useEffect, useRef, useMemo } from "react";
 import styles from "./style.module.css";
 import { gsap } from "gsap";
-import { CustomEase } from "gsap/CustomEase";
 import { prefersReducedMotion } from "@/utils/motion";
-
-gsap.registerPlugin(CustomEase);
-CustomEase.create("butter", "0.25, 0.1, 0.25, 1");
-CustomEase.create("butterSlow", "0.14, 0.11, 0.11, 1");
 
 const SPLASH_IMAGE_COUNT = 8;
 

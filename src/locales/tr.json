@@ -90,7 +90,8 @@
       "mi var?",
       "gel",
       "konuşalım",
-      "anlamlı bir şey",
+      "anlamlı",
+      "bir şey",
       "kuralım"
     ]
   },
@@ -342,7 +343,10 @@
     },
     "header": {
       "title": "[manifesto]",
-      "desc": "arayüzler birer kanvas değil, insan zihnindeki entropiyi sıfırlamak için kurgulanan rasyonel mekanizmalardır. bilgi asimetrisini yok etmek için kod yazar, karar alma süreçlerini optimize etmek için tasarım yaparım. estetik, bu kusursuz mimarinin sadece kaçınılmaz bir yan ürünüdür."
+      "desc": "tasarımı süsleme sanmıyorum. bir arayüzden, bir cümleden, bir günden gereksizi çıkarıyorum. geriye kalan daha az değil, daha net oluyor."
+    },
+    "intro": {
+      "scroll": "kavramlar aşağıda, kaydır"
     },
     "white_on_white": {
       "title": "[beyaz üstüne beyaz]",
@@ -352,13 +356,15 @@
     "dichotomy": {
       "title": "[zihnin ikiliği]",
       "desc": "tek zihin, iki lob. ikisi de benim.",
-      "hint": "bir loba tıkla",
+      "hint": "iki tarafa, bir de kesişime tıkla",
       "left_label": "sol lob",
       "right_label": "sağ lob",
       "left_title": "rasyonel taraf",
       "left_desc": "bu taraf benim düzenim. planlar, sınırlar, bitmeden bırakamadığım işler. bir şey ya doğrudur ya yanlıştır; arası beni yorar. burada süs yok. veri girer, karar çıkar.",
       "right_title": "duygusal taraf",
-      "right_desc": "bu taraf benim kaosum. balıkesir'in sessizliği, kaybettiğim oyunların öfkesi, sebepsiz sabah koşuları. plana gelmez, ölçüye sığmaz. ama beni ben yapan ne varsa burada duruyor."
+      "right_desc": "bu taraf benim kaosum. balıkesir'in sessizliği, kaybettiğim oyunların öfkesi, sebepsiz sabah koşuları. plana gelmez, ölçüye sığmaz. ama beni ben yapan ne varsa burada duruyor.",
+      "center_label": "insan",
+      "center_desc": "ne salt mantık, ne salt his. insan, ikisinin çakıştığı yer."
     },
     "cost_of_order": {
       "btn_label": "enerji uygula",

@@ -3,10 +3,6 @@ import { useTranslation } from "react-i18next";
 import gsap from "gsap";
 import styles from "./style.module.css";
 import ReadMore from "@/pages/manifest/shared/ReadMore";
-import { CustomEase } from "gsap/CustomEase";
-
-gsap.registerPlugin(CustomEase);
-const hop = CustomEase.create("hop", "0.9, 0, 0.1, 1");
 
 const reduceMotion = () =>
   typeof window !== "undefined" &&

@@ -36,10 +36,10 @@
     inset(top right bottom left)
   */
   clip-path: inset(
-    calc(50% - 30vh + var(--mouse-y-offset)) 
-    calc(50% - 30vh - var(--mouse-x-offset)) 
-    calc(50% - 30vh - var(--mouse-y-offset)) 
-    calc(50% - 30vh + var(--mouse-x-offset))
+    calc(50% - 30vh + var(--mouse-y-offset))
+      calc(50% - 30vh - var(--mouse-x-offset))
+      calc(50% - 30vh - var(--mouse-y-offset))
+      calc(50% - 30vh + var(--mouse-x-offset))
   );
   z-index: 3;
   transition: clip-path 0.5s ease-out;
@@ -110,10 +110,10 @@
   .marquee_div_content {
     /* Mobil kare maske: Video 80vw, yarısı 40vw */
     clip-path: inset(
-      calc(50% - 25vw + var(--mouse-y-offset)) 
-      calc(50% - 25vw - var(--mouse-x-offset)) 
-      calc(50% - 25vw - var(--mouse-y-offset)) 
-      calc(50% - 25vw + var(--mouse-x-offset))
+      calc(50% - 25vw + var(--mouse-y-offset))
+        calc(50% - 25vw - var(--mouse-x-offset))
+        calc(50% - 25vw - var(--mouse-y-offset))
+        calc(50% - 25vw + var(--mouse-x-offset))
     );
     font-size: 16vw;
   }
@@ -128,11 +128,6 @@
 }
 
 @media screen and (max-width: 600px) {
-  .container {
-    height: 100dvh;
-    padding: 8vh 0;
-  }
-
   .marquee_div_content {
     font-size: 9vw;
   }

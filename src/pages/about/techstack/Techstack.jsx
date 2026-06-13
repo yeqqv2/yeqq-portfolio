@@ -2,10 +2,8 @@ import { useEffect, useRef } from "react";
 import styles from "./style.module.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import CustomEase from "gsap/CustomEase";
 
-gsap.registerPlugin(ScrollTrigger, CustomEase);
-CustomEase.create("hop", "0.9, 0, 0.1, 1");
+gsap.registerPlugin(ScrollTrigger);
 
 const techs = [
   { id: 1, asset: "/assets/svg/html.svg", name: "HTML5" },

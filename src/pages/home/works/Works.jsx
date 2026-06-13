@@ -1,18 +1,14 @@
 import { useTranslation } from "react-i18next";
 import { useMemo } from "react";
 import gsap from "gsap";
-import { CustomEase } from "gsap/all";
 
 import { useProjects } from "@/hooks/useProjects";
 import { useProjectCursor } from "@/hooks/useProjectCursor";
-import ProjectCard from "@/components/project card/ProjectCard";
-import ProjectSkeleton from "@/animations/project skeleton/ProjectSkeleton";
+import ProjectCard from "@/components/project-card/ProjectCard";
+import ProjectSkeleton from "@/components/project-skeleton/ProjectSkeleton";
 
 // Styles
 import styles from "./style.module.css";
-
-gsap.registerPlugin(CustomEase);
-CustomEase.create("hop", "0.9, 0, 0.1, 1");
 
 const WorksHomePage = () => {
   const { t } = useTranslation();

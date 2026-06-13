@@ -1,4 +1,5 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 
@@ -9,6 +10,7 @@ import { prefersReducedMotion } from "@/utils/motion";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function SmoothScroll({ children }) {
+  const location = useLocation();
   const lenisRef = useRef(null);
 
   useEffect(() => {
@@ -90,9 +92,21 @@ export default function SmoothScroll({ children }) {
     };
   }, []);
 
-  /* Rota değişiminde scroll sıfırlama PageTransition'a taşındı:
-     perde ekranı örtmüşken sıfırlanır, böylece eski sayfa görünürken
-     yukarı zıplama olmaz. */
+  /* Rota değişiminde sayfayı başa al ve ScrollTrigger'ı tazele; yeni
+     sayfa eski scroll konumundan değil tepeden açılsın, ilk section
+     animasyonları da doğru ölçümle başlasın. */
+  useLayoutEffect(() => {
+    const scrollTop = () => {
+      window.scrollTo(0, 0);
+      window.lenis?.scrollTo(0, { immediate: true, force: true });
+    };
+
+    scrollTop();
+    requestAnimationFrame(() => {
+      scrollTop();
+      requestAnimationFrame(() => ScrollTrigger.refresh());
+    });
+  }, [location.key]);
 
   return <>{children}</>;
 }

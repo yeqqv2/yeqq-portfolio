@@ -1,6 +1,5 @@
 /* beş kapı: anotasyon sol üstte, kapılar merkezde tek sıra.
-   görünüm ikon kadar sade; açılış ise kalınlığı olan gerçek bir 3d levha.
-   bir kapı beyaz ışığa açılır, dördü ufalanır; yerlerinde gölgeleri kalır. */
+   ince çizgili paneller; biri koyu eşiğe açılır, dördü hayalete döner. */
 .container {
   width: 100%;
   height: 100dvh;
@@ -8,7 +7,8 @@
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto 1fr;
   column-gap: 1vw;
-  padding: 20vh 20vw;
+  row-gap: 7.5vh;
+  padding: 15vh 20vw;
   background-color: var(--wb50);
   position: relative;
   z-index: 0;
@@ -47,6 +47,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 3.75vh;
+}
+
+.choiceGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 5vh;
 }
 
@@ -59,7 +67,7 @@
 .doors {
   display: flex;
   align-items: flex-start;
-  gap: 2.5vw;
+  gap: 1vw;
 }
 
 .cell {
@@ -67,124 +75,76 @@
   flex-direction: column;
   align-items: center;
   gap: 1.25em;
+  will-change: transform, opacity;
 }
 
-/* kapı çerçevesi: perspektif buradan gelir */
 .frame {
   position: relative;
-  perspective: 700px;
+  perspective: 900px;
 }
 
-/* açılan kapının içi: saf beyaz ışık */
+/* açılınca görünen eşik: koyu derinlik */
 .doorway {
   position: absolute;
   inset: 0;
   z-index: 1;
   background-color: var(--wb100);
-}
-
-/* yok olan kapıdan geriye kalan: bulanık siyah bir gölge */
-.shade {
-  position: absolute;
-  inset: 3% 8%;
-  z-index: 2;
-  background-color: var(--wb950);
   opacity: 0;
   visibility: hidden;
-  pointer-events: none;
 }
 
-/* kapı: görünmez 3d kabuk; görünümü yüzler taşır */
+/* kapı: ince çizgili panel, soldan menteşeli */
 .door {
   position: relative;
-  z-index: 3;
+  z-index: 2;
   display: block;
-  width: clamp(64px, 7vw, 110px);
-  aspect-ratio: 1 / 2.1;
-  background: transparent;
-  border: none;
+  width: clamp(60px, 6.5vw, 104px);
+  aspect-ratio: 1 / 2.2;
+  background-color: var(--wb50);
+  border: 1px solid var(--wb300);
   padding: 0;
-  transform-style: preserve-3d;
   transform-origin: left center;
+  transform-style: preserve-3d;
   cursor: pointer;
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    border-color 0.4s ease,
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
 }
 
-/* ön yüz: eski minimal kapı; düz beyaz, hairline çerçeve, nokta kol */
-.face_front {
+/* kol: küçük nokta */
+.handle {
   position: absolute;
-  inset: 0;
-  background-color: var(--wb50);
-  border: 1px solid var(--wb200);
-  transition: border-color 0.35s ease;
-}
-
-.face_front::after {
-  content: "";
-  position: absolute;
-  right: 9%;
-  top: 49%;
+  right: 10%;
+  top: 50%;
   width: 4px;
   height: 4px;
+  margin-top: -2px;
   border-radius: 50%;
-  background-color: var(--wb200);
-  transition: background-color 0.35s ease;
+  background-color: var(--wb300);
+  transition: background-color 0.4s ease;
 }
 
-/* yan yüz: kapıya kalınlığını veren levha kenarı */
-.face_edge {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 7px;
-  height: 100%;
-  background-color: var(--wb100);
-  border: 1px solid var(--wb300);
-  transform-origin: right center;
-  transform: rotateY(-90deg);
-}
-
-/* hover / klavye odağı: kapı aralanır, beyaz ışık sızar */
+/* hover / klavye odağı: kapı aralanır, çizgi koyulaşır */
 .cell:hover .door:enabled,
 .cell:has(.door:focus-visible) .door:enabled {
-  transform: rotateY(-15deg);
+  transform: rotateY(-14deg);
+  border-color: var(--wb600);
 }
 
-.cell:hover .door:enabled .face_front,
-.cell:has(.door:focus-visible) .door:enabled .face_front {
-  border-color: var(--wb300);
+.cell:hover .door:enabled .handle,
+.cell:has(.door:focus-visible) .door:enabled .handle {
+  background-color: var(--wb600);
 }
 
-.cell:hover .door:enabled .face_front::after,
-.cell:has(.door:focus-visible) .door:enabled .face_front::after {
-  background-color: var(--wb500);
-}
-
-/* seçim yapıldıktan sonra css geçişi gsap'a karışmasın */
+/* seçim sonrası css transform gsap'a karışmasın */
 .spent .door {
-  transition: none;
+  transition: border-color 0.4s ease;
 }
 
-/* ufalanma zerreleri: kapı tabanından dökülür (gsap sürer) */
-.dust {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  z-index: 4;
-  width: 2px;
-  height: 2px;
-  border-radius: 50%;
-  background-color: var(--wb500);
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  will-change: transform, opacity;
-}
-
-/* fısıltı: hover, klavye odağı ya da dokunmatik ilk dokunuşta belirir */
+/* fısıltı: masaüstünde hover/odakta belirir (mobilde kapı doğrudan açılır) */
 .whisper {
-  font-size: 0.85em;
+  font-size: 0.8em;
   font-weight: 300;
   color: var(--wb500);
   text-align: center;
@@ -198,7 +158,6 @@
 }
 
 .cell:hover .whisper,
-.cell.armed .whisper,
 .cell:has(.door:focus-visible) .whisper {
   opacity: 1;
   transform: translateY(0);
@@ -251,16 +210,15 @@
 
 @media screen and (max-width: 600px) {
   .container {
-    padding: 8vh 5vw;
+    padding: 15vh 5vw;
   }
 
   .doors {
-    gap: 2vw;
+    gap: 3vw;
   }
 
-  .whisper {
-    font-size: 0.75em;
-    max-width: 12ch;
+  .door {
+    width: clamp(44px, 14vw, 70px);
   }
 
   .sentence {

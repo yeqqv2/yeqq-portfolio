@@ -6,8 +6,7 @@ import "./styles/scrollbar.css";
 
 import { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
-import SmoothScroll from "./components/smooth scroll/index";
-import PageTransition from "./components/page transition/PageTransition";
+import SmoothScroll from "./components/smooth-scroll/SmoothScroll";
 import LoadingPage from "./components/loading/LoadingPage";
 import HomePage from "./pages/home/HomePage";
 
@@ -24,22 +23,18 @@ const NotFoundPage = lazy(() => import("./pages/not-found/NotFoundPage"));
 function App() {
   return (
     <SmoothScroll>
-      <PageTransition>
-        {(displayedLocation) => (
-          <Suspense fallback={<LoadingPage />}>
-            <Routes location={displayedLocation}>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/about-me" element={<AboutPage />} />
-              <Route path="/manifest" element={<ManifestPage />} />
-              <Route path="/manifest/:slug" element={<ManifestArticle />} />
-              <Route path="/projects" element={<ProjectsPage />} />
-              <Route path="/projects/:slug" element={<WorkPage />} />
-              <Route path="/contact-me" element={<ContactPage />} />
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </Suspense>
-        )}
-      </PageTransition>
+      <Suspense fallback={<LoadingPage />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about-me" element={<AboutPage />} />
+          <Route path="/manifest" element={<ManifestPage />} />
+          <Route path="/manifest/:slug" element={<ManifestArticle />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/projects/:slug" element={<WorkPage />} />
+          <Route path="/contact-me" element={<ContactPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
     </SmoothScroll>
   );
 }
