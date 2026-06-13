@@ -91,20 +91,12 @@ const Footer = () => {
               >
                 github
               </a>
-              <a
-                className={styles.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://tr.linkedin.com/in/yeqq"
-              >
-                linkedin
-              </a>
             </div>
           </nav>
         </div>
 
         <div className={styles.wordmark} aria-hidden="true">
-          <span className={styles.bracket}>[</span> yeqq{" "}
+          <span className={styles.bracket}>[</span>yeqq
           <span className={styles.bracket}>]</span>
         </div>
 

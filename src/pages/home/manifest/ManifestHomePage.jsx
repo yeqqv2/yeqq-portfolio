@@ -105,8 +105,7 @@ const ManifestHomePage = () => {
           <PrimerLink
             href="/manifest"
             buttonText={t("manifest.button")}
-            backgroundColor="var(--wb950)"
-            color="var(--wb50)"
+            random
           />
         </div>
       </div>

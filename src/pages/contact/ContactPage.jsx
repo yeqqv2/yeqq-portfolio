@@ -111,20 +111,6 @@ const ContactPage = () => {
               duration={1.5}
               start="top 100%"
             />
-            <a
-              className={styles.contact_link}
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://tr.linkedin.com/in/yeqq"
-            >
-              <AnimatedSplit
-                text="linkedin"
-                tagName="span"
-                stagger={0.03}
-                duration={1.5}
-                start="top 100%"
-              />
-            </a>
           </div>
         </div>
       </div>

@@ -99,7 +99,7 @@ export default function ManifestContent() {
         scrollTrigger: {
           trigger: container,
           start: "top top",
-          end: `+=${TOTAL * 20}%`,
+          end: `+=${TOTAL * 40}%`,
           pin: true,
           pinSpacing: true,
           scrub: true,

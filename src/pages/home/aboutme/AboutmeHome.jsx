@@ -75,8 +75,7 @@ const AboutmeHome = () => {
         <PrimerLink
           href="/about-me"
           buttonText={t("aboutHome.link")}
-          backgroundColor="var(--main-color300)"
-          color="var(--main-color900)"
+          random
         />
       </footer>
     </div>

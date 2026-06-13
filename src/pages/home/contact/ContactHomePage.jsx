@@ -31,7 +31,7 @@ const ContactHomePage = () => {
     styles.style8,
   ];
 
-  const minimumDistance = 50;
+  const minimumDistance = 60;
 
   // Tek bir kelimeyi verilen ekran konumunda (clientX/Y) patlat.
   const spawnWord = useCallback(
@@ -63,7 +63,7 @@ const ContactHomePage = () => {
         top: `${y}px`,
         display: "inline-block",
         pointerEvents: "none",
-        zIndex: 9999,
+        zIndex: 2,
         willChange: "transform",
       });
       container.appendChild(span);
@@ -72,14 +72,14 @@ const ContactHomePage = () => {
         span,
         { scale: 0 },
         {
-          duration: 0.33,
+          duration: 0.45,
           scale: 1.25,
-          ease: "expo.out",
+          ease: "butter",
           rotate: Math.random() * 20 - 10,
           force3D: true,
           onComplete: () => {
             gsap.to(span, {
-              duration: 0.42,
+              duration: 0.55,
               scale: 0,
               ease: "expo.in",
               delay: 0.25,
@@ -133,10 +133,9 @@ const ContactHomePage = () => {
             <div className={styles.contact_me}>{t("contactHome.subtext")}</div>
           </div>
           <PrimerLink
-            color="var(--red50)"
-            backgroundColor="var(--red500)"
             buttonText={t("contactHome.link")}
             href="/contact-me"
+            random
           />
         </div>
         {/* Kelimelerin Vanilla JS ile içine basılacağı sabit container */}

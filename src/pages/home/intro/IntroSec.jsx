@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { prefersReducedMotion } from "@/utils/motion";
 
 // px/sn cinsinden temel hız ve hover davranışları
-const BASE_SPEED = 180; // normal akış (sola)
+const BASE_SPEED = 240; // normal akış (sola)
 const FAST_MULT = 3; // sola hover → hızlan
 const REVERSE_MULT = -1.4; // sağa hover → geri dön
 const SMOOTH = 6; // hız geçişlerinin yumuşaklığı (yüksek = daha hızlı oturur)

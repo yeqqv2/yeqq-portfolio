@@ -23,18 +23,22 @@
   background-color: var(--wb950);
 }
 
-.marquee_div_content {
+.marquee_div_content,
+.marquee_div_2 {
   width: 100%;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  font-size: 12.5vw;
+  letter-spacing: -5%;
+  font-weight: 600;
   pointer-events: none;
   overflow: hidden;
-  /* Kare maske matematiği: 
-    Videonun yüksekliği 70vh, yarısı 35vh.
-    inset(top right bottom left)
-  */
+  white-space: nowrap;
+}
+
+.marquee_div_content {
   clip-path: inset(
     calc(50% - 30vh + var(--mouse-y-offset))
       calc(50% - 30vh - var(--mouse-x-offset))
@@ -43,26 +47,11 @@
   );
   z-index: 3;
   transition: clip-path 0.5s ease-out;
-  font-size: 5vw;
-  white-space: nowrap;
-  font-weight: 300;
-  letter-spacing: -5%;
   color: var(--wb50);
 }
 
 .marquee_div_2 {
-  width: 100%;
-  position: absolute;
   color: var(--wb950);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 5vw;
-  white-space: nowrap;
-  font-weight: 300;
-  letter-spacing: -5%;
-  pointer-events: none;
-  overflow: hidden;
   z-index: 2;
 }
 
@@ -102,24 +91,24 @@
   }
 
   .vid {
-    height: 50vw;
-    width: 50vw;
+    height: 60vw;
+    width: 60vw;
     border-radius: 0;
   }
 
   .marquee_div_content {
     /* Mobil kare maske: Video 80vw, yarısı 40vw */
     clip-path: inset(
-      calc(50% - 25vw + var(--mouse-y-offset))
-        calc(50% - 25vw - var(--mouse-x-offset))
-        calc(50% - 25vw - var(--mouse-y-offset))
-        calc(50% - 25vw + var(--mouse-x-offset))
+      calc(50% - 30vw + var(--mouse-y-offset))
+        calc(50% - 30vw - var(--mouse-x-offset))
+        calc(50% - 30vw - var(--mouse-y-offset))
+        calc(50% - 30vw + var(--mouse-x-offset))
     );
-    font-size: 16vw;
+    font-size: 25vw;
   }
 
   .marquee_div_2 {
-    font-size: 16vw;
+    font-size: 25vw;
   }
 
   .marquee_hover {
@@ -129,11 +118,11 @@
 
 @media screen and (max-width: 600px) {
   .marquee_div_content {
-    font-size: 9vw;
+    font-size: 25vw;
   }
 
   .marquee_div_2 {
-    font-size: 9vw;
+    font-size: 25vw;
   }
 
   .marquee_hover {

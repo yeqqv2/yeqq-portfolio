@@ -21,3 +21,13 @@
 .button:hover {
   scale: 0.975;
 }
+
+.random {
+  background-color: transparent;
+  color: var(--wb950);
+}
+
+.random:hover {
+  background-color: var(--hover-color);
+  color: var(--wb50);
+}

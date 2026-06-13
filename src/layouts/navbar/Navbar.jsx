@@ -1,76 +1,231 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./style.module.css";
-import MenuButton from "@/ui/menu/MenuButton";
 import PrimerLink from "@/ui/link/PrimerLink";
 import PrimerButton from "@/ui/button/PrimerButton";
 
 import gsap from "gsap";
-import { GoArrowRight } from "react-icons/go";
 import { useTranslation } from "react-i18next";
-
-const LAYER_COLORS = [
-  "var(--red500)",
-  "var(--pink300)",
-  "var(--purple400)",
-  "var(--orange600)",
-  "var(--main-color500)",
-  "var(--blue300)",
-];
 
 const LANGUAGES = ["tr", "en"];
 
+const BRAND = "yeqq".split("");
+
+const SOCIALS = [
+  { label: "instagram", href: "https://www.instagram.com/1yunusewre" },
+  { label: "github", href: "https://github.com/yeqqv2" },
+];
+
 export default function Navbar() {
   const { t, i18n } = useTranslation();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const sidebarRef = useRef(null);
-  const firstSidebarLinkRef = useRef(null);
-  const layersRef = useRef([]);
+  const islandRef = useRef(null);
+  const overlayRef = useRef(null);
+  const brandNameRef = useRef(null);
+  const brandCharsRef = useRef([]);
+  const toggleLabelRef = useRef(null);
+  const linksRef = useRef([]);
+  const socialRef = useRef(null);
+  const sidesRef = useRef([]);
+  const firstLinkRef = useRef(null);
+  const tlRef = useRef(null);
+  const firstRun = useRef(true);
 
+  // sayfalar: ana sayfa, hakkımda, manifesto, projeler, iletişime geç
+  const NAV_ITEMS = [
+    { to: "/", label: t("nav.home") },
+    {
+      to: "/about-me",
+      label: t("nav.about"),
+      prefetch: () => import("@/pages/about/AboutPage"),
+    },
+    {
+      to: "/manifest",
+      label: t("nav.manifest"),
+      prefetch: () => import("@/pages/manifest/ManifestPage"),
+    },
+    {
+      to: "/projects",
+      label: t("nav.projects"),
+      prefetch: () => import("@/pages/projects/ProjectsPage"),
+    },
+    { to: "/contact-me", label: t("nav.contact") },
+  ];
+
+  // çentiğin açık/kapalı ölçüleri em ölçeğinden türetilir (type-scale ile uyumlu).
+  const getMetrics = () => {
+    const fs = parseFloat(getComputedStyle(document.body).fontSize) || 12;
+    const vw = window.innerWidth;
+    const mobile = vw <= 600;
+    return {
+      closedW: (mobile ? 13 : 16) * fs,
+      closedH: 2.6 * fs,
+      closedR: 1.3 * fs,
+      openW: mobile ? Math.min(vw - 2 * fs, 26 * fs) : 22 * fs,
+      openH: (mobile ? 30 : 27) * fs,
+      openR: 1.6 * fs,
+    };
+  };
+
+  // aç/kapat: GSAP timeline + erişilebilirlik (inert, scroll kilidi, odak).
   useEffect(() => {
-    gsap.set(sidebarRef.current, { x: "-100%" });
-    gsap.set(layersRef.current, { x: "-100%" });
-  }, []);
+    document.body.style.overflow = isOpen ? "hidden" : "";
 
-  useEffect(() => {
-    document.body.style.overflow = isSidebarOpen ? "hidden" : "";
     const main = document.getElementById("main");
     const footer = document.querySelector("footer");
-
     [main, footer].forEach((el) => {
       if (!el) return;
-      el.inert = isSidebarOpen;
-      if (isSidebarOpen) {
-        el.setAttribute("aria-hidden", "true");
-      } else {
-        el.removeAttribute("aria-hidden");
-      }
+      el.inert = isOpen;
+      if (isOpen) el.setAttribute("aria-hidden", "true");
+      else el.removeAttribute("aria-hidden");
     });
 
-    if (sidebarRef.current) {
-      sidebarRef.current.inert = !isSidebarOpen;
+    const links = linksRef.current.filter(Boolean);
+    const chars = brandCharsRef.current.filter(Boolean);
+
+    // ilk render: animasyon yok, kapalı durumu anında otur (flash olmasın).
+    if (firstRun.current) {
+      firstRun.current = false;
+      gsap.set(links, { autoAlpha: 0, y: 14 });
+      gsap.set(socialRef.current, { autoAlpha: 0, y: 8 });
+      gsap.set(chars, { yPercent: 110, autoAlpha: 0 });
+      gsap.set(brandNameRef.current, { width: 0 });
+      gsap.set(overlayRef.current, { autoAlpha: 0 });
+      gsap.set(sidesRef.current, { autoAlpha: 1 });
+      return;
     }
 
-    if (isSidebarOpen) {
-      requestAnimationFrame(() => firstSidebarLinkRef.current?.focus());
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const d = (x) => (reduce ? 0 : x);
+    const m = getMetrics();
+
+    tlRef.current?.kill();
+    const tl = gsap.timeline({ defaults: { ease: "hop" } });
+    tlRef.current = tl;
+
+    if (isOpen) {
+      tl.to(sidesRef.current, { autoAlpha: 0, duration: d(0.8) }, 0)
+        .to(overlayRef.current, { autoAlpha: 1, duration: d(0.33) }, 0)
+        .to(
+          islandRef.current,
+          {
+            width: m.openW,
+            height: m.openH,
+            borderRadius: m.openR,
+            duration: d(0.8),
+          },
+          0,
+        )
+        // brackets aralanır; harfler sayaç gibi alttan yukarı dizilir
+        .to(
+          brandNameRef.current,
+          { width: "auto", duration: d(1.2), ease: "hop" },
+          d(0.8),
+        )
+        .to(
+          chars,
+          {
+            yPercent: 0,
+            autoAlpha: 1,
+            duration: d(1.2),
+            ease: "butter",
+            stagger: d(0.06),
+          },
+          d(0.8),
+        )
+        .fromTo(
+          toggleLabelRef.current,
+          { yPercent: 120, autoAlpha: 0 },
+          { yPercent: 0, autoAlpha: 1, duration: d(0.2), ease: "butter" },
+          d(0.1),
+        )
+        .to(
+          links,
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: d(0.3),
+            ease: "butter",
+            stagger: d(0.07),
+          },
+          d(0.3),
+        )
+        .to(
+          socialRef.current,
+          { autoAlpha: 1, y: 0, duration: d(0.4) },
+          d(0.45),
+        );
+
+      if (!reduce) {
+        requestAnimationFrame(() => firstLinkRef.current?.focus());
+      }
+    } else {
+      tl.fromTo(
+        toggleLabelRef.current,
+        { yPercent: -120, autoAlpha: 0 },
+        { yPercent: 0, autoAlpha: 1, duration: d(0.33), ease: "butter" },
+        0,
+      )
+        .to(
+          links,
+          { autoAlpha: 0, y: 0, duration: d(0.2), stagger: d(0.03) },
+          0,
+        )
+        .to(socialRef.current, { autoAlpha: 0, y: 8, duration: d(0.2) }, 0)
+        .to(
+          chars,
+          { yPercent: 110, autoAlpha: 0, duration: d(0.3), stagger: d(0.03) },
+          0,
+        )
+        .to(
+          brandNameRef.current,
+          { width: 0, duration: d(0.4), ease: "hop" },
+          d(0.05),
+        )
+        .to(overlayRef.current, { autoAlpha: 0, duration: d(0.4) }, 0)
+        .to(
+          islandRef.current,
+          {
+            width: m.closedW,
+            height: m.closedH,
+            borderRadius: m.closedR,
+            duration: d(0.5),
+            // kapanınca px'i temizle ki em ölçeği (resize) yeniden geçerli olsun.
+            clearProps: "width,height,borderRadius",
+          },
+          d(0.12),
+        )
+        .to(sidesRef.current, { autoAlpha: 1, duration: d(0.3) }, d(0.3));
     }
+
+    // açıkken pencere yeniden boyutlanırsa paneli yeni ölçüye oturt.
+    const handleResize = () => {
+      if (!isOpen) return;
+      const mm = getMetrics();
+      gsap.set(islandRef.current, {
+        width: mm.openW,
+        height: mm.openH,
+        borderRadius: mm.openR,
+      });
+    };
 
     const handleKeyDown = (e) => {
-      if (e.key === "Escape" && isSidebarOpen) {
-        setIsSidebarOpen(false);
+      if (e.key === "Escape" && isOpen) {
+        setIsOpen(false);
+        return;
       }
+      if (e.key !== "Tab" || !isOpen || !islandRef.current) return;
 
-      if (e.key !== "Tab" || !isSidebarOpen || !sidebarRef.current) return;
-
-      const focusable = sidebarRef.current.querySelectorAll(
+      const focusable = islandRef.current.querySelectorAll(
         'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
       );
       if (!focusable.length) return;
 
       const first = focusable[0];
       const last = focusable[focusable.length - 1];
-
       if (e.shiftKey && document.activeElement === first) {
         e.preventDefault();
         last.focus();
@@ -80,213 +235,140 @@ export default function Navbar() {
       }
     };
 
+    window.addEventListener("resize", handleResize);
     window.addEventListener("keydown", handleKeyDown);
     return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen]);
+
+  // sekme bırakıldığında scroll kilidini ve inert'i mutlaka geri al.
+  useEffect(() => {
+    return () => {
       document.body.style.overflow = "";
+      const main = document.getElementById("main");
+      const footer = document.querySelector("footer");
       [main, footer].forEach((el) => {
         if (!el) return;
         el.inert = false;
         el.removeAttribute("aria-hidden");
       });
-      window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isSidebarOpen]);
+  }, []);
 
-  useEffect(() => {
-    gsap.killTweensOf([sidebarRef.current, ...layersRef.current]);
-    const tl = gsap.timeline();
-
-    if (isSidebarOpen) {
-      tl.to(layersRef.current, {
-        x: "0%",
-        duration: 0.5,
-        ease: "hop",
-        stagger: 0.05,
-      }).to(
-        sidebarRef.current,
-        { x: "0%", duration: 0.6, ease: "hop" },
-        "-=0.4",
-      );
-    } else {
-      tl.to(sidebarRef.current, { x: "-100%", duration: 0.5, ease: "hop" }).to(
-        layersRef.current.slice().reverse(),
-        { x: "-100%", duration: 0.5, ease: "hop", stagger: 0.04 },
-        "-=0.4",
-      );
-    }
-  }, [isSidebarOpen]);
-
-  const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
+  const toggle = () => setIsOpen((prev) => !prev);
+  const close = () => setIsOpen(false);
 
   const toggleLanguage = () => {
-    const currentIndex = LANGUAGES.indexOf(i18n.language.split("-")[0]);
-    const nextIndex = (currentIndex + 1) % LANGUAGES.length;
-    i18n.changeLanguage(LANGUAGES[nextIndex]);
-  };
-
-  // PREFETCH FONKSİYONLARI (Kullanıcı hover olduğunda ilgili sayfanın kodunu arka planda indirir)
-  const prefetchAbout = () => import("@/pages/about/AboutPage");
-  const prefetchManifest = () => import("@/pages/manifest/ManifestPage");
-  const prefetchProjects = () => import("@/pages/projects/ProjectsPage");
-
-  const handleLinkClick = () => {
-    setIsSidebarOpen(false);
+    const current = LANGUAGES.indexOf(i18n.language.split("-")[0]);
+    i18n.changeLanguage(LANGUAGES[(current + 1) % LANGUAGES.length]);
   };
 
   return (
     <>
-      <div className={styles.container}>
-        <div className={`${styles.menu_item} ${styles.left}`}>
-          <MenuButton
-            toggleSidebar={toggleSidebar}
-            isSidebarOpen={isSidebarOpen}
-            label={isSidebarOpen ? t("nav.menu_close") : t("nav.menu_open")}
-          />
-        </div>
-        <Link to="/" className={styles.logo} onClick={handleLinkClick}>
-          [ yeqq ]
+      <div className={styles.barLeft} ref={(el) => (sidesRef.current[0] = el)}>
+        <PrimerLink
+          href="/contact-me"
+          buttonText={t("nav.contact")}
+          onClick={close}
+          random
+        />
+      </div>
+      <div className={styles.barRight} ref={(el) => (sidesRef.current[1] = el)}>
+        <PrimerButton
+          onClick={toggleLanguage}
+          buttonText={i18n.language.split("-")[0]}
+          ariaLabel={t("nav.language_toggle")}
+          random
+        />
+      </div>
+
+      <div ref={islandRef} className={styles.island}>
+        <Link
+          to="/"
+          className={styles.brand}
+          onClick={close}
+          aria-label="yeqq, ana sayfa"
+        >
+          <span className={styles.bracket} aria-hidden="true">
+            [
+          </span>
+          <span className={styles.brandName} ref={brandNameRef}>
+            {BRAND.map((ch, i) => (
+              <span
+                key={i}
+                className={styles.brandChar}
+                ref={(el) => (brandCharsRef.current[i] = el)}
+              >
+                {ch}
+              </span>
+            ))}
+          </span>
+          <span className={styles.bracket} aria-hidden="true">
+            ]
+          </span>
         </Link>
-        <div className={`${styles.right} ${styles.menu_item}`}>
-          <PrimerLink
-            href="/contact-me"
-            buttonText={t("nav.contact_btn")}
-            backgroundColor="var(--main-color400)"
-            color="var(--main-color900)"
-          />
-          <PrimerButton
-            onClick={toggleLanguage}
-            buttonText={i18n.language.split("-")[0]}
-            backgroundColor="var(--orange500)"
-            color="var(--wb50)"
-            ariaLabel={t("nav.language_toggle")}
-          />
+
+        <button
+          className={styles.toggle}
+          onClick={toggle}
+          aria-expanded={isOpen}
+          aria-controls="nav-panel"
+          aria-label={isOpen ? t("nav.menu_close") : t("nav.menu_open")}
+        >
+          <span className={styles.toggleLabel} ref={toggleLabelRef}>
+            {isOpen ? t("nav.close_btn") : t("nav.menu_btn")}
+          </span>
+        </button>
+
+        <nav
+          id="nav-panel"
+          className={styles.links}
+          aria-label={t("nav.menu_label")}
+        >
+          {NAV_ITEMS.map((item, i) => (
+            <Link
+              key={item.to}
+              to={item.to}
+              ref={(el) => {
+                linksRef.current[i] = el;
+                if (i === 0) firstLinkRef.current = el;
+              }}
+              className={styles.link}
+              onMouseEnter={item.prefetch}
+              onClick={close}
+              tabIndex={isOpen ? 0 : -1}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className={styles.social} ref={socialRef}>
+          {SOCIALS.map((s) => (
+            <a
+              key={s.label}
+              className={styles.socialLink}
+              href={s.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${s.label} profile`}
+              onClick={close}
+              tabIndex={isOpen ? 0 : -1}
+            >
+              {s.label}
+            </a>
+          ))}
         </div>
       </div>
 
-      <div className={styles.layersContainer}>
-        {LAYER_COLORS.map((color, index) => (
-          <div
-            key={index}
-            ref={(el) => (layersRef.current[index] = el)}
-            className={styles.layer}
-            style={{ backgroundColor: color }}
-          />
-        ))}
-      </div>
-
-      <section
-        ref={sidebarRef}
-        className={styles.sidebar}
-        aria-hidden={!isSidebarOpen}
-        aria-label={t("nav.menu_label")}
-      >
-        <span className={styles.close}>
-          <MenuButton
-            toggleSidebar={toggleSidebar}
-            isSidebarOpen={isSidebarOpen}
-            label={t("nav.menu_close")}
-          />
-        </span>
-        <div className={styles.links}>
-          <Link
-            ref={firstSidebarLinkRef}
-            to="/"
-            className={styles.link}
-            onClick={handleLinkClick}
-          >
-            <span className={styles.link_icon}>
-              <GoArrowRight />
-            </span>
-            {t("nav.home")}
-          </Link>
-          <Link
-            to="/about-me"
-            className={styles.link}
-            onMouseEnter={prefetchAbout}
-            onClick={handleLinkClick}
-          >
-            <span className={styles.link_icon}>
-              <GoArrowRight />
-            </span>
-            {t("nav.about")}
-          </Link>
-          <Link
-            to="/manifest"
-            className={styles.link}
-            onMouseEnter={prefetchManifest}
-            onClick={handleLinkClick}
-          >
-            <span className={styles.link_icon}>
-              <GoArrowRight />
-            </span>
-            {t("nav.manifest")}
-          </Link>
-          <Link
-            to="/projects"
-            className={styles.link}
-            onMouseEnter={prefetchProjects}
-            onClick={handleLinkClick}
-          >
-            <span className={styles.link_icon}>
-              <GoArrowRight />
-            </span>
-            {t("nav.projects")}
-          </Link>
-        </div>
-        <div className={styles.links}>
-          <div className={styles.contact_link_sec}>
-            <div className={styles.contact_link_header}>
-              {t("nav.contact_header")}
-            </div>
-            <div className={styles.contact_links}>
-              <PrimerLink
-                href="/contact-me"
-                buttonText={t("nav.contact")}
-                backgroundColor="var(--blue400)"
-                color="var(--blue50)"
-                onClick={toggleSidebar}
-              />
-            </div>
-          </div>
-          <div className={styles.contact_link_sec}>
-            <div className={styles.contact_link_header}>{t("nav.connect")}</div>
-            <div className={styles.contact_links}>
-              <a
-                className={styles.contact_link}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram profile"
-                href="https://www.instagram.com/1yunusewre"
-                onClick={toggleSidebar}
-              >
-                instagram
-              </a>
-              <span aria-hidden="true">,</span>
-              <a
-                className={styles.contact_link}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub profile"
-                href="https://github.com/yeqqv2"
-                onClick={toggleSidebar}
-              >
-                github
-              </a>
-              <span aria-hidden="true">,</span>
-              <a
-                className={styles.contact_link}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn profile"
-                href="https://tr.linkedin.com/in/yeqq"
-                onClick={toggleSidebar}
-              >
-                linkedin
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      <div
+        ref={overlayRef}
+        className={styles.overlay}
+        onClick={close}
+        aria-hidden="true"
+      />
     </>
   );
 }

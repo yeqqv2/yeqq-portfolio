@@ -1,161 +1,212 @@
-.container {
-  width: 98vw;
+/* ======================================================================== */
+/*  ÇENTİĞİN DIŞI — solda iletişim, sağda dil (kendi buton component'lerimiz) */
+/*  iki uç ayrı ayrı sabitlenir; space-between'e gerek yok.                  */
+/* ======================================================================== */
+
+.barLeft,
+.barRight {
   position: fixed;
-  padding: 1vh 0;
-  top: 0vh;
-  left: 1vw;
+  top: 0.9em;
+  height: 2.6em;
+  display: flex;
+  align-items: center;
   z-index: 1001;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10vw;
-  color: var(--wb950);
 }
 
-.logo {
-  mix-blend-mode: difference;
-  position: relative;
-  height: 100%;
-  font-size: 1.5em;
-  user-select: none;
-  font-weight: 400;
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.barLeft {
+  left: 1.4em;
 }
 
-.button_bg {
-  padding: 0.25em 0.25em;
-  border-radius: 0.5em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
+.barRight {
+  right: 1.4em;
 }
 
-.menu_item {
-  flex: 1;
-  display: flex;
-  align-items: center;
-}
-
-.left {
-  justify-content: flex-start;
-}
-
-.right {
-  justify-content: flex-end;
-  gap: 1em;
-}
-
-.sidebar {
+/* ======================================================================== */
+/*  ÇENTİK / PANEL — kapalıyken pill, açılınca aşağı büyüyen kart           */
+/*  width/height/border-radius GSAP ile animasyonlanır; ilk boyutlar em.    */
+/* ======================================================================== */
+.island {
   position: fixed;
-  top: 0;
-  left: 0;
-  height: 100dvh;
-  width: 30vw;
-  background-color: var(--green300);
-  padding: 10vh 5vw;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 5vh;
-  z-index: 10002;
+  top: 0.9em;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16em;
+  height: 2.6em;
+  border-radius: 1.3em;
+  background: var(--wb950);
+  color: var(--wb50);
   overflow: hidden;
+  z-index: 1002;
+  will-change: width, height;
 }
 
-.layersContainer {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 30vw;
-  height: 100dvh;
-  pointer-events: none;
-  z-index: 90;
-}
-
-.layer {
+/* --- sol alt köşeye sabit marka: [ ] -> [ yeqq ] --- */
+.brand {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
-  width: 30vw;
-  height: 100dvh;
+  height: 2.4em;
+  display: flex;
+  align-items: center;
+  padding: 0 1.15em;
+  color: inherit;
+  font-size: 1.15em;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  user-select: none;
+}
+
+.bracket {
+  opacity: 0.85;
+}
+
+/* harfler yatayda (width) kırpılır; harf-harf dikey roll için her harf ayrı. */
+.brandName {
+  display: inline-flex;
+  overflow: hidden;
+  width: 0;
+  white-space: nowrap;
+  margin: 0 0.14em;
+}
+
+.brandChar {
+  display: inline-block;
   will-change: transform;
 }
 
-.close {
+/* --- sağ üst köşeye sabit aç/kapat: menu -> close (roll) --- */
+.toggle {
   position: absolute;
-  top: 1vh;
-  right: 1vw;
+  top: 0;
+  right: 0;
+  height: 2.4em;
+  display: flex;
+  align-items: center;
+  padding: 0 1.15em;
+  overflow: hidden;
+  appearance: none;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1em;
+  line-height: 1;
+  text-transform: lowercase;
 }
 
+.toggleLabel {
+  display: inline-block;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+  will-change: transform;
+}
+
+.toggle:hover .toggleLabel {
+  opacity: 1;
+}
+
+/* --- linkler: orta banda dikey ortalanır; kapalıyken gizli + kırpılır --- */
 .links {
+  position: absolute;
+  top: 2.6em;
+  bottom: 2.6em;
+  left: 0;
+  right: 0;
+  padding: 0 1.25em;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 2em;
+  justify-content: center;
+  gap: 0.5em;
 }
 
 .link {
-  font-size: 4em;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 2em;
   line-height: 1;
-  letter-spacing: -0.05em;
-  transition: 0.8s ease-out;
-  white-space: nowrap;
+  letter-spacing: -3.75%;
+  color: var(--wb400);
+  text-transform: lowercase;
+  width: fit-content;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.35s cubic-bezier(0.9, 0, 0.1, 1);
 }
 
-.link_icon {
-  width: 0;
-  transition: 0.8s ease;
+.link::before {
+  content: "●";
+  font-size: 0em;
+  line-height: 1;
+  transition: 0.35s;
 }
 
-.link:hover > .link_icon {
-  width: 100%;
+.link:hover,
+.link:focus-visible {
+  color: var(--wb50);
+  transform: translateX(0.3em);
+  transition: 0.35s;
 }
 
-.contact_link_sec {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1em;
+.link:hover::before {
+  font-size: 0.5em;
 }
 
-.contact_links {
+/* --- sosyaller: sağ alt köşe; kapalıyken gizli --- */
+.social {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 2.6em;
   display: flex;
   align-items: center;
-  gap: 0.25em;
-  flex-wrap: wrap;
+  gap: 0.7em;
+  padding: 0 1.25em;
+  font-size: 0.9em;
+  opacity: 0;
+  visibility: hidden;
 }
 
-.contact_link {
-  display: inline-flex;
-  align-items: center;
+.socialLink {
+  color: var(--wb500);
+  text-transform: lowercase;
+  transition: color 0.3s ease;
 }
 
-@media screen and (max-width: 1024px) {
-  .sidebar {
-    width: 60vw;
-  }
+.socialLink:hover,
+.socialLink:focus-visible {
+  color: var(--wb50);
 }
+
+/* ======================================================================== */
+/*  ARKA PLAN — açıkken sayfayı karartıp bulanıklaştırır                     */
+/* ======================================================================== */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(8, 8, 8, 0.25);
+  backdrop-filter: blur(0.4em);
+  -webkit-backdrop-filter: blur(0.4em);
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* ======================================================================== */
+/*  RESPONSIVE                                                              */
+/* ======================================================================== */
 @media screen and (max-width: 600px) {
-  .container {
-    width: 90vw;
-    left: 5vw;
-  }
-
-  .menu_item > a:nth-child(1) {
+  .barLeft {
     display: none;
   }
 
-  .sidebar {
-    width: 100vw;
-    padding: 15vh 10vw 5vh 10vw;
+  .island {
+    width: 13em;
   }
 
-  .layersContainer,
-  .layer {
-    width: 100vw;
+  .link {
+    font-size: 2.4em;
   }
 }

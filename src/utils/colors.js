@@ -33,4 +33,7 @@ const colors = [
   },
 ];
 
+export const randomColor = () =>
+  colors[Math.floor(Math.random() * colors.length)];
+
 export default colors;

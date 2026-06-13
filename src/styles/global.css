@@ -146,7 +146,7 @@ hr {
   position: relative;
   z-index: 1;
   background-color: var(--wb50);
-  border-top: 1px solid var(--wb100);
+  border-bottom: 1px solid var(--wb100);
   min-height: 100vh;
   min-height: 100svh;
 }

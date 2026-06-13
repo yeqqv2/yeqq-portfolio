@@ -9,6 +9,8 @@
     "menu_label": "main menu",
     "menu_open": "open menu",
     "menu_close": "close menu",
+    "menu_btn": "menu",
+    "close_btn": "close",
     "language_toggle": "change language",
     "connect": "[connect]",
     "contact_header": "[contact]"

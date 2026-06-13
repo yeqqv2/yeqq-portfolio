@@ -16,6 +16,6 @@
 .read_more:hover {
   opacity: 1;
   transition: 0.3s;
-  background-color: var(--green300);
-  color: var(--green50);
+  background-color: var(--hover-color);
+  color: var(--wb50);
 }

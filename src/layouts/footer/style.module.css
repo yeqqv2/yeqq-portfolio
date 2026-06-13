@@ -2,7 +2,6 @@
    kalkarak onu açığa çıkarır. z-index: 0 → main (z-index: 1) altında. */
 .container {
   position: sticky;
-  border-top: 1px solid var(--wb100);
   bottom: 0;
   z-index: 0;
   width: 100%;
@@ -58,19 +57,19 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1em;
+  gap: .5em;
 }
 
 .label {
   font-size: 0.875em;
   font-weight: 300;
-  color: var(--wb400);
+  color: var(--wb300);
 }
 
 .link {
   font-weight: 300;
   letter-spacing: -0.025em;
-  color: var(--wb400);
+  color: var(--wb600);
   transition: color 0.3s ease-out;
 }
 
@@ -82,16 +81,12 @@
    100svh sınırını aşmaması için yükseklikle de sınırlanır. */
 .wordmark {
   font-size: min(16vw, 24vh);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 0.85;
   letter-spacing: -0.04em;
   white-space: nowrap;
   user-select: none;
   color: var(--wb950);
-}
-
-.bracket {
-  color: var(--wb600);
 }
 
 .bottom {

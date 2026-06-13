@@ -26,29 +26,6 @@
   margin-bottom: 7vh;
 }
 
-.nav_link {
-  display: inline-flex;
-  width: fit-content;
-  padding: 0.375em 0.5em 0.375em 0.5em;
-  border-radius: 0.25em;
-  position: relative;
-  color: var(--wb950);
-  font-size: 1em;
-  opacity: 0.5;
-  font-weight: 300;
-  transition: opacity 0.3s ease;
-  cursor: pointer;
-  gap: 0.5em;
-  line-height: 1;
-}
-
-.nav_link:hover {
-  opacity: 1;
-  transition: 0.3s;
-  background-color: var(--red500);
-  color: var(--wb50);
-}
-
 /* ---- başlık alanı ---- */
 .header {
   display: flex;

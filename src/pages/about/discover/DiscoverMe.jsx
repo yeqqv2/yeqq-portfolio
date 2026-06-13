@@ -17,9 +17,9 @@ const finePointer = () =>
 
 // Görsel varlıklar (dilden bağımsız) — renkler marka token'larından
 const cardAssets = [
-  { id: 1, shape: "puzzle", color: "#c38ef2" }, // purple400
-  { id: 2, shape: "pen", color: "#63e8fd" }, // blue300
-  { id: 3, shape: "check", color: "#80ed99" }, // green300
+  { id: 1, shape: "puzzle", color: "#989898" }, // purple400
+  { id: 2, shape: "pen", color: "#989898" }, // blue300
+  { id: 3, shape: "check", color: "#989898" }, // green300
 ];
 
 // canvas ctx CSS değişkeni çözemez — var(--x) yazılırsa kökten somutlaştır
@@ -478,8 +478,7 @@ const Card = ({ asset, content, index, cursor }) => {
           <PrimerButton
             onClick={resetCard}
             buttonText={t("discover.reset")}
-            backgroundColor={asset.color}
-            color="var(--wb50)"
+            random
           />
         </div>
       </div>

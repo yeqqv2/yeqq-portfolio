@@ -5,6 +5,7 @@
   align-items: flex-start;
   padding: 16vh 0 10vh 0;
   gap: 7vh;
+  border-bottom: 1px solid var(--wb100);
 }
 
 .main {

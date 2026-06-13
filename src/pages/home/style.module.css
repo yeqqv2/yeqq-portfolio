@@ -4,10 +4,11 @@
   flex-direction: column;
   align-items: center;
   gap: 10vh;
+  border-bottom: 1px solid var(--wb100);
 }
 
 @media screen and (max-width: 1024px) {
-  .container{
+  .container {
     gap: 0vh;
-  }  
+  }
 }

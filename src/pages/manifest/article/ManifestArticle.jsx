@@ -1,7 +1,8 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import gsap from "gsap";
 import AnimatedSplit from "@/components/animated-split/AnimatedSplit";
+import PrimerLink from "@/ui/link/PrimerLink";
 import styles from "./style.module.css";
 
 // kavramların sıralı listesi (landing ile aynı sıra).
@@ -18,25 +19,6 @@ const ORDER = [
 
 const pad = (n) => String(n).padStart(2, "0");
 
-/* sitedeki read_more kalıbının aynısı: küçük metin + hairline + kayan ok */
-function NavLink({ to, children, back = false }) {
-  return (
-    <Link to={to} className={styles.nav_link}>
-      {back && (
-        <span className={`${styles.arrow} ${styles.arrow_l}`} aria-hidden="true">
-          ●
-        </span>
-      )}
-      <span>{children}</span>
-      {!back && (
-        <span className={`${styles.arrow} ${styles.arrow_r}`} aria-hidden="true">
-          ●
-        </span>
-      )}
-    </Link>
-  );
-}
-
 export default function ManifestArticle() {
   const { t, i18n } = useTranslation();
   const { slug } = useParams();
@@ -50,9 +32,11 @@ export default function ManifestArticle() {
       <div className={styles.container}>
         <div className={styles.notfound}>
           <h1 className={styles.nf_title}>{t("manifesto.article_not_found")}</h1>
-          <NavLink to="/manifest" back>
-            {t("manifesto.article_back")}
-          </NavLink>
+          <PrimerLink
+            href="/manifest"
+            buttonText={t("manifesto.article_back")}
+            random
+          />
         </div>
       </div>
     );
@@ -74,12 +58,6 @@ export default function ManifestArticle() {
 
   return (
     <article className={styles.container} key={`${slug}-${i18n.language}`}>
-      <div className={styles.back}>
-        <NavLink to="/manifest" back>
-          {t("manifesto.article_back")}
-        </NavLink>
-      </div>
-
       <header className={styles.header}>
         <div className={styles.meta_row}>
           <span className={styles.label}>[ {article.label} ]</span>
@@ -172,13 +150,17 @@ export default function ManifestArticle() {
       </div>
 
       <footer className={styles.footer}>
-        <NavLink to="/manifest" back>
-          {t("manifesto.article_back")}
-        </NavLink>
+        <PrimerLink
+          href="/manifest"
+          buttonText={t("manifesto.article_back")}
+          random
+        />
         {nextSlug && (
-          <NavLink to={`/manifest/${nextSlug}`}>
-            {t("manifesto.article_next")}
-          </NavLink>
+          <PrimerLink
+            href={`/manifest/${nextSlug}`}
+            buttonText={t("manifesto.article_next")}
+            random
+          />
         )}
       </footer>
     </article>
