@@ -1,10 +1,56 @@
-.transitionCircle {
+/* body'ye portal ile basılır: #main'in z-index:1 stacking context'i
+   içinde kalsaydı navbar (1001), menü katmanları ve progress bar
+   perdenin üstünde sızardı. navbar + sidebar + progress'in üstünde,
+   splash/loading'in (99999) altında durur. */
+.overlay {
   position: fixed;
   inset: 0;
-  z-index: 99999;
-  backdrop-filter: blur(16px) brightness(0.985) contrast(1.5);
-  pointer-events: none;
-  clip-path: circle(0% at 50% 50%);
-  display: none;
-  will-change: clip-path;
+  z-index: 11000;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: auto;
+}
+
+.curtain {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.curtainFill {
+  fill: var(--wb950);
+}
+
+.curtainEdge {
+  fill: none;
+  stroke-width: 3px;
+  opacity: 0;
+}
+
+/* maske etiketi sıkıca sarar: 115% kaydırılmış metin dışarı taşmaz */
+.labelMask {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  padding: 0.1em 0;
+}
+
+.label {
+  display: block;
+  font-size: clamp(2.5rem, 7vw, 6.5rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--wb50);
+  user-select: none;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.bracket {
+  color: var(--wb500);
 }

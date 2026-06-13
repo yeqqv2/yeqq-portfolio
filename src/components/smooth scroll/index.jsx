@@ -1,5 +1,4 @@
-import { useEffect, useLayoutEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
+import { useEffect, useRef } from "react";
 import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 
@@ -10,7 +9,6 @@ import { prefersReducedMotion } from "@/utils/motion";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function SmoothScroll({ children }) {
-  const location = useLocation();
   const lenisRef = useRef(null);
 
   useEffect(() => {
@@ -33,9 +31,9 @@ export default function SmoothScroll({ children }) {
     const lenis = new Lenis({
       lerp: 0.055,
       smoothWheel: true,
-      wheelMultiplier: 0.66,
+      wheelMultiplier: 0.8,
       syncTouch: true,
-      touchMultiplier: 0.75,
+      touchMultiplier: 0.8,
       orientation: "vertical",
       gestureOrientation: "vertical",
       overscroll: false,
@@ -92,34 +90,9 @@ export default function SmoothScroll({ children }) {
     };
   }, []);
 
-  useLayoutEffect(() => {
-    const scrollTop = () => {
-      const lenis = lenisRef.current;
-
-      window.scrollTo(0, 0);
-
-      if (lenis) {
-        lenis.scrollTo(0, {
-          immediate: true,
-          force: true,
-        });
-      }
-    };
-
-    scrollTop();
-
-    const frame = requestAnimationFrame(() => {
-      scrollTop();
-
-      requestAnimationFrame(() => {
-        ScrollTrigger.refresh();
-      });
-    });
-
-    return () => {
-      cancelAnimationFrame(frame);
-    };
-  }, [location.key]);
+  /* Rota değişiminde scroll sıfırlama PageTransition'a taşındı:
+     perde ekranı örtmüşken sıfırlanır, böylece eski sayfa görünürken
+     yukarı zıplama olmaz. */
 
   return <>{children}</>;
 }

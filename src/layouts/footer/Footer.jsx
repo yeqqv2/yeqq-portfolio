@@ -65,10 +65,9 @@ const Footer = () => {
               <Link className={styles.link} to="/about-me">
                 {t("footer.about")}
               </Link>
-              {/* manifesto şimdilik gizli — sonra geri açılacak
               <Link className={styles.link} to="/manifest">
                 {t("footer.manifest")}
-              </Link> */}
+              </Link>
               <Link className={styles.link} to="/projects">
                 {t("footer.projects")}
               </Link>

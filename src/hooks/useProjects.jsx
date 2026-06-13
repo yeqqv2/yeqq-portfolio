@@ -7,29 +7,30 @@ const trProjects = {
     project_name: "skynotech | iot akıllı site yönetim platformu",
     name: "skynotech | iot akıllı site yönetim platformu",
     role: "frontend geliştirici & ui/ux tasarımcı",
+    type: "web uygulaması",
     desc:
-      "IoT tabanlı, kapsamlı bir site yönetim platformu. Bahçe sulama, aydınlatma ve havuz sistemleri gibi kritik altyapıyı tek merkezden izlenebilir ve kontrol edilebilir hale getirdi.",
+      "iot tabanlı, kapsamlı bir site yönetim platformu. bahçe sulama, aydınlatma ve havuz sistemleri gibi kritik altyapıyı tek merkezden izlenebilir ve kontrol edilebilir hale getirdi.",
     challenge:
-      "Site ekiplerinin manuel kontroller, ayrı cihazlar ve geciken saha kontrolleri arasında bölünen altyapıyı tek ekrandan yönetmesi gerekiyordu.",
+      "site ekiplerinin manuel kontroller, ayrı cihazlar ve geciken saha kontrolleri arasında bölünen altyapıyı tek ekrandan yönetmesi gerekiyordu.",
     approach:
-      "Gerçek zamanlı durum, hızlı uzaktan aksiyonlar ve net cihaz grupları üzerine kurulu dashboard odaklı bir akış tasarlayıp geliştirdim.",
+      "gerçek zamanlı durum, hızlı uzaktan aksiyonlar ve net cihaz grupları üzerine kurulu dashboard odaklı bir akış tasarlayıp geliştirdim.",
     impact:
-      "MVP 80+ IoT cihazı bağladı ve rutin kontrolleri daha hızlı bir uzaktan kontrol iş akışına dönüştürdü.",
+      "mvp 80+ iot cihazı bağladı ve rutin kontrolleri daha hızlı bir uzaktan kontrol iş akışına dönüştürdü.",
     achievements: [
       {
-        title: "tam MVP teslim süresi",
+        title: "tam mvp teslim süresi",
         desc:
-          "Firebase ve React/Next.js hızından yararlanarak fiziksel IoT kartları ile web uygulaması arasında gerçek zamanlı iletişim kuran işlevsel MVP'yi 2 ayda teslim ettim.",
+          "firebase ve react/next.js hızından yararlanarak fiziksel iot kartları ile web uygulaması arasında gerçek zamanlı iletişim kuran işlevsel mvp'yi 2 ayda teslim ettim.",
       },
       {
-        title: "yönetilen IoT cihazları",
+        title: "yönetilen iot cihazları",
         desc:
-          "İki büyük yaşam alanında 30+ sulama ünitesi ve 50+ akıllı aydınlatma cihazının merkezi yönetimini mümkün kıldım.",
+          "iki büyük yaşam alanında 30+ sulama ünitesi ve 50+ akıllı aydınlatma cihazının merkezi yönetimini mümkün kıldım.",
       },
       {
         title: "operasyonel verimlilik artışı",
         desc:
-          "MQTT/Firebase ile anlık uzaktan kontrol akışı kurarak manuel iş yükü, israf ve tepki süresini azalttım.",
+          "mqtt/firebase ile anlık uzaktan kontrol akışı kurarak manuel iş yükü, israf ve tepki süresini azalttım.",
       },
     ],
   },
@@ -37,29 +38,30 @@ const trProjects = {
     project_name: "skynotech | kurumsal marka ve web deneyimi",
     name: "skynotech | kurumsal marka ve web deneyimi",
     role: "frontend geliştirici & ui/ux tasarımcı",
+    type: "kurumsal web sitesi",
     desc:
-      "Skynotech'in teknoloji odaklı marka algısını güçlendiren kurumsal web sitesi. Logo, ikonlar ve tasarım sistemiyle birlikte bütün görsel dili oluşturdum.",
+      "skynotech'in teknoloji odaklı marka algısını güçlendiren kurumsal web sitesi. logo, ikonlar ve tasarım sistemiyle birlikte bütün görsel dili oluşturdum.",
     challenge:
-      "Teknik bir IoT ürününü sade anlatan, aynı zamanda yeni markayı güvenilir gösteren kurumsal bir varlık gerekiyordu.",
+      "teknik bir iot ürününü sade anlatan, aynı zamanda yeni markayı güvenilir gösteren kurumsal bir varlık gerekiyordu.",
     approach:
-      "Marka kimliği, arayüz sistemi ve frontend uygulamasını birlikte ele alarak web sitesi ve ürün arayüzünün tek bir ekosistem gibi hissettirmesini sağladım.",
+      "marka kimliği, arayüz sistemi ve frontend uygulamasını birlikte ele alarak web sitesi ve ürün arayüzünün tek bir ekosistem gibi hissettirmesini sağladım.",
     impact:
-      "Web sitesi şirketin kamusal yüzü oldu ve kurumsal site ile platform arasında tutarlı bir tasarım dili kurdu.",
+      "web sitesi şirketin kamusal yüzü oldu ve kurumsal site ile platform arasında tutarlı bir tasarım dili kurdu.",
     achievements: [
       {
-        title: "Lighthouse performans skoru",
+        title: "lighthouse performans skoru",
         desc:
-          "Frontend asset optimizasyonu ve Next.js temelli hızlı deneyimle 96+ performans skoruna ulaştım.",
+          "frontend asset optimizasyonu ve next.js temelli hızlı deneyimle 96+ performans skoruna ulaştım.",
       },
       {
         title: "tasarım sistemi uygulaması",
         desc:
-          "Kurumsal site ve ana IoT platformu arasında tutarlı, tekrar kullanılabilir bir bileşen ve görsel dil sistemi kurdum.",
+          "kurumsal site ve ana iot platformu arasında tutarlı, tekrar kullanılabilir bir bileşen ve görsel dil sistemi kurdum.",
       },
       {
         title: "marka kimliği oluşturma",
         desc:
-          "Logo, ikonografi ve yeni pazar algısını taşıyan temel görsel prensipleri oluşturdum.",
+          "logo, ikonografi ve yeni pazar algısını taşıyan temel görsel prensipleri oluşturdum.",
       },
     ],
   },
@@ -67,19 +69,21 @@ const trProjects = {
     project_name: "balıkesir dijital istihdam platformu",
     name: "balıkesir dijital istihdam platformu",
     role: "frontend geliştirici & ui/ux tasarımcı",
+    type: "web uygulaması",
+    company_name: "balıkesir büyükşehir belediyesi",
     desc:
-      "Vatandaşların iş ilanlarına hızlı ulaşması, işverenlerin ilan yayınlaması ve başvuru süreçlerinin takip edilebilmesi için tasarlanmış yüksek performanslı belediye platformu.",
+      "vatandaşların iş ilanlarına hızlı ulaşması, işverenlerin ilan yayınlaması ve başvuru süreçlerinin takip edilebilmesi için tasarlanmış yüksek performanslı belediye platformu.",
     challenge:
-      "Kağıt ağırlıklı başvuru süreci vatandaş, işveren ve belediye ekipleri için yavaş ve takibi zor bir yapı oluşturuyordu.",
+      "kağıt ağırlıklı başvuru süreci vatandaş, işveren ve belediye ekipleri için yavaş ve takibi zor bir yapı oluşturuyordu.",
     approach:
-      "İş keşfi, işveren ilan akışı, başvuru takibi ve PDF CV üretimi gibi kamusal servis ihtiyaçlarını hız ve erişilebilirlik odağıyla tasarladım.",
+      "iş keşfi, işveren ilan akışı, başvuru takibi ve pdf cv üretimi gibi kamusal servis ihtiyaçlarını hız ve erişilebilirlik odağıyla tasarladım.",
     impact:
-      "Platform 12.291 özgeçmiş, 428 kayıtlı işletme ve 5.324 aday yönlendirmesiyle kritik bir kamu sürecini dijital kanala taşıdı.",
+      "platform 12.291 özgeçmiş, 428 kayıtlı işletme ve 5.324 aday yönlendirmesiyle kritik bir kamu sürecini dijital kanala taşıdı.",
     achievements: [
       {
         title: "süreç hızı artışı",
         desc:
-          "Kağıt ağırlıklı başvuru sürecinin dijitalleşmesi vatandaş ve işveren tarafında daha hızlı bir iş akışı sağladı.",
+          "kağıt ağırlıklı başvuru sürecinin dijitalleşmesi vatandaş ve işveren tarafında daha hızlı bir iş akışı sağladı.",
       },
       {
         title: "özgeçmiş ve başvurular",
@@ -87,14 +91,14 @@ const trProjects = {
           "12.291 özgeçmiş, 428 kayıtlı işletme ve 5.324 aday yönlendirmesiyle yüksek kullanım kanıtlandı.",
       },
       {
-        title: "Lighthouse erişilebilirlik skoru",
+        title: "lighthouse erişilebilirlik skoru",
         desc:
-          "Başvuru durumu takibi ve PDF CV gibi kritik servisleri daha geniş vatandaş kitlesi için erişilebilir hale getirdim.",
+          "başvuru durumu takibi ve pdf cv gibi kritik servisleri daha geniş vatandaş kitlesi için erişilebilir hale getirdim.",
       },
       {
-        title: "Core Web Vitals optimizasyonu",
+        title: "core web vitals optimizasyonu",
         desc:
-          "0.8s FCP, 210ms TBT ve 0.002 CLS ile iş arama deneyimini hızlı ve stabil hale getirdim.",
+          "0.8s fcp, 210ms tbt ve 0.002 cls ile iş arama deneyimini hızlı ve stabil hale getirdim.",
       },
     ],
   },
@@ -102,19 +106,21 @@ const trProjects = {
     project_name: "balıkesir | etkinlik uygulaması",
     name: "balıkesir | etkinlik uygulaması",
     role: "frontend geliştirici & ui/ux tasarımcı",
+    type: "mobil uygulama",
+    company_name: "balıkesir büyükşehir belediyesi",
     desc:
-      "Gençlere yönelik konser, tiyatro ve sinema etkinliklerini anlık bildirimler ve güncel listelerle sunan React Native mobil uygulama.",
+      "gençlere yönelik konser, tiyatro ve sinema etkinliklerini anlık bildirimler ve güncel listelerle sunan react native mobil uygulama.",
     challenge:
-      "Gençlik etkinlikleri sosyal medya ve kurumsal duyurular arasında dağınık kalıyor, hedef kitle etkinlikleri geç veya eksik fark ediyordu.",
+      "gençlik etkinlikleri sosyal medya ve kurumsal duyurular arasında dağınık kalıyor, hedef kitle etkinlikleri geç veya eksik fark ediyordu.",
     approach:
-      "Daha enerjik bir mobil dil, sade kategoriler ve bildirim odaklı akışlarla merkezi bir etkinlik hub'ı tasarladım.",
+      "daha enerjik bir mobil dil, sade kategoriler ve bildirim odaklı akışlarla merkezi bir etkinlik hub'ı tasarladım.",
     impact:
-      "Uygulama 100k+ genç hedef kitle için merkezi bir etkinlik noktası oluşturdu ve belediyenin dijital sesini modernleştirdi.",
+      "uygulama 100k+ genç hedef kitle için merkezi bir etkinlik noktası oluşturdu ve belediyenin dijital sesini modernleştirdi.",
     achievements: [
       {
-        title: "ekran ve UI/UX tasarımı",
+        title: "ekran ve ui/ux tasarımı",
         desc:
-          "Figma'da 40+ ekran tasarlayarak kurumsal dilden daha modern ve genç bir mobil dile geçiş sağladım.",
+          "figma'da 40+ ekran tasarlayarak kurumsal dilden daha modern ve genç bir mobil dile geçiş sağladım.",
       },
       {
         title: "hedef kullanıcı erişimi",
@@ -124,7 +130,7 @@ const trProjects = {
       {
         title: "gerçek zamanlı sistem",
         desc:
-          "Konser, film ve etkinlik duyuruları için anlık bildirim odaklı React Native akışını uyguladım.",
+          "konser, film ve etkinlik duyuruları için anlık bildirim odaklı react native akışını uyguladım.",
       },
     ],
   },
@@ -132,29 +138,31 @@ const trProjects = {
     project_name: "yakın kart | sosyal destek uygulaması",
     name: "yakın kart | sosyal destek uygulaması",
     role: "frontend geliştirici & ui/ux tasarımcı",
+    type: "mobil uygulama",
+    company_name: "balıkesir büyükşehir belediyesi",
     desc:
-      "İhtiyaç sahibi vatandaşların aylık destek bakiyesini ve harcama geçmişini şeffaf şekilde takip edebilmesi için tasarlanmış sosyal belediyecilik platformu.",
+      "ihtiyaç sahibi vatandaşların aylık destek bakiyesini ve harcama geçmişini şeffaf şekilde takip edebilmesi için tasarlanmış sosyal belediyecilik platformu.",
     challenge:
-      "Maddi destek alan vatandaşların bakiye, kullanım ve destek durumunu belirsiz offline iletişime bağlı kalmadan görebilmesi gerekiyordu.",
+      "maddi destek alan vatandaşların bakiye, kullanım ve destek durumunu belirsiz offline iletişime bağlı kalmadan görebilmesi gerekiyordu.",
     approach:
-      "Bakiye görünürlüğü, harcama inceleme ve tek tıkla sorgulama akışlarını güven hissi üzerine kurdum.",
+      "bakiye görünürlüğü, harcama inceleme ve tek tıkla sorgulama akışlarını güven hissi üzerine kurdum.",
     impact:
-      "Ürün 12.101 vatandaşın sosyal destek sürecini daha anlaşılır ve kendi kendine takip edilebilir hale getirdi.",
+      "ürün 12.101 vatandaşın sosyal destek sürecini daha anlaşılır ve kendi kendine takip edilebilir hale getirdi.",
     achievements: [
       {
         title: "desteklenen vatandaş",
         desc:
-          "Aylık nakit destek sürecinin dijital takibini 12.101 vatandaş için daha görünür hale getirdim.",
+          "aylık nakit destek sürecinin dijital takibini 12.101 vatandaş için daha görünür hale getirdim.",
       },
       {
         title: "anlık bakiye ve takip",
         desc:
-          "Bakiye ve harcama geçmişi ekranlarıyla kullanıcılara destek sürecinde şeffaflık sağladım.",
+          "bakiye ve harcama geçmişi ekranlarıyla kullanıcılara destek sürecinde şeffaflık sağladım.",
       },
       {
         title: "tek tıkla sorgulama",
         desc:
-          "Finansal destek sorgularını basit ve güven veren bir mobil akışla erişilebilir hale getirdim.",
+          "finansal destek sorgularını basit ve güven veren bir mobil akışla erişilebilir hale getirdim.",
       },
     ],
   },
@@ -162,29 +170,30 @@ const trProjects = {
     project_name: "bapka kurumsal web sitesi ve bilgi merkezi",
     name: "bapka kurumsal web sitesi ve bilgi merkezi",
     role: "frontend geliştirici & ui/ux tasarımcı",
+    type: "kurumsal web sitesi",
     desc:
-      "Kurumsal varlığı güçlendirmek, rapor ve duyuruları daha görünür kılmak ve organik trafiği artırmak için yeniden tasarlanan bilgi merkezi.",
+      "kurumsal varlığı güçlendirmek, rapor ve duyuruları daha görünür kılmak ve organik trafiği artırmak için yeniden tasarlanan bilgi merkezi.",
     challenge:
-      "BAPKA'nın rapor, duyuru ve kurumsal içeriklerini yavaş ya da gömülü hissettirmeden sunan daha kullanışlı bir bilgi mimarisine ihtiyacı vardı.",
+      "bapka'nın rapor, duyuru ve kurumsal içeriklerini yavaş ya da gömülü hissettirmeden sunan daha kullanışlı bir bilgi mimarisine ihtiyacı vardı.",
     approach:
-      "Ana sayfa hiyerarşisi, içerik mimarisi ve görsel sistemi SEO, okunabilirlik ve keşfedilebilirlik odağıyla yeniden kurguladım.",
+      "ana sayfa hiyerarşisi, içerik mimarisi ve görsel sistemi seo, okunabilirlik ve keşfedilebilirlik odağıyla yeniden kurguladım.",
     impact:
-      "Yeniden tasarım 43% aylık SEO büyümesi ve ilk 28 günde 600+ organik ziyaretçi kazanımı sağladı.",
+      "yeniden tasarım 43% aylık seo büyümesi ve ilk 28 günde 600+ organik ziyaretçi kazanımı sağladı.",
     achievements: [
       {
-        title: "aylık SEO büyümesi",
+        title: "aylık seo büyümesi",
         desc:
-          "Teknik SEO, hız optimizasyonu ve içerik mimarisiyle organik trafikte 43% aylık büyüme sağladım.",
+          "teknik seo, hız optimizasyonu ve içerik mimarisiyle organik trafikte 43% aylık büyüme sağladım.",
       },
       {
         title: "ilk 28 günde organik ziyaretçi",
         desc:
-          "Yüksek değerli anahtar kelimeler ve daha net içerik yapısı ile 600+ organik ziyaretçi kazanıldı.",
+          "yüksek değerli anahtar kelimeler ve daha net içerik yapısı ile 600+ organik ziyaretçi kazanıldı.",
       },
       {
         title: "ana redesign ve mimari",
         desc:
-          "Rapor ve duyuruları öne çıkaran, altın oran prensibinden beslenen yeni ana sayfa yapısını tasarladım.",
+          "rapor ve duyuruları öne çıkaran, altın oran prensibinden beslenen yeni ana sayfa yapısını tasarladım.",
       },
     ],
   },
@@ -192,29 +201,31 @@ const trProjects = {
     project_name: "askıda fatura | sosyal dayanışma platformu",
     name: "askıda fatura | sosyal dayanışma platformu",
     role: "frontend geliştirici & ui/ux tasarımcı",
+    type: "mobil uygulama",
+    company_name: "balıkesir büyükşehir belediyesi",
     desc:
-      "Elektrik, su ve doğalgaz faturalarının anonim şekilde desteklenebilmesini sağlayan React Native sosyal dayanışma uygulaması.",
+      "elektrik, su ve doğalgaz faturalarının anonim şekilde desteklenebilmesini sağlayan react native sosyal dayanışma uygulaması.",
     challenge:
-      "Dayanışma ürünü hem bağış yapanı güvende hissettirmeli hem de destek alan kişilerin mahremiyetini korumalıydı.",
+      "dayanışma ürünü hem bağış yapanı güvende hissettirmeli hem de destek alan kişilerin mahremiyetini korumalıydı.",
     approach:
-      "Akışı üç temel fatura kategorisi etrafında sadeleştirdim ve arayüzde yalnızca bağış için gerekli bilgileri gösteren anonim bir yapı kurdum.",
+      "akışı üç temel fatura kategorisi etrafında sadeleştirdim ve arayüzde yalnızca bağış için gerekli bilgileri gösteren anonim bir yapı kurdum.",
     impact:
-      "Hassas bir yardım süreci güven, gizlilik ve hızlı aksiyon üzerine kurulu net bir mobil deneyime dönüştü.",
+      "hassas bir yardım süreci güven, gizlilik ve hızlı aksiyon üzerine kurulu net bir mobil deneyime dönüştü.",
     achievements: [
       {
         title: "anonim ve güvenilir tasarım",
         desc:
-          "Bağışçı ve destek alan kişinin mahremiyetini koruyan, yalnızca gerekli fatura bilgilerini gösteren bir yapı kurdum.",
+          "bağışçı ve destek alan kişinin mahremiyetini koruyan, yalnızca gerekli fatura bilgilerini gösteren bir yapı kurdum.",
       },
       {
         title: "sadeleştirilmiş fatura kategorileri",
         desc:
-          "Elektrik, su ve doğalgaz olarak üç temel kategoriyle bağış akışını daha hızlı ve anlaşılır hale getirdim.",
+          "elektrik, su ve doğalgaz olarak üç temel kategoriyle bağış akışını daha hızlı ve anlaşılır hale getirdim.",
       },
       {
-        title: "sezgisel UX akışları",
+        title: "sezgisel ux akışları",
         desc:
-          "Fatura bırakma, sorgulama ve ödeme adımlarında kullanıcı sürtünmesini azalttım.",
+          "fatura bırakma, sorgulama ve ödeme adımlarında kullanıcı sürtünmesini azalttım.",
       },
     ],
   },
@@ -222,29 +233,31 @@ const trProjects = {
     project_name: "can dostlar | güvenli sahiplendirme platformu",
     name: "can dostlar | güvenli sahiplendirme platformu",
     role: "frontend geliştirici & ui/ux tasarımcı",
+    type: "mobil uygulama",
+    company_name: "balıkesir büyükşehir belediyesi",
     desc:
-      "Sokak hayvanlarının güvenli ve şeffaf şekilde sahiplendirilmesini destekleyen React Native mobil uygulama.",
+      "sokak hayvanlarının güvenli ve şeffaf şekilde sahiplendirilmesini destekleyen react native mobil uygulama.",
     challenge:
-      "Sahiplendirme akışı sıcak ve kolay hissettirmeli, aynı zamanda sorumlu sahiplendirme için gerekli yapısal adımları kaybetmemeliydi.",
+      "sahiplendirme akışı sıcak ve kolay hissettirmeli, aynı zamanda sorumlu sahiplendirme için gerekli yapısal adımları kaybetmemeliydi.",
     approach:
-      "Hayvan profilleri, başvuru adımları ve onay sürecini şeffaf bilgi ve bilinçli karar verme üzerine tasarladım.",
+      "hayvan profilleri, başvuru adımları ve onay sürecini şeffaf bilgi ve bilinçli karar verme üzerine tasarladım.",
     impact:
-      "Uygulama belediyenin mobil ekosistemi içinde tekrar kullanılabilir bir sosyal fayda deseni oluşturdu.",
+      "uygulama belediyenin mobil ekosistemi içinde tekrar kullanılabilir bir sosyal fayda deseni oluşturdu.",
     achievements: [
       {
         title: "yapısal sahiplendirme süreci",
         desc:
-          "Online başvuru, barınak ziyareti ve final onayı adımlarıyla güvenli sahiplendirme akışını netleştirdim.",
+          "online başvuru, barınak ziyareti ve final onayı adımlarıyla güvenli sahiplendirme akışını netleştirdim.",
       },
       {
         title: "şeffaf hayvan profilleri",
         desc:
-          "Yaş, kilo, cinsiyet ve karakter gibi temel bilgileri karar vermeyi kolaylaştıracak şekilde sundum.",
+          "yaş, kilo, cinsiyet ve karakter gibi temel bilgileri karar vermeyi kolaylaştıracak şekilde sundum.",
       },
       {
         title: "birleşik mobil ekosistem",
         desc:
-          "Belediyenin sosyal fayda odaklı mobil ürünlerinde tutarlı ve tekrar kullanılabilir bir arayüz dili oluşturdum.",
+          "belediyenin sosyal fayda odaklı mobil ürünlerinde tutarlı ve tekrar kullanılabilir bir arayüz dili oluşturdum.",
       },
     ],
   },
@@ -252,29 +265,31 @@ const trProjects = {
     project_name: "balıkesir | nöbetçi eczane bulucu",
     name: "balıkesir | nöbetçi eczane bulucu",
     role: "frontend geliştirici & ui/ux tasarımcı",
+    type: "mobil uygulama",
+    company_name: "balıkesir büyükşehir belediyesi",
     desc:
-      "Acil durumlarda en yakın nöbetçi eczaneyi, mesafeyi ve yol tarifini hızlı şekilde gösteren konum tabanlı mobil uygulama.",
+      "acil durumlarda en yakın nöbetçi eczaneyi, mesafeyi ve yol tarifini hızlı şekilde gösteren konum tabanlı mobil uygulama.",
     challenge:
-      "Nöbetçi eczane arayan kullanıcı genellikle stresli, hareket halinde ve zaman kısıtlı olduğu için arayüzde gereksiz her adım kaldırılmalıydı.",
+      "nöbetçi eczane arayan kullanıcı genellikle stresli, hareket halinde ve zaman kısıtlı olduğu için arayüzde gereksiz her adım kaldırılmalıydı.",
     approach:
-      "Akışı acil durum UX'i üzerine kurdum: en yakın eczane, mesafe ve yol tarifi mümkün olan en az dokunuşla erişilebilir oldu.",
+      "akışı acil durum ux'i üzerine kurdum: en yakın eczane, mesafe ve yol tarifi mümkün olan en az dokunuşla erişilebilir oldu.",
     impact:
-      "Uygulama konum tabanlı ve güncel bilgiyle acil eczane arama sürecini daha hızlı ve güvenilir hale getirdi.",
+      "uygulama konum tabanlı ve güncel bilgiyle acil eczane arama sürecini daha hızlı ve güvenilir hale getirdi.",
     achievements: [
       {
         title: "hızlı navigasyon akışı",
         desc:
-          "Kullanıcının en yakın nöbetçi eczaneyi bulup yol tarifine en fazla iki dokunuşta ulaşmasını hedefledim.",
+          "kullanıcının en yakın nöbetçi eczaneyi bulup yol tarifine en fazla iki dokunuşta ulaşmasını hedefledim.",
       },
       {
         title: "gerçek zamanlı konum ve mesafe",
         desc:
-          "Kullanıcı ile eczane arasındaki mesafeyi net gösteren konum tabanlı arayüz akışını kurdum.",
+          "kullanıcı ile eczane arasındaki mesafeyi net gösteren konum tabanlı arayüz akışını kurdum.",
       },
       {
-        title: "24/7 API entegrasyonu",
+        title: "24/7 api entegrasyonu",
         desc:
-          "Nöbetçi eczane bilgilerinin acil saatlerde güncel kalması için merkezi API akışını destekledim.",
+          "nöbetçi eczane bilgilerinin acil saatlerde güncel kalması için merkezi api akışını destekledim.",
       },
     ],
   },

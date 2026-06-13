@@ -142,7 +142,8 @@
       "startup": "girişim",
       "dashboard": "panel / admin",
       "uiux": "ui/ux",
-      "webapp": "web uygulamaları"
+      "webapp": "web uygulamaları",
+      "mobile": "mobil uygulamalar"
     },
     "cursor": [
       "incele",
@@ -465,5 +466,10 @@
   "successBox": {
     "title": "● mesaj gönderildi",
     "text": "teşekkürler — en kısa sürede size geri dönüş yapacağım."
+  },
+  "notFound": {
+    "title": "[404]",
+    "text": "böyle bir sayfa yok. belki hiç olmadı.",
+    "link": "ana sayfaya dön"
   }
 }

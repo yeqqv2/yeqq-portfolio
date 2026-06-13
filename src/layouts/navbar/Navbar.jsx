@@ -133,7 +133,7 @@ export default function Navbar() {
 
   // PREFETCH FONKSİYONLARI (Kullanıcı hover olduğunda ilgili sayfanın kodunu arka planda indirir)
   const prefetchAbout = () => import("@/pages/about/AboutPage");
-  // const prefetchManifest = () => import("@/pages/manifest/ManifestPage");
+  const prefetchManifest = () => import("@/pages/manifest/ManifestPage");
   const prefetchProjects = () => import("@/pages/projects/ProjectsPage");
 
   const handleLinkClick = () => {
@@ -217,7 +217,6 @@ export default function Navbar() {
             </span>
             {t("nav.about")}
           </Link>
-          {/* manifesto şimdilik gizli — sonra geri açılacak
           <Link
             to="/manifest"
             className={styles.link}
@@ -228,7 +227,7 @@ export default function Navbar() {
               <GoArrowRight />
             </span>
             {t("nav.manifest")}
-          </Link> */}
+          </Link>
           <Link
             to="/projects"
             className={styles.link}

@@ -220,8 +220,9 @@ export default function WorkSinglePage() {
                 start="top 80%"
               />
               <AnimatedSplit
+                key={`tech-${currentLang}`}
                 className={styles.factValue}
-                text={work.tags?.join(", ") || t("workSingle.defaults.tech")}
+                text={work.tech || t("workSingle.defaults.tech")}
                 tagName="span"
                 stagger={0.03}
                 duration={1.5}

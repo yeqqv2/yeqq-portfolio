@@ -12,6 +12,7 @@ const ProjectsFilter = ({ activeFilter, onFilterChange }) => {
     { id: "dashboard", label: t("projects.filters.dashboard") },
     { id: "uiux", label: t("projects.filters.uiux") },
     { id: "webapp", label: t("projects.filters.webapp") },
+    { id: "mobile", label: t("projects.filters.mobile") },
   ];
 
   return (

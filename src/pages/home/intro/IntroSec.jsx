@@ -137,7 +137,6 @@ const IntroSec = () => {
       <video
         className={styles.vid}
         src="/assets/videos/videoo.webm"
-        poster="/assets/loader/video-placeholder.webp"
         autoPlay={!reduceMotion}
         loop
         muted

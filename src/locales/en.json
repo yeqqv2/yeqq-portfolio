@@ -142,7 +142,8 @@
       "startup": "startup",
       "dashboard": "dashboard / admin",
       "uiux": "ui/ux",
-      "webapp": "web apps"
+      "webapp": "web apps",
+      "mobile": "mobile apps"
     },
     "cursor": [
       "see more",
@@ -465,5 +466,10 @@
   "successBox": {
     "title": "● message sent",
     "text": "thank you — i’ll get back to you as soon as possible."
+  },
+  "notFound": {
+    "title": "[404]",
+    "text": "this page doesn't exist. maybe it never did.",
+    "link": "back to home"
   }
 }
