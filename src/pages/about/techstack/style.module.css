@@ -36,6 +36,8 @@
   cursor: none;
 }
 
+/* bu alan bilinçli olarak siteden farklı: teknik kimlik ilk bakışta,
+   tam renkte okunur. logolar kendi markarengini taşır. */
 .icon > img {
   object-fit: contain !important;
 }

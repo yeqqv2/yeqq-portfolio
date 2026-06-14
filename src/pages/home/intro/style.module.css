@@ -69,6 +69,21 @@
   padding-right: 15px;
 }
 
+.identity {
+  position: absolute;
+  bottom: 15vh;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.925em;
+  font-weight: 200;
+  letter-spacing: 0.04em;
+  color: var(--wb950);
+  opacity: 0.4;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 6;
+}
+
 /* Hover yalnızca metin şeridinde olsun: tüm genişlik, metin yüksekliği.
    Video'nun (z-index 3) üstünde durur ki orta bölge de algılansın. */
 .marquee_hover {
@@ -94,6 +109,10 @@
     height: 60vw;
     width: 60vw;
     border-radius: 0;
+  }
+
+  .identity {
+    bottom: calc(50dvh - 30vw - 5vh);
   }
 
   .marquee_div_content {

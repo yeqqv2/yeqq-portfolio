@@ -1,5 +1,6 @@
 import styles from "./style.module.css";
 import AnimatedSplit from "@/components/animated-split/AnimatedSplit";
+import LineReveal from "@/components/reveal/LineReveal";
 import { useTranslation } from "react-i18next";
 
 export default function Aboutme() {
@@ -18,24 +19,20 @@ export default function Aboutme() {
         />
       </header>
       <div className={styles.context}>
-        <AnimatedSplit
+        <LineReveal
           key={`${i18n.language}-aboutme-bio1`}
           text={t("aboutmePage.bio_1")}
           className={styles.desc}
           tagName="p"
-          stagger={0.03}
-          duration={1.5}
           start="top 80%"
         />
       </div>
       <div className={styles.context}>
-        <AnimatedSplit
+        <LineReveal
           key={`${i18n.language}-aboutme-bio2`}
           text={t("aboutmePage.bio_2")}
           className={styles.desc}
           tagName="p"
-          stagger={0.03}
-          duration={1.5}
           start="top 70%"
         />
       </div>

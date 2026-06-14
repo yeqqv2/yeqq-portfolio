@@ -17,7 +17,7 @@ const ProjectsPage = () => {
   const { t } = useTranslation();
   const [activeFilter, setActiveFilter] = useState("all");
 
-  const { data: projects, isLoading, isError, error } = useProjects();
+  const { data: projects, isLoading, isError } = useProjects();
 
   const cursorWords = t("projects.cursor", { returnObjects: true });
 
@@ -37,7 +37,12 @@ const ProjectsPage = () => {
       : safeProjects.filter((project) => project.tags?.includes(activeFilter));
   }, [projects, activeFilter]);
 
-  if (isError) return <div>Hata oluştu: {error.message}</div>;
+  if (isError)
+    return (
+      <div className={styles.container}>
+        <p className={styles.error}>● {t("projects.error")}</p>
+      </div>
+    );
 
   return (
     <div className={styles.container}>

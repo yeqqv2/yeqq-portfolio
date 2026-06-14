@@ -27,7 +27,7 @@
     "signature": "designed & built by yunus emre korkmaz"
   },
   "intro": {
-    "marqueeText": "• minimalism • ui ux design • perfectionism • aesthetics"
+    "marqueeText": "• minimalism • obsession • perfectionism • aesthetics"
   },
   "welcome": {
     "greeting": "[hey, i'm]",
@@ -47,7 +47,8 @@
       "open project",
       "quick peek",
       "discover more"
-    ]
+    ],
+    "error": "couldn't load the works right now."
   },
   "principles": {
     "title": "[principles]",
@@ -99,8 +100,8 @@
   },
   "heroAbout": {
     "title": "i trust my eye, not my hands.",
-    "content_text_1": "i sweat the details.",
-    "content_text_2": "i'm in no rush."
+    "content_text_1": "i catch what most skip.",
+    "content_text_2": "and i never rush it."
   },
   "aboutmePage": {
     "title": "[who am i]",
@@ -173,7 +174,8 @@
       "open project",
       "quick peek",
       "discover more"
-    ]
+    ],
+    "error": "couldn't load the works right now."
   },
   "workSingle": {
     "labels": {
@@ -209,7 +211,7 @@
       "choice",
       "loss",
       "dilemma",
-      "contact"
+      "remains"
     ],
     "read_more": "read more",
     "article_back": "manifesto",
@@ -369,6 +371,10 @@
     "intro": {
       "scroll": "the ideas begin below, scroll"
     },
+    "closing": {
+      "line": "this is all of it. and it's enough.",
+      "door": "if any of it spoke to you"
+    },
     "white_on_white": {
       "title": "[white on white]",
       "question": "what does ‘white on white’ mean?",
@@ -458,7 +464,7 @@
     }
   },
   "contactPage": {
-    "header": "[online meeting, message me]",
+    "header": "[let's talk]",
     "sidebar_title": "please contact me to set up an online meeting or ask any questions you have.",
     "footer_contact": "[contact]",
     "footer_connect": "[connect]"

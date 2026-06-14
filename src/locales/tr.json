@@ -27,7 +27,7 @@
     "signature": "yunus emre korkmaz tarafından tasarlandı ve geliştirildi"
   },
   "intro": {
-    "marqueeText": "• minimalizm • ui ux tasarım • mükemmelliyetçilik • estetik "
+    "marqueeText": "• minimalizm • takıntı • mükemmelliyetçilik • estetik "
   },
   "welcome": {
     "greeting": "[selam, ben]",
@@ -47,7 +47,8 @@
       "projeyi aç",
       "göz at",
       "keşfet"
-    ]
+    ],
+    "error": "işler şu an yüklenemedi."
   },
   "principles": {
     "title": "[ilkeler]",
@@ -99,8 +100,8 @@
   },
   "heroAbout": {
     "title": "elime değil, gözüme güvenirim.",
-    "content_text_1": "detaylara takılırım.",
-    "content_text_2": "acelem yok."
+    "content_text_1": "çoğunun atladığını fark ederim.",
+    "content_text_2": "ve asla acele etmem."
   },
   "aboutmePage": {
     "title": "[ben kimim]",
@@ -173,7 +174,8 @@
       "projeyi aç",
       "hızlıca göz at",
       "daha fazlası"
-    ]
+    ],
+    "error": "işler şu an yüklenemedi."
   },
   "workSingle": {
     "labels": {
@@ -209,7 +211,7 @@
       "seçim",
       "kayıp",
       "ikilem",
-      "iletişim"
+      "kalan"
     ],
     "read_more": "devamını oku",
     "article_back": "manifesto",
@@ -369,6 +371,10 @@
     "intro": {
       "scroll": "kavramlar aşağıda, kaydır"
     },
+    "closing": {
+      "line": "hepsi bu. ve yetiyor.",
+      "door": "sana da tanıdık geldiyse"
+    },
     "white_on_white": {
       "title": "[beyaz üstüne beyaz]",
       "question": "‘beyaz üstüne beyaz’ ne anlama gelir?",
@@ -458,7 +464,7 @@
     }
   },
   "contactPage": {
-    "header": "[online görüşme, bana yazın]",
+    "header": "[hadi konuşalım]",
     "sidebar_title": "online bir görüşme ayarlamak veya sorularınızı sormak için lütfen benimle iletişime geçin.",
     "footer_contact": "[iletişim]",
     "footer_connect": "[bağlan]"

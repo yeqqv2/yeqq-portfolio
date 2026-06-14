@@ -34,6 +34,20 @@
   overflow: hidden;
 }
 
+/* hata: sayfanın sessiz diliyle, ortalı */
+.error {
+  width: 100vw;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4vw;
+  text-align: center;
+  font-size: 0.95em;
+  font-weight: 300;
+  color: var(--wb500);
+}
+
 @media screen and (max-width: 1024px) {
   .container {
     padding: 10vh 0 5vh 0;

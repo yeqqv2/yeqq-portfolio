@@ -7,9 +7,9 @@ import ManifestArc from "@/pages/manifest/arc/ManifestArc";
 import ObserverEffect from "@/pages/manifest/observer/ObserverEffect";
 import CostOfOrder from "@/pages/manifest/cost/CostOfOrder";
 import WeightOfChoice from "@/pages/manifest/choice/WeightOfChoice";
-import ContactHomePage from "@/pages/home/contact/ContactHomePage";
 import AsymmetryOfLoss from "@/pages/manifest/assymetry/AsymmetryOfLoss";
 import PrisonersDilemma from "@/pages/manifest/dilemma/PrisonersDilemma";
+import ClosingWhite from "@/pages/manifest/closing/ClosingWhite";
 import ManifestProgress from "@/pages/manifest/progress/ManifestProgress";
 import { prefersReducedMotion } from "@/utils/motion";
 import styles from "./style.module.css";
@@ -25,7 +25,7 @@ const PANELS = [
   { id: "dichotomy", labelIndex: 4, Component: WeightOfChoice },
   { id: "loss", labelIndex: 5, Component: AsymmetryOfLoss },
   { id: "dilemma", labelIndex: 6, Component: PrisonersDilemma },
-  { id: "contact", labelIndex: 7, Component: ContactHomePage },
+  { id: "closing", labelIndex: 7, Component: ClosingWhite },
 ];
 
 /* her geçişten sonra panel ekranda bir süre sabit dinlenir (plato).
@@ -88,6 +88,18 @@ export default function ManifestContent() {
             end: "bottom center",
             onToggle: (self) => self.isActive && setActivePanel(i),
           });
+          // düz yığın yerine sakin bir crossfade — reduced-motion'da hareket
+          // değil yalnızca opaklık, yine de "büyüsüz" olmaktan çıkar
+          gsap.fromTo(
+            panel,
+            { autoAlpha: 0 },
+            {
+              autoAlpha: 1,
+              duration: 0.5,
+              ease: "power1.out",
+              scrollTrigger: { trigger: panel, start: "top 90%", once: true },
+            },
+          );
         });
         return;
       }
@@ -113,8 +125,18 @@ export default function ManifestContent() {
         },
       });
 
-      panels.slice(1).forEach((panel) => {
+      panels.slice(1).forEach((panel, i) => {
+        const outgoing = panels[i]; // bir önceki panel
+        // gelen panel alttan kayıp üste biner
         tl.to(panel, { yPercent: 0 });
+        // çıkan panel aynı anda hafifçe geri çekilir: düz kayma değil,
+        // katmanlı derinlik. zemin her yerde wb50, küçülen panelin etrafı
+        // dikiş izi vermez — recede beyazın içinde okunur.
+        tl.to(
+          outgoing,
+          { scale: 0.94, yPercent: -6, transformOrigin: "center center" },
+          "<",
+        );
         tl.to({}, { duration: DWELL }); // plato: panel ekranda dinlenir
       });
 

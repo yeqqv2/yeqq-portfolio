@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { throttle } from "lodash-es";
 import { useTranslation } from "react-i18next";
 import PrimerLink from "@/ui/link/PrimerLink";
+import ReadWash from "@/components/reveal/ReadWash";
 
 const ContactHomePage = () => {
   const { t } = useTranslation();
@@ -129,7 +130,11 @@ const ContactHomePage = () => {
       >
         <div className={styles.context_div}>
           <div className={styles.context_header}>
-            <div className={styles.context_text}>{t("contactHome.header")}</div>
+            <ReadWash
+              className={styles.context_text}
+              text={t("contactHome.header")}
+              tagName="div"
+            />
             <div className={styles.contact_me}>{t("contactHome.subtext")}</div>
           </div>
           <PrimerLink

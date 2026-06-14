@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import styles from "./style.module.css";
 import colors from "@/utils/colors";
 import AnimatedSplit from "@/components/animated-split/AnimatedSplit";
+import BlurReveal from "@/components/reveal/BlurReveal";
 import { useTranslation } from 'react-i18next';
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
@@ -129,14 +130,12 @@ const WelcomeSec = () => {
             </div>
 
             <div className={styles.content}>
-                <AnimatedSplit
+                <BlurReveal
                     key={t('welcome.description')}
                     text={t('welcome.description')}
                     className={styles.link}
                     tagName="span"
-                    stagger={0.03}
-                    duration={1.5}
-                    start="top 80%"
+                    start="top 85%"
                 />
             </div>
 

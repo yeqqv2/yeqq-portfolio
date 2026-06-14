@@ -1,4 +1,5 @@
 import AnimatedSplit from "@/components/animated-split/AnimatedSplit";
+import LineReveal from "@/components/reveal/LineReveal";
 import styles from "./style.module.css";
 import FormContainer from "./form/FormContainer";
 import { useTranslation } from "react-i18next";
@@ -19,13 +20,11 @@ const ContactPage = () => {
       />
 
       <div className={styles.main}>
-        <AnimatedSplit
+        <LineReveal
           key={`${i18n.language}-contact-sidebar-title`}
           text={t("contactPage.sidebar_title")}
           className={styles.sidebar_title}
           tagName="p"
-          stagger={0.03}
-          duration={1.5}
           start="top 80%"
         />
 
@@ -45,14 +44,18 @@ const ContactPage = () => {
             duration={1.5}
             start="top 100%"
           />
-          <AnimatedSplit
-            text="ynsmrkrkmzz@gmail.com"
+          <a
             className={styles.contact_link}
-            tagName="span"
-            stagger={0.03}
-            duration={1.5}
-            start="top 100%"
-          />
+            href="mailto:ynsmrkrkmzz@gmail.com"
+          >
+            <AnimatedSplit
+              text="ynsmrkrkmzz@gmail.com"
+              tagName="span"
+              stagger={0.03}
+              duration={1.5}
+              start="top 100%"
+            />
+          </a>
         </div>
 
         <div className={styles.footer_content}>
@@ -103,14 +106,6 @@ const ContactPage = () => {
                 start="top 100%"
               />
             </a>
-            <AnimatedSplit
-              text=","
-              className={styles.comma}
-              tagName="span"
-              stagger={0.03}
-              duration={1.5}
-              start="top 100%"
-            />
           </div>
         </div>
       </div>

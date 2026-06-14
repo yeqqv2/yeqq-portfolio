@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./style.module.css";
 import AnimatedSplit from "@/components/animated-split/AnimatedSplit";
+import LineReveal from "@/components/reveal/LineReveal";
 import { useTranslation } from "react-i18next";
 import { useProjects } from "@/hooks/useProjects";
 import LoadingPage from "@/components/loading/LoadingPage";
@@ -243,12 +244,10 @@ export default function WorkSinglePage() {
                 duration={1.5}
                 start="top 85%"
               />
-              <AnimatedSplit
+              <LineReveal
                 className={styles.caseText}
                 text={section.body}
                 tagName="p"
-                stagger={0.02}
-                duration={1.2}
                 start="top 85%"
               />
             </article>

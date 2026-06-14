@@ -120,15 +120,15 @@
 /* --- linkler: orta banda dikey ortalanır; kapalıyken gizli + kırpılır --- */
 .links {
   position: absolute;
-  top: 2.6em;
-  bottom: 2.6em;
+  top: 2.4em;
+  bottom: 2.4em;
   left: 0;
   right: 0;
   padding: 0 1.6em;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 0.5em;
+  gap: 1em;
 }
 
 .link {

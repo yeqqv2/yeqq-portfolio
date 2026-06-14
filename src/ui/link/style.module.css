@@ -23,7 +23,7 @@
 }
 
 .random {
-  background-color: transparent;
+  background-color: var(--wb100);
   color: var(--wb950);
 }
 

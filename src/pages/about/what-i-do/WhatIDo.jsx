@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import styles from "./style.module.css";
 import AnimatedSplit from "@/components/animated-split/AnimatedSplit";
+import LineReveal from "@/components/reveal/LineReveal";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslation } from "react-i18next";
@@ -93,24 +94,20 @@ export default function WhatIDo() {
           />
         </header>
         <div className={styles.context}>
-          <AnimatedSplit
+          <LineReveal
             key={`${i18n.language}-whatido-desc1`}
             text={t("whatIDo.desc_1")}
             className={styles.desc}
             tagName="p"
-            stagger={0.03}
-            duration={1.5}
             start="top 80%"
           />
         </div>
         <div className={styles.context}>
-          <AnimatedSplit
+          <LineReveal
             key={`${i18n.language}-whatido-desc2`}
             text={t("whatIDo.desc_2")}
             className={styles.desc}
             tagName="p"
-            stagger={0.03}
-            duration={1.5}
             start="top 80%"
           />
         </div>

@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import gsap from "gsap";
 import AnimatedSplit from "@/components/animated-split/AnimatedSplit";
+import LineReveal from "@/components/reveal/LineReveal";
 import PrimerLink from "@/ui/link/PrimerLink";
 import styles from "./style.module.css";
 
@@ -79,15 +80,12 @@ export default function ManifestArticle() {
         </h1>
 
         {article.lead && (
-          <p className={styles.lead}>
-            <AnimatedSplit
-              text={article.lead}
-              tagName="span"
-              stagger={0.012}
-              duration={1.5}
-              start="top 80%"
-            />
-          </p>
+          <LineReveal
+            className={styles.lead}
+            text={article.lead}
+            tagName="p"
+            start="top 80%"
+          />
         )}
       </header>
 
@@ -134,15 +132,12 @@ export default function ManifestArticle() {
                 )}
               </div>
               {s.body && (
-                <p className={styles.text}>
-                  <AnimatedSplit
-                    text={s.body}
-                    tagName="span"
-                    stagger={0.008}
-                    duration={1.5}
-                    start="top 85%"
-                  />
-                </p>
+                <LineReveal
+                  className={styles.text}
+                  text={s.body}
+                  tagName="p"
+                  start="top 85%"
+                />
               )}
             </section>
           );

@@ -12,7 +12,7 @@ import styles from "./style.module.css";
 
 const WorksHomePage = () => {
   const { t } = useTranslation();
-  const { data: projects, isLoading, isError, error } = useProjects();
+  const { data: projects, isLoading, isError } = useProjects();
 
   const cursorWords = t("worksHome.cursorWords", { returnObjects: true });
 
@@ -47,15 +47,7 @@ const WorksHomePage = () => {
   if (isError)
     return (
       <div className={styles.container}>
-        <p
-          style={{
-            padding: "4em 1vw",
-            color: "var(--wb500)",
-            fontSize: "0.9em",
-          }}
-        >
-          ● could not load projects — {error.message}
-        </p>
+        <p className={styles.error}>● {t("worksHome.error")}</p>
       </div>
     );
 

@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useState } from "react";
-import SplashScreen from "@/components/splash-screen/SplashScreen";
+import SignatureIntro from "@/components/signature-intro/SignatureIntro";
 import IntroSec from "./intro/IntroSec";
 import styles from "./style.module.css";
 
@@ -46,7 +46,7 @@ const HomePage = () => {
   return (
     <div className={styles.container}>
       {!isAnimationPlayed && (
-        <SplashScreen onAnimationComplete={handleAnimationComplete} />
+        <SignatureIntro onAnimationComplete={handleAnimationComplete} />
       )}
       <IntroSec />
       <Suspense fallback={null}>

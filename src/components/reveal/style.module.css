@@ -1,0 +1,28 @@
+/* paylaşılan reveal dili — manifest panellerinin motion sözlüğünden türetildi,
+   böylece çeşitlilik siteye yabancı değil, kendi diliyle gelir. hepsi monokrom,
+   reduced-motion'da metin olduğu gibi görünür kalır. */
+
+.text {
+  display: block;
+  line-height: 1.2;
+}
+
+/* ---- LineReveal: satır maskesi ---- */
+.lineMask {
+  display: block;
+  overflow: hidden;
+  /* descender'lar (g, y, p) maskede kırpılmasın */
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+
+.lineInner {
+  display: block;
+  will-change: transform;
+}
+
+/* ---- BlurReveal: odak ---- */
+.blurWord {
+  display: inline-block;
+  will-change: transform, opacity;
+}

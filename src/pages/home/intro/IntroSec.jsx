@@ -134,6 +134,7 @@ const IntroSec = () => {
 
   return (
     <div className={styles.container} ref={containerRef}>
+      <p className={styles.identity} aria-hidden="true">{t("welcome.name")}</p>
       <video
         className={styles.vid}
         src="/assets/videos/videoo.webm"

@@ -3,6 +3,7 @@ import styles from "./style.module.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AnimatedSplit from "@/components/animated-split/AnimatedSplit";
+import BlurReveal from "@/components/reveal/BlurReveal";
 import { useTranslation } from "react-i18next";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -80,23 +81,19 @@ export default function HeroAbout() {
         <div className={styles.desc}>
           <div className={styles.text_and_imgs}>
             <div className={styles.content_desc_text}>
-              <AnimatedSplit
+              <BlurReveal
                 key={`${i18n.language}-hero-desc-1`}
                 text={t("heroAbout.content_text_1")}
                 className={styles.content_desc_text_p}
                 tagName="span"
-                stagger={0.03}
-                duration={1.5}
-                start="top 100%"
+                start="top 90%"
               />
-              <AnimatedSplit
+              <BlurReveal
                 key={`${i18n.language}-hero-desc-2`}
                 text={t("heroAbout.content_text_2")}
                 className={styles.content_desc_text_p}
                 tagName="span"
-                stagger={0.03}
-                duration={1.5}
-                start="top 100%"
+                start="top 90%"
               />
             </div>
 

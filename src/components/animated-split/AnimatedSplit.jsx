@@ -1,7 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./style.module.css";
 import { prefersReducedMotion } from "@/utils/motion";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const AnimatedSplit = ({
     text,
@@ -27,29 +30,37 @@ const AnimatedSplit = ({
 
         gsap.set(wordElements, { y: "110%" });
 
-        const tween = gsap.fromTo(
+        // reveal duraklatılmış kurulur; trigger ya da güvenlik ağı oynatır
+        const reveal = gsap.fromTo(
             wordElements,
-            {
-                y: "110%",
-            },
-            {
-                y: "0%",
-                duration,
-                ease,
-                stagger,
-                scrollTrigger: {
-                    trigger: elRef.current,
-                    start,
-                },
-            }
+            { y: "110%" },
+            { y: "0%", duration, ease, stagger, paused: true }
         );
+
+        let played = false;
+        const play = () => {
+            if (played) return;
+            played = true;
+            reveal.play();
+        };
+
+        const st = ScrollTrigger.create({
+            trigger: elRef.current,
+            start,
+            once: true,
+            onEnter: play,
+            // güvenlik ağı: bir bölüm en dipteyse ve start konumu sayfanın
+            // kaydırılabilir sınırını aşıyorsa (top 80% çizgisine asla ulaşılamaz),
+            // metin sonsuza dek gizli kalmasın — reveal yine de oynar.
+            onRefresh: (self) => {
+                if (self.start > ScrollTrigger.maxScroll(window)) play();
+            },
+        });
 
         return () => {
             try {
-                if (tween && tween.scrollTrigger) {
-                    tween.scrollTrigger.kill();
-                }
-                tween.kill();
+                st.kill();
+                reveal.kill();
             } catch (e) {
                 // noop
             }

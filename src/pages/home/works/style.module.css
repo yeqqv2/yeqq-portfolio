@@ -30,6 +30,14 @@
   font-size: 1em;
 }
 
+/* hata: bölümün sessiz diliyle */
+.error {
+  padding: 6em 1vw;
+  font-size: 0.9em;
+  font-weight: 300;
+  color: var(--wb500);
+}
+
 @media screen and (max-width: 1024px) {
   .main {
     grid-template-columns: repeat(2, 1fr);
