@@ -122,7 +122,7 @@ export default function Navbar() {
         // brackets aralanır; harfler sayaç gibi alttan yukarı dizilir
         .to(
           brandNameRef.current,
-          { width: "auto", duration: d(1.2), ease: "hop" },
+          { width: "auto", duration: d(0.66), ease: "hop" },
           d(0.8),
         )
         .to(
@@ -130,7 +130,7 @@ export default function Navbar() {
           {
             yPercent: 0,
             autoAlpha: 1,
-            duration: d(1.2),
+            duration: d(0.66),
             ease: "butter",
             stagger: d(0.06),
           },
@@ -284,7 +284,7 @@ export default function Navbar() {
         />
       </div>
 
-      <div ref={islandRef} className={styles.island}>
+      <div ref={islandRef} className={styles.island} data-open={isOpen}>
         <Link
           to="/"
           className={styles.brand}

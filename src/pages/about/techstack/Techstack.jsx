@@ -2,6 +2,8 @@ import { useEffect, useRef } from "react";
 import styles from "./style.module.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import AnimatedSplit from "@/components/animated-split/AnimatedSplit";
+import { useTranslation } from "react-i18next";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,6 +29,7 @@ const techs = [
 ];
 
 export default function Techstack() {
+  const { t, i18n } = useTranslation();
   const containerRef = useRef(null);
   const iconRefs = useRef([]);
   const cursorRef = useRef(null);
@@ -125,6 +128,15 @@ export default function Techstack() {
       ref={containerRef}
       onMouseMove={handleMouseMoveGlobal}
     >
+      <AnimatedSplit
+        key={`${i18n.language}-techstack-title`}
+        text={t("techstackAbout.title")}
+        className={styles.label}
+        tagName="h2"
+        stagger={0.03}
+        duration={1.5}
+        start="top 80%"
+      />
       <header className={styles.header}>
         {techs.map((tech, index) => (
           <div

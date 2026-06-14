@@ -48,13 +48,18 @@
   height: 2.4em;
   display: flex;
   align-items: center;
-  padding: 0 1.15em;
+  padding: 0 1.5em;
   color: inherit;
   font-size: 1.15em;
   font-weight: 400;
   line-height: 1;
   letter-spacing: 0.01em;
   user-select: none;
+  transition: bottom 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.island[data-open="true"] .brand {
+  bottom: 0.5em;
 }
 
 .bracket {
@@ -81,9 +86,10 @@
   top: 0;
   right: 0;
   height: 2.4em;
+  transition: top 0.5s cubic-bezier(0.76, 0, 0.24, 1), right 0.5s cubic-bezier(0.76, 0, 0.24, 1);
   display: flex;
   align-items: center;
-  padding: 0 1.15em;
+  padding: 0 1.5em;
   overflow: hidden;
   appearance: none;
   border: 0;
@@ -94,6 +100,10 @@
   font-size: 1em;
   line-height: 1;
   text-transform: lowercase;
+}
+
+.island[data-open="true"] .toggle {
+  top: 0.5em;
 }
 
 .toggleLabel {
@@ -114,7 +124,7 @@
   bottom: 2.6em;
   left: 0;
   right: 0;
-  padding: 0 1.25em;
+  padding: 0 1.6em;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -160,13 +170,18 @@
   bottom: 0;
   right: 0;
   height: 2.6em;
+  transition: bottom 0.5s cubic-bezier(0.76, 0, 0.24, 1);
   display: flex;
   align-items: center;
   gap: 0.7em;
-  padding: 0 1.25em;
+  padding: 0 1.5em;
   font-size: 0.9em;
   opacity: 0;
   visibility: hidden;
+}
+
+.island[data-open="true"] .social {
+  bottom: 0.5em;
 }
 
 .socialLink {

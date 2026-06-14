@@ -98,42 +98,61 @@
     ]
   },
   "heroAbout": {
-    "title": "tasarımı düşünür, mühendislikle kurarım.",
-    "content_text_1": "takıntıyla üretirim.",
-    "content_text_2": "amaçla tasarlarım."
+    "title": "elime değil, gözüme güvenirim.",
+    "content_text_1": "detaylara takılırım.",
+    "content_text_2": "acelem yok."
   },
   "aboutmePage": {
     "title": "[ben kimim]",
-    "bio_1": "ben yunus emre korkmaz. hem ön yüz geliştirici hem tasarımcıyım — ama asıl işim, insanın işini kolaylaştırmak.",
-    "bio_2": "küçük şeylere takılırım: bir boşluk, bir geçiş, bir an. çünkü kolay görünen her şey, aslında çok emek ister."
+    "bio_1": "adım yunus emre. elektrik mühendisliği okuyordum, üçüncü sınıfta bıraktım. kod yazmaya başladım, yazarken de tasarıma kafayı taktım.",
+    "bio_2": "derken sıra kendi işime geldi. 2023'te istanbul'da skynotech'i kurdum. o zamandan beri hem tasarlıyorum hem yazıyorum."
   },
   "whatIDo": {
     "title": "[ne yapıyorum]",
-    "desc_1": "arayüz tasarlar, kodunu yazarım. yapısı sağlam, niyeti açık olsun isterim.",
-    "desc_2": "derdim gösteriş değil, anlaşılır olmak. işin doğru çalışması, güzel görünmesinden önce gelir."
+    "desc_1": "arayüz tasarlıyorum, kodunu da ben yazıyorum. ikisini ayrı işler gibi görmüyorum.",
+    "desc_2": "ürün arayüzü, kurumsal site, mobil uygulama yapıyorum. bir fikri alıp çalışan bir şeye çeviriyorum."
   },
   "discover": {
     "title": "[beni keşfet]",
-    "subtitle": "aşağıdaki şekilleri çiz; nasıl çalıştığımı sana onlar anlatsın.",
+    "subtitle": "aşağıdaki şekilleri çiz, nasıl çalıştığımı anlatayım.",
     "discovery": "keşif",
     "cursor": "çiz",
-    "reset": "tekrar çizmek ister misin?",
+    "reset": "tekrar çizelim mi?",
     "cards": [
       {
         "instruction": "bir yapboz parçası çiz",
-        "title": "büyük resim",
-        "description": "parçaları değil, bütünü görmeye çalışırım. kullanıcının ihtiyacı, işin hedefi ve teknik gerçek — üçünü aynı masada buluştururum."
+        "title": "bütünü görürüm",
+        "description": "tek tek parçalara değil, işin bütününe bakarım. kullanıcının derdi, işin hedefi, teknik gerçek... hepsini aynı kafada tutmaya çalışırım."
       },
       {
         "instruction": "bir kalem çiz",
-        "title": "tasarım mühendisliği",
-        "description": "tasarımcı gözüyle kod yazarım. fikri, anlamını kaybetmeden piksele dönüştürürüm."
+        "title": "ikisini birden yaparım",
+        "description": "tasarımcı gözüyle kod yazarım. kafamdaki şey ekrana geçerken bozulmasın diye uğraşırım."
       },
       {
         "instruction": "bir onay işareti çiz",
-        "title": "sağlam teslim",
-        "description": "doğru hissettirmeden bitmiş saymam. hızlı, erişilebilir ve güvenilir olana kadar uğraşırım."
+        "title": "sağlam bırakırım",
+        "description": "doğru hissettirmeden işi bitmiş saymam. hızlı ve düzgün çalışana kadar uğraşırım."
       }
+    ]
+  },
+  "selectedWorks": {
+    "title": "[seçili işler]",
+    "subtitle": "yaptıklarımdan birkaçı.",
+    "viewAll": "hepsini gör"
+  },
+  "techstackAbout": {
+    "title": "[ne ile çalışırım]"
+  },
+  "now": {
+    "title": "[şu an]",
+    "subtitle": "işten kafamı kaldırınca.",
+    "items": [
+      "istanbul'da yaşıyorum",
+      "arada resim çiziyorum",
+      "çok kitap okuyup çok düşünüyorum",
+      "bol bol hayal kuruyorum",
+      "psikolojiye meraklıyım"
     ]
   },
   "projects": {

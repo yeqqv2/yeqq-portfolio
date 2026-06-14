@@ -98,42 +98,61 @@
     ]
   },
   "heroAbout": {
-    "title": "i think in design, and build with engineering.",
-    "content_text_1": "i build with care.",
-    "content_text_2": "i design with purpose."
+    "title": "i trust my eye, not my hands.",
+    "content_text_1": "i sweat the details.",
+    "content_text_2": "i'm in no rush."
   },
   "aboutmePage": {
     "title": "[who am i]",
-    "bio_1": "i'm yunus emre korkmaz. i'm both a front-end developer and a designer — but my real job is making people's lives easier.",
-    "bio_2": "i fuss over the small things: a space, a transition, a moment. because everything that looks easy actually takes a lot of effort."
+    "bio_1": "i'm yunus emre. i was studying electrical engineering and quit in my third year. i started coding, and while coding i got hooked on design.",
+    "bio_2": "then it was time for my own thing. in 2023 i started skynotech in istanbul. since then i both design and build."
   },
   "whatIDo": {
     "title": "[what i do]",
-    "desc_1": "i design interfaces and write their code. i want them solid in structure and clear in intent.",
-    "desc_2": "i don't care about showing off — i care about being understood. a thing working right comes before looking good."
+    "desc_1": "i design the interface and write its code myself. i don't see them as two separate jobs.",
+    "desc_2": "i make product interfaces, corporate sites, mobile apps. i take an idea and turn it into something that works."
   },
   "discover": {
     "title": "[discover me]",
-    "subtitle": "draw the shapes below; let them tell you how i work.",
+    "subtitle": "draw the shapes below and i'll show you how i work.",
     "discovery": "discovery",
     "cursor": "draw",
-    "reset": "wanna draw again?",
+    "reset": "draw again?",
     "cards": [
       {
         "instruction": "draw a puzzle piece",
-        "title": "the big picture",
-        "description": "i try to see the whole, not the pieces. user needs, business goals, and technical reality — i bring all three to the same table."
+        "title": "i see the whole thing",
+        "description": "i look at the whole job, not the pieces. what the user needs, what the work needs, what the tech allows... i try to keep all of it in my head."
       },
       {
         "instruction": "draw a pen",
-        "title": "design engineering",
-        "description": "i write code with a designer's eye. i turn an idea into pixels without losing its meaning."
+        "title": "i do both",
+        "description": "i write code with a designer's eye. i fight to keep the thing in my head from breaking on its way to the screen."
       },
       {
         "instruction": "draw a checkmark",
-        "title": "solid delivery",
-        "description": "i don't call it done until it feels right. i keep at it until it's fast, accessible, and reliable."
+        "title": "i leave it solid",
+        "description": "i don't call it done until it feels right. i keep at it until it's fast and works properly."
       }
+    ]
+  },
+  "selectedWorks": {
+    "title": "[selected works]",
+    "subtitle": "a few of the things i've made.",
+    "viewAll": "see all"
+  },
+  "techstackAbout": {
+    "title": "[what i work with]"
+  },
+  "now": {
+    "title": "[now]",
+    "subtitle": "when i look up from work.",
+    "items": [
+      "living in istanbul",
+      "drawing now and then",
+      "reading a lot, thinking a lot",
+      "daydreaming plenty",
+      "into psychology"
     ]
   },
   "projects": {

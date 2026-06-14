@@ -6,7 +6,6 @@
   justify-content: flex-start;
   align-items: flex-end;
   gap: 10vh;
-  border-bottom: 1px solid var(--wb100);
 }
 
 .header {
