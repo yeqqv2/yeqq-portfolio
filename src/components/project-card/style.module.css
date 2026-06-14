@@ -54,6 +54,10 @@
   .work:nth-child(n) {
     grid-column: span 1;
   }
+
+  .work_img{
+    height: 30svh;
+  }
 }
 
 @media screen and (max-width: 600px) {
