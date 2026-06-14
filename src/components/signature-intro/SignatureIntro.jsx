@@ -12,7 +12,13 @@ import { prefersReducedMotion } from "@/utils/motion";
    çizilip ızgarayla örneklenir. monokrom, hairline noktalar — glow yok. aynı
    [yeqq] markası entropy panelinde kaostan dizilen, manifesto kapanışında imza
    kalan markadır — site iki ucundan onunla parantezlenir. ilk ziyarette bir kez
-   (sessionStorage), reduced-motion'da hiç oynamaz. */
+   (sessionStorage), reduced-motion'da hiç oynamaz.
+
+   performans: ~324 parçacığın 3 beat'i için ayrı ayrı tween yaratmak yerine
+   (binlerce tween + stagger = ana iş parçacığında ağır yük), tek bir doğrusal
+   "clock" tween'i ilerletiriz; her parçacığın eased konumu/yarıçapı çizim
+   döngüsünde hesaplanır. ease (butter) ve zamanlama birebir korunur; ana iş
+   parçacığındaki tween sayısı ~970 → 2'ye iner. açılış böylece yağ gibi akar. */
 
 const NAME = "[yeqq]";
 
@@ -89,7 +95,6 @@ const sampleText = (text, count, maxWidth) => {
 // noktaların büyüyeceği nihai yarıçap hücreye göre hesaplansın.
 const squareFill = (count, side) => {
   const cols = Math.ceil(Math.sqrt(count));
-  const rows = Math.ceil(count / cols);
 
   const usable = side;
   const cell = usable / cols;
@@ -142,6 +147,7 @@ export default function SignatureIntro({ onAnimationComplete }) {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     const ink = resolveInk();
+    const ease = gsap.parseEase("butter") || ((p) => p);
 
     const w = window.innerWidth;
     const h = window.innerHeight;
@@ -155,42 +161,89 @@ export default function SignatureIntro({ onAnimationComplete }) {
     const cy = h / 2;
     const side = squareSide();
 
-    // beat 3'te dolan solid kare opaklığı (taşmasız, kesin kenarlı)
-    const fx = { sq: 0 };
+    // clip statiktir (kare hiç oynamaz) → her karede save/clip/restore yerine
+    // bir kez kur. clearRect bu clip ile sınırlanır; sadece kare içi temizlenir.
+    ctx.beginPath();
+    ctx.rect(cx - side / 2, cy - side / 2, side, side);
+    ctx.clip();
+    ctx.fillStyle = ink;
 
-    // başlangıç: tüm ekrana dağılmış kaos, ince noktalar
-    const particles = Array.from({ length: count }, () => ({
-      x: gsap.utils.random(-w / 2, w / 2),
-      y: gsap.utils.random(-h / 2, h / 2),
-      r: gsap.utils.random(0.7, 1.1),
-    }));
+    // konum/yarıçap durumları paralel dizilerde (tween nesnesi yok):
+    // chaos = başlangıç (tüm ekrana dağılmış ince noktalar)
+    const chaosX = new Float64Array(count);
+    const chaosY = new Float64Array(count);
+    const r0 = new Float64Array(count);
+    // hedefler begin()'de doldurulur; o ana dek kaos = hedef → hareketsiz kaos
+    const nameX = new Float64Array(count);
+    const nameY = new Float64Array(count);
+    const fillX = new Float64Array(count);
+    const fillY = new Float64Array(count);
+    // her beat için parçacık başına rastgele gecikme (stagger "from random")
+    const d1 = new Float64Array(count);
+    const d2 = new Float64Array(count);
+    const d3 = new Float64Array(count);
+    let rFinal = 1;
 
+    for (let i = 0; i < count; i++) {
+      const x = gsap.utils.random(-w / 2, w / 2);
+      const y = gsap.utils.random(-h / 2, h / 2);
+      chaosX[i] = nameX[i] = fillX[i] = x;
+      chaosY[i] = nameY[i] = fillY[i] = y;
+      r0[i] = gsap.utils.random(0.7, 1.1);
+    }
+
+    // beat zamanlaması (sn) — eski timeline ile birebir:
+    // B1: kaos→[yeqq]  B2: [yeqq]→kare-grid  B3: noktalar büyür  → overlay erir
+    const s1 = 0.2;
+    const d1dur = 0.66;
+    const A1 = 0.66; // B1 biter: 0.2 + 0.66 + 0.66 = 1.52
+    const s2 = 2.02; // B1 sonu + 0.5
+    const d2dur = 1.2;
+    const A2 = 1; // B2 biter: 2.02 + 1 + 1.2 = 4.22
+    const s3 = 4.27; // B2 sonu + 0.05
+    const d3dur = 0.33;
+    const A3 = 0.33; // B3 biter: 4.27 + 0.33 + 0.33 = 4.93
+    const s4 = 5.08; // B3 sonu + 0.15
+    const fadeDur = 0.33;
+    const TOTAL = s4 + fadeDur; // 5.41
+
+    const clock = { t: 0 };
+
+    // tek konum kaynağı: clock.t'ye göre her parçacığın eased durumu.
+    // konum iki segment (kaos→isim, isim→kare); yarıçap tek segment.
     const draw = () => {
+      const t = clock.t;
       ctx.clearRect(0, 0, w, h);
-
-      ctx.save();
-
-      // clipping alanı
-      ctx.beginPath();
-      ctx.rect(cx - side / 2, cy - side / 2, side, side);
-      ctx.clip();
-
-      ctx.fillStyle = ink;
-
-      // tüm parçacıkları tek path içinde çiz
       ctx.beginPath();
 
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
+      for (let i = 0; i < count; i++) {
+        let px;
+        let py;
+        if (t < s2) {
+          let p = (t - s1 - d1[i]) / d1dur;
+          p = p < 0 ? 0 : p > 1 ? 1 : p;
+          const e = ease(p);
+          px = chaosX[i] + (nameX[i] - chaosX[i]) * e;
+          py = chaosY[i] + (nameY[i] - chaosY[i]) * e;
+        } else {
+          let p = (t - s2 - d2[i]) / d2dur;
+          p = p < 0 ? 0 : p > 1 ? 1 : p;
+          const e = ease(p);
+          px = nameX[i] + (fillX[i] - nameX[i]) * e;
+          py = nameY[i] + (fillY[i] - nameY[i]) * e;
+        }
 
-        ctx.moveTo(cx + p.x + p.r, cy + p.y);
+        let pr = (t - s3 - d3[i]) / d3dur;
+        pr = pr < 0 ? 0 : pr > 1 ? 1 : pr;
+        const r = r0[i] + (rFinal - r0[i]) * ease(pr);
 
-        ctx.arc(cx + p.x, cy + p.y, p.r, 0, Math.PI * 2);
+        const dx = cx + px;
+        const dy = cy + py;
+        ctx.moveTo(dx + r, dy);
+        ctx.arc(dx, dy, r, 0, Math.PI * 2);
       }
 
       ctx.fill();
-
-      ctx.restore();
     };
 
     gsap.ticker.add(draw);
@@ -201,56 +254,25 @@ export default function SignatureIntro({ onAnimationComplete }) {
       const fill = squareFill(count, side);
       const nameTargets =
         sampleText(NAME, count, Math.min(w * 0.28, 340)) || fill.targets;
-      const fillTargets = fill.targets;
 
+      for (let i = 0; i < count; i++) {
+        nameX[i] = nameTargets[i].x;
+        nameY[i] = nameTargets[i].y;
+        fillX[i] = fill.targets[i].x;
+        fillY[i] = fill.targets[i].y;
+        d1[i] = Math.random() * A1;
+        d2[i] = Math.random() * A2;
+        d3[i] = Math.random() * A3;
+      }
+      rFinal = fill.cell * 0.75;
+
+      // ana iş parçacığında yalnızca 2 tween: doğrusal clock + overlay erimesi.
       tl = gsap.timeline({ onComplete: finish });
-
-      // beat 1: kaos → [yeqq] (kimlik). geniş stagger: akın akın gelip oturur
-      tl.to(
-        particles,
-        {
-          x: (i) => nameTargets[i].x,
-          y: (i) => nameTargets[i].y,
-          duration: 0.66,
-          ease: "butter",
-          stagger: { amount: 0.66, from: "random" },
-        },
-        0.2,
-      );
-
-      // beat 2: [yeqq] okunsun diye dinlenir, sonra kareyi dolduran düzenli
-      // gride satır satır oturur (stagger "start" = index sırası = sıra sıra)
-      tl.to(
-        particles,
-        {
-          x: (i) => fillTargets[i].x,
-          y: (i) => fillTargets[i].y,
-          duration: 1.2,
-          ease: "butter",
-          stagger: { amount: 1, from: "random" },
-        },
-        ">+0.5",
-      );
-
-      // beat 3: noktalar hücrelerini doldurana dek büyür + solid kare belirir →
-      // gerçek, kesin sınırlı kare (taşma yok)
-      tl.to(
-        particles,
-        {
-          r: fill.cell * 0.75,
-          duration: 0.33,
-          ease: "butter",
-          stagger: { amount: 0.33, from: "random" },
-        },
-        ">+0.05",
-      );
-
-      // devir: gerçek kare oldu → anasayfa gelir. overlay erir, altta temiz
-      // hero (IntroSec) kalır; solid kare aynı yerde video karesine devreder
+      tl.to(clock, { t: TOTAL, duration: TOTAL, ease: "none" }, 0);
       tl.to(
         overlayRef.current,
-        { autoAlpha: 0, duration: 0.33, ease: "butter" },
-        ">+0.15",
+        { autoAlpha: 0, duration: fadeDur, ease: "butter" },
+        s4,
       );
     };
 

@@ -1,5 +1,5 @@
 .container {
-  height: 100vh;
+  height: 100dvh;
   width: 100%;
   padding: 10vh 10vw;
   display: flex;
@@ -71,7 +71,7 @@
 
 .identity {
   position: absolute;
-  bottom: 15vh;
+  bottom: 15dvh;
   left: 50%;
   transform: translateX(-50%);
   font-size: 0.925em;
@@ -82,6 +82,70 @@
   white-space: nowrap;
   pointer-events: none;
   z-index: 6;
+}
+
+/* identity ile aynı dil ama altta değil üstte; kare (.vid) genişliğinde.
+   solda canlı saat, sağda müzik tuşu. bar geçişlidir; yalnızca tuş tıklanır,
+   böylece marquee hover bölgesi engellenmez. */
+.topbar {
+  position: absolute;
+  top: 15dvh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.925em;
+  font-weight: 200;
+  letter-spacing: 0.04em;
+  color: var(--wb950);
+  z-index: 6;
+  pointer-events: none;
+}
+
+.clock {
+  opacity: 0.4;
+  font-variant-numeric: tabular-nums;
+}
+
+.music {
+  appearance: none;
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  text-transform: lowercase;
+  cursor: pointer;
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+
+.music:hover,
+.music:focus-visible {
+  opacity: 0.85;
+}
+
+.music[aria-pressed="true"] {
+  opacity: 0.7;
+}
+
+.musicDot {
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  transition: background-color 0.3s ease;
+}
+
+.musicDot[data-on="true"] {
+  background-color: currentColor;
 }
 
 /* Hover yalnızca metin şeridinde olsun: tüm genişlik, metin yüksekliği.
@@ -112,7 +176,12 @@
   }
 
   .identity {
-    bottom: calc(50dvh - 30vw - 5vh);
+    bottom: calc(50dvh - 30vw - 5dvh);
+  }
+
+  .topbar {
+    top: calc(50dvh - 30vw - 5dvh);
+    width: 60vw;
   }
 
   .marquee_div_content {

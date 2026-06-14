@@ -27,7 +27,12 @@
     "signature": "yunus emre korkmaz tarafından tasarlandı ve geliştirildi"
   },
   "intro": {
-    "marqueeText": "• minimalizm • takıntı • mükemmelliyetçilik • estetik "
+    "marqueeText": "• minimalizm • takıntı • mükemmelliyetçilik • estetik ",
+    "clock": "yerel saat"
+  },
+  "music": {
+    "play": "kulak ver",
+    "pause": "duymazdan gel"
   },
   "welcome": {
     "greeting": "[selam, ben]",

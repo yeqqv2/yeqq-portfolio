@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./style.module.css";
 import PrimerLink from "@/ui/link/PrimerLink";
 import PrimerButton from "@/ui/button/PrimerButton";
+import useMusic from "@/hooks/useMusic";
 
 import gsap from "gsap";
 import { useTranslation } from "react-i18next";
@@ -19,6 +20,7 @@ const SOCIALS = [
 export default function Navbar() {
   const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
+  const { playing: musicPlaying, toggle: toggleMusic } = useMusic();
 
   const islandRef = useRef(null);
   const overlayRef = useRef(null);
@@ -319,6 +321,25 @@ export default function Navbar() {
         >
           <span className={styles.toggleLabel} ref={toggleLabelRef}>
             {isOpen ? t("nav.close_btn") : t("nav.menu_btn")}
+          </span>
+        </button>
+
+        {/* sol üst köşe: açıkken müzik kontrolü — site gezilirken durdur/devam */}
+        <button
+          type="button"
+          className={styles.music}
+          onClick={toggleMusic}
+          aria-pressed={musicPlaying}
+          aria-label={musicPlaying ? t("music.pause") : t("music.play")}
+          tabIndex={isOpen ? 0 : -1}
+        >
+          <span
+            className={styles.musicDot}
+            data-on={musicPlaying}
+            aria-hidden="true"
+          />
+          <span className={styles.musicLabel}>
+            {musicPlaying ? t("music.pause") : t("music.play")}
           </span>
         </button>
 

@@ -27,7 +27,12 @@
     "signature": "designed & built by yunus emre korkmaz"
   },
   "intro": {
-    "marqueeText": "• minimalism • obsession • perfectionism • aesthetics"
+    "marqueeText": "• minimalism • obsession • perfectionism • aesthetics",
+    "clock": "local time"
+  },
+  "music": {
+    "play": "lend an ear",
+    "pause": "tune it out"
   },
   "welcome": {
     "greeting": "[hey, i'm]",

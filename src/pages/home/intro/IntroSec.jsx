@@ -3,6 +3,7 @@ import styles from "./style.module.css";
 import gsap from "gsap";
 import { useTranslation } from "react-i18next";
 import { prefersReducedMotion } from "@/utils/motion";
+import IntroTopBar from "./IntroTopBar";
 
 // px/sn cinsinden temel hız ve hover davranışları
 const BASE_SPEED = 240; // normal akış (sola)
@@ -16,7 +17,7 @@ const prefersLightVideoLoad = () =>
     typeof window.matchMedia === "function" &&
     window.matchMedia("(max-width: 600px)").matches);
 
-const IntroSec = () => {
+const IntroSec = ({ active = true }) => {
   const { t } = useTranslation();
   const text = t("intro.marqueeText");
   const reduceMotion = prefersReducedMotion();
@@ -26,7 +27,17 @@ const IntroSec = () => {
   const hoverRef = useRef(null);
   const whiteTrackRef = useRef(null);
   const darkTrackRef = useRef(null);
+  const videoRef = useRef(null);
   const [copies, setCopies] = useState(4);
+
+  // imza an üstte oynarken hero video'yu gizliyken decode/oynat etme; ortaya
+  // çıkınca başlat. dönüş ziyaretinde (active baştan true) hemen oynar.
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v || !active || reduceMotion) return;
+    const p = v.play();
+    if (p && typeof p.catch === "function") p.catch(() => {});
+  }, [active, reduceMotion]);
 
   // animasyonun değişken durumu (render tetiklemez)
   const anim = useRef({
@@ -134,11 +145,12 @@ const IntroSec = () => {
 
   return (
     <div className={styles.container} ref={containerRef}>
+      <IntroTopBar />
       <p className={styles.identity} aria-hidden="true">{t("welcome.name")}</p>
       <video
+        ref={videoRef}
         className={styles.vid}
         src="/assets/videos/videoo.webm"
-        autoPlay={!reduceMotion}
         loop
         muted
         playsInline

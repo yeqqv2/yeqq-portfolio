@@ -48,15 +48,21 @@ const HomePage = () => {
       {!isAnimationPlayed && (
         <SignatureIntro onAnimationComplete={handleAnimationComplete} />
       )}
-      <IntroSec />
-      <Suspense fallback={null}>
-        <WelcomeSec />
-        <AboutmeHome />
-        <Works />
-        <PrinciplesSection />
-        <ManifestHomePage />
-        <ContactHomePage />
-      </Suspense>
+      <IntroSec active={isAnimationPlayed} />
+      {/* imza an oynarken altta 6 ağır bölümü (3'ü ScrollTrigger ile layout
+          okur) eşzamanlı mount etmek kareleri düşürür. warm prefetch chunk'ları
+          idle'da indirir; mount ise imza bitince olur → imza ile bölümler asla
+          aynı anda ekranda olmaz, açılış kasmasız akar. */}
+      {isAnimationPlayed && (
+        <Suspense fallback={null}>
+          <WelcomeSec />
+          <AboutmeHome />
+          <Works />
+          <PrinciplesSection />
+          <ManifestHomePage />
+          <ContactHomePage />
+        </Suspense>
+      )}
     </div>
   );
 };

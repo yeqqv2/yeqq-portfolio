@@ -117,6 +117,57 @@
   opacity: 1;
 }
 
+/* --- sol üst köşe: müzik kontrolü; kapalıyken gizli, açılınca belirir --- */
+.music {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0 1.5em;
+  appearance: none;
+  border: 0;
+  background: none;
+  color: var(--wb500);
+  font-family: inherit;
+  font-size: 0.9em;
+  line-height: 1;
+  text-transform: lowercase;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    top 0.5s cubic-bezier(0.76, 0, 0.24, 1),
+    color 0.3s ease,
+    opacity 0.35s ease;
+}
+
+.island[data-open="true"] .music {
+  top: 0.5em;
+  opacity: 1;
+  visibility: visible;
+}
+
+.music:hover,
+.music:focus-visible {
+  color: var(--wb50);
+}
+
+.musicDot {
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  flex: none;
+  transition: background-color 0.3s ease;
+}
+
+.musicDot[data-on="true"] {
+  background-color: currentColor;
+}
+
 /* --- linkler: orta banda dikey ortalanır; kapalıyken gizli + kırpılır --- */
 .links {
   position: absolute;
