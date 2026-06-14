@@ -1,12 +1,14 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { Link, useParams } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./style.module.css";
 import AnimatedSplit from "@/components/animated-split/AnimatedSplit";
 import LineReveal from "@/components/reveal/LineReveal";
+import Lightbox from "@/components/lightbox/Lightbox";
 import { useTranslation } from "react-i18next";
 import { useProjects } from "@/hooks/useProjects";
+import { prefersReducedMotion } from "@/utils/motion";
 import LoadingPage from "@/components/loading/LoadingPage";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -16,10 +18,14 @@ export default function WorkSinglePage() {
   const { slug } = useParams();
   const currentLang = i18n.language;
 
-  const { data: projects, isLoading, isError, error } = useProjects();
+  const { data: projects, isLoading } = useProjects();
 
   const factsRef = useRef(null);
-  const galleryRefs = useRef([]);
+  const metricsRef = useRef(null);
+  const sheetRef = useRef(null);
+  const thumbRefs = useRef([]);
+
+  const [openIndex, setOpenIndex] = useState(null);
 
   const safeProjects = projects || [];
   const work = safeProjects.find((p) => p.link === `/projects/${slug}`);
@@ -34,41 +40,53 @@ export default function WorkSinglePage() {
 
   const prefetchProjects = () => import("@/pages/projects/ProjectsPage");
 
+  const images = work?.images || [];
+
+  const handleClose = useCallback(() => {
+    setOpenIndex((i) => {
+      if (i != null) {
+        requestAnimationFrame(() =>
+          thumbRefs.current[i]?.focus?.({ preventScroll: true }),
+        );
+      }
+      return null;
+    });
+  }, []);
+
   useEffect(() => {
     if (isLoading || !work) return;
+    if (prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
-      if (factsRef.current) {
-        gsap.from(factsRef.current.children, {
+      const stagger = (target, vars = {}) => {
+        if (!target) return;
+        gsap.from(target.children, {
           opacity: 0,
           y: 20,
-          stagger: 0.1,
+          stagger: 0.08,
           duration: 0.8,
-          ease: "hop",
-          scrollTrigger: {
-            trigger: factsRef.current,
-            start: "top 90%",
-          },
+          ease: "butter",
+          scrollTrigger: { trigger: target, start: "top 88%" },
+          ...vars,
         });
-      }
+      };
 
-      galleryRefs.current.forEach((el) => {
-        if (!el) return;
+      stagger(factsRef.current);
+      stagger(metricsRef.current, { y: 28, stagger: 0.1 });
 
+      if (sheetRef.current) {
         gsap.fromTo(
-          el,
+          sheetRef.current.children,
           { clipPath: "inset(100% 0% 0% 0%)" },
           {
             clipPath: "inset(0% 0% 0% 0%)",
-            duration: 1.5,
-            ease: "hop",
-            scrollTrigger: {
-              trigger: el,
-              start: "top 80%",
-            },
+            duration: 1.1,
+            ease: "butter",
+            stagger: 0.07,
+            scrollTrigger: { trigger: sheetRef.current, start: "top 85%" },
           },
         );
-      });
+      }
     });
 
     return () => ctx.revert();
@@ -82,12 +100,10 @@ export default function WorkSinglePage() {
     return (
       <div className={styles.container} key={`${slug}-${currentLang}`}>
         <section className={styles.hero}>
-          <div className={styles.hero_header}>
-            <AnimatedSplit
-              className={styles.title}
-              text={t("workSingle.labels.not_found") || "Project Not Found"}
-            />
-          </div>
+          <AnimatedSplit
+            className={styles.title}
+            text={t("workSingle.labels.not_found") || "Project Not Found"}
+          />
           <Link to="/projects" onMouseEnter={prefetchProjects}>
             <AnimatedSplit
               text={t("workSingle.labels.back_link") || "Back to Projects"}
@@ -98,140 +114,63 @@ export default function WorkSinglePage() {
     );
   }
 
+  const facts = [
+    { label: t("workSingle.labels.company"), value: work.company_name },
+    {
+      label: t("workSingle.labels.role"),
+      value: work.role || t("workSingle.defaults.role"),
+    },
+    {
+      label: t("workSingle.labels.type"),
+      value: work.type || t("workSingle.defaults.type"),
+    },
+    {
+      label: t("workSingle.labels.tech"),
+      value: work.tech || t("workSingle.defaults.tech"),
+    },
+  ];
+
   const caseStudySections = [
-    {
-      id: "challenge",
-      label: t("workSingle.labels.challenge"),
-      body: work.challenge,
-    },
-    {
-      id: "approach",
-      label: t("workSingle.labels.approach"),
-      body: work.approach,
-    },
-    {
-      id: "impact",
-      label: t("workSingle.labels.impact"),
-      body: work.impact,
-    },
+    { id: "challenge", label: t("workSingle.labels.challenge"), body: work.challenge },
+    { id: "approach", label: t("workSingle.labels.approach"), body: work.approach },
+    { id: "impact", label: t("workSingle.labels.impact"), body: work.impact },
   ].filter((section) => section.body);
 
   return (
     <div className={styles.container} key={`${slug}-${currentLang}`}>
-      {/* HERO */}
+      {/* HERO — type-led, görselsiz */}
       <section className={styles.hero}>
-        <img
-          className={styles.hero_image}
-          src={`${work.asset}/banner.webp`}
-          alt={work.project_name}
-          loading="lazy"
-          decoding="async"
+        <AnimatedSplit
+          key={`title-${currentLang}`}
+          className={styles.title}
+          text={work.project_name}
+          tagName="h1"
+          stagger={0.03}
+          duration={1.5}
+          start="top 90%"
         />
-        <div className={styles.hero_context}>
-          <div className={styles.hero_header}>
-            <AnimatedSplit
-              key={`title-${currentLang}`}
-              className={styles.title}
-              text={work.project_name}
-              tagName="h1"
-              stagger={0.03}
-              duration={1.5}
-              start="top 80%"
-            />
 
-            <AnimatedSplit
-              key={`subtitle-${currentLang}`}
-              className={styles.subtitle}
-              text={work.desc || work.company_name}
-              tagName="p"
-              stagger={0.03}
-              duration={1.5}
-              start="top 80%"
-            />
-          </div>
-          <section className={styles.facts} ref={factsRef}>
-            <div className={styles.fact}>
-              <AnimatedSplit
-                className={styles.factLabel}
-                text={t("workSingle.labels.company")}
-                tagName="span"
-                stagger={0.03}
-                duration={1.5}
-                start="top 80%"
-              />
-              <AnimatedSplit
-                className={styles.factValue}
-                text={work.company_name}
-                tagName="span"
-                stagger={0.03}
-                duration={1.5}
-                start="top 80%"
-              />
-            </div>
+        {(work.desc || work.company_name) && (
+          <LineReveal
+            key={`lede-${currentLang}`}
+            className={styles.lede}
+            text={work.desc || work.company_name}
+            tagName="p"
+            start="top 90%"
+          />
+        )}
 
-            <div className={styles.fact}>
-              <AnimatedSplit
-                className={styles.factLabel}
-                text={t("workSingle.labels.role")}
-                tagName="span"
-                stagger={0.03}
-                duration={1.5}
-                start="top 80%"
-              />
-              <AnimatedSplit
-                key={`role-${currentLang}`}
-                className={styles.factValue}
-                text={work.role || t("workSingle.defaults.role")}
-                tagName="span"
-                stagger={0.03}
-                duration={1.5}
-                start="top 80%"
-              />
+        <div className={styles.facts} ref={factsRef}>
+          {facts.map((fact) => (
+            <div className={styles.fact} key={fact.label}>
+              <span className={styles.factLabel}>{fact.label}</span>
+              <span className={styles.factValue}>{fact.value}</span>
             </div>
-
-            <div className={styles.fact}>
-              <AnimatedSplit
-                className={styles.factLabel}
-                text={t("workSingle.labels.type")}
-                tagName="span"
-                stagger={0.03}
-                duration={1.5}
-                start="top 80%"
-              />
-              <AnimatedSplit
-                key={`type-${currentLang}`}
-                className={styles.factValue}
-                text={work.type || t("workSingle.defaults.type")}
-                tagName="span"
-                stagger={0.03}
-                duration={1.5}
-                start="top 80%"
-              />
-            </div>
-
-            <div className={styles.fact}>
-              <AnimatedSplit
-                className={styles.factLabel}
-                text={t("workSingle.labels.tech")}
-                tagName="span"
-                stagger={0.03}
-                duration={1.5}
-                start="top 80%"
-              />
-              <AnimatedSplit
-                key={`tech-${currentLang}`}
-                className={styles.factValue}
-                text={work.tech || t("workSingle.defaults.tech")}
-                tagName="span"
-                stagger={0.03}
-                duration={1.5}
-                start="top 80%"
-              />
-            </div>
-          </section>
+          ))}
         </div>
       </section>
 
+      {/* CASE STUDY — tek kolon, etiket solda */}
       {caseStudySections.length > 0 && (
         <section className={styles.caseStudy}>
           {caseStudySections.map((section) => (
@@ -241,60 +180,38 @@ export default function WorkSinglePage() {
                 text={section.label}
                 tagName="h2"
                 stagger={0.03}
-                duration={1.5}
-                start="top 85%"
+                duration={1.2}
+                start="top 88%"
               />
               <LineReveal
                 className={styles.caseText}
                 text={section.body}
                 tagName="p"
-                start="top 85%"
+                start="top 88%"
               />
             </article>
           ))}
         </section>
       )}
 
+      {/* METRİKLER — büyük sayı solda, metin sağda */}
       {work.achievements && work.achievements.length > 0 && (
-        <section className={styles.achievements}>
+        <section className={styles.metrics}>
           <AnimatedSplit
             className={styles.sectionTitle}
             text={t("workSingle.labels.achievements")}
             tagName="h2"
             stagger={0.03}
-            duration={1.5}
-            start="top 80%"
+            duration={1.2}
+            start="top 88%"
           />
-          <ul className={styles.achievements_list}>
+          <ul className={styles.metrics_list} ref={metricsRef}>
             {work.achievements.map((a, i) => (
-              <li key={i} className={styles.achievement}>
-                <AnimatedSplit
-                  className={styles.achNumber}
-                  text={a.number}
-                  tagName="span"
-                  stagger={0.03}
-                  duration={1.5}
-                  start="top 80%"
-                />
-                <div className={styles.achievement_context}>
-                  <AnimatedSplit
-                    key={`achTitle-${i}-${currentLang}`}
-                    className={styles.achTitle}
-                    text={a.title}
-                    tagName="h3"
-                    stagger={0.03}
-                    duration={1.5}
-                    start="top 80%"
-                  />
-                  <AnimatedSplit
-                    key={`achDesc-${i}-${currentLang}`}
-                    className={styles.achDesc}
-                    text={a.desc}
-                    tagName="span"
-                    stagger={0.03}
-                    duration={1.5}
-                    start="top 80%"
-                  />
+              <li key={i} className={styles.metric}>
+                <span className={styles.metricNumber}>{a.number}</span>
+                <div className={styles.metric_context}>
+                  <h3 className={styles.metricTitle}>{a.title}</h3>
+                  <p className={styles.metricDesc}>{a.desc}</p>
                 </div>
               </li>
             ))}
@@ -302,38 +219,47 @@ export default function WorkSinglePage() {
         </section>
       )}
 
-      {/* GALLERY */}
-      {work.images && work.images.length > 0 && (
-        <section className={styles.gallery}>
-          {work.images.map((img, i) => (
-            <div
-              key={i}
-              className={`${styles.galleryItem} ${img.isWide ? styles.wide : ""}`}
-              ref={(el) => (galleryRefs.current[i] = el)}
-            >
-              <img
-                src={`${work.asset}/${img.file}`}
-                alt={`${work.project_name} screen ${i + 1}`}
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-          ))}
+      {/* SCREENS — sessiz contact sheet, tıkla → lightbox */}
+      {images.length > 0 && (
+        <section className={styles.screens}>
+          <AnimatedSplit
+            className={styles.sectionTitle}
+            text={t("workSingle.labels.screens")}
+            tagName="h2"
+            stagger={0.03}
+            duration={1.2}
+            start="top 90%"
+          />
+          <div className={styles.sheet} ref={sheetRef}>
+            {images.map((img, i) => (
+              <button
+                type="button"
+                key={i}
+                ref={(el) => (thumbRefs.current[i] = el)}
+                className={styles.thumb}
+                aria-label={`${t("workSingle.lightbox.open")} ${i + 1}`}
+                onClick={() => setOpenIndex(i)}
+              >
+                <img
+                  src={`${work.asset}/${img.file}`}
+                  alt={`${work.project_name} — ${i + 1}`}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </button>
+            ))}
+          </div>
         </section>
       )}
 
       <footer className={styles.next}>
-        <Link
-          to="/projects"
-          onMouseEnter={prefetchProjects}
-          className={styles.button}
-        >
+        <Link to="/projects" onMouseEnter={prefetchProjects} className={styles.button}>
           <AnimatedSplit
             text={t("workSingle.labels.back") || "Back"}
             tagName="span"
             stagger={0.03}
             duration={1.5}
-            start="top 80%"
+            start="top 90%"
           />
         </Link>
         <Link to={nextProject ? nextProject.link : "/projects"}>
@@ -348,10 +274,19 @@ export default function WorkSinglePage() {
             tagName="span"
             stagger={0.03}
             duration={1.5}
-            start="top 80%"
+            start="top 90%"
           />
         </Link>
       </footer>
+
+      <Lightbox
+        images={images}
+        asset={work.asset}
+        projectName={work.project_name}
+        index={openIndex}
+        onClose={handleClose}
+        onNavigate={setOpenIndex}
+      />
     </div>
   );
 }

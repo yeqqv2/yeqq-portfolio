@@ -46,7 +46,13 @@
   object-position: left;
   user-select: none;
   overflow: hidden;
+  filter: grayscale(1) brightness(.925) contrast(.9);
   will-change: clip-path;
+  transition: filter .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.work:hover>.work_img>.img{
+  filter: grayscale(0);
 }
 
 @media screen and (max-width: 1024px) {
@@ -74,4 +80,9 @@
   .works {
     padding: 0.85em 2vw;
   }
+}
+
+@media (hover: hover) {
+  .img { filter: grayscale(1) brightness(.925) contrast(.9); }
+  .work:hover > .work_img > .img { filter: grayscale(0); }
 }

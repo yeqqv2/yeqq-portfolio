@@ -52,6 +52,7 @@ export default function ClosingWhite({ isActive = true }) {
     tl.to(threadEls, {
       opacity: 0.06,
       y: -6,
+      delay: 1,
       duration: 0.7,
       ease: "hop",
       stagger: 0.05,

@@ -194,10 +194,18 @@
       "impact": "[impact]",
       "achievements": "[achievements]",
       "conclusion": "[conclusion]",
+      "screens": "[screens]",
       "back": "● back to works",
       "not_found": "project not found",
       "back_link": "← back to works",
       "next_project": "next project"
+    },
+    "lightbox": {
+      "open": "view screen",
+      "close": "close",
+      "prev": "previous screen",
+      "next": "next screen",
+      "counter": "{{current}} / {{total}}"
     },
     "defaults": {
       "role": "ui/ux designer & developer",
@@ -210,8 +218,9 @@
   "manifesto": {
     "nav": [
       "white",
-      "observer",
       "entropy",
+      "pareto",
+      "observer",
       "dichotomy",
       "choice",
       "loss",
@@ -281,6 +290,29 @@
           {
             "heading": "is the cost worth paying?",
             "body": "every order is a cost, but that cost is not meaningless. what i pay for is a clarity that reduces noise, sharpens the decision, and lightens the load on the user's mind. what we call aesthetics is often that cost made visible."
+          }
+        ]
+      },
+      "pareto": {
+        "label": "pareto",
+        "title": "the curve is not kind",
+        "lead": "in 1896 vilfredo pareto noticed that a fifth of italy held four fifths of the land. the same shape keeps coming back — in wealth, in cities, in code, in attention. value is not shared; it pools.",
+        "sections": [
+          {
+            "heading": "1896: the shape that keeps returning",
+            "body": "pareto started with land, but the curve would not stay there. word frequencies, city sizes, the magnitude of earthquakes, the wealth of nations — again and again the same long tail appears: a steep head where almost everything gathers, and a vast, flat plain where almost nothing does. it is not a coincidence to be smoothed away; it is the natural geometry of how value concentrates."
+          },
+          {
+            "quote": "the vital few and the trivial many.",
+            "cite": "joseph m. juran, 1951"
+          },
+          {
+            "heading": "the average is a fiction",
+            "body": "in a power law almost nothing sits at the mean. the average user, the average outcome, the average day — they are arithmetic ghosts that rarely walk the earth. the head towers, the tail sprawls, and the middle, where the average is supposed to live, is nearly empty. to design for the average is to design for no one."
+          },
+          {
+            "heading": "what i want you to keep",
+            "body": "most of what you make is the long tail: the screen no one opens, the feature no one touches, the day no one remembers. that is not failure — it is the shape of things, and fighting it only spreads you thin. the work is not to do more. it is to find the vital few — the one screen, the one sentence, the one decision that carries the rest — and to pour yourself there."
           }
         ]
       },
@@ -403,8 +435,18 @@
       "title": "[the entropy of mind]",
       "desc": "order is not a state; it is an expense. it exists while you hold, and scatters when you let go. behind every standing system, someone is paying the cost. i pay it gladly."
     },
+    "pareto": {
+      "title": "[the tyranny of the few]",
+      "desc": "value is not shared evenly; it pools. a vital few carry almost everything, and the rest is a long, flat, forgotten tail. the whole craft is choosing which few to become.",
+      "hint": "tap to see how value really pools",
+      "even": "we expect the world to share evenly.",
+      "real": "but the few hold almost everything.",
+      "head": "the vital few",
+      "tail": "the trivial many",
+      "toggle": "reveal the distribution"
+    },
     "observer": {
-      "title": "[the observer's tyranny]",
+      "title": "[the observer's power]",
       "eye_label": "observe",
       "desc": "the system holds all errors and all truths simultaneously until i observe it. reality is a heap of possibilities pruned by the attention of a rational observer. i don't write code; i force probabilities into a single rational output.",
       "lines": [
@@ -421,24 +463,24 @@
       "final": "the other four you will never read.",
       "doors": [
         {
-          "whisper": "maybe in another city...",
-          "full": "maybe in another city, at another desk, you were asking the same question."
+          "whisper": "another city...",
+          "full": "another city, another desk — still you, still asking the same question. the place was never going to change that."
         },
         {
-          "whisper": "a line never written...",
-          "full": "a line never written, a project never opened, a team you never met."
+          "whisper": "what you never did...",
+          "full": "a word you never said, a thing you never made, a chance you never took. the world won't miss any of it — only you will feel the gap where it should be."
         },
         {
-          "whisper": "that job you didn't say yes to...",
-          "full": "that job you didn't say yes to would have turned you into someone else; who, you'll never know."
+          "whisper": "the yes you didn't say...",
+          "full": "the yes you didn't say would have built another you, a stranger you'd still call yourself. you won't meet him."
         },
         {
           "whisper": "a quieter life...",
-          "full": "a quieter life: less screen, more morning. you could have loved that one too."
+          "full": "a quieter life: less screen, more morning. not a worse one — one you'd have loved just as much. that's the weight."
         },
         {
-          "whisper": "someone like a mirror...",
-          "full": "someone like a mirror, who made every choice you didn't. you will never meet them."
+          "whisper": "the one who chose otherwise...",
+          "full": "somewhere a you opened every door you closed. you can't weigh your life against his, so stop keeping score."
         }
       ]
     },

@@ -194,10 +194,18 @@
       "impact": "[etki]",
       "achievements": "[başarılar]",
       "conclusion": "[sonuç]",
+      "screens": "[ekranlar]",
       "back": "● işlere geri dön",
       "not_found": "proje bulunamadı",
       "back_link": "← işlere geri dön",
       "next_project": "sıradaki proje"
+    },
+    "lightbox": {
+      "open": "ekranı incele",
+      "close": "kapat",
+      "prev": "önceki ekran",
+      "next": "sonraki ekran",
+      "counter": "{{current}} / {{total}}"
     },
     "defaults": {
       "role": "ui/ux tasarımcısı & geliştirici",
@@ -210,8 +218,9 @@
   "manifesto": {
     "nav": [
       "beyaz",
-      "gözlemci",
       "entropi",
+      "pareto",
+      "gözlemci",
       "ikilik",
       "seçim",
       "kayıp",
@@ -281,6 +290,29 @@
           {
             "heading": "bedel ödemeye değer mi?",
             "body": "her düzen bir maliyettir, ama bu maliyet anlamsız değildir. ödediğim bedel; gürültüyü azaltan, kararı netleştiren ve kullanıcının zihnindeki yükü hafifleten bir berraklıktır. estetik dediğimiz şey, çoğu zaman bu bedelin görünür hale gelmiş halidir."
+          }
+        ]
+      },
+      "pareto": {
+        "label": "pareto",
+        "title": "eğri merhametsizdir",
+        "lead": "1896'da vilfredo pareto, italya'nın beşte birinin toprağın beşte dördünü elinde tuttuğunu fark etti. aynı şekil sürekli geri geliyor — servette, şehirlerde, kodda, dikkatte. değer paylaşılmaz; birikir.",
+        "sections": [
+          {
+            "heading": "1896: sürekli geri dönen şekil",
+            "body": "pareto toprakla başladı ama eğri orada durmadı. kelimelerin sıklığı, şehirlerin büyüklüğü, depremlerin şiddeti, ulusların serveti — defalarca aynı uzun kuyruk: neredeyse her şeyin toplandığı dik bir baş ve neredeyse hiçbir şeyin olmadığı geniş, düz bir ova. düzeltilip atılacak bir tesadüf değil; değerin nasıl yoğunlaştığının doğal geometrisi bu."
+          },
+          {
+            "quote": "hayati azınlık ve önemsiz çoğunluk.",
+            "cite": "joseph m. juran, 1951"
+          },
+          {
+            "heading": "ortalama bir kurgudur",
+            "body": "bir güç yasasında neredeyse hiçbir şey ortalamada durmaz. ortalama kullanıcı, ortalama sonuç, ortalama gün — yeryüzünde nadiren yürüyen aritmetik hayaletlerdir. baş yükselir, kuyruk yayılır, ortalamanın yaşaması gereken orta ise neredeyse boştur. ortalamaya tasarlamak, hiç kimseye tasarlamaktır."
+          },
+          {
+            "heading": "aklında kalsın istediğim",
+            "body": "yaptığın şeyin çoğu uzun kuyruktur: kimsenin açmadığı ekran, kimsenin dokunmadığı özellik, kimsenin hatırlamadığı gün. bu bir başarısızlık değil — işlerin şekli bu ve onunla savaşmak yalnızca seni inceltir. mesele daha fazlasını yapmak değil. hayati azınlığı bulmak — gerisini taşıyan o tek ekranı, o tek cümleyi, o tek kararı — ve kendini oraya dökmek."
           }
         ]
       },
@@ -403,8 +435,18 @@
       "title": "[zihnin entropisi]",
       "desc": "düzen bir durum değil, bir harcamadır. bastığın sürece var, bıraktığın an dağılır. ayakta duran her sistemin arkasında bedeli ödeyen biri vardır. ben o bedeli severek öderim."
     },
+    "pareto": {
+      "title": "[azınlığın tiranlığı]",
+      "desc": "değer eşit paylaşılmaz; birikir. hayati bir azınlık neredeyse her şeyi taşır, gerisi uzun, düz, unutulmuş bir kuyruktur. bütün zanaat, hangi azınlık olacağını seçmektir.",
+      "hint": "değerin nasıl biriktiğini görmek için dokun",
+      "even": "dünyanın eşit paylaşmasını bekleriz.",
+      "real": "ama azınlık neredeyse her şeyi tutar.",
+      "head": "hayati azınlık",
+      "tail": "önemsiz çoğunluk",
+      "toggle": "dağılımı göster"
+    },
     "observer": {
-      "title": "[gözlemcinin tiranlığı]",
+      "title": "[gözlemcinin gücü]",
       "eye_label": "gözlemle",
       "desc": "sistem, ben ona bakmadığım sürece tüm hataları ve tüm doğruları aynı anda barındırır. gerçeklik, rasyonel bir gözlemcinin dikkatiyle budanmış bir olasılıklar yığınıdır. ben kod yazmıyorum; ben ihtimalleri tek bir rasyonel çıktıya zorluyorum.",
       "lines": [
@@ -421,24 +463,24 @@
       "final": "kalan dördünü hiç okumayacaksın.",
       "doors": [
         {
-          "whisper": "belki başka bir şehirde...",
-          "full": "belki başka bir şehirde, başka bir masada, aynı soruyu soruyordun."
+          "whisper": "başka bir şehir...",
+          "full": "başka bir şehir, başka bir masa — yine sen, yine aynı soruyu soruyorsun. kapı seni değiştirecek şey hiç değildi."
         },
         {
-          "whisper": "hiç yazılmayan bir satır...",
-          "full": "hiç yazılmayan bir satır, hiç açılmayan bir proje, hiç tanışmadığın bir ekip."
+          "whisper": "hiç yapmadığın şey...",
+          "full": "söylemediğin bir söz, yapmadığın bir şey, denemediğin bir şans. dünya hiçbirini özlemez — eksikliğini yalnız sen hissedersin."
         },
         {
-          "whisper": "evet demediğin o iş...",
-          "full": "evet demediğin o iş seni başka birine dönüştürecekti; kime, artık bilemezsin."
+          "whisper": "demediğin o 'evet'...",
+          "full": "demediğin o evet başka bir seni kurardı; yine kendin diyeceğin bir yabancıyı. onunla tanışmayacaksın."
         },
         {
           "whisper": "daha sessiz bir hayat...",
-          "full": "daha sessiz bir hayat: az ekran, çok sabah. onu da sevebilirdin."
+          "full": "daha sessiz bir hayat: az ekran, çok sabah. daha kötüsü değil — onu da en az bu kadar severdin. ağırlık tam burada."
         },
         {
-          "whisper": "aynaya benzeyen biri...",
-          "full": "aynaya benzeyen biri, senin yapmadığın her seçimi yapmış. onunla hiç karşılaşmayacaksın."
+          "whisper": "tersini seçen o kişi...",
+          "full": "bir yerlerde, kapadığın her kapıyı açan bir sen var. hayatını onunkiyle tartamazsın, bırak hesap tutmayı."
         }
       ]
     },

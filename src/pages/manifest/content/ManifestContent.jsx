@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ManifestArc from "@/pages/manifest/arc/ManifestArc";
 import ObserverEffect from "@/pages/manifest/observer/ObserverEffect";
 import CostOfOrder from "@/pages/manifest/cost/CostOfOrder";
+import ParetoDistribution from "@/pages/manifest/pareto/ParetoDistribution";
 import WeightOfChoice from "@/pages/manifest/choice/WeightOfChoice";
 import AsymmetryOfLoss from "@/pages/manifest/assymetry/AsymmetryOfLoss";
 import PrisonersDilemma from "@/pages/manifest/dilemma/PrisonersDilemma";
@@ -17,15 +18,20 @@ import TheDichotomy from "../dichotomy/TheDichotomy";
 
 gsap.registerPlugin(ScrollTrigger);
 
+/* sıra = manifestonun anlatı yayı: doğuş (beyaz) → dünyanın yasaları
+   (entropi, pareto) → algı köprüsü (gözlemci) → benlik (ikilik, seçim,
+   kayıp) → öteki (ikilem) → kalan (kapanış). labelIndex artık dizideki
+   konumla aynı; nav etiketleriyle birebir. */
 const PANELS = [
-  { id: "arc", labelIndex: 0, Component: ManifestArc },
-  { id: "observer", labelIndex: 1, Component: ObserverEffect },
-  { id: "cost", labelIndex: 2, Component: CostOfOrder },
-  { id: "choice", labelIndex: 3, Component: TheDichotomy },
-  { id: "dichotomy", labelIndex: 4, Component: WeightOfChoice },
-  { id: "loss", labelIndex: 5, Component: AsymmetryOfLoss },
-  { id: "dilemma", labelIndex: 6, Component: PrisonersDilemma },
-  { id: "closing", labelIndex: 7, Component: ClosingWhite },
+  { id: "white", labelIndex: 0, Component: ManifestArc },
+  { id: "entropy", labelIndex: 1, Component: CostOfOrder },
+  { id: "pareto", labelIndex: 2, Component: ParetoDistribution },
+  { id: "observer", labelIndex: 3, Component: ObserverEffect },
+  { id: "dichotomy", labelIndex: 4, Component: TheDichotomy },
+  { id: "choice", labelIndex: 5, Component: WeightOfChoice },
+  { id: "loss", labelIndex: 6, Component: AsymmetryOfLoss },
+  { id: "dilemma", labelIndex: 7, Component: PrisonersDilemma },
+  { id: "remains", labelIndex: 8, Component: ClosingWhite },
 ];
 
 /* her geçişten sonra panel ekranda bir süre sabit dinlenir (plato).

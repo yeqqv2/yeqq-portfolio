@@ -10,8 +10,9 @@ import styles from "./style.module.css";
 // "sıradaki" gezinmesi ve sayfa indeksi (01 / 06) bunu kullanır.
 const ORDER = [
   "white",
-  "observer",
   "entropy",
+  "pareto",
+  "observer",
   "dichotomy",
   "choice",
   "loss",
