@@ -43,8 +43,8 @@
 
 .input:focus,
 .textarea:focus {
-  outline: 2px solid var(--wb950);
-  outline-offset: 2px;
+  border: none;
+  outline: none;
 }
 
 .textarea {

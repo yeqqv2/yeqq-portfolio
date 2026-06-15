@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { prefersReducedMotion } from "@/utils/motion";
 import styles from "./style.module.css";
 import PrimerLink from "@/ui/link/PrimerLink";
+import LineReveal from "@/components/reveal/LineReveal";
 
 /* beyaza dönüş — manifestonun kapanışı. ilk panel "beyazın ağırlığı" ile
    açılan sayfa, 7 fikrin beyaza soyulup geriye tek satır ve [yeqq] imzasının
@@ -91,15 +92,13 @@ export default function ClosingWhite({ isActive = true }) {
         ))}
       </div>
 
-      <p className={styles.line} ref={lineRef}>
-        {line.split(" ").map((w, i) => (
-          <Fragment key={i}>
-            <span className={styles.mask}>
-              <span className={styles.word}>{w}</span>
-            </span>{" "}
-          </Fragment>
-        ))}
-      </p>
+      <LineReveal
+        key={t("manifesto.closing.line")}
+        text={t("manifesto.closing.line")}
+        className={styles.desc}
+        tagName="p"
+        start="top 80%"
+      />
 
       <span ref={signatureRef} className={styles.signature}>
         [yeqq]
