@@ -46,18 +46,6 @@
   text-wrap: balance;
 }
 
-.mask {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: bottom;
-}
-
-.word {
-  display: inline-block;
-  transform: translateY(110%); /* maskenin altında gizli; gsap yükseltir */
-  will-change: transform;
-}
-
 /* ---- imza: entropi panelinde kaostan dizilen wordmark, sonda mühür ---- */
 .signature {
   font-size: 1.05em;

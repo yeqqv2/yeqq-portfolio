@@ -37,19 +37,26 @@ const PANELS = [
 /* her geçişten sonra panel ekranda bir süre sabit dinlenir (plato).
    geçiş = 1 birim (%100 viewport scroll), plato = DWELL birim.
    plato fazla kaydırmayı emer: yeni panel oturduğunda bir sonraki
-   hemen alttan görünmeye başlamaz. */
+   hemen alttan görünmeye başlamaz. ilk panel (white on white) geçişle
+   değil pin'le gelir; o yüzden başa da bir plato (LEAD) koyulur ki o da
+   diğerleri gibi ekranda dursun, ilk scroll'da hemen kaymaya başlamasın. */
 const DWELL = 1;
 const SEG = 1 + DWELL;
 const LAST = PANELS.length - 1;
-const TOTAL = LAST * SEG; // son geçişten sonra da bir plato kalır
+const LEAD = DWELL; // ilk panelin baştaki platosu
+const TOTAL = LEAD + LAST * SEG; // baştaki + her geçişten sonraki platolar
 const PANEL_RENDER_RADIUS = 1;
 
-/* timeline içindeki t anına göre aktif panel: geçişin yarısını
-   aşınca gelen panel "aktif" sayılır */
+/* timeline içindeki t anına göre aktif panel: baştaki plato boyunca ilk
+   panel; sonrasında her geçişin yarısını aşınca gelen panel aktif sayılır */
 const activeAt = (t) => {
-  const i = Math.floor(t / SEG);
-  const local = t - i * SEG;
-  return Math.min(LAST, local >= 0.5 ? i + 1 : i);
+  if (t <= LEAD) return 0;
+  const u = t - LEAD;
+  const b = Math.floor(u / SEG);
+  const local = u - b * SEG;
+  // local < 1: geçiş (yarıyı aşınca gelen panel); local >= 1: plato (gelen panel)
+  const idx = local < 1 ? (local >= 0.5 ? b + 1 : b) : b + 1;
+  return Math.min(LAST, idx);
 };
 
 export default function ManifestContent() {
@@ -131,6 +138,10 @@ export default function ManifestContent() {
         },
       });
 
+      // baştaki plato: white on white paneli pin devreye girince ekranda
+      // diğerleri gibi bir süre durur, ilk scroll'da hemen kaymaya başlamaz
+      tl.to({}, { duration: LEAD });
+
       panels.slice(1).forEach((panel, i) => {
         const outgoing = panels[i]; // bir önceki panel
         // gelen panel alttan kayıp üste biner
@@ -160,13 +171,20 @@ export default function ManifestContent() {
       if (p <= 0.0005 || p >= 0.9995) return;
 
       const t = p * TOTAL;
-      const i = Math.floor(t / SEG);
-      const local = t - i * SEG;
+      if (t <= LEAD) return; // baştaki platoda: dokunma
+      const u = t - LEAD;
+      const b = Math.floor(u / SEG);
+      const local = u - b * SEG;
       if (local > 1) return; // zaten platoda: dokunma
 
-      // yarıyı geçtiyse ileri, geçmediyse geri — hedef platonun ortası
+      // yarıyı geçtiyse ileri (gelen panelin platosu), geçmediyse geri
+      // (çıkan panelin platosu) — hedef o platonun ortası
       const settled =
-        local < 0.5 ? Math.max(0, i * SEG - DWELL / 2) : i * SEG + 1 + DWELL / 2;
+        local < 0.5
+          ? b === 0
+            ? LEAD / 2
+            : LEAD + b * SEG - DWELL / 2
+          : LEAD + b * SEG + 1 + DWELL / 2;
       const target = st.start + (st.end - st.start) * (settled / TOTAL);
       if (Math.abs(target - st.scroll()) < 2) return;
 
@@ -190,8 +208,10 @@ export default function ManifestContent() {
     const st = triggerRef.current;
 
     if (st) {
-      // panel i, (i-1). geçişin sonunda oturur; hedef o platonun ortası
-      const settled = index === 0 ? 0 : (index - 1) * SEG + 1 + DWELL / 2;
+      // ilk panel baştaki platoda oturur; panel i ise (i-1). geçişin
+      // sonundaki platoda — hedef o platonun ortası
+      const settled =
+        index === 0 ? LEAD / 2 : LEAD + (index - 1) * SEG + 1 + DWELL / 2;
       const y = st.start + (st.end - st.start) * (settled / TOTAL);
 
       if (window.lenis) {
