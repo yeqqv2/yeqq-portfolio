@@ -1,113 +1,109 @@
-# [ yeqq ] Portfolio
+# [ yeqq ] portfolio
 
-Yunus Emre Korkmaz'in kisisel portfolio sitesi. Tasarimci bakisi ile front-end muhendisligini bir araya getiren, case study odakli, animasyonlu ve iki dilli bir React uygulamasi.
+yunus emre korkmaz'ın kişisel portfolyo sitesi. tasarımcı bakışıyla front-end mühendisliğini bir araya getiren, case study odaklı, animasyonlu ve iki dilli bir react uygulaması.
 
 ![yeqq portfolio preview](public/assets/banners/skynotech-1600.webp)
 
-## Genel Bakis
+## genel bakış
 
-Bu portfolio; belediye servisleri, sosyal fayda odakli mobil uygulamalar, startup urunleri ve kurumsal web deneyimleri uzerinden tasarim, front-end gelistirme ve UI/UX dusunme bicimini anlatir.
+bu portfolyo; belediye servisleri, sosyal fayda odaklı mobil uygulamalar, startup ürünleri ve kurumsal web deneyimleri üzerinden tasarım, front-end geliştirme ve ui/ux düşünme biçimini anlatır.
 
-Sitenin ana fikri sade: az arayuz, guclu ritim, net kararlar. Buyuk tipografi, beyaz alan, proje gorselleri, mikro etkilesimler ve olculebilir proje sonuclari portfolio deneyiminin merkezinde yer alir.
+ana fikir sade: az arayüz, güçlü ritim, net kararlar. büyük tipografi, beyaz alan, proje görselleri, mikro etkileşimler ve ölçülebilir sonuçlar deneyimin merkezinde.
 
-## One Cikanlar
+## öne çıkanlar
 
-- React 18 ve Vite ile gelistirilmis modern front-end yapi.
-- GSAP, ScrollTrigger, SplitType ve Lenis ile akici sayfa gecisleri ve scroll animasyonlari.
-- Turkce/Ingilizce dil destegi icin i18next ve browser language detection.
-- Proje filtreleme, detay sayfalari, case study metrikleri ve galeri akisi.
-- Mobil ve web projeleri icin ayrilmis gorsel asset yapisi.
-- Formspree entegrasyonlu iletisim formu.
-- `prefers-reduced-motion`, skip link ve focus-visible gibi erisilebilirlik detaylari.
-- Vite manual chunks ile React ve GSAP vendor ayrimi.
+- react 18 ve vite ile modern front-end yapı.
+- gsap, scrolltrigger, split-type ve lenis ile akıcı geçişler ve scroll animasyonları.
+- türkçe/ingilizce dil desteği: i18next + browser language detection.
+- proje filtreleme, detay sayfaları, case study metrikleri ve galeri akışı.
+- `prefers-reduced-motion`, skip link ve focus-visible gibi erişilebilirlik detayları.
+- vite manual chunks ile react ve gsap vendor ayrımı.
 
-## Sayfalar
+## sayfalar
 
-| Route | Aciklama |
+| route | açıklama |
 | --- | --- |
-| `/` | Ana sayfa, intro, ozet hakkimda, secili isler, ilkeler ve iletisim cagrisini icerir. |
-| `/about-me` | Kisisel hikaye, calisma yaklasimi, tech stack ve cizim tabanli "discover me" etkilesimi. |
-| `/projects` | Tum projeler, filtreler ve case study kartlari. |
-| `/projects/:slug` | Tekil proje detaylari, rol/sirket/tur/teknoloji bilgileri, basari metrikleri ve galeri. |
-| `/manifest` | Tasarim ve karar verme yaklasimini anlatan deneysel manifesto alani. |
-| `/manifest/:slug` | Manifesto konseptlerinin uzun form yazilari. |
-| `/contact-me` | Iletisim formu, e-posta ve sosyal baglantilar. |
+| `/` | ana sayfa: intro, özet hakkımda, seçili işler, ilkeler ve iletişim çağrısı. |
+| `/about-me` | kişisel hikaye, çalışma yaklaşımı, tech stack ve "discover me" etkileşimi. |
+| `/projects` | tüm projeler, filtreler ve case study kartları. |
+| `/projects/:slug` | tekil proje detayı: rol, şirket, tür, teknoloji, başarı metrikleri ve galeri. |
+| `/manifest` | tasarım ve karar verme yaklaşımını anlatan deneysel manifesto alanı. |
+| `/manifest/:slug` | manifesto konseptlerinin uzun form yazıları. |
+| `/contact-me` | iletişim formu, e-posta ve sosyal bağlantılar. |
 
-## Secili Projeler
+## seçili projeler
 
-- **Skynotech Smart Site Systems**: IoT tabanli site yonetim platformu, MVP teslimi, cihaz yonetimi ve operasyonel verimlilik metrikleri.
-- **Skynotech Corporate Website**: Marka kimligi, kurumsal web varligi ve design system uygulamasi.
-- **Balikesir Digital Employment Platform**: Belediye odakli istihdam platformu, performans ve erisilebilirlik metrikleri.
-- **Balikesir Event App**: Genclik etkinlikleri icin React Native mobil uygulama deneyimi.
-- **Yakin Kart**: Sosyal finansal destek sureclerini dijitallestiren mobil uygulama.
-- **BAPKA Website**: Kurumsal yeniden tasarim, SEO ve icerik stratejisi.
-- **Askida Fatura**: Anonim yardimlasma ve fatura odeme akisi.
-- **Can Dostlar**: Sahiplenme surecini seffaflastiran sosyal fayda uygulamasi.
-- **Balikesir Eczane**: Nobetci eczane bulma ve acil durum odakli mobil akis.
+- **skynotech smart site systems** — iot tabanlı site yönetim platformu; mvp teslimi, cihaz yönetimi, operasyonel verimlilik.
+- **skynotech corporate website** — marka kimliği, kurumsal web varlığı, design system.
+- **balıkesir digital employment platform** — belediye odaklı istihdam platformu; performans ve erişilebilirlik.
+- **balıkesir event app** — gençlik etkinlikleri için react native mobil uygulama.
+- **yakın kart** — sosyal finansal destek süreçlerini dijitalleştiren mobil uygulama.
+- **bapka website** — kurumsal yeniden tasarım, seo ve içerik stratejisi.
+- **askıda fatura** — anonim yardımlaşma ve fatura ödeme akışı.
+- **can dostlar** — sahiplenme sürecini şeffaflaştıran sosyal fayda uygulaması.
+- **balıkesir eczane** — nöbetçi eczane bulma, acil durum odaklı mobil akış.
 
-## Teknoloji
+## teknoloji
 
-| Alan | Teknolojiler |
+| alan | teknolojiler |
 | --- | --- |
-| Core | React, React DOM, Vite |
-| Routing | React Router |
-| Animasyon | GSAP, ScrollTrigger, CustomEase, SplitType |
-| Scroll | Lenis |
-| Dil | i18next, react-i18next, i18next-browser-languagedetector |
-| UI | CSS Modules, custom design tokens, React Icons |
-| Form | Formspree |
-| Gorsel optimizasyon | WebP asset setleri, responsive `srcSet`, lazy/eager image loading |
+| core | react, react-dom, vite |
+| routing | react-router |
+| animasyon | gsap, scrolltrigger, customease, split-type |
+| scroll | lenis |
+| dil | i18next, react-i18next, i18next-browser-languagedetector |
+| yardımcı | lodash-es |
+| ui | css modules, custom design tokens |
+| görsel | webp asset setleri, responsive `srcset`, lazy/eager image loading |
 
-## Proje Yapisi
+## proje yapısı
 
 ```txt
 src/
-  animations/        # Acilis, skeleton ve sayfa ici animasyon bilesenleri
-  components/        # Ortak kart, link, loading, split text ve reveal bilesenleri
-  hooks/             # Proje cursor, proje verisi ve reveal hook'lari
-  layouts/           # Navbar, footer ve genel sayfa layout'u
-  locales/           # TR/EN ceviri dosyalari
-  pages/             # Home, About, Projects, Project detail, Manifest, Contact
-  styles/            # Global stiller, reset, fontlar ve renk degiskenleri
-  ui/                # Button, input, checkbox, menu gibi temel UI parcalari
-  utils/             # Proje verisi, renk ve motion yardimcilari
+  components/   # reveal, signature-intro, smooth-scroll, lightbox, kartlar, loading
+  hooks/        # useProjects, useProjectCursor, useMusic
+  layouts/      # navbar, footer, app layout
+  locales/      # tr/en çeviri dosyaları
+  pages/        # home, about, projects, project, manifest, contact, not-found
+  styles/       # reset, global, fonts, scrollbar, değişkenler
+  ui/           # button, link, menu
+  utils/        # projects, colors, eases, motion, music
+  i18n.jsx      # i18next kurulumu
+  main.jsx      # uygulama girişi
 public/
-  assets/            # Proje gorselleri, banner'lar, videolar, fontlar ve ikonlar
+  assets/       # proje görselleri, banner'lar, videolar, fontlar, ikonlar
 ```
 
-## Kurulum
+## kurulum
 
 ```bash
 npm install
 npm run dev
 ```
 
-Yerel gelistirme sunucusu varsayilan olarak:
+geliştirme sunucusu: `http://localhost:5173/`
 
-```txt
-http://127.0.0.1:5173/
-```
-
-## Uretim Derlemesi
+## üretim derlemesi
 
 ```bash
 npm run build
 npm run preview
 ```
 
-Bu repo Vite kullandigi icin eski Create React App komutlari (`npm start`, `npm test`, `npm run eject`) bu proje icin gecerli degildir.
+vite kullanıldığı için create react app komutları (`npm start`, `npm test`, `npm run eject`) bu projede geçerli değildir.
 
-## Notlar
+## notlar
 
-- Ana proje verisi [src/utils/projects.js](src/utils/projects.js) dosyasinda tutulur.
-- Dil metinleri [src/locales/tr.json](src/locales/tr.json) ve [src/locales/en.json](src/locales/en.json) icindedir.
-- SEO giris noktalari `index.html`, `public/sitemap.xml`, `public/robots.txt` ve `public/manifest.json` uzerinden yonetilir.
-- Canli domain meta verilerde `https://yeqq.com.tr/` olarak tanimlanmistir.
+- proje verisi [src/utils/projects.js](src/utils/projects.js) dosyasında tutulur.
+- dil metinleri [src/locales/tr.json](src/locales/tr.json) ve [src/locales/en.json](src/locales/en.json) içindedir.
+- seo giriş noktaları `index.html`, `public/sitemap.xml`, `public/robots.txt` ve `public/manifest.json` üzerinden yönetilir.
+- canlı domain meta verilerde `https://yeqq.com.tr/` olarak tanımlıdır.
 
-## Tasarim Yaklasimi
+## tasarım yaklaşımı
 
-Portfolio, klasik "kart ve kahraman alan" yapisinin disina cikarak daha editorial ve deneysel bir dil kurar. Bosluk, yavas acilan animasyonlar, buyuk tipografi, kisilikli mikro etkilesimler ve proje metrikleri birlikte kullanilir. Amac yalnizca isleri listelemek degil; dusunme bicimini, tasarim kararlarini ve uygulama disiplinini hissettirmektir.
+portfolyo, klasik "kart ve kahraman alan" yapısının dışına çıkarak daha editorial ve deneysel bir dil kurar. boşluk, yavaş açılan animasyonlar, büyük tipografi, kişilikli mikro etkileşimler ve proje metrikleri birlikte kullanılır. amaç yalnızca işleri listelemek değil; düşünme biçimini, tasarım kararlarını ve uygulama disiplinini hissettirmek.
 
-## Lisans
+## lisans
 
-Bu proje kisisel portfolio calismasidir. Tasarim, metinler ve gorsel varliklar Yunus Emre Korkmaz'a aittir.
+kişisel portfolyo çalışması. tasarım, metinler ve görsel varlıklar yunus emre korkmaz'a aittir.
+```
