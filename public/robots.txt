@@ -1,12 +1,7 @@
-# -------------------------------------------------------------------
-# 1. Genel Kurallar (Tüm Tarayıcılar için)
-# -------------------------------------------------------------------
+# https://yeqq.com.tr — robots
+# tüm tarayıcılara izin ver
 User-agent: *
-Disallow:
+Allow: /
 
-# -------------------------------------------------------------------
-# 2. Site Haritası (Sitemap) Yönlendirmesi (KRİTİK)
-# Arama motorlarına sitenizin yapısını nerede bulacaklarını söyler.
-# Bu olmadan tarama, sitenizi kaçırabilir.
-# -------------------------------------------------------------------
-Sitemap: https://www.yeqq.com.tr/sitemap.xml
+# site haritası (canonical: www'siz)
+Sitemap: https://yeqq.com.tr/sitemap.xml

@@ -1,4 +1,5 @@
 {
+	"id": "/",
 	"short_name": "[ yeqq ]",
 	"name": "Yunus Emre Korkmaz | Portfolio & Projects",
 	"description": "Yunus Emre Korkmaz'ın profesyonel yazılım geliştirme portföyü ve mobil / web projeleri.",
@@ -13,14 +14,21 @@
 			"src": "/logo192.png",
 			"sizes": "192x192",
 			"type": "image/png",
-			"purpose": "any maskable"
+			"purpose": "any"
+		},
+		{
+			"src": "/logo192.png",
+			"sizes": "192x192",
+			"type": "image/png",
+			"purpose": "maskable"
 		}
 	],
 	"start_url": "/",
 	"scope": "/",
 	"display": "standalone",
-	"orientation": "portrait",
 	"theme_color": "#fefefe",
 	"background_color": "#fefefe",
-	"lang": "en-US"
+	"lang": "en",
+	"dir": "ltr",
+	"categories": ["portfolio", "design", "developer"]
 }

@@ -2,10 +2,20 @@
 <html lang="en" translate="no">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#fefefe" />
+    <meta name="color-scheme" content="light" />
 
+    <!-- canonical (www'siz, sunucuda www -> www'siz 301 olmalı) -->
+    <link rel="canonical" href="https://yeqq.com.tr/" />
+
+    <!-- icons -->
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/logo192.png" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- primary -->
     <meta
       name="description"
       content="i'm yunus emre korkmaz [yeqq]. i design, and i write code — frontend & ui/ux, built with react, next.js and react native. what i care about is making the complex simple, and the simple meaningful."
@@ -15,31 +25,59 @@
       content="React Developer, Frontend Developer, UI/UX Designer, React Native, Next.js, Mobile App Developer, Figma, JavaScript, TypeScript, Önyüz Geliştirici, Yunus Emre Korkmaz, yeqq, Portfolio"
     />
     <meta name="author" content="Yunus Emre Korkmaz" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
-    <meta
-      property="og:title"
-      content="yunus emre korkmaz — [yeqq]"
-    />
-    <meta
-      property="og:description"
-      content="i design, and i write code."
-    />
+    <!-- open graph -->
+    <meta property="og:title" content="yunus emre korkmaz — [yeqq]" />
+    <meta property="og:description" content="i design, and i write code." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://yeqq.com.tr/" />
+    <meta property="og:site_name" content="[yeqq]" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="tr_TR" />
     <meta property="og:image" content="https://yeqq.com.tr/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="yunus emre korkmaz — [yeqq]" />
+
+    <!-- twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="yunus emre korkmaz — [yeqq]"
-    />
+    <meta name="twitter:title" content="yunus emre korkmaz — [yeqq]" />
     <meta
       name="twitter:description"
       content="i design, and i write code — frontend & ui/ux. a few of the things i've made."
     />
     <meta name="twitter:image" content="https://yeqq.com.tr/og-image.png" />
-    
-    <link rel="apple-touch-icon" href="/logo192.png" />
-    <link rel="manifest" href="/manifest.json" />
+    <meta name="twitter:image:alt" content="yunus emre korkmaz — [yeqq]" />
+
+    <!-- structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Yunus Emre Korkmaz",
+        "alternateName": "yeqq",
+        "url": "https://yeqq.com.tr/",
+        "image": "https://yeqq.com.tr/og-image.png",
+        "email": "mailto:ynsmrkrkmzz@gmail.com",
+        "jobTitle": "Frontend Developer & UI/UX Designer",
+        "description": "frontend & ui/ux — built with react, next.js and react native.",
+        "knowsAbout": [
+          "React",
+          "Next.js",
+          "React Native",
+          "TypeScript",
+          "JavaScript",
+          "UI/UX Design",
+          "Frontend Development"
+        ],
+        "sameAs": [
+          "https://github.com/yeqqv2",
+          "https://www.instagram.com/1yunusewre"
+        ]
+      }
+    </script>
 
     <style>
       html,
