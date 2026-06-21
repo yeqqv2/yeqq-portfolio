@@ -1,159 +1,174 @@
 .container {
-  height: 100vh;
+  min-height: 100dvh;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5vh;
   position: relative;
 }
 
+.header {
+  min-height: 100dvh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
 /* ================================== */
-/* HEADER */
+/* ÜÇ DİKEY KOLON — bilerek hizasız, kenarlardan taşar */
 /* ================================== */
 
-.header {
-  height: 100vh;
+.cols {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  /* hizasızlık artık YÜKSEKLİKTEN değil dikey KONUMDAN gelir — oran korunur */
+  align-items: center;
+  justify-items: center;
+  /* kolonlar arası boşluk: ritim ver ama galeri gibi durmasın */
+  column-gap: 4vw;
+  padding: 0 8vw;
+}
+
+/* çerçeve her zaman 9:16 — oran asla bozulmaz (mobil dahil).
+   genişlik kolona göre, yükseklik orandan; ekrana sığması için tavan: 92dvh */
+.col {
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  aspect-ratio: 9 / 16 !important;
+  max-height: 50dvh;
+}
+
+/* bilerek hizasız: oranı bozmadan dikey kaydır */
+.col:nth-child(1) {
+  align-self: start;
+  transform: translateY(-4vh);
+  width: 78%;
+}
+
+.col:nth-child(2) {
+  align-self: center;
+  transform: translateY(2vh);
+}
+
+.col:nth-child(3) {
+  align-self: end;
+  transform: translateY(4vh);
+  width: 78%;
+}
+
+.col_img {
+  height: 100%; /* parallax payı: kayınca boşluk açılmasın */
   width: 100%;
-  padding: 15vh 1vw;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+  -webkit-clip-path: inset(100% 0% 0% 0%);
+  clip-path: inset(100% 0% 0% 0%);
+  will-change: clip-path, transform;
+  filter: grayscale(0.1);
+}
+
+/* ================================== */
+/* METİN KATMANI — kolonları yatay keser */
+/* ================================== */
+
+/* metin alta yaslı, ilk kolonun sol hizasında "görünmez kutu" gibi durur —
+   fotoğrafların gövdesine binmez, altında oturur */
+.overlay {
+  position: relative;
+  z-index: 2;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   justify-content: flex-end;
+  align-items: flex-start;
+  padding: 0 10.5vw 10vh;
+  gap: 2.5vh;
+  pointer-events: none;
+  will-change: transform;
 }
 
 .title {
   color: var(--wb950);
-  font-size: 5em;
-  font-weight: 600;
+  font-size: 2.5em;
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.025em;
   text-align: start;
   user-select: none;
-  height: 100%;
+  max-width: 14ch;
 }
 
 .title > span:nth-child(2) {
-  color: var(--wb200);
+  color: var(--wb400);
 }
 
-/* .desc now contains both the text and the image row */
 .desc {
-  width: 98vw;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between; /* space-between as requested */
-  font-size: 1em;
-  font-weight: 300;
-}
-
-/* wrapper to keep text + images grouped and controllable */
-.text_and_imgs {
-  width: 100%;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between; /* ensures text left and images row right */
-  gap: 1em; /* overall gap between text block and gallery */
-}
-
-.content_desc_text {
-  min-width: 150px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 0.1em;
+  font-size: 1.25em;
+  font-weight: 300;
+  color: var(--wb500, #7c7c7c);
 }
 
-.content_desc_text > p > span {
+.desc_line > span {
   overflow: hidden;
-  height: 1.15em;
-}
-
-/* Work images container inside same desc block:
-   space-between between items, gap: 1em as requested */
-.work_container {
-  display: flex;
-  align-items: flex-end;
-  gap: 0.5em;
-  overflow: hidden;
-}
-
-/* each image has its own wrapper */
-.work_item {
-  aspect-ratio: 9/16;
-  height: 15em;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.work_item:nth-child(2) {
-  height: 20em;
-}
-
-.work_item:nth-child(3) {
-  height: 25em;
-}
-
-/* the img itself */
-.work_img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  display: block;
-  -webkit-clip-path: inset(100% 0% 0% 0%);
-  clip-path: inset(100% 0% 0% 0%);
-  will-change: clip-path, transform, opacity;
+  height: 1.2em;
 }
 
 @media screen and (max-width: 1024px) {
-  .header {
-    padding: 10vh 1vw;
+  .cols {
+    padding: 0 4vw;
+    column-gap: 3vw;
+  }
+
+  .overlay {
+    padding: 0 4vw 8vh;
   }
 
   .title {
-    font-size: 5em;
-  }
-
-  .work_item {
-    height: 15em;
-  }
-
-  .work_item:nth-child(2) {
-    height: 17.5em;
-  }
-
-  .work_item:nth-child(3) {
-    height: 20em;
-  }
-
-  .text_and_imgs {
-    align-items: flex-end;
-    gap: 1em;
-  }
-
-  .work_container {
-    width: 100%;
-    justify-content: flex-end;
+    font-size: 4em;
   }
 }
 
 @media screen and (max-width: 600px) {
+  .cols {
+    padding: 0 5vw;
+    column-gap: 2vw;
+    /* dar ekranda 3 dikey 9:16 kolon sığsın diye tavanı düşür */
+    align-items: center;
+  }
+
+  .col {
+    max-height: 58dvh;
+  }
+
+  .col:nth-child(1) {
+    transform: translateY(-2vh);
+    width: 100%;
+  }
+
+  .col:nth-child(2) {
+    transform: translateY(1vh);
+  }
+
+  .col:nth-child(3) {
+    transform: translateY(2vh);
+    width: 100%;
+  }
+
+  .overlay {
+    padding: 0 5vw 8vh;
+    gap: 2vh;
+  }
+
   .title {
-    font-size: 3em;
+    font-size: 1.88em;
   }
 
-  .content_desc_text{
-    font-size: .825em;
-  }
-
-  .work_item {
-    height: 7.5em;
-  }
-
-  .work_item:nth-child(2) {
-    height: 10em;
-  }
-
-  .work_item:nth-child(3) {
-    height: 12.5em;
+  .desc {
+    font-size: 1em;
   }
 }

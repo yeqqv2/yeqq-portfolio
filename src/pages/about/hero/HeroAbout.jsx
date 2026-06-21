@@ -1,10 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import styles from "./style.module.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AnimatedSplit from "@/components/animated-split/AnimatedSplit";
 import BlurReveal from "@/components/reveal/BlurReveal";
 import { useTranslation } from "react-i18next";
+import { prefersReducedMotion } from "@/utils/motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,18 +15,18 @@ export default function HeroAbout() {
   const headerRef = useRef(null);
 
   const workImages = [
-    "/assets/yunus-emre-korkmaz/1.webp",
     "/assets/yunus-emre-korkmaz/13.webp",
+    "/assets/yunus-emre-korkmaz/1.webp",
     "/assets/yunus-emre-korkmaz/21.webp",
   ];
 
+  // giriş: üç dikey kolon aşağıdan açılır (mevcut clip dili korunur)
   useEffect(() => {
     let ctx = gsap.context(() => {
-      // Callback ref'ler yerine, context içindeki class'ları doğrudan, güvenli bir şekilde seçiyoruz
-      const workItems = gsap.utils.toArray(`.${styles.work_item}`);
+      const cols = gsap.utils.toArray(`.${styles.col}`);
 
-      workItems.forEach((work, index) => {
-        const img = work.querySelector(`.${styles.work_img}`);
+      cols.forEach((col, index) => {
+        const img = col.querySelector(`.${styles.col_img}`);
         if (!img) return;
 
         gsap.set(img, { clipPath: "inset(100% 0% 0% 0%)" });
@@ -35,29 +36,10 @@ export default function HeroAbout() {
           { clipPath: "inset(100% 0% 0% 0%)" },
           {
             clipPath: "inset(0% 0% 0% 0%)",
-            duration: 1.5,
-            ease: "hop",
-            delay: index * 0.15,
-            scrollTrigger: {
-              trigger: work,
-              start: "top 100%",
-              // Manuel trigger takibine gerek yok, ctx.revert() hallediyor
-            },
-          },
-        );
-
-        gsap.fromTo(
-          work,
-          { y: 20 },
-          {
-            y: 0,
-            duration: 0.8,
+            duration: 1.6,
             ease: "hop",
             delay: index * 0.12,
-            scrollTrigger: {
-              trigger: work,
-              start: "top 85%",
-            },
+            scrollTrigger: { trigger: col, start: "top 100%" },
           },
         );
       });
@@ -66,51 +48,78 @@ export default function HeroAbout() {
     return () => ctx.revert();
   }, []);
 
+  /* scroll-sürücülü sinematik: üç kolon farklı hızlarda kayar (hız farkı =
+     derinlik), metin katmanı daha yavaş süzülür. footer ile aynı dil. */
+  useLayoutEffect(() => {
+    if (prefersReducedMotion()) return;
+
+    const header = headerRef.current;
+    if (!header) return;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: header,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      tl.to(`.${styles.col}:nth-child(1) .${styles.col_img}`, { yPercent: -12, ease: "none" }, 0);
+      tl.to(`.${styles.col}:nth-child(2) .${styles.col_img}`, { yPercent: -26, ease: "none" }, 0);
+      tl.to(`.${styles.col}:nth-child(3) .${styles.col_img}`, { yPercent: -18, ease: "none" }, 0);
+      tl.to(`.${styles.overlay}`, { yPercent: -8, ease: "none" }, 0);
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <div className={styles.container} ref={containerRef}>
       <header className={styles.header} ref={headerRef}>
-        <AnimatedSplit
-          key={`${i18n.language}-hero-title`}
-          text={t("heroAbout.title")}
-          className={styles.title}
-          tagName="h1"
-          stagger={0.03}
-          duration={1.5}
-          start="top 80%"
-        />
-        <div className={styles.desc}>
-          <div className={styles.text_and_imgs}>
-            <div className={styles.content_desc_text}>
-              <BlurReveal
-                key={`${i18n.language}-hero-desc-1`}
-                text={t("heroAbout.content_text_1")}
-                className={styles.content_desc_text_p}
-                tagName="span"
-                start="top 90%"
-              />
-              <BlurReveal
-                key={`${i18n.language}-hero-desc-2`}
-                text={t("heroAbout.content_text_2")}
-                className={styles.content_desc_text_p}
-                tagName="span"
-                start="top 90%"
+        {/* üç tam-boy dikey kolon — bilerek hizasız, kenarlardan taşar */}
+        <div className={styles.cols} aria-hidden="true">
+          {workImages.map((src, idx) => (
+            <div key={idx} className={styles.col}>
+              <img
+                src={src}
+                alt=""
+                className={styles.col_img}
+                loading={idx === 0 ? "eager" : "lazy"}
+                decoding="async"
               />
             </div>
+          ))}
+        </div>
 
-            <div className={styles.work_container}>
-              {workImages.map((src, idx) => (
-                <div key={idx} className={styles.work_item}>
-                  <img
-                    src={src}
-                    alt=""
-                    className={styles.work_img}
-                    aria-hidden="true"
-                    loading={idx === 0 ? "eager" : "lazy"}
-                    decoding="async"
-                  />
-                </div>
-              ))}
-            </div>
+        {/* metin katmanı kolonları yatay keser */}
+        <div className={styles.overlay}>
+          <AnimatedSplit
+            key={`${i18n.language}-hero-title`}
+            text={t("heroAbout.title")}
+            className={styles.title}
+            tagName="h1"
+            stagger={0.03}
+            duration={1.5}
+            start="top 80%"
+          />
+          <div className={styles.desc}>
+            <BlurReveal
+              key={`${i18n.language}-hero-desc-1`}
+              text={t("heroAbout.content_text_1")}
+              className={styles.desc_line}
+              tagName="span"
+              start="top 90%"
+            />
+            <BlurReveal
+              key={`${i18n.language}-hero-desc-2`}
+              text={t("heroAbout.content_text_2")}
+              className={styles.desc_line}
+              tagName="span"
+              start="top 90%"
+            />
           </div>
         </div>
       </header>

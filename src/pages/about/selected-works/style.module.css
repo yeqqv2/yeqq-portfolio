@@ -1,17 +1,19 @@
+/* iki sütun, dar: solda başlık sabit, sağda proje listesi.
+   border yok — hiyerarşi sadece boşluk + tipografiyle. */
 .container {
-  width: 100vw;
-  padding: 20vh 1vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5vw;
+  width: 100%;
+  padding: 18vh 5vw;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  justify-content: center;
+  column-gap: 6vw;
 }
 
 .header {
-  width: 25vw;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.5em;
 }
 
@@ -19,43 +21,45 @@
   font-size: 0.875em;
   font-weight: 200;
   opacity: 0.5;
-  text-align: center;
+  text-align: start;
 }
 
 .subtitle {
   line-height: 1.2;
   font-weight: 300;
-  text-align: center;
+  text-align: start;
+  max-width: 14ch;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2.5em;
 }
 
 .list {
-  width: 70vw;
+  width: 100%;
   list-style: none;
   display: flex;
   flex-direction: column;
-}
-
-.row {
-  border-top: 1px solid var(--wb100);
-}
-
-.row:last-child {
-  border-bottom: 1px solid var(--wb100);
+  gap: 0.25em;
 }
 
 .rowLink {
   display: grid;
-  grid-template-columns: auto 1fr auto auto;
+  grid-template-columns: auto 1fr;
   align-items: baseline;
-  gap: 2em;
-  padding: 1.5em 0.5em;
+  column-gap: 1.25em;
+  row-gap: 0.1em;
+  padding: 0.5em 0;
   color: var(--wb950);
   text-decoration: none;
   transition: transform 0.4s cubic-bezier(0.65, 0.05, 0, 1);
 }
 
 .rowLink:hover {
-  transform: translateX(1em);
+  transform: translateX(0.5em);
 }
 
 .index {
@@ -63,6 +67,7 @@
   font-weight: 300;
   letter-spacing: 0.04em;
   color: var(--wb400);
+  transition: color 0.4s ease;
 }
 
 .name {
@@ -70,59 +75,36 @@
   line-height: 1.2;
 }
 
+/* tip artık ismin altında, ince — sağ-hizalı kolon değil */
 .type {
+  grid-column: 2;
   font-size: 0.8em;
   font-weight: 300;
   color: var(--wb500);
-  text-align: right;
-  white-space: nowrap;
   transition: color 0.4s ease;
 }
 
-.arrow {
-  color: var(--wb400);
-  transition: transform 0.4s cubic-bezier(0.65, 0.05, 0, 1), color 0.4s ease;
-}
-
+.rowLink:hover .index,
 .rowLink:hover .type {
   color: var(--wb700);
 }
 
-.rowLink:hover .arrow {
-  transform: translateX(0.4em);
-  color: var(--wb950);
-}
-
 @media screen and (max-width: 1024px) {
   .container {
-    padding: 10vh 1vw;
-  }
-
-  .header {
-    width: 40vw;
-  }
-
-  .list {
-    width: 90vw;
+    padding: 12vh 20vw;
+    column-gap: 4vw;
   }
 }
 
 @media screen and (max-width: 600px) {
-  .header {
-    width: 75vw;
+  /* dar ekranda tek kolona düş: başlık üstte, liste altta */
+  .container {
+    grid-template-columns: 1fr;
+    row-gap: 3em;
+    padding: 10vh 6vw;
   }
 
-  .list {
-    width: 92vw;
-  }
-
-  .rowLink {
-    grid-template-columns: auto 1fr auto;
-    gap: 1em;
-    padding: 1.25em 0.25em;
-  }
-
-  .type {
-    display: none;
+  .subtitle {
+    max-width: none;
   }
 }

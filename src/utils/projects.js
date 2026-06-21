@@ -46,6 +46,8 @@ const works = [
       { file: "3.webp", isWide: false },
       { file: "4.webp", isWide: false },
       { file: "5.webp", isWide: false },
+      { file: "6.webp", isWide: false },
+      { file: "7.webp", isWide: false },
     ],
   },
 
@@ -97,6 +99,7 @@ const works = [
       { file: "3.webp", isWide: false },
       { file: "4.webp", isWide: false },
       { file: "5.webp", isWide: false },
+      { file: "6.webp", isWide: false },
     ],
   },
 

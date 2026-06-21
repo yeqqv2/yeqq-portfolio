@@ -33,7 +33,7 @@ export default function SelectedWorks() {
         if (!row) return;
         gsap.fromTo(
           row,
-          { y: 32, opacity: 0 },
+          { y: 24, opacity: 0 },
           {
             y: 0,
             opacity: 1,
@@ -72,34 +72,33 @@ export default function SelectedWorks() {
         />
       </div>
 
-      <ul className={styles.list}>
-        {featured.map((work, index) => (
-          <li
-            key={work.link}
-            className={styles.row}
-            ref={(el) => (rowsRef.current[index] = el)}
-          >
-            <Link to={work.link} className={styles.rowLink}>
-              <span className={styles.index} aria-hidden="true">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <span className={styles.name}>{work.name}</span>
-              <span className={styles.type}>{work.type}</span>
-              <span className={styles.arrow} aria-hidden="true">
-                →
-              </span>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <div className={styles.right}>
+        <ul className={styles.list}>
+          {featured.map((work, index) => (
+            <li
+              key={work.link}
+              className={styles.row}
+              ref={(el) => (rowsRef.current[index] = el)}
+            >
+              <Link to={work.link} className={styles.rowLink}>
+                <span className={styles.index} aria-hidden="true">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className={styles.name}>{work.name}</span>
+                <span className={styles.type}>{work.type}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
 
-      <footer className={styles.footer}>
-        <PrimerLink
-          href="/projects"
-          buttonText={t("selectedWorks.viewAll")}
-          random
-        />
-      </footer>
+        <footer className={styles.footer}>
+          <PrimerLink
+            href="/projects"
+            buttonText={t("selectedWorks.viewAll")}
+            random
+          />
+        </footer>
+      </div>
     </div>
   );
 }
